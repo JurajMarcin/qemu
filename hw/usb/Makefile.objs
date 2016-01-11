@@ -31,7 +31,9 @@ ifeq ($(CONFIG_USB_SMARTCARD),y)
 common-obj-y                          += dev-smartcard-reader.o
 ifeq ($(CONFIG_SMARTCARD),y)
 common-obj-m                          += smartcard.mo
-smartcard.mo-objs := ccid-card-passthru.o ccid-card-emulated.o
+# Disabled for Red Hat Enterprise Linux:
+#smartcard.mo-objs := ccid-card-passthru.o ccid-card-emulated.o
+smartcard.mo-objs := ccid-card-passthru.o
 smartcard.mo-cflags := $(SMARTCARD_CFLAGS)
 smartcard.mo-libs := $(SMARTCARD_LIBS)
 endif

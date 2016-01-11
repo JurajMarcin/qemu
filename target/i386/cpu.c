@@ -1825,6 +1825,7 @@ static CPUCaches epyc_rome_cache_info = {
 
 static X86CPUDefinition builtin_x86_defs[] = {
     {
+        /* qemu64 is the default CPU model for all machine-types */
         .name = "qemu64",
         .level = 0xd,
         .vendor = CPUID_VENDOR_AMD,

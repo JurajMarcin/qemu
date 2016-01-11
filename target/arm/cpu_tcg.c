@@ -655,6 +655,9 @@ static void arm_tcg_cpu_register_types(void)
 {
     size_t i;
 
+    /* Disable TCG cpu types for Red Hat Enterprise Linux */
+    return;
+
     for (i = 0; i < ARRAY_SIZE(arm_tcg_cpus); ++i) {
         arm_cpu_register(&arm_tcg_cpus[i]);
     }

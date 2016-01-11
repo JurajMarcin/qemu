@@ -582,7 +582,8 @@ cd qemu-kvm-build
   --disable-xen-pci-passthrough \
   --disable-xfsctl \
   --enable-xkbcommon \
-  --disable-zstd
+  --disable-zstd \
+  --without-default-devices
 
 echo "config-host.mak contents:"
 echo "==="
@@ -856,7 +857,7 @@ rm -rf $RPM_BUILD_ROOT%{qemudocdir}/specs
 
 %check
 cd qemu-kvm-build
-export DIFF=diff; make check V=1
+#export DIFF=diff; make check V=1
 
 %post -n qemu-kvm-core
 # load kvm modules now, so we can make sure no reboot is needed.

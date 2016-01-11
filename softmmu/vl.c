@@ -145,7 +145,7 @@ static Chardev **serial_hds;
 Chardev *parallel_hds[MAX_PARALLEL_PORTS];
 int win2k_install_hack = 0;
 int singlestep = 0;
-int no_hpet = 0;
+int no_hpet = 1; /* Always disabled for Red Hat Enterprise Linux */
 int fd_bootchk = 1;
 static int no_reboot;
 int no_shutdown = 0;
