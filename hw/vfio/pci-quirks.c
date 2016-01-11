@@ -1166,6 +1166,7 @@ static void vfio_probe_rtl8168_bar2_quirk(VFIOPCIDevice *vdev, int nr)
     trace_vfio_quirk_rtl8168_probe(vdev->vbasedev.name);
 }
 
+#if 0 /* Disabled for Red Hat Enterprise Linux */
 /*
  * Intel IGD support
  *
@@ -1239,6 +1240,7 @@ static int igd_gen(VFIOPCIDevice *vdev)
 
     return 8; /* Assume newer is compatible */
 }
+#endif
 
 typedef struct VFIOIGDQuirk {
     struct VFIOPCIDevice *vdev;
@@ -1311,6 +1313,7 @@ typedef struct {
     uint8_t len;
 } IGDHostInfo;
 
+#if 0 /* Disabled for Red Hat Enterprise Linux */
 static const IGDHostInfo igd_host_bridge_infos[] = {
     {PCI_REVISION_ID,         2},
     {PCI_SUBSYSTEM_VENDOR_ID, 2},
@@ -1559,9 +1562,11 @@ static const MemoryRegionOps vfio_igd_index_quirk = {
     .write = vfio_igd_quirk_index_write,
     .endianness = DEVICE_LITTLE_ENDIAN,
 };
+#endif
 
 static void vfio_probe_igd_bar4_quirk(VFIOPCIDevice *vdev, int nr)
 {
+#if 0 /* Disabled for Red Hat Enterprise Linux */
     struct vfio_region_info *rom = NULL, *opregion = NULL,
                             *host = NULL, *lpc = NULL;
     VFIOQuirk *quirk;
@@ -1572,6 +1577,7 @@ static void vfio_probe_igd_bar4_quirk(VFIOPCIDevice *vdev, int nr)
     uint32_t gmch;
     uint16_t cmd_orig, cmd;
     Error *err = NULL;
+#endif
 
     /*
      * This must be an Intel VGA device at address 00:02.0 for us to even
@@ -1584,6 +1590,8 @@ static void vfio_probe_igd_bar4_quirk(VFIOPCIDevice *vdev, int nr)
                                        0, PCI_DEVFN(0x2, 0))) {
         return;
     }
+
+#if 0 /* Disabled for Red Hat Enterprise Linux */
 
     /*
      * We need to create an LPC/ISA bridge at PCI bus address 00:1f.0 that we
@@ -1809,6 +1817,7 @@ out:
     g_free(opregion);
     g_free(host);
     g_free(lpc);
+#endif
 }
 
 /*
