@@ -1,51 +1,27 @@
-#
-# Common git-publish profiles that can be used to send patches to QEMU upstream.
-#
-# See https://github.com/stefanha/git-publish for more information
-#
+# The default profile
 [gitpublishprofile "default"]
-base = master
-to = qemu-devel@nongnu.org
-cccmd = scripts/get_maintainer.pl --noroles --norolestats --nogit --nogit-fallback 2>/dev/null
+base = rhel-av-8.3.0
+prefix = RHEL-AV-8.3.0 qemu-kvm PATCH
+to = rhvirt-patches@redhat.com
+suppresscc = all
+message = True
+blurb-template = BZ: <XYZ>
+blurb-template = BRANCH: rhel-av-8.3.0
+blurb-template = UPSTREAM: <upstream status>
+blurb-template = BREW: <brew id>
+blurb-template = *** YOUR MESSAGE HERE ***
 
-[gitpublishprofile "rfc"]
-base = master
-prefix = RFC PATCH
-to = qemu-devel@nongnu.org
-cccmd = scripts/get_maintainer.pl --noroles --norolestats --nogit --nogit-fallback 2>/dev/null
+DOWNSTREAM-BZ-FIELDS = product,component,cf_internal_target_release
+DOWNSTREAM-BZ-FLAGS = qa_ack,pm_ack,devel_ack,release
 
-[gitpublishprofile "stable"]
-base = master
-to = qemu-devel@nongnu.org
-cc = qemu-stable@nongnu.org
-cccmd = scripts/get_maintainer.pl --noroles --norolestats --nogit --nogit-fallback 2>/dev/null
+DOWNSTREAM-BZ-product = Red Hat Enterprise Linux Advanced Virtualization
+DOWNSTREAM-BZ-component = qemu-kvm
+DOWNSTREAM-BZ-cf-internal-target-release = 8.3.0
 
-[gitpublishprofile "trivial"]
-base = master
-to = qemu-devel@nongnu.org
-cc = qemu-trivial@nongnu.org
-cccmd = scripts/get_maintainer.pl --noroles --norolestats --nogit --nogit-fallback 2>/dev/null
+DOWNSTREAM-BZ-release = +
+DOWNSTREAM-BZ-qa-ack = +
+DOWNSTREAM-BZ-pm-ack = +
+DOWNSTREAM-BZ-devel-ack = +
 
-[gitpublishprofile "block"]
-base = master
-to = qemu-devel@nongnu.org
-cc = qemu-block@nongnu.org
-cccmd = scripts/get_maintainer.pl --noroles --norolestats --nogit --nogit-fallback 2>/dev/null
-
-[gitpublishprofile "arm"]
-base = master
-to = qemu-devel@nongnu.org
-cc = qemu-arm@nongnu.org
-cccmd = scripts/get_maintainer.pl --noroles --norolestats --nogit --nogit-fallback 2>/dev/null
-
-[gitpublishprofile "s390"]
-base = master
-to = qemu-devel@nongnu.org
-cc = qemu-s390@nongnu.org
-cccmd = scripts/get_maintainer.pl --noroles --norolestats --nogit --nogit-fallback 2>/dev/null
-
-[gitpublishprofile "ppc"]
-base = master
-to = qemu-devel@nongnu.org
-cc = qemu-ppc@nongnu.org
-cccmd = scripts/get_maintainer.pl --noroles --norolestats --nogit --nogit-fallback 2>/dev/null
+#DOWNSTREAM-REPOSITORY = https://code.engineering.redhat.com/gerrit/virt-rhel8-qemu-kvm
+DOWNSTREAM-REPOSITORY = https://gitlab.cee.redhat.com/mrezanin/qemu-kvm-rebase.git
