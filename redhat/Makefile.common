@@ -1,0 +1,50 @@
+UNAME:=qemu
+NAME:=qemu-kvm
+VERSION:=6.1.0
+DATE:=
+COMMIT:=
+RELEASE:=1
+ZRELEASE:=
+RELEASE_SEPARATOR:=-
+WEEKLY_DATE:=20210825
+RC:=
+#BUILD_TARGET=module-virt-av-8040020210212192624-9f9e2e7e
+BUILD_TARGET=rhel-8.5.0-candidate
+
+ifneq ($(RC),)
+  TARFILE:=qemu-$(VERSION)-$(RC).tar.xz
+else
+  TARFILE:=qemu-$(VERSION).tar.xz
+endif
+TARSHA512:=3378ae21c75b77ee6a759827f1fcf7b2a50a0fef07e3b0e89117108022a8d8655fa977e4d65596f4f24f7c735c6594d44b0c6f69732ea4465e88a7406b1d5d3c
+TARURL:=https://pkgs.devel.redhat.com/repo/rpms/qemu-kvm/$(TARFILE)/sha512/$(TARSHA512)/$(TARFILE)
+MARKER:=f9baca549e44791be0dd98de15add3d8452a8af0
+
+SPECFILE:=$(NAME).spec
+DIST:=.el8
+
+SOURCES_FILELIST:=                     \
+       ksmtuned.conf                   \
+       ksmtuned                        \
+       ksm.sysconfig                   \
+       kvm.modules                     \
+       81-kvm-rhel.rules               \
+       udev-kvm-check.c                \
+       99-qemu-guest-agent.rules       \
+       qemu-guest-agent.service        \
+       ksmtuned.service                \
+       ksmctl.c                        \
+       ksm.service                     \
+       qemu-ga.sysconfig               \
+       kvm-setup                       \
+       kvm-setup.service               \
+       85-kvm.preset                   \
+       vhost.conf                      \
+       bridge.conf                     \
+       kvm.conf                        \
+       kvm-x86.conf                    \
+       kvm-s390x.conf                  \
+       95-kvm-memlock.conf             \
+       qemu-pr-helper.service          \
+       qemu-pr-helper.socket           \
+       README.tests

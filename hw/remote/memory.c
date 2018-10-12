@@ -41,8 +41,13 @@ void remote_sysmem_reconfig(MPQemuMsg *msg, Error **errp)
 
     remote_sysmem_reset();
 
+<<<<<<< HEAD
     for (region = 0; region < msg->num_fds; region++, suffix++) {
         g_autofree char *name = g_strdup_printf("remote-mem-%u", suffix);
+=======
+    for (region = 0; region < msg->num_fds; region++) {
+        g_autofree char *name = NULL;
+>>>>>>> e0233e3bb3... Initial redhat build
         subregion = g_new(MemoryRegion, 1);
         memory_region_init_ram_from_fd(subregion, NULL,
                                        name, sysmem_info->sizes[region],

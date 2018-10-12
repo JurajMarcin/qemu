@@ -347,7 +347,11 @@ static void probe_pci_info(PCIDevice *dev, Error **errp)
                    PCI_BASE_ADDRESS_SPACE_IO : PCI_BASE_ADDRESS_SPACE_MEMORY;
 
         if (size) {
+<<<<<<< HEAD
             g_autofree char *name = g_strdup_printf("bar-region-%d", i);
+=======
+            g_autofree char *name = NULL;
+>>>>>>> e0233e3bb3... Initial redhat build
             pdev->region[i].dev = pdev;
             pdev->region[i].present = true;
             if (type == PCI_BASE_ADDRESS_SPACE_MEMORY) {
