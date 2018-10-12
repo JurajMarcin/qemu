@@ -16,7 +16,7 @@ def extract_build_info(strlines):
     state = 0
 
     build_start = re.compile("^%build\n")
-    configure_start = re.compile("^\s*\./configure\s+\\\\\n$")
+    configure_start = re.compile("^\s*\.\./configure\s+\\\\\n$")
     configure_consume = re.compile("^\s+.*\\\\\n$")
     configure_consume_last = re.compile("^\s+.*\n$")
     configure_end = re.compile("^\n")
@@ -41,7 +41,8 @@ def extract_build_info(strlines):
         #./configure.sh was found, include everying ending in \
         elif state == 2:
             if configure_consume.match(line):
-                build_line.append(line.strip()[:-1])
+                if line.strip()[:-1]:
+                    build_line.append(line.strip()[:-1])
             elif configure_consume_last.match(line):
                 build_line.append(line.strip())
                 state = 3
