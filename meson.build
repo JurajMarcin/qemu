@@ -2108,7 +2108,9 @@ if capstone_opt == 'internal'
     # Include all configuration defines via a header file, which will wind up
     # as a dependency on the object file, and thus changes here will result
     # in a rebuild.
-    '-include', 'capstone-defs.h'
+    '-include', 'capstone-defs.h',
+
+    '-Wp,-D_GLIBCXX_ASSERTIONS',
   ]
 
   libcapstone = static_library('capstone',
