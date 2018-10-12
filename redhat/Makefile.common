@@ -1,0 +1,50 @@
+UNAME:=qemu
+NAME:=qemu-kvm
+VERSION:=6.0.0
+DATE:=
+COMMIT:=
+RELEASE:=1
+ZRELEASE:=
+RELEASE_SEPARATOR:=-
+WEEKLY_DATE:=
+RC:=
+BUILD_TARGET=rhel-9.0.0-beta-candidate
+
+ifneq ($(RC),)
+  TARFILE:=qemu-$(VERSION)-$(RC).tar.xz
+else
+  TARFILE:=qemu-$(VERSION).tar.xz
+endif
+TARURL:=https://download.qemu.org/$(TARFILE)
+#TARURL:=http://batcave.lab.eng.brq.redhat.com/www/qemu/weekly/$(WEEKLY_DATE)/$(TARFILE)
+TARSHA256:=87bc1a471ca24b97e7005711066007d443423d19aacda3d442558ae032fa30b9
+MARKER:=609d7596524ab204ccd71ef42c9eee4c7c338ea4
+
+SPECFILE:=$(NAME).spec
+DIST:=.el9
+
+SOURCES_FILELIST:=                     \
+       ksmtuned.conf                   \
+       ksmtuned                        \
+       ksm.sysconfig                   \
+       kvm.modules                     \
+       81-kvm-rhel.rules               \
+       udev-kvm-check.c                \
+       99-qemu-guest-agent.rules       \
+       qemu-guest-agent.service        \
+       ksmtuned.service                \
+       ksmctl.c                        \
+       ksm.service                     \
+       qemu-ga.sysconfig               \
+       kvm-setup                       \
+       kvm-setup.service               \
+       85-kvm.preset                   \
+       vhost.conf                      \
+       bridge.conf                     \
+       kvm.conf                        \
+       kvm-x86.conf                    \
+       kvm-s390x.conf                  \
+       95-kvm-memlock.conf             \
+       qemu-pr-helper.service          \
+       qemu-pr-helper.socket           \
+       README.tests
