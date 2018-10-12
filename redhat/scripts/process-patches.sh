@@ -23,6 +23,8 @@ shift
 LOCALVERSION=$1
 shift
 ZRELEASE=$1
+shift
+RCVERSION=$1
 
 SOURCES=rpmbuild/SOURCES
 SRPMDIR=rpmbuild/SRPM
@@ -44,7 +46,7 @@ fi
 echo "Using $LOCAL_PYTHON"
 
 # Pre-cleaning
-rm -rf .tmp asection psection patchlist
+rm -rf .tmp psection patchlist
 
 echo ${TARBALL} / ${TARURL}
 if [ ! -f ${TARBALL} ]; then
@@ -56,6 +58,9 @@ if [ -n "${ZRELEASE}" ]; then
    ZRELEASE=.${ZRELEASE}
 fi
 
+if [ -n "${RCVERSION}" ]; then
+   RCVERSION="%global rcversion ${RCVERSION}"
+fi
 
 # Handle patches
 git format-patch --first-parent --no-renames -k --no-binary --ignore-submodules ${MARKER}.. > patchlist
@@ -64,7 +69,6 @@ for patchfile in `cat patchlist`; do
   if grep -q '^diff --git ' .tmp; then
     num=$(echo $patchfile | sed 's/\([0-9]*\).*/\1/')
     echo "Patch${num}: ${patchfile}" >> psection
-    echo "%patch${num} -p1" >> asection
     mv .tmp ${SOURCES}/${patchfile}
   fi
 done
@@ -72,17 +76,12 @@ done
 # Handle spec file
 cp ${SPECNAME}.template ${SPEC}
 
-if [ -n "${ZRELEASE}" ]; then
-    ZRELEASE=.${ZRELEASE}
-fi
-
 sed -i -e "/%%PATCHLIST%%/r psection
            /%%PATCHLIST%%/d
-           /%%PATCHAPPLY%%/r asection
-           /%%PATCHAPPLY%%/d
            s/%%VERSION%%/${VERSION}/
            s/%%RELEASE%%/${RELEASE}/
            s/%%ZRELEASE%%/${ZRELEASE}/
+           s/%%RCVERSION%%/${RCVERSION}/
            s/%%DATE%%/${DATE}/
            s/%%COMMIT%%/${COMMIT}/
            s/%%LOCALVERSION%%/${LOCALVERSION}/
@@ -90,4 +89,4 @@ sed -i -e "/%%PATCHLIST%%/r psection
 
 # Final cleaning
 rm -rf `cat patchlist`
-rm -rf .tmp asection psection patchlist
+rm -rf .tmp psection patchlist

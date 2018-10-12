@@ -1,0 +1,54 @@
+UNAME:=qemu
+NAME:=qemu-kvm
+VERSION:=5.1.0
+DATE:=
+COMMIT:=
+RELEASE:=0
+ZRELEASE:=
+RELEASE_SEPARATOR:=-
+WEEKLY_DATE:=2020805
+RC:=
+BUILD_TARGET=module-virt-8.3-8030020200811120152-30b713e6
+
+#TARFILE:=qemu-$(VERSION).tar.xz
+TARFILE:=qemu-$(VERSION)$(RC).tar.xz
+TARURL:=https://download.qemu.org/$(TARFILE)
+#TARURL:=http://batcave.lab.eng.brq.redhat.com/www/qemu/weekly/$(WEEKLY_DATE)/$(TARFILE)
+TARSHA256:=c9174eb5933d9eb5e61f541cd6d1184cd3118dfe4c5c4955bc1bdc4d390fa4e5
+MARKER:=d0ed6a69d399ae193959225cdeaa9382746c91cc
+
+
+SPECFILE:=$(NAME).spec
+DIST:=.el8
+
+ifneq ($(VERSION),)
+  BUILD_DIR=$(UNAME)-$(VERSION)
+else
+  BUILD_DIR=$(UNAME)-$(GITCOMMIT)
+endif
+
+SOURCES_FILELIST:=                     \
+       ksmtuned.conf                   \
+       ksmtuned                        \
+       ksm.sysconfig                   \
+       kvm.modules                     \
+       81-kvm-rhel.rules               \
+       udev-kvm-check.c                \
+       99-qemu-guest-agent.rules       \
+       qemu-guest-agent.service        \
+       ksmtuned.service                \
+       ksmctl.c                        \
+       ksm.service                     \
+       qemu-ga.sysconfig               \
+       kvm-setup                       \
+       kvm-setup.service               \
+       85-kvm.preset                   \
+       vhost.conf                      \
+       bridge.conf                     \
+       kvm.conf                        \
+       kvm-x86.conf                    \
+       kvm-s390x.conf                  \
+       95-kvm-memlock.conf             \
+       qemu-pr-helper.service          \
+       qemu-pr-helper.socket           \
+       README.tests

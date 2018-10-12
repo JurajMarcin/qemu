@@ -53,6 +53,8 @@ if ! (sed --version | grep 'GNU sed') > /dev/null 2>&1 ; then
     fi
 fi
 
+exit 0
+
 cd tests/qemu-iotests
 
 ret=0
