@@ -125,6 +125,9 @@ struct PCMachineClass {
 
     /* create kvmclock device even when KVM PV features are not exposed */
     bool kvmclock_create_always;
+
+    /* RH only, see bz 1489800 */
+    bool pc_rom_ro;
 };
 
 #define TYPE_PC_MACHINE "generic-pc-machine"
@@ -279,6 +282,48 @@ extern const size_t pc_compat_1_5_len;
 
 extern GlobalProperty pc_compat_1_4[];
 extern const size_t pc_compat_1_4_len;
+
+extern GlobalProperty pc_rhel_compat[];
+extern const size_t pc_rhel_compat_len;
+
+extern GlobalProperty pc_rhel_8_4_compat[];
+extern const size_t pc_rhel_8_4_compat_len;
+
+extern GlobalProperty pc_rhel_8_3_compat[];
+extern const size_t pc_rhel_8_3_compat_len;
+
+extern GlobalProperty pc_rhel_8_2_compat[];
+extern const size_t pc_rhel_8_2_compat_len;
+
+extern GlobalProperty pc_rhel_8_1_compat[];
+extern const size_t pc_rhel_8_1_compat_len;
+
+extern GlobalProperty pc_rhel_8_0_compat[];
+extern const size_t pc_rhel_8_0_compat_len;
+
+extern GlobalProperty pc_rhel_7_6_compat[];
+extern const size_t pc_rhel_7_6_compat_len;
+
+extern GlobalProperty pc_rhel_7_5_compat[];
+extern const size_t pc_rhel_7_5_compat_len;
+
+extern GlobalProperty pc_rhel_7_4_compat[];
+extern const size_t pc_rhel_7_4_compat_len;
+
+extern GlobalProperty pc_rhel_7_3_compat[];
+extern const size_t pc_rhel_7_3_compat_len;
+
+extern GlobalProperty pc_rhel_7_2_compat[];
+extern const size_t pc_rhel_7_2_compat_len;
+
+extern GlobalProperty pc_rhel_7_1_compat[];
+extern const size_t pc_rhel_7_1_compat_len;
+
+extern GlobalProperty pc_rhel_7_0_compat[];
+extern const size_t pc_rhel_7_0_compat_len;
+
+extern GlobalProperty hw_compat_4_2_extra[];
+extern const size_t hw_compat_4_2_extra_len;
 
 /* Helper for setting model-id for CPU models that changed model-id
  * depending on QEMU versions up to QEMU 2.4.
