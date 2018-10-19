@@ -748,6 +748,7 @@
 /* PowerPC CPU aliases                                                     */
 
 PowerPCCPUAlias ppc_cpu_aliases[] = {
+#if 0  /* Disabled for Red Hat Enterprise Linux */
     { "405", "405d4" },
     { "405cr", "405crc" },
     { "405gp", "405gpd" },
