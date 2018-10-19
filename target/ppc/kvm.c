@@ -90,6 +90,7 @@ static int cap_ppc_nested_kvm_hv;
 static int cap_large_decr;
 static int cap_fwnmi;
 static int cap_rpt_invalidate;
+static int cap_ppc_secure_guest;
 
 static uint32_t debug_inst_opcode;
 
@@ -137,6 +138,7 @@ int kvm_arch_init(MachineState *ms, KVMState *s)
     cap_resize_hpt = kvm_vm_check_extension(s, KVM_CAP_SPAPR_RESIZE_HPT);
     kvmppc_get_cpu_characteristics(s);
     cap_ppc_nested_kvm_hv = kvm_vm_check_extension(s, KVM_CAP_PPC_NESTED_HV);
+    cap_ppc_secure_guest = kvm_vm_check_extension(s, KVM_CAP_PPC_SECURE_GUEST);
     cap_large_decr = kvmppc_get_dec_bits();
     cap_fwnmi = kvm_vm_check_extension(s, KVM_CAP_PPC_FWNMI);
     /*
@@ -2563,6 +2565,16 @@ int kvmppc_has_cap_rpt_invalidate(void)
     return cap_rpt_invalidate;
 }
 
+bool kvmppc_has_cap_secure_guest(void)
+{
+    return !!cap_ppc_secure_guest;
+}
+
+int kvmppc_enable_cap_secure_guest(void)
+{
+    return kvm_vm_enable_cap(kvm_state, KVM_CAP_PPC_SECURE_GUEST, 0, 1);
+}
+
 PowerPCCPUClass *kvm_ppc_get_host_cpu_class(void)
 {
     uint32_t host_pvr = mfpvr();
@@ -2958,4 +2970,19 @@ void kvmppc_set_reg_tb_offset(PowerPCCPU *cpu, int64_t tb_offset)
 bool kvm_arch_cpu_check_are_resettable(void)
 {
     return true;
+}
+
+void kvmppc_svm_allow(Error **errp)
+{
+    if (!kvm_enabled()) {
+        error_setg(errp, "No PEF support in tcg, try x-svm-allowed=off");
+        return;
+    }
+
+    if (!kvmppc_has_cap_secure_guest()) {
+        error_setg(errp, "KVM implementation does not support secure guests, "
+                   "try x-svm-allowed=off");
+    } else if (kvmppc_enable_cap_secure_guest() < 0) {
+        error_setg(errp, "Error enabling x-svm-allowed, try x-svm-allowed=off");
+    }
 }
