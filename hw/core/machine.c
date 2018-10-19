@@ -38,6 +38,12 @@
 #include "hw/virtio/virtio-pci.h"
 
 /*
+ * RHEL only: machine types for previous major releases are deprecated
+ */
+const char *rhel_old_machine_deprecation =
+    "machine types for previous major releases are deprecated";
+
+/*
  * Mostly the same as hw_compat_6_0 and hw_compat_6_1
  */
 GlobalProperty hw_compat_rhel_8_5[] = {
