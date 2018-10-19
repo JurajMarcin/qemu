@@ -24,6 +24,7 @@
 #include "sysemu/reset.h"
 #include "sysemu/hw_accel.h"
 #include "qemu/error-report.h"
+#include "cpu-models.h"
 
 static void spapr_reset_vcpu(PowerPCCPU *cpu)
 {
@@ -242,6 +243,7 @@ static void spapr_realize_vcpu(PowerPCCPU *cpu, SpaprMachineState *spapr,
     CPUPPCState *env = &cpu->env;
     CPUState *cs = CPU(cpu);
     Error *local_err = NULL;
+    SpaprMachineClass *smc = SPAPR_MACHINE_GET_CLASS(spapr);
 
     object_property_set_bool(OBJECT(cpu), true, "realized", &local_err);
     if (local_err) {
@@ -253,6 +255,17 @@ static void spapr_realize_vcpu(PowerPCCPU *cpu, SpaprMachineState *spapr,
 
     cpu_ppc_set_vhyp(cpu, PPC_VIRTUAL_HYPERVISOR(spapr));
     kvmppc_set_papr(cpu);
+
+    if (!smc->has_power9_support &&
+        (((spapr->max_compat_pvr &&
+           ppc_compat_cmp(spapr->max_compat_pvr,
+                          CPU_POWERPC_LOGICAL_3_00) >= 0)) ||
+          (!spapr->max_compat_pvr &&
+           ppc_check_compat(cpu, CPU_POWERPC_LOGICAL_3_00, 0, 0)))) {
+        error_set(errp, ERROR_CLASS_DEVICE_NOT_FOUND,
+                  "POWER9 CPU is not supported by this machine class");
+        return;
+    }
 
     if (spapr_irq_cpu_intc_create(spapr, cpu, &local_err) < 0) {
         goto error_intc_create;
