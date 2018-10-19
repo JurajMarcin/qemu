@@ -1803,7 +1803,7 @@ static X86CPUDefinition builtin_x86_defs[] = {
         .level = 0xd,
         .vendor = CPUID_VENDOR_AMD,
         .family = 6,
-        .model = 6,
+        .model = 13,
         .stepping = 3,
         .features[FEAT_1_EDX] =
             PPRO_FEATURES |
@@ -4117,6 +4117,7 @@ static PropValue kvm_default_props[] = {
     { "acpi", "off" },
     { "monitor", "off" },
     { "svm", "off" },
+    { "kvm-pv-unhalt", "on" },
     { NULL, NULL },
 };
 
