@@ -143,6 +143,7 @@ struct SpaprMachineClass {
     bool pre_5_1_assoc_refpoints;
     bool pre_5_2_numa_associativity;
 
+    bool has_power9_support;
     bool (*phb_placement)(SpaprMachineState *spapr, uint32_t index,
                           uint64_t *buid, hwaddr *pio,
                           hwaddr *mmio32, hwaddr *mmio64,
@@ -222,6 +223,9 @@ struct SpaprMachineState {
      */
     int fwnmi_machine_check_interlock;
     QemuCond fwnmi_machine_check_interlock_cond;
+
+    /* Secure Guest support via x-svm-allowed */
+    bool svm_allowed;
 
     /*< public >*/
     char *kvm_type;
