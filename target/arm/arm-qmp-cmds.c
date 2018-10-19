@@ -231,6 +231,7 @@ CpuModelExpansionInfo *qmp_query_cpu_model_expansion(CpuModelExpansionType type,
 static void arm_cpu_add_definition(gpointer data, gpointer user_data)
 {
     ObjectClass *oc = data;
+    CPUClass *cc = CPU_CLASS(oc);
     CpuDefinitionInfoList **cpu_list = user_data;
     CpuDefinitionInfo *info;
     const char *typename;
@@ -240,6 +241,7 @@ static void arm_cpu_add_definition(gpointer data, gpointer user_data)
     info->name = g_strndup(typename,
                            strlen(typename) - strlen("-" TYPE_ARM_CPU));
     info->q_typename = g_strdup(typename);
+    info->deprecated = !!cc->deprecation_note;
 
     QAPI_LIST_PREPEND(*cpu_list, info);
 }
