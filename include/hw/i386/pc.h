@@ -289,6 +289,30 @@ extern const size_t pc_compat_1_5_len;
 extern GlobalProperty pc_compat_1_4[];
 extern const size_t pc_compat_1_4_len;
 
+extern GlobalProperty pc_rhel_compat[];
+extern const size_t pc_rhel_compat_len;
+
+extern GlobalProperty pc_rhel_8_5_compat[];
+extern const size_t pc_rhel_8_5_compat_len;
+
+extern GlobalProperty pc_rhel_8_4_compat[];
+extern const size_t pc_rhel_8_4_compat_len;
+
+extern GlobalProperty pc_rhel_8_3_compat[];
+extern const size_t pc_rhel_8_3_compat_len;
+
+extern GlobalProperty pc_rhel_8_2_compat[];
+extern const size_t pc_rhel_8_2_compat_len;
+
+extern GlobalProperty pc_rhel_8_1_compat[];
+extern const size_t pc_rhel_8_1_compat_len;
+
+extern GlobalProperty pc_rhel_8_0_compat[];
+extern const size_t pc_rhel_8_0_compat_len;
+
+extern GlobalProperty pc_rhel_7_6_compat[];
+extern const size_t pc_rhel_7_6_compat_len;
+
 /* Helper for setting model-id for CPU models that changed model-id
  * depending on QEMU versions up to QEMU 2.4.
  */
