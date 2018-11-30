@@ -11,8 +11,8 @@
 @paragraphindent 0
 @c %**end of header
 
-@set qemu_system qemu-system-x86_64
-@set qemu_system_x86 qemu-system-x86_64
+@set qemu_system qemu-kvm
+@set qemu_system_x86 qemu-kvm
 
 @ifinfo
 @direntry
@@ -1827,7 +1827,7 @@ Set the initial VGA graphic mode. The default is 800x600x32.
 Set OpenBIOS variables in NVRAM, for example:
 
 @example
-qemu-system-ppc -prom-env 'auto-boot?=false' \
+qemu-kvm -prom-env 'auto-boot?=false' \
  -prom-env 'boot-device=hd:2,\yaboot' \
  -prom-env 'boot-args=conf=hd:2,\yaboot.conf'
 @end example

@@ -2,7 +2,7 @@
 QEMU block driver reference manual
 @c man end
 
-@set qemu_system qemu-system-x86_64
+@set qemu_system qemu-kvm
 
 @c man begin DESCRIPTION
 

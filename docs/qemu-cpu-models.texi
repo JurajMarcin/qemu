@@ -2,7 +2,7 @@
 QEMU / KVM CPU model configuration
 @c man end
 
-@set qemu_system_x86 qemu-system-x86_64
+@set qemu_system_x86 qemu-kvm
 
 @c man begin DESCRIPTION
 
