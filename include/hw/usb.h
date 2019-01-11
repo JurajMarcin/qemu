@@ -582,4 +582,7 @@ void usb_pcap_init(FILE *fp);
 void usb_pcap_ctrl(USBPacket *p, bool setup);
 void usb_pcap_data(USBPacket *p, bool setup);
 
+/* hcd-xhci.c -- rhel7.0.0 machine type compatibility */
+extern bool migrate_cve_2014_5263_xhci_fields;
+
 #endif

@@ -381,6 +381,11 @@ bool check_dirty_bitmap_mig_alias_map(const BitmapMigrationNodeAliasList *bbm,
 void migrate_add_address(SocketAddress *address);
 
 int foreach_not_ignored_block(RAMBlockIterFunc func, void *opaque);
+/*
+ * Disables a load of subsections that were added in 2.2/rh7.2 for backwards
+ * migration compatibility.
+ */
+extern bool migrate_pre_2_2;
 
 #define qemu_ram_foreach_block \
   #warning "Use foreach_not_ignored_block in migration code"
