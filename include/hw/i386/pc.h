@@ -110,6 +110,9 @@ struct PCMachineClass {
     bool smbios_legacy_mode;
     bool smbios_uuid_encoded;
     SmbiosEntryPointType default_smbios_ep_type;
+    /* New fields needed for Windows HardwareID-6 matching */
+    const char *smbios_stream_product;
+    const char *smbios_stream_version;
 
     /* RAM / address space compat: */
     bool gigabyte_align;
