@@ -37,6 +37,7 @@
 #include "trace.h"
 #include "hw/qdev-properties.h"
 #include "hw/qdev-properties-system.h"
+#include "migration/migration.h"
 
 #define UART_LCR_DLAB	0x80	/* Divisor latch access bit */
 
@@ -770,6 +771,7 @@ static const VMStateDescription vmstate_serial_xmit_fifo = {
 static bool serial_fifo_timeout_timer_needed(void *opaque)
 {
     SerialState *s = (SerialState *)opaque;
+
     return timer_pending(s->fifo_timeout_timer);
 }
 
@@ -787,6 +789,7 @@ static const VMStateDescription vmstate_serial_fifo_timeout_timer = {
 static bool serial_timeout_ipending_needed(void *opaque)
 {
     SerialState *s = (SerialState *)opaque;
+
     return s->timeout_ipending != 0;
 }
 
@@ -804,6 +807,7 @@ static const VMStateDescription vmstate_serial_timeout_ipending = {
 static bool serial_poll_needed(void *opaque)
 {
     SerialState *s = (SerialState *)opaque;
+
     return s->poll_msl >= 0;
 }
 
