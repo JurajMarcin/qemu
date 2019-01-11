@@ -200,6 +200,8 @@ static void pc_q35_init(MachineState *machine)
         smbios_set_defaults("QEMU", "Standard PC (Q35 + ICH9, 2009)",
                             mc->name, pcmc->smbios_legacy_mode,
                             pcmc->smbios_uuid_encoded,
+                            pcmc->smbios_stream_product,
+                            pcmc->smbios_stream_version,
                             pcms->smbios_entry_point_type);
     }
 
