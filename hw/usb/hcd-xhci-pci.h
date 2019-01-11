@@ -41,6 +41,7 @@ typedef struct XHCIPciState {
     OnOffAuto msi;
     OnOffAuto msix;
     bool conditional_intr_mapping;
+    bool      rh_late_msi_cap;  /* bz 1912846 */
 } XHCIPciState;
 
 #endif

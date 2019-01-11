@@ -848,4 +848,32 @@ extern const size_t hw_compat_2_5_len;
 extern GlobalProperty hw_compat_2_4[];
 extern const size_t hw_compat_2_4_len;
 
+extern GlobalProperty hw_compat_rhel_10_1[];
+extern const size_t hw_compat_rhel_10_1_len;
+
+extern GlobalProperty hw_compat_rhel_10_0[];
+extern const size_t hw_compat_rhel_10_0_len;
+
+extern GlobalProperty hw_compat_rhel_9[];
+extern const size_t hw_compat_rhel_9_len;
+
+extern GlobalProperty hw_compat_rhel_9_5[];
+extern const size_t hw_compat_rhel_9_5_len;
+
+extern GlobalProperty hw_compat_rhel_9_4[];
+extern const size_t hw_compat_rhel_9_4_len;
+
+extern GlobalProperty hw_compat_rhel_9_3[];
+extern const size_t hw_compat_rhel_9_3_len;
+
+extern GlobalProperty hw_compat_rhel_9_2[];
+extern const size_t hw_compat_rhel_9_2_len;
+
+extern GlobalProperty hw_compat_rhel_9_1[];
+extern const size_t hw_compat_rhel_9_1_len;
+
+extern GlobalProperty hw_compat_rhel_9_0[];
+extern const size_t hw_compat_rhel_9_0_len;
+
+extern const char *rhel_old_machine_deprecation;
 #endif

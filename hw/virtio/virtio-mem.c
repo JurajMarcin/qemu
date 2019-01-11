@@ -1717,8 +1717,9 @@ static const Property virtio_mem_properties[] = {
 #endif
     DEFINE_PROP_BOOL(VIRTIO_MEM_EARLY_MIGRATION_PROP, VirtIOMEM,
                      early_migration, true),
+    /* RHEL: default-enable "dynamic-memslots" (jira RHEL-24045) */
     DEFINE_PROP_BOOL(VIRTIO_MEM_DYNAMIC_MEMSLOTS_PROP, VirtIOMEM,
-                     dynamic_memslots, false),
+                     dynamic_memslots, true),
 };
 
 static uint64_t virtio_mem_rdm_get_min_granularity(const RamDiscardManager *rdm,
