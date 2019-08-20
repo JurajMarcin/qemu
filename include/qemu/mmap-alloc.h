@@ -28,6 +28,6 @@ void *qemu_ram_mmap(int fd,
                     bool shared,
                     bool is_pmem);
 
-void qemu_ram_munmap(void *ptr, size_t size);
+void qemu_ram_munmap(int fd, void *ptr, size_t size);
 
 #endif
