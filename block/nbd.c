@@ -1133,6 +1133,18 @@ static int coroutine_fn nbd_client_co_block_status(
         BDRV_BLOCK_OFFSET_VALID;
 }
 
+static int nbd_client_reopen_prepare(BDRVReopenState *state,
+                                     BlockReopenQueue *queue, Error **errp)
+{
+    BDRVNBDState *s = (BDRVNBDState *)state->bs->opaque;
+
+    if ((state->flags & BDRV_O_RDWR) && (s->info.flags & NBD_FLAG_READ_ONLY)) {
+        error_setg(errp, "Can't reopen read-only NBD mount as read/write");
+        return -EACCES;
+    }
+    return 0;
+}
+
 static void nbd_client_close(BlockDriverState *bs)
 {
     BDRVNBDState *s = (BDRVNBDState *)bs->opaque;
@@ -1762,6 +1774,7 @@ static BlockDriver bdrv_nbd = {
     .instance_size              = sizeof(BDRVNBDState),
     .bdrv_parse_filename        = nbd_parse_filename,
     .bdrv_file_open             = nbd_open,
+    .bdrv_reopen_prepare        = nbd_client_reopen_prepare,
     .bdrv_co_preadv             = nbd_client_co_preadv,
     .bdrv_co_pwritev            = nbd_client_co_pwritev,
     .bdrv_co_pwrite_zeroes      = nbd_client_co_pwrite_zeroes,
@@ -1784,6 +1797,7 @@ static BlockDriver bdrv_nbd_tcp = {
     .instance_size              = sizeof(BDRVNBDState),
     .bdrv_parse_filename        = nbd_parse_filename,
     .bdrv_file_open             = nbd_open,
+    .bdrv_reopen_prepare        = nbd_client_reopen_prepare,
     .bdrv_co_preadv             = nbd_client_co_preadv,
     .bdrv_co_pwritev            = nbd_client_co_pwritev,
     .bdrv_co_pwrite_zeroes      = nbd_client_co_pwrite_zeroes,
@@ -1806,6 +1820,7 @@ static BlockDriver bdrv_nbd_unix = {
     .instance_size              = sizeof(BDRVNBDState),
     .bdrv_parse_filename        = nbd_parse_filename,
     .bdrv_file_open             = nbd_open,
+    .bdrv_reopen_prepare        = nbd_client_reopen_prepare,
     .bdrv_co_preadv             = nbd_client_co_preadv,
     .bdrv_co_pwritev            = nbd_client_co_pwritev,
     .bdrv_co_pwrite_zeroes      = nbd_client_co_pwrite_zeroes,
