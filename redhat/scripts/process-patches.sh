@@ -52,10 +52,6 @@ if [ ! -f ${TARBALL} ]; then
 fi
 cp ${TARBALL} ${SOURCES}/${TARBALL}
 
-if [ -n "${ZRELEASE}" ]; then
-   ZRELEASE=.${ZRELEASE}
-fi
-
 
 # Handle patches
 git format-patch --first-parent --no-renames -k --no-binary --ignore-submodules ${MARKER}.. > patchlist
