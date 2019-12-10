@@ -1054,6 +1054,33 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Tue Dec 10 2019 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.1.0-18.el8
+- kvm-LUKS-support-preallocation.patch [bz#1534951]
+- kvm-nbd-add-empty-.bdrv_reopen_prepare.patch [bz#1718727]
+- kvm-qdev-qbus-add-hidden-device-support.patch [bz#1757796]
+- kvm-pci-add-option-for-net-failover.patch [bz#1757796]
+- kvm-pci-mark-devices-partially-unplugged.patch [bz#1757796]
+- kvm-pci-mark-device-having-guest-unplug-request-pending.patch [bz#1757796]
+- kvm-qapi-add-unplug-primary-event.patch [bz#1757796]
+- kvm-qapi-add-failover-negotiated-event.patch [bz#1757796]
+- kvm-migration-allow-unplug-during-migration-for-failover.patch [bz#1757796]
+- kvm-migration-add-new-migration-state-wait-unplug.patch [bz#1757796]
+- kvm-libqos-tolerate-wait-unplug-migration-state.patch [bz#1757796]
+- kvm-net-virtio-add-failover-support.patch [bz#1757796]
+- kvm-vfio-unplug-failover-primary-device-before-migration.patch [bz#1757796]
+- kvm-net-virtio-fix-dev_unplug_pending.patch [bz#1757796]
+- kvm-net-virtio-return-early-when-failover-primary-alread.patch [bz#1757796]
+- kvm-net-virtio-fix-re-plugging-of-primary-device.patch [bz#1757796]
+- kvm-net-virtio-return-error-when-device_opts-arg-is-NULL.patch [bz#1757796]
+- kvm-vfio-don-t-ignore-return-value-of-migrate_add_blocke.patch [bz#1757796]
+- kvm-hw-vfio-pci-Fix-double-free-of-migration_blocker.patch [bz#1757796]
+- Resolves: bz#1534951
+  (RFE: Support preallocation mode for luks format)
+- Resolves: bz#1718727
+  (Committing changes to the backing file over NBD fails with reopening files not supported)
+- Resolves: bz#1757796
+  (RFE: support for net failover devices in qemu)
+
 * Mon Dec 02 2019 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.1.0-17.el8
 - kvm-qemu-pr-helper-fix-crash-in-mpath_reconstruct_sense.patch [bz#1772322]
 - Resolves: bz#1772322
