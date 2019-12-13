@@ -1042,6 +1042,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Fri Dec 13 2019 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-4.el8
+- Rebase to qemu-4.2
+- Resolves: bz#1783250
+  (rebase qemu-kvm to 4.2)
+
 * Tue Dec 10 2019 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.1.0-18.el8
 - kvm-LUKS-support-preallocation.patch [bz#1534951]
 - kvm-nbd-add-empty-.bdrv_reopen_prepare.patch [bz#1718727]
