@@ -991,6 +991,23 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Wed Dec 18 2019 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 2.12.0-94.el8
+- kvm-util-mmap-alloc-Add-a-is_pmem-parameter-to-qemu_ram_.patch [bz#1539282]
+- kvm-mmap-alloc-unfold-qemu_ram_mmap.patch [bz#1539282]
+- kvm-mmap-alloc-fix-hugetlbfs-misaligned-length-in-ppc64.patch [bz#1539282]
+- kvm-util-mmap-alloc-support-MAP_SYNC-in-qemu_ram_mmap.patch [bz#1539282]
+- kvm-x86-cpu-Enable-MOVDIRI-cpu-feature.patch [bz#1634827]
+- kvm-x86-cpu-Enable-MOVDIR64B-cpu-feature.patch [bz#1634827]
+- kvm-add-call-to-qemu_add_opts-for-overcommit-option.patch [bz#1634827]
+- kvm-support-overcommit-cpu-pm-on-off.patch [bz#1634827]
+- kvm-i386-cpu-make-cpu-host-support-monitor-mwait.patch []
+- kvm-x86-cpu-Add-support-for-UMONITOR-UMWAIT-TPAUSE.patch [bz#1634827]
+- kvm-target-i386-Add-support-for-save-load-IA32_UMWAIT_CO.patch [bz#1634827]
+- Resolves: bz#1539282
+  ([Intel 8.2 Feature][Crystal Ridge] Support MAP_SYNC  - qemu-kvm)
+- Resolves: bz#1634827
+  ([Intel 8.2 Feat] KVM Enable SnowRidge Accelerator Interface Architecture (AIA) - qemu)
+
 * Wed Dec 11 2019 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 2.12.0-93.el8
 - kvm-target-i386-Export-TAA_NO-bit-to-guests.patch [bz#1771971]
 - kvm-target-i386-add-support-for-MSR_IA32_TSX_CTRL.patch [bz#1771971]
