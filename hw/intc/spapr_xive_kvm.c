@@ -254,10 +254,15 @@ int kvmppc_xive_source_reset_one(XiveSource *xsrc, int srcno, Error **errp)
 
 static void kvmppc_xive_source_reset(XiveSource *xsrc, Error **errp)
 {
+    SpaprXive *xive = SPAPR_XIVE(xsrc->xive);
     int i;
 
     for (i = 0; i < xsrc->nr_irqs; i++) {
         Error *local_err = NULL;
+
+        if (!xive_eas_is_valid(&xive->eat[i])) {
+            continue;
+        }
 
         kvmppc_xive_source_reset_one(xsrc, i, &local_err);
         if (local_err) {
@@ -327,11 +332,18 @@ uint64_t kvmppc_xive_esb_rw(XiveSource *xsrc, int srcno, uint32_t offset,
 
 static void kvmppc_xive_source_get_state(XiveSource *xsrc)
 {
+    SpaprXive *xive = SPAPR_XIVE(xsrc->xive);
     int i;
 
     for (i = 0; i < xsrc->nr_irqs; i++) {
+        uint8_t pq;
+
+        if (!xive_eas_is_valid(&xive->eat[i])) {
+            continue;
+        }
+
         /* Perform a load without side effect to retrieve the PQ bits */
-        uint8_t pq = xive_esb_read(xsrc, i, XIVE_ESB_GET);
+        pq = xive_esb_read(xsrc, i, XIVE_ESB_GET);
 
         /* and save PQ locally */
         xive_source_esb_set(xsrc, i, pq);
@@ -520,9 +532,14 @@ static void kvmppc_xive_change_state_handler(void *opaque, int running,
      */
     if (running) {
         for (i = 0; i < xsrc->nr_irqs; i++) {
-            uint8_t pq = xive_source_esb_get(xsrc, i);
+            uint8_t pq;
             uint8_t old_pq;
 
+            if (!xive_eas_is_valid(&xive->eat[i])) {
+                continue;
+            }
+
+            pq = xive_source_esb_get(xsrc, i);
             old_pq = xive_esb_read(xsrc, i, XIVE_ESB_SET_PQ_00 + (pq << 8));
 
             /*
@@ -544,7 +561,13 @@ static void kvmppc_xive_change_state_handler(void *opaque, int running,
      * migration is in progress.
      */
     for (i = 0; i < xsrc->nr_irqs; i++) {
-        uint8_t pq = xive_esb_read(xsrc, i, XIVE_ESB_GET);
+        uint8_t pq;
+
+        if (!xive_eas_is_valid(&xive->eat[i])) {
+            continue;
+        }
+
+        pq = xive_esb_read(xsrc, i, XIVE_ESB_GET);
 
         /*
          * PQ is set to PENDING to possibly catch a triggered
@@ -652,6 +675,17 @@ int kvmppc_xive_post_load(SpaprXive *xive, int version_id)
     for (i = 0; i < xive->nr_irqs; i++) {
         if (!xive_eas_is_valid(&xive->eat[i])) {
             continue;
+        }
+
+        /*
+         * We can only restore the source config if the source has been
+         * previously set in KVM. Since we don't do that for all interrupts
+         * at reset time anymore, let's do it now.
+         */
+        kvmppc_xive_source_reset_one(&xive->source, i, &local_err);
+        if (local_err) {
+            error_report_err(local_err);
+            return -1;
         }
 
         kvmppc_xive_set_source_config(xive, i, &xive->eat[i], &local_err);
