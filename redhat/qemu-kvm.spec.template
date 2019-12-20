@@ -1054,6 +1054,15 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Fri Dec 20 2019 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.1.0-20.el8
+- kvm-i386-Resolve-CPU-models-to-v1-by-default.patch [bz#1779078]
+- kvm-target-i386-Export-TAA_NO-bit-to-guests.patch [bz#1782069]
+- kvm-target-i386-add-support-for-MSR_IA32_TSX_CTRL.patch [bz#1782069]
+- Resolves: bz#1779078
+  (RHVH 4.4: Failed to run VM on 4.3/4.4 engine (Exit message: the CPU is incompatible with host CPU: Host CPU does not provide required features: hle, rtm))
+- Resolves: bz#1782069
+  (CVE-2019-11135 qemu-kvm: hw: TSX Transaction Asynchronous Abort (TAA) [rhel-av-8.1.1])
+
 * Wed Dec 11 2019 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.1.0-19.el8
 - kvm-spapr-irq-Introduce-an-ics_irq_free-helper.patch [bz#1739299]
 - kvm-xics-Minor-fixes-for-XICSFabric-interface.patch [bz#1739299]
