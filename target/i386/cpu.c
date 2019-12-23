@@ -1829,12 +1829,7 @@ static CPUCaches epyc_cache_info = {
 
 static X86CPUDefinition builtin_x86_defs[] = {
     {
-        /* qemu64 is the default CPU model for all *-rhel7.* machine-types.
-         * The default on RHEL-6 was cpu64-rhel6.
-         * libvirt assumes that qemu64 is the default for _all_ machine-types,
-         * so we should try to keep qemu64 and cpu64-rhel6 as similar as
-         * possible.
-         */
+        /* qemu64 is the default CPU model for all machine-types */
         .name = "qemu64",
         .level = 0xd,
         .vendor = CPUID_VENDOR_AMD,
@@ -2133,25 +2128,6 @@ static X86CPUDefinition builtin_x86_defs[] = {
             CPUID_EXT3_LAHF_LM,
         .xlevel = 0x80000008,
         .model_id = "Intel(R) Atom(TM) CPU N270   @ 1.60GHz",
-    },
-    {
-        .name = "cpu64-rhel6",
-        .level = 4,
-        .vendor = CPUID_VENDOR_AMD,
-        .family = 6,
-        .model = 13,
-        .stepping = 3,
-        .features[FEAT_1_EDX] = CPUID_SSE2 | CPUID_SSE | CPUID_FXSR |
-             CPUID_MMX | CPUID_CLFLUSH | CPUID_PSE36 | CPUID_PAT | CPUID_CMOV |
-             CPUID_MCA | CPUID_PGE | CPUID_MTRR | CPUID_SEP | CPUID_APIC |
-             CPUID_CX8 | CPUID_MCE | CPUID_PAE | CPUID_MSR | CPUID_TSC |
-             CPUID_PSE | CPUID_DE | CPUID_FP87,
-        .features[FEAT_1_ECX] = CPUID_EXT_CX16 | CPUID_EXT_SSE3,
-        .features[FEAT_8000_0001_EDX] = CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
-        .features[FEAT_8000_0001_ECX] = CPUID_EXT3_SSE4A | CPUID_EXT3_ABM |
-             CPUID_EXT3_SVM | CPUID_EXT3_LAHF_LM,
-        .xlevel = 0x8000000A,
-        .model_id = "QEMU Virtual CPU version (cpu64-rhel6)",
     },
     {
         .name = "Conroe",
