@@ -1054,6 +1054,12 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Fri Dec 27 2019 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.1.0-14.el8_1_0
+- kvm-target-i386-Export-TAA_NO-bit-to-guests.patch [bz#1779677]
+- kvm-target-i386-add-support-for-MSR_IA32_TSX_CTRL.patch [bz#1779677]
+- Resolves: bz#1779677
+  (CVE-2019-11135 qemu-kvm: hw: TSX Transaction Asynchronous Abort (TAA) [rhel-av-8.1.0.z])
+
 * Tue Oct 29 2019 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.1.0-14.el8
 - kvm-Revert-qcow2-skip-writing-zero-buffers-to-empty-COW-.patch [bz#1751934]
 - kvm-coroutine-Add-qemu_co_mutex_assert_locked.patch [bz#1764721]
