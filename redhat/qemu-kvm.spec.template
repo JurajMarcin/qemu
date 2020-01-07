@@ -991,6 +991,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Tue Jan 07 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 2.12.0-96.el8
+- kvm-i386-Remove-cpu64-rhel6-CPU-model.patch [bz#1741346]
+- Resolves: bz#1741346
+  (Remove the "cpu64-rhel6" CPU from qemu-kvm)
+
 * Thu Jan 02 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 2.12.0-95.el8
 - kvm-virtio-gpu-block-both-2d-and-3d-rendering.patch [bz#1674324]
 - kvm-x86-Intel-AVX512_BF16-feature-enabling.patch [bz#1642541]
