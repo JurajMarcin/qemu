@@ -1054,6 +1054,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Tue Jan 07 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.1.0-21.el8
+- kvm-spapr-irq-Only-claim-VALID-interrupts-at-the-KVM-lev.patch [bz#1784261]
+- Resolves: bz#1784261
+  ([RHEL8.1.1][p8]XICS is failing to set up on p8 machines  while booting with vfio-pci device)
+
 * Fri Dec 20 2019 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.1.0-20.el8
 - kvm-i386-Resolve-CPU-models-to-v1-by-default.patch [bz#1779078]
 - kvm-target-i386-Export-TAA_NO-bit-to-guests.patch [bz#1782069]
