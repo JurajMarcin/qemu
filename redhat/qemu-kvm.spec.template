@@ -1054,6 +1054,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Wed Jan 15 2020 Miroslav Rezanina <mrezanin@redhat.com> - 4.1.0-22.el8
+- kvm-i386-halt-poll-control-MSR-support.patch [bz#1759283]
+- Resolves: bz#1759283
+  (qemu-kvm: backport cpuidle-haltpoll support)
+
 * Tue Jan 07 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.1.0-21.el8
 - kvm-spapr-irq-Only-claim-VALID-interrupts-at-the-KVM-lev.patch [bz#1784261]
 - Resolves: bz#1784261
