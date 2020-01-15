@@ -107,6 +107,7 @@ struct USBRedirDevice {
     /* Properties */
     CharBackend cs;
     bool enable_streams;
+    bool in_write;
     uint8_t debug;
     int32_t bootindex;
     char *filter_str;
@@ -284,6 +285,13 @@ static int usbredir_write(void *priv, uint8_t *data, int count)
         return 0;
     }
 
+    /* Recursion check */
+    if (dev->in_write) {
+        DPRINTF("usbredir_write recursion\n");
+        return 0;
+    }
+    dev->in_write = true;
+
     r = qemu_chr_fe_write(&dev->cs, data, count);
     if (r < count) {
         if (!dev->watch) {
@@ -294,6 +302,7 @@ static int usbredir_write(void *priv, uint8_t *data, int count)
             r = 0;
         }
     }
+    dev->in_write = false;
     return r;
 }
 
