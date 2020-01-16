@@ -630,9 +630,6 @@ static void kvm_queue_exception(CPUX86State *env,
             assert(!exception_has_payload);
         }
     }
-
-    /* enabled by default */
-    env->poll_control_msr = 1;
 }
 
 static int kvm_inject_mce_oldstyle(X86CPU *cpu)
@@ -1786,6 +1783,8 @@ void kvm_arch_reset_vcpu(X86CPU *cpu)
 
         hyperv_x86_synic_reset(cpu);
     }
+    /* enabled by default */
+    env->poll_control_msr = 1;
 }
 
 void kvm_arch_do_init_vcpu(X86CPU *cpu)
