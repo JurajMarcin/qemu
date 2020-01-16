@@ -1054,6 +1054,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Thu Jan 16 2020 Miroslav Rezanina <mrezanin@redhat.com> - 4.1.0-23.el8
+- kvm-i386-Fix-poll_control_msr-mismerge.patch [bz#1791554]
+- Resolves: bz#1791554
+  (Migrated failed with "error while loading state for instance 0x0 of device 'cpu'" from RHEL-AV 8.1.1 to RHEL-AV 8.1.0)
+
 * Wed Jan 15 2020 Miroslav Rezanina <mrezanin@redhat.com> - 4.1.0-22.el8
 - kvm-i386-halt-poll-control-MSR-support.patch [bz#1759283]
 - Resolves: bz#1759283
