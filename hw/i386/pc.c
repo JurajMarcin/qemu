@@ -351,6 +351,8 @@ const size_t pc_compat_1_4_len = G_N_ELEMENTS(pc_compat_1_4);
 GlobalProperty pc_rhel_compat[] = {
     { TYPE_X86_CPU, "host-phys-bits", "on" },
     { TYPE_X86_CPU, "host-phys-bits-limit", "48" },
+    { TYPE_X86_CPU, "vmx-entry-load-perf-global-ctrl", "off" },
+    { TYPE_X86_CPU, "vmx-exit-load-perf-global-ctrl", "off" },
     /* bz 1508330 */ 
     { "vfio-pci", "x-no-geforce-quirks", "on" },
 };
