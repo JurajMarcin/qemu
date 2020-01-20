@@ -177,6 +177,8 @@ static void pc_init1(MachineState *machine,
         smbios_set_defaults("Red Hat", "KVM",
                             mc->desc, pcmc->smbios_legacy_mode,
                             pcmc->smbios_uuid_encoded,
+                            pcmc->smbios_stream_product,
+                            pcmc->smbios_stream_version,
                             SMBIOS_ENTRY_POINT_21);
     }
 

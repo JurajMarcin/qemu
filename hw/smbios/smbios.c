@@ -57,6 +57,9 @@ static bool smbios_legacy = true;
 static bool smbios_uuid_encoded = true;
 /* end: legacy structures & constants for <= 2.0 machines */
 
+/* Set to true for modern Windows 10 HardwareID-6 compat */
+static bool smbios_type2_required;
+
 
 uint8_t *smbios_tables;
 size_t smbios_tables_len;
@@ -532,7 +535,7 @@ static void smbios_build_type_1_table(void)
 
 static void smbios_build_type_2_table(void)
 {
-    SMBIOS_BUILD_TABLE_PRE(2, 0x200, false); /* optional */
+    SMBIOS_BUILD_TABLE_PRE(2, 0x200, smbios_type2_required);
 
     SMBIOS_TABLE_SET_STR(2, manufacturer_str, type2.manufacturer);
     SMBIOS_TABLE_SET_STR(2, product_str, type2.product);
@@ -753,7 +756,10 @@ void smbios_set_cpuid(uint32_t version, uint32_t features)
 
 void smbios_set_defaults(const char *manufacturer, const char *product,
                          const char *version, bool legacy_mode,
-                         bool uuid_encoded, SmbiosEntryPointType ep_type)
+                         bool uuid_encoded,
+                         const char *stream_product,
+                         const char *stream_version,
+                         SmbiosEntryPointType ep_type)
 {
     smbios_have_defaults = true;
     smbios_legacy = legacy_mode;
@@ -774,12 +780,45 @@ void smbios_set_defaults(const char *manufacturer, const char *product,
         g_free(smbios_entries);
     }
 
+    /*
+     * If @stream_product & @stream_version are non-NULL, then
+     * we're following rules for new Windows driver support.
+     * The data we have to report is defined in this doc:
+     *
+     * https://docs.microsoft.com/en-us/windows-hardware/drivers/install/specifying-hardware-ids-for-a-computer
+     *
+     * The Windows drivers are written to expect use of the
+     * scheme documented as "HardwareID-6" against Windows 10,
+     * which uses SMBIOS System (Type 1) and Base Board (Type 2)
+     * tables and will match on
+     *
+     *   System Manufacturer = Red Hat     (@manufacturer)
+     *   System SKU Number = 8.2.0         (@stream_version)
+     *   Baseboard Manufacturer = Red Hat  (@manufacturer)
+     *   Baseboard Product = RHEL-AV       (@stream_product)
+     *
+     * NB, SKU must be changed with each RHEL-AV release
+     *
+     * Other fields can be freely used by applications using
+     * QEMU. For example apps can use the "System product"
+     * and "System version" to identify themselves.
+     *
+     * We get 'System Manufacturer' and 'Baseboard Manufacturer'
+     */
     SMBIOS_SET_DEFAULT(type1.manufacturer, manufacturer);
     SMBIOS_SET_DEFAULT(type1.product, product);
     SMBIOS_SET_DEFAULT(type1.version, version);
     SMBIOS_SET_DEFAULT(type1.family, "Red Hat Enterprise Linux");
+    if (stream_version != NULL) {
+        SMBIOS_SET_DEFAULT(type1.sku, stream_version);
+    }
     SMBIOS_SET_DEFAULT(type2.manufacturer, manufacturer);
-    SMBIOS_SET_DEFAULT(type2.product, product);
+    if (stream_product != NULL) {
+        SMBIOS_SET_DEFAULT(type2.product, stream_product);
+        smbios_type2_required = true;
+    } else {
+        SMBIOS_SET_DEFAULT(type2.product, product);
+    }
     SMBIOS_SET_DEFAULT(type2.version, version);
     SMBIOS_SET_DEFAULT(type3.manufacturer, manufacturer);
     SMBIOS_SET_DEFAULT(type3.version, version);
