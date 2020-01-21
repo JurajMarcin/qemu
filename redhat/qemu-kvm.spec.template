@@ -1042,6 +1042,16 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Tue Jan 21 2020 Miroslav Rezanina <mrezanin@redhat.com> - 4.2.0-7.el8
+- kvm-tcp_emu-Fix-oob-access.patch [bz#1791568]
+- kvm-slirp-use-correct-size-while-emulating-IRC-commands.patch [bz#1791568]
+- kvm-slirp-use-correct-size-while-emulating-commands.patch [bz#1791568]
+- kvm-RHEL-hw-i386-disable-nested-PERF_GLOBAL_CTRL-MSR-sup.patch [bz#1559846]
+- Resolves: bz#1559846
+  (Nested KVM: limit VMX features according to CPU models - Fast Train)
+- Resolves: bz#1791568
+  (CVE-2020-7039 qemu-kvm: QEMU: slirp: OOB buffer access while emulating tcp protocols in tcp_emu() [rhel-av-8.2.0])
+
 * Wed Jan 15 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-6.el8
 - kvm-spapr-Don-t-trigger-a-CAS-reboot-for-XICS-XIVE-mode-.patch [bz#1733893]
 - kvm-vfio-pci-Don-t-remove-irqchip-notifier-if-not-regist.patch [bz#1782678]
