@@ -697,9 +697,6 @@ rm $RPM_BUILD_ROOT%{_datadir}/systemtap/tapset/qemu-system-%{kvm_target}-simplet
 rm $RPM_BUILD_ROOT%{_datadir}/systemtap/tapset/qemu-system-%{kvm_target}-log.stp
 rm $RPM_BUILD_ROOT%{_bindir}/elf2dmp
 
-# Mangle qemu-kvm-stap
-sed -i -e '1 s/python/python3/' $RPM_BUILD_ROOT%{_bindir}/qemu-trace-stap
-
 # Install simpletrace
 install -m 0755 scripts/simpletrace.py $RPM_BUILD_ROOT%{_datadir}/%{name}/simpletrace.py
 # Avoid ambiguous 'python' interpreter name
