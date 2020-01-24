@@ -991,6 +991,21 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Fri Jan 24 2020 Miroslav Rezanina <mrezanin@redhat.com> - 2.12.0-97.el8
+- kvm-exec-Fix-MAP_RAM-for-cached-access.patch [bz#1769613]
+- kvm-virtio-Return-true-from-virtio_queue_empty-if-broken.patch [bz#1769613]
+- kvm-usbredir-Prevent-recursion-in-usbredir_write.patch [bz#1752320]
+- kvm-xhci-recheck-slot-status.patch [bz#1752320]
+- kvm-tcp_emu-Fix-oob-access.patch [bz#1791566]
+- kvm-slirp-use-correct-size-while-emulating-IRC-commands.patch [bz#1791566]
+- kvm-slirp-use-correct-size-while-emulating-commands.patch [bz#1791566]
+- Resolves: bz#1752320
+  (vm gets stuck when migrate vm back and forth with remote-viewer trying to connect)
+- Resolves: bz#1769613
+  ([SEV] kexec mays hang at "[sda] Synchronizing SCSI cache " before switching to new kernel)
+- Resolves: bz#1791566
+  (CVE-2020-7039 virt:rhel/qemu-kvm: QEMU: slirp: OOB buffer access while emulating tcp protocols in tcp_emu() [rhel-8.2.0])
+
 * Tue Jan 07 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 2.12.0-96.el8
 - kvm-i386-Remove-cpu64-rhel6-CPU-model.patch [bz#1741346]
 - Resolves: bz#1741346
