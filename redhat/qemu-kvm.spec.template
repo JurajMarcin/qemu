@@ -159,8 +159,8 @@ BuildRequires: bluez-libs-devel
 BuildRequires: brlapi-devel
 # For test suite
 BuildRequires: check-devel
-# For virtfs
-BuildRequires: libcap-devel
+# For virtiofs
+BuildRequires: libcap-ng-devel
 # Hard requirement for version >= 1.3
 BuildRequires: pixman-devel
 # Documentation requirement
@@ -485,7 +485,7 @@ buildldflags="VL_LDFLAGS=-Wl,--build-id"
   --tls-priority=NORMAL \
   --disable-bluez \
   --disable-brlapi \
-  --disable-cap-ng \
+  --enable-cap-ng \
   --enable-coroutine-pool \
   --enable-curl \
   --disable-curses \
@@ -999,6 +999,8 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %{_libexecdir}/vhost-user-gpu
 %{_datadir}/%{name}/vhost-user/50-qemu-gpu.json
 %endif
+%{_libexecdir}/virtiofsd
+%{_datadir}/%{name}/vhost-user/50-qemu-virtiofsd.json
 
 %files -n qemu-img
 %defattr(-,root,root)
