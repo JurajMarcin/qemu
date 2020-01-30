@@ -1,7 +1,8 @@
 include Makefile.common
 
-rh-brew rh-env-prep: SRPM_NAME=$(NAME)-$(VERSION)$(RELEASE_SEPARATOR)$(RELEASE)$(DIST)
+rh-brew rh-env-prep rh-brew-module: SRPM_NAME=$(NAME)-$(VERSION)$(RELEASE_SEPARATOR)$(RELEASE)$(DIST)
 rh-brew: BUILD_TARGET=rhel-8.2.0-candidate
+rh-brew-module: BUILD_TARGET=module-virt-8.2-8020020200121151731-6a468ee4
 
 REDHAT:=$(shell pwd)
 SCRIPTS:=$(REDHAT)/scripts
@@ -40,7 +41,7 @@ else
   LOCALVERSION:=
 endif
 
-.PHONY: rh-brew rh-srpm rh-prep rh-help rh-clean-sources
+.PHONY: rh-brew rh-brew-module rh-srpm rh-prep rh-help rh-clean-sources
 all: rh-help
 
 rh-clean-sources:
@@ -69,12 +70,16 @@ rh-env-prep: rh-prep
 	$(DS)sudo dnf builddep $(RPMBUILD)/SPECS/$(SPECFILE)
 	$(DS)cd ..; $(shell rpmspec -P $(RPMBUILD)/SPECS/$(SPECFILE) | scripts/extract_build_cmd.py | \
 	              sed "s/--disable-git-update/--enable-git-update/g")
+rh-brew-module: rh-srpm
+	@echo "Build $(SRPM_NAME)$(LOCALVERSION).src.rpm as $(BUILD_TARGET)"
+	$(DS)brew build $(BREW_OPTIONS) $(BUILD_TARGET) $(RPMBUILD)/SRPMS/$(SRPM_NAME)$(LOCALVERSION).src.rpm
 
 rh-local: rh-env-prep
 	make V=1 -j8 -C $(REDHAT)/..  VL_LDFLAGS=-Wl,--build-id
 
 rh-help:
 	@echo "rh-brew: Build RHEL package on brew"
+	@echo "rh-brew-module: Build RHEL package on brew using latest module build target
 	@echo "rh-srpm: Prepare srpm package for RHEL package"
 	@echo "rh-prep: Prepare sources and spec file in rpmbuild/"
 	@echo "rh-help: Print this help"
