@@ -2,7 +2,7 @@ include Makefile.common
 
 rh-brew rh-env-prep rh-brew-module: SRPM_NAME=$(NAME)-$(VERSION)$(RELEASE_SEPARATOR)$(RELEASE)$(DIST)
 rh-brew: BUILD_TARGET=rhel-8.2.0-candidate
-rh-brew-module: BUILD_TARGET=module-virt-8.2-8020020200121151731-6a468ee4
+rh-brew-module: BUILD_TARGET=module-virt-8.2-8020020200131110905-6a468ee4 
 
 REDHAT:=$(shell pwd)
 SCRIPTS:=$(REDHAT)/scripts
