@@ -991,6 +991,18 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Mon Feb 10 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 2.12.0-98.el8
+- kvm-iscsi-Avoid-potential-for-get_status-overflow.patch [bz#1794501]
+- kvm-iscsi-Cap-block-count-from-GET-LBA-STATUS-CVE-2020-1.patch [bz#1794501]
+- kvm-clean-up-callback-when-del-virtqueue.patch [bz#1708480]
+- kvm-virtio-add-ability-to-delete-vq-through-a-pointer.patch [bz#1708480]
+- kvm-virtio-reset-region-cache-when-on-queue-deletion.patch [bz#1708480]
+- kvm-virtio-net-delete-also-control-queue-when-TX-RX-dele.patch [bz#1708480]
+- Resolves: bz#1708480
+  ([Q35] No "DEVICE_DELETED" event in qmp after unplug virtio-net-pci device)
+- Resolves: bz#1794501
+  (CVE-2020-1711 qemu-kvm: QEMU: block: iscsi: OOB heap access via an unexpected response of iSCSI Server [rhel-8.2.0])
+
 * Fri Jan 24 2020 Miroslav Rezanina <mrezanin@redhat.com> - 2.12.0-97.el8
 - kvm-exec-Fix-MAP_RAM-for-cached-access.patch [bz#1769613]
 - kvm-virtio-Return-true-from-virtio_queue_empty-if-broken.patch [bz#1769613]
