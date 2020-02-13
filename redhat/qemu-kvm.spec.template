@@ -1054,6 +1054,16 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Tue Feb 11 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.1.0-14.el8_1_0.2
+- kvm-tcp_emu-Fix-oob-access.patch [bz#1791567]
+- kvm-slirp-use-correct-size-while-emulating-IRC-commands.patch [bz#1791567]
+- kvm-slirp-use-correct-size-while-emulating-commands.patch [bz#1791567]
+- kvm-iscsi-Cap-block-count-from-GET-LBA-STATUS-CVE-2020-1.patch [bz#1794502]
+- Resolves: bz#1791567
+  (CVE-2020-7039 qemu-kvm: QEMU: slirp: OOB buffer access while emulating tcp protocols in tcp_emu() [rhel-av-8.1.0.z])
+- Resolves: bz#1794502
+  (CVE-2020-1711 qemu-kvm: QEMU: block: iscsi: OOB heap access via an unexpected response of iSCSI Server [rhel-av-8.1.0.z])
+
 * Fri Dec 27 2019 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.1.0-14.el8_1_0
 - kvm-target-i386-Export-TAA_NO-bit-to-guests.patch [bz#1779677]
 - kvm-target-i386-add-support-for-MSR_IA32_TSX_CTRL.patch [bz#1779677]
