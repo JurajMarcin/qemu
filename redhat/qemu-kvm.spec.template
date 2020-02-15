@@ -1054,6 +1054,13 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Sat Feb 15 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.1.0-14.el8_1_0.3
+- kvm-i386-Resolve-CPU-models-to-v1-by-default.patch [bz#1779078 bz#1787291]
+- Resolves: bz#1779078
+  (RHVH 4.4: Failed to run VM on 4.3/4.4 engine (Exit message: the CPU is incompatible with host CPU: Host CPU does not provide required features: hle, rtm))
+- Resolves: bz#1787291
+  (RHVH 4.4: Failed to run VM on 4.3/4.4 engine (Exit message: the CPU is incompatible with host CPU: Host CPU does not provide required features: hle, rtm) [rhel-8.1.0.z])
+
 * Tue Feb 11 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.1.0-14.el8_1_0.2
 - kvm-tcp_emu-Fix-oob-access.patch [bz#1791567]
 - kvm-slirp-use-correct-size-while-emulating-IRC-commands.patch [bz#1791567]
