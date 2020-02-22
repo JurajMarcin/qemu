@@ -1,7 +1,7 @@
 # The default profile, rhev
 [gitpublishprofile "default"]
 base = rhel-8.2.0
-prefix = RHEL-8.2.0 qemu-kvm PATCH
+prefix = RHEL-8.2.0.z qemu-kvm PATCH
 to = rhvirt-patches@redhat.com
 suppresscc = all
 message = True
