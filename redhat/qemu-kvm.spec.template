@@ -991,6 +991,14 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Fri Feb 21 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 2.12.0-99.el8
+- kvm-slirp-disable-tcp_emu.patch [bz#1791677]
+- kvm-target-i386-kvm-initialize-feature-MSRs-very-early.patch [bz#1790308]
+- Resolves: bz#1790308
+  (qemu-kvm core dump when do L1 guest live migration with L2 guest running)
+- Resolves: bz#1791677
+  (QEMU: Slirp: disable emulation of tcp programs like ftp IRC etc. [rhel-8])
+
 * Mon Feb 10 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 2.12.0-98.el8
 - kvm-iscsi-Avoid-potential-for-get_status-overflow.patch [bz#1794501]
 - kvm-iscsi-Cap-block-count-from-GET-LBA-STATUS-CVE-2020-1.patch [bz#1794501]
