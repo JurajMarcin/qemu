@@ -1041,6 +1041,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Mon Feb 24 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-12.el8
+- kvm-vhost-user-gpu-Drop-trailing-json-comma.patch [bz#1805334]
+- Resolves: bz#1805334
+  (vhost-user/50-qemu-gpu.json is not valid JSON)
+
 * Sun Feb 23 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-11.el8
 - kvm-spapr-Enable-DD2.3-accelerated-count-cache-flush-in-.patch [bz#1796240]
 - kvm-util-add-slirp_fmt-helpers.patch [bz#1798994]
