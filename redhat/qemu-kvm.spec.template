@@ -1041,6 +1041,23 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Sat Feb 29 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-13.el8
+- kvm-target-i386-kvm-initialize-feature-MSRs-very-early.patch [bz#1791648]
+- kvm-target-i386-add-a-ucode-rev-property.patch [bz#1791648]
+- kvm-target-i386-kvm-initialize-microcode-revision-from-K.patch [bz#1791648]
+- kvm-target-i386-fix-TCG-UCODE_REV-access.patch [bz#1791648]
+- kvm-target-i386-check-for-availability-of-MSR_IA32_UCODE.patch [bz#1791648]
+- kvm-target-i386-enable-monitor-and-ucode-revision-with-c.patch [bz#1791648]
+- kvm-qcow2-Fix-qcow2_alloc_cluster_abort-for-external-dat.patch [bz#1703907]
+- kvm-mirror-Store-MirrorOp.co-for-debuggability.patch [bz#1794692]
+- kvm-mirror-Don-t-let-an-operation-wait-for-itself.patch [bz#1794692]
+- Resolves: bz#1703907
+  ([upstream]QEMU coredump when converting to qcow2: external data file images on block devices with copy_offloading)
+- Resolves: bz#1791648
+  ([RFE] Passthrough host CPU microcode version to KVM guest if using CPU passthrough)
+- Resolves: bz#1794692
+  (Mirror block job stops making progress)
+
 * Mon Feb 24 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-12.el8
 - kvm-vhost-user-gpu-Drop-trailing-json-comma.patch [bz#1805334]
 - Resolves: bz#1805334
