@@ -1054,6 +1054,17 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Wed Mar 04 2020 Jon Maloy <jmaloy@redhat.com> - 4.1.0-23.el8_1.2
+- kvm-tcp_emu-Fix-oob-access.patch [bz#1797569]
+- kvm-slirp-use-correct-size-while-emulating-IRC-commands.patch [bz#1797569]
+- kvm-slirp-use-correct-size-while-emulating-commands.patch [bz#1797569]
+- kvm-util-add-slirp_fmt-helpers.patch [bz#1798993]
+- kvm-tcp_emu-fix-unsafe-snprintf-usages.patch [bz#1798993]
+- Resolves: bz#1797569
+  (CVE-2020-7039 qemu-kvm: QEMU: slirp: OOB buffer access while emulating tcp protocols in tcp_emu() [rhel-av-8.1.1.z])
+- Resolves: bz#1798993
+  (CVE-2020-8608 qemu-kvm: QEMU: Slirp: potential OOB access due to unsafe snprintf() usages [rhel-av-8.1.1.z])
+
 * Sat Feb 15 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.1.0-23.el8_1_1
 - kvm-iscsi-Cap-block-count-from-GET-LBA-STATUS-CVE-2020-1.patch [bz#1798020]
 - Resolves: bz#1798020
