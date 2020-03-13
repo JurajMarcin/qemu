@@ -1536,6 +1536,7 @@ static void external_snapshot_prepare(BlkActionState *common,
     TransactionAction *action = common->action;
     AioContext *aio_context;
     AioContext *old_context;
+    uint64_t perm, shared;
     int ret;
 
     /* 'blockdev-snapshot' and 'blockdev-snapshot-sync' have similar
@@ -1656,13 +1657,14 @@ static void external_snapshot_prepare(BlkActionState *common,
         goto out;
     }
 
-    if (bdrv_has_blk(state->new_bs)) {
+    /*
+     * Allow attaching a backing file to an overlay that's already in use only
+     * if the parents don't assume that they are already seeing a valid image.
+     * (Specifically, allow it as a mirror target, which is write-only access.)
+     */
+    bdrv_get_cumulative_perm(state->new_bs, &perm, &shared);
+    if (perm & BLK_PERM_CONSISTENT_READ) {
         error_setg(errp, "The overlay is already in use");
-        goto out;
-    }
-
-    if (bdrv_op_is_blocked(state->new_bs, BLOCK_OP_TYPE_EXTERNAL_SNAPSHOT,
-                           errp)) {
         goto out;
     }
 
