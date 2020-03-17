@@ -347,5 +347,6 @@ extern bool migrate_pre_2_2;
 
 void migration_make_urgent_request(void);
 void migration_consume_urgent_request(void);
+bool migration_rate_limit(void);
 
 #endif
