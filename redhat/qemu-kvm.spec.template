@@ -1041,6 +1041,14 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Tue Mar 24 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-16.el8
+- kvm-migration-Rate-limit-inside-host-pages.patch [bz#1814336]
+- kvm-build-sys-do-not-make-qemu-ga-link-with-pixman.patch [bz#1811670]
+- Resolves: bz#1811670
+  (Unneeded qemu-guest-agent dependency on pixman)
+- Resolves: bz#1814336
+  ([POWER9] QEMU migration-test triggers a kernel warning)
+
 * Tue Mar 17 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-15.el8
 - kvm-block-nbd-Fix-hang-in-.bdrv_close.patch [bz#1640894]
 - kvm-block-Generic-file-creation-fallback.patch [bz#1640894]
