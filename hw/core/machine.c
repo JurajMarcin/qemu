@@ -72,7 +72,7 @@ GlobalProperty hw_compat_rhel_8_0[] = {
     /* hw_compat_rhel_8_0 from hw_compat_4_0 */
     { "virtio-vga",     "edid", "false" },
     /* hw_compat_rhel_8_0 from hw_compat_4_0 */
-    { "virtio-gpu-pci", "edid", "false" },
+    { "virtio-gpu-device", "edid", "false" },
     /* hw_compat_rhel_8_0 from hw_compat_4_0 */
     { "virtio-device", "use-started", "false" },
     /* hw_compat_rhel_8_0 from hw_compat_3_1 - that was added in 4.1 */
