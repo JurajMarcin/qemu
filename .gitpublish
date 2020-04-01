@@ -1,12 +1,12 @@
 # The default profile
 [gitpublishprofile "default"]
-base = rhel-av-8.2.0
-prefix = RHEL-AV-8.2.0 qemu-kvm PATCH
+base = rhel-av-8.2.1
+prefix = RHEL-AV-8.2.1 qemu-kvm PATCH
 to = rhvirt-patches@redhat.com
 suppresscc = all
 message = True
 blurb-template = BZ: <XYZ>
-blurb-template = BRANCH: rhel-av-8.2.0
+blurb-template = BRANCH: rhel-av-8.2.1
 blurb-template = UPSTREAM: <upstream status>
 blurb-template = BREW: <brew id>
 blurb-template = *** YOUR MESSAGE HERE ***
@@ -16,7 +16,7 @@ DOWNSTREAM-BZ-FLAGS = qa_ack,pm_ack,devel_ack,release
 
 DOWNSTREAM-BZ-product = Red Hat Enterprise Linux Advanced Virtualization
 DOWNSTREAM-BZ-component = qemu-kvm
-DOWNSTREAM-BZ-cf-internal-target-release = 8.2.0
+DOWNSTREAM-BZ-cf-internal-target-release = 8.2.1
 
 DOWNSTREAM-BZ-release = +
 DOWNSTREAM-BZ-qa-ack = +
