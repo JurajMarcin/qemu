@@ -1054,6 +1054,13 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Mon Apr 06 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.1.0-23.el8_1.3
+- kvm-vfio-pci-Don-t-remove-irqchip-notifier-if-not-regist.patch [bz#1782678 bz#1818739]
+- Resolves: bz#1782678
+  (qemu core dump after hot-unplugging the   XXV710/XL710 PF)
+- Resolves: bz#1818739
+  (qemu core dump after hot-unplugging the   XXV710/XL710 PF [rhel-8.1.1])
+
 * Wed Mar 04 2020 Jon Maloy <jmaloy@redhat.com> - 4.1.0-23.el8_1.2
 - kvm-tcp_emu-Fix-oob-access.patch [bz#1797569]
 - kvm-slirp-use-correct-size-while-emulating-IRC-commands.patch [bz#1797569]
