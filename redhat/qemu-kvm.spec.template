@@ -1041,6 +1041,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Tue Apr 14 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-19.el8_2
+- kvm-target-i386-do-not-set-unsupported-VMX-secondary-exe.patch [bz#1822682]
+- Resolves: bz#1822682
+  (QEMU-4.2 fails to start a VM on Azure)
+
 * Thu Apr 09 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-18.el8_2
 - kvm-job-take-each-job-s-lock-individually-in-job_txn_app.patch [bz#1817621]
 - kvm-replication-assert-we-own-context-before-job_cancel_.patch [bz#1817621]
