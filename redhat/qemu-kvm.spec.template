@@ -1041,6 +1041,14 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Fri May 01 2020 Jon Maloy <jmaloy@redhat.com> - 4.2.0-20.el8
+- kvm-pcie_root_port-Add-hotplug-disabling-option.patch [bz#1790899]
+- kvm-compat-disable-edid-for-virtio-gpu-ccw.patch [bz#1816793]
+- Resolves: bz#1790899
+  ([RFE] QEMU devices should have the option to enable/disable hotplug/unplug)
+- Resolves: bz#1816793
+  ('edid' compat handling missing for virtio-gpu-ccw)
+
 * Tue Apr 14 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-19.el8_2
 - kvm-target-i386-do-not-set-unsupported-VMX-secondary-exe.patch [bz#1822682]
 - Resolves: bz#1822682
