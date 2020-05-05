@@ -79,7 +79,7 @@ rh-local: rh-env-prep
 
 rh-help:
 	@echo "rh-brew: Build RHEL package on brew"
-	@echo "rh-brew-module: Build RHEL package on brew using latest module build target
+	@echo "rh-brew-module: Build RHEL package on brew using latest module build target"
 	@echo "rh-srpm: Prepare srpm package for RHEL package"
 	@echo "rh-prep: Prepare sources and spec file in rpmbuild/"
 	@echo "rh-help: Print this help"
