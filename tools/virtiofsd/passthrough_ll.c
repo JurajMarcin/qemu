@@ -1524,8 +1524,7 @@ out_err:
     if (d) {
         if (d->dp) {
             closedir(d->dp);
-        }
-        if (fd != -1) {
+        } else if (fd != -1) {
             close(fd);
         }
         free(d);
