@@ -1157,6 +1157,7 @@ static void audio_capture_notify(void *opaque, audcnotification_e cmd)
 {
     VncState *vs = opaque;
 
+    assert(vs->magic == VNC_MAGIC);
     switch (cmd) {
     case AUD_CNOTIFY_DISABLE:
         vnc_lock_output(vs);
@@ -1186,6 +1187,7 @@ static void audio_capture(void *opaque, void *buf, int size)
 {
     VncState *vs = opaque;
 
+    assert(vs->magic == VNC_MAGIC);
     vnc_lock_output(vs);
     if (vs->output.offset < vs->throttle_output_offset) {
         vnc_write_u8(vs, VNC_MSG_SERVER_QEMU);
@@ -1294,6 +1296,7 @@ void vnc_disconnect_finish(VncState *vs)
     vs->ioc = NULL;
     object_unref(OBJECT(vs->sioc));
     vs->sioc = NULL;
+    vs->magic = 0;
     g_free(vs);
 }
 
@@ -1433,7 +1436,7 @@ static void vnc_client_write_locked(VncState *vs)
 
 static void vnc_client_write(VncState *vs)
 {
-
+    assert(vs->magic == VNC_MAGIC);
     vnc_lock_output(vs);
     if (vs->output.offset) {
         vnc_client_write_locked(vs);
@@ -1506,6 +1509,7 @@ static void vnc_jobs_bh(void *opaque)
 {
     VncState *vs = opaque;
 
+    assert(vs->magic == VNC_MAGIC);
     vnc_jobs_consume_buffer(vs);
 }
 
@@ -1556,6 +1560,8 @@ gboolean vnc_client_io(QIOChannel *ioc G_GNUC_UNUSED,
                        GIOCondition condition, void *opaque)
 {
     VncState *vs = opaque;
+
+    assert(vs->magic == VNC_MAGIC);
     if (condition & G_IO_IN) {
         if (vnc_client_read(vs) < 0) {
             goto end;
@@ -1586,6 +1592,7 @@ end:
 
 void vnc_write(VncState *vs, const void *data, size_t len)
 {
+    assert(vs->magic == VNC_MAGIC);
     if (vs->disconnecting) {
         return;
     }
@@ -3082,6 +3089,7 @@ static void vnc_connect(VncDisplay *vd, QIOChannelSocket *sioc,
     int i;
 
     trace_vnc_client_connect(vs, sioc);
+    vs->magic = VNC_MAGIC;
     vs->sioc = sioc;
     object_ref(OBJECT(vs->sioc));
     vs->ioc = QIO_CHANNEL(sioc);
