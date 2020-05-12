@@ -1041,6 +1041,21 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Mon May 11 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-21.el8
+- kvm-hw-pci-pcie-Forbid-hot-plug-if-it-s-disabled-on-the-.patch [bz#1820531]
+- kvm-hw-pci-pcie-Replace-PCI_DEVICE-casts-with-existing-v.patch [bz#1820531]
+- kvm-tools-virtiofsd-passthrough_ll-Fix-double-close.patch [bz#1817445]
+- kvm-virtiofsd-add-rlimit-nofile-NUM-option.patch [bz#1817445]
+- kvm-virtiofsd-stay-below-fs.file-max-sysctl-value-CVE-20.patch [bz#1817445]
+- kvm-virtiofsd-jail-lo-proc_self_fd.patch [bz#1817445]
+- kvm-virtiofsd-Show-submounts.patch [bz#1817445]
+- kvm-virtiofsd-only-retain-file-system-capabilities.patch [bz#1817445]
+- kvm-virtiofsd-drop-all-capabilities-in-the-wait-parent-p.patch [bz#1817445]
+- Resolves: bz#1817445
+  (CVE-2020-10717 virt:8.2/qemu-kvm: QEMU: virtiofsd: guest may open maximum file descriptor to cause DoS [rhel-av-8])
+- Resolves: bz#1820531
+  (qmp command query-pci get wrong result after hotplug device under hotplug=off controller)
+
 * Fri May 01 2020 Jon Maloy <jmaloy@redhat.com> - 4.2.0-20.el8
 - kvm-pcie_root_port-Add-hotplug-disabling-option.patch [bz#1790899]
 - kvm-compat-disable-edid-for-virtio-gpu-ccw.patch [bz#1816793]
