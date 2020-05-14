@@ -292,5 +292,7 @@ uint8_t tcp_tos(struct socket *);
 int tcp_emu(struct socket *, struct mbuf *);
 int tcp_ctl(struct socket *);
 struct tcpcb *tcp_drop(struct tcpcb *tp, int err);
+int slirp_fmt(char *str, size_t size, const char *format, ...);
+int slirp_fmt0(char *str, size_t size, const char *format, ...);
 
 #endif
