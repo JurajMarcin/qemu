@@ -16,5 +16,4 @@ endif
 
 common-obj-$(call land,$(CONFIG_VHOST_USER),$(CONFIG_VIRTIO)) += vhost-user.o
 
-# RHEL: disable memfd
-# common-obj-$(CONFIG_LINUX) += hostmem-memfd.o
+common-obj-$(CONFIG_LINUX) += hostmem-memfd.o
