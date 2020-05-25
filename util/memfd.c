@@ -193,7 +193,7 @@ bool qemu_memfd_alloc_check(void)
  */
 bool qemu_memfd_check(unsigned int flags)
 {
-#if 0 /* RHEL: memfd support disabled */
+#ifdef CONFIG_LINUX
     int mfd = memfd_create("test", flags | MFD_CLOEXEC);
 
     if (mfd >= 0) {
