@@ -1041,6 +1041,24 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Mon May 25 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-22.el8
+- kvm-block-always-fill-entire-LUKS-header-space-with-zero.patch [bz#1775462]
+- kvm-numa-remove-not-needed-check.patch [bz#1600217]
+- kvm-numa-properly-check-if-numa-is-supported.patch [bz#1600217]
+- kvm-numa-Extend-CLI-to-provide-initiator-information-for.patch [bz#1600217]
+- kvm-numa-Extend-CLI-to-provide-memory-latency-and-bandwi.patch [bz#1600217]
+- kvm-numa-Extend-CLI-to-provide-memory-side-cache-informa.patch [bz#1600217]
+- kvm-hmat-acpi-Build-Memory-Proximity-Domain-Attributes-S.patch [bz#1600217]
+- kvm-hmat-acpi-Build-System-Locality-Latency-and-Bandwidt.patch [bz#1600217]
+- kvm-hmat-acpi-Build-Memory-Side-Cache-Information-Struct.patch [bz#1600217]
+- kvm-tests-numa-Add-case-for-QMP-build-HMAT.patch [bz#1600217]
+- kvm-tests-bios-tables-test-add-test-cases-for-ACPI-HMAT.patch [bz#1600217]
+- kvm-ACPI-add-expected-files-for-HMAT-tests-acpihmat.patch [bz#1600217]
+- Resolves: bz#1600217
+  ([Intel 8.2.1 FEAT] KVM ACPI HMAT support - qemu-kvm  Fast Train)
+- Resolves: bz#1775462
+  (Creating luks-inside-qcow2 images with cluster_size=2k/4k will get a corrupted image)
+
 * Mon May 11 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-21.el8
 - kvm-hw-pci-pcie-Forbid-hot-plug-if-it-s-disabled-on-the-.patch [bz#1820531]
 - kvm-hw-pci-pcie-Replace-PCI_DEVICE-casts-with-existing-v.patch [bz#1820531]
