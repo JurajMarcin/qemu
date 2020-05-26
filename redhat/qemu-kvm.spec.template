@@ -991,6 +991,16 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Tue May 26 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 2.12.0-99.el8.1
+- kvm-util-add-slirp_fmt-helpers.patch [bz#1834477]
+- kvm-dhcpv6-use-slirp_fmt.patch [bz#1834477]
+- kvm-misc-use-slirp_fmt0.patch [bz#1834477]
+- kvm-tftp-use-slirp_fmt0.patch [bz#1834477]
+- kvm-tcp_ctl-use-slirp_fmt.patch [bz#1834477]
+- kvm-tcp_emu-fix-unsafe-snprintf-usages.patch [bz#1834477]
+- Resolves: bz#1834477
+  (CVE-2020-8608 virt:rhel/qemu-kvm: QEMU: Slirp: potential OOB access due to unsafe snprintf() usages [rhel-8.2.0.z])
+
 * Fri Feb 21 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 2.12.0-99.el8
 - kvm-slirp-disable-tcp_emu.patch [bz#1791677]
 - kvm-target-i386-kvm-initialize-feature-MSRs-very-early.patch [bz#1790308]
