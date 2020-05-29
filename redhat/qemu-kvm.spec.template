@@ -593,6 +593,11 @@ cp -a %{kvm_target}-softmmu/qemu-system-%{kvm_target} qemu-kvm
 gcc %{SOURCE6} $RPM_OPT_FLAGS $RPM_LD_FLAGS -o ksmctl
 gcc %{SOURCE35} $RPM_OPT_FLAGS $RPM_LD_FLAGS -o udev-kvm-check
 
+%ifarch s390x
+    # Copy the built new images into place for "make check":
+    cp pc-bios/s390-ccw/s390-ccw.img pc-bios/s390-ccw/s390-netboot.img pc-bios/
+%endif
+
 %install
 %define _udevdir %(pkg-config --variable=udevdir udev)
 %define _udevrulesdir %{_udevdir}/rules.d
@@ -731,6 +736,7 @@ rm -rf ${RPM_BUILD_ROOT}%{_datadir}/%{name}/qemu_vga.ndrv
 rm -rf ${RPM_BUILD_ROOT}%{_datadir}/%{name}/skiboot.lid
 
 rm -rf ${RPM_BUILD_ROOT}%{_datadir}/%{name}/s390-ccw.img
+rm -rf ${RPM_BUILD_ROOT}%{_datadir}/%{name}/s390-netboot.img
 rm -rf ${RPM_BUILD_ROOT}%{_datadir}/%{name}/hppa-firmware.img
 rm -rf ${RPM_BUILD_ROOT}%{_datadir}/%{name}/canyonlands.dtb
 rm -rf ${RPM_BUILD_ROOT}%{_datadir}/%{name}/u-boot-sam460-20100605.bin
@@ -747,10 +753,9 @@ rm -rf ${RPM_BUILD_ROOT}%{_datadir}/%{name}/qemu-nsis.bmp
 rm -rf ${RPM_BUILD_ROOT}%{_libdir}/qemu-kvm/ui-spice-app.so
 
 %ifarch s390x
-    # Use the s390-ccw.img that we've just built, not the pre-built one
+    # Use the s390-*.imgs that we've just built, not the pre-built ones
     install -m 0644 pc-bios/s390-ccw/s390-ccw.img $RPM_BUILD_ROOT%{_datadir}/%{name}/
-%else
-    rm -rf ${RPM_BUILD_ROOT}%{_datadir}/%{name}/s390-netboot.img
+    install -m 0644 pc-bios/s390-ccw/s390-netboot.img $RPM_BUILD_ROOT%{_datadir}/%{name}/
 %endif
 
 %ifnarch x86_64
