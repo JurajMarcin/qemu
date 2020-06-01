@@ -991,6 +991,12 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Mon Jun 01 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 2.12.0-99.el8_2.2
+- kvm-vnc-add-magic-cookie-to-VncState.patch [bz#1816763]
+- kvm-vnc-fix-memory-leak-when-vnc-disconnect.patch [bz#1816763]
+- Resolves: bz#1816763
+  (CVE-2019-20382 virt:rhel/qemu-kvm: QEMU: vnc: memory leakage upon disconnect [rhel-8])
+
 * Tue May 26 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 2.12.0-99.el8.1
 - kvm-util-add-slirp_fmt-helpers.patch [bz#1834477]
 - kvm-dhcpv6-use-slirp_fmt.patch [bz#1834477]
