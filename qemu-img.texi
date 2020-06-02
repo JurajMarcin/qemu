@@ -230,6 +230,33 @@ specified as well.
 For write tests, by default a buffer filled with zeros is written. This can be
 overridden with a pattern byte specified by @var{pattern}.
 
+@item bitmap (--merge @var{source} | --add | --remove | --clear | --enable | --disable)... [-b @var{source_file} [-F @var{source_fmt}]] [-g @var{granularity}] [--object @var{objectdef}] [--image-opts | -f @var{fmt}] @var{filename} @var{bitmap}
+
+Perform one or more modifications of the persistent bitmap @var{bitmap}
+in the disk image @var{filename}.  The various modifications are:
+
+@table @option
+@item add
+create @var{bitmap}, enabled to record future edits.
+@item remove
+remove @var{bitmap}.
+@item clear
+clear @var{bitmap}.
+@item enable
+change @var{bitmap} to start recording future edits.
+@item disable
+change @var{bitmap} to stop recording future edits.
+@item merge @var{source}
+merge the contents of the @var{source} bitmap into @var{bitmap}.
+@end table
+
+Additional options include @option{-g} which sets a non-default
+@var{granularity} for @option{--add}, and @option{-b} and @option{-F}
+which select an alternative source file for all @var{source} bitmaps used by
+@option{--merge}.
+
+To see what bitmaps are present in an image, use @code{qemu-img info}.
+
 @item check [--object @var{objectdef}] [--image-opts] [-q] [-f @var{fmt}] [--output=@var{ofmt}] [-r [leaks | all]] [-T @var{src_cache}] [-U] @var{filename}
 
 Perform a consistency check on the disk image @var{filename}. The command can

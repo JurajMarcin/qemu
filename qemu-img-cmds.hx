@@ -25,6 +25,12 @@ STEXI
 @item bench [-c @var{count}] [-d @var{depth}] [-f @var{fmt}] [--flush-interval=@var{flush_interval}] [-n] [--no-drain] [-o @var{offset}] [--pattern=@var{pattern}] [-q] [-s @var{buffer_size}] [-S @var{step_size}] [-t @var{cache}] [-w] [-U] @var{filename}
 ETEXI
 
+DEF("bitmap", img_bitmap,
+    "bitmap (--merge SOURCE | --add | --remove | --clear | --enable | --disable)... [-b source_file [-F source_fmt]] [-g granularity] [--object objectdef] [--image-opts | -f fmt] filename bitmap")
+STEXI
+.. option:: bitmap (--merge @var{source} | --add | --remove | --clear | --enable | --disable)... [-b @var{source_file} [-F @var{source_fmt}]] [-g @var{granularity}] [--object @var{objectdef}] [--image-opts | -f @var{fmt}] @var{filename} @var{bitmap}
+ETEXI
+
 DEF("check", img_check,
     "check [--object objectdef] [--image-opts] [-q] [-f fmt] [--output=ofmt] [-r [leaks | all]] [-T src_cache] [-U] filename")
 STEXI
