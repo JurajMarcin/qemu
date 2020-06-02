@@ -576,6 +576,7 @@ The following fields are reported:
 @example
 required size: 524288
 fully allocated size: 1074069504
+bitmaps size: 0
 @end example
 
 The @code{required size} is the file size of the new image.  It may be smaller
@@ -585,6 +586,12 @@ The @code{fully allocated size} is the file size of the new image once data has
 been written to all sectors.  This is the maximum size that the image file can
 occupy with the exception of internal snapshots, dirty bitmaps, vmstate data,
 and other advanced image format features.
+
+The @code{bitmaps size} is the additional size required in order to
+copy bitmaps from a source image in addition to the guest-visible
+data; the line is omitted if either source or destination lacks
+bitmap support, or 0 if bitmaps are supported but there is nothing to
+copy.
 
 @item snapshot [--object @var{objectdef}] [--image-opts] [-U] [-q] [-l | -a @var{snapshot} | -c @var{snapshot} | -d @var{snapshot}] @var{filename}
 
