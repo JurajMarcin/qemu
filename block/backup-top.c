@@ -143,8 +143,10 @@ static void backup_top_child_perm(BlockDriverState *bs, BdrvChild *c,
          *
          * Share write to target (child_file), to not interfere
          * with guest writes to its disk which may be in target backing chain.
+         * Can't resize during a backup block job because we check the size
+         * only upfront.
          */
-        *nshared = BLK_PERM_ALL;
+        *nshared = BLK_PERM_ALL & ~BLK_PERM_RESIZE;
         *nperm = BLK_PERM_WRITE;
     } else {
         /* Source child */
@@ -154,7 +156,7 @@ static void backup_top_child_perm(BlockDriverState *bs, BdrvChild *c,
         if (perm & BLK_PERM_WRITE) {
             *nperm = *nperm | BLK_PERM_CONSISTENT_READ;
         }
-        *nshared &= ~BLK_PERM_WRITE;
+        *nshared &= ~(BLK_PERM_WRITE | BLK_PERM_RESIZE);
     }
 }
 
@@ -187,10 +189,12 @@ BlockDriverState *bdrv_backup_top_append(BlockDriverState *source,
 {
     Error *local_err = NULL;
     BDRVBackupTopState *state;
-    BlockDriverState *top = bdrv_new_open_driver(&bdrv_backup_top_filter,
-                                                 filter_node_name,
-                                                 BDRV_O_RDWR, errp);
+    BlockDriverState *top;
 
+    assert(source->total_sectors == target->total_sectors);
+
+    top = bdrv_new_open_driver(&bdrv_backup_top_filter, filter_node_name,
+                               BDRV_O_RDWR, errp);
     if (!top) {
         return NULL;
     }
