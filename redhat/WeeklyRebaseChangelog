@@ -1,0 +1,2217 @@
+==============================================================================
+2020-08-05 - 5.1.0 GA
+==============================================================================
+New upstream commits:
+---------------------
+- no new commits
+
+Downstream changes:
+- added dependency to libfdt 1.6.0
+
+Downstream commits:
+-------------------
+- 96743 RHEL-only: Enable vTPM for POWER in downstream configs
+- 97457 redhat: fix 5.0 rebase missing ISA TPM TIS
+- 97662 redhat: define hw_compat_8_2
+- 97663 x86: Add 8.3.0 x86_64 machine type
+
+Queued patches applied:
+- 97663 x86: Add 8.3.0 x86_64 machine type
+- 97844 hw/arm: Changes to rhel820 machine
+- 97838 hw/arm: Introduce rhel_virt_instance_init() helper
+- 97845 hw/arm: Add rhel830 machine type
+- 97904 redhat: define pseries-rhel8.3.0 machine type
+- 98073 ppc: Set correct max_cpus value on spapr-rhel* machine types
+- 98074 arm: Set correct max_cpus value on virt-rhel* machine types
+- 98075 vl: Remove downstream-only MAX_RHEL_CPUS code
+- 98076 q35: Set max_cpus to 512
+- 98143 RHEL-only: arm/virt: Allow the TPM_TIS_SYSBUS device dynamic allocation in machvirt (NEW)
+- 98144 RHEL-only: Enable vTPM for ARM in downstream configs (NEW)
+==============================================================================
+2020-08-05 - 5.1.0-rc3
+==============================================================================
+New upstream commits:
+---------------------
+e1d322c Update version for v5.1.0-rc3 release
+a65dabf target/arm: Fix Rt/Rt2 in ESR_ELx for copro traps from AArch32 to 64
+348fcc4 qcow2-cluster: Fix integer left shift error in qcow2_alloc_cluster_link_l2()
+d2a71d7 Get rid of the libqemustub.a remainders
+35c7f52 target/riscv/vector_helper: Fix build on 32-bit big endian hosts
+5896c53 gitlab-ci: Fix Avocado cache usage
+699616d gitlab-ci.yml: Add build-system-debian and build-system-centos jobs
+4d6862f tests/acceptance: Disable the rx sash and arm cubieboard replay test on Gitlab
+1caac1c tests/docker: Add python3-venv and netcat to the debian-amd64 container
+facc685 virtio-mem: Correct format specifier mismatch for RISC-V
+d250bb1 target/arm: Fix decode of LDRA[AB] instructions
+ffdfca6 docs/devel: Document decodetree no-overlap groups
+8e0ef06 accel/xen: Fix xen_enabled() behavior on target-agnostic objects
+035e69b hw/net/net_tx_pkt: fix assertion failure in net_tx_pkt_add_raw_fragment()
+f81cddf colo-compare: Remove superfluous NULL-pointer checks for s->iothread
+13557fd hw/timer/imx_epit: Avoid assertion when CR.SWR is written
+ce4f70e hw/arm/nrf51_soc: Set system_clock_scale
+88a90e3 target/arm: Avoid maybe-uninitialized warning with gcc 4.9
+8796fe4 target/arm: Fix AddPAC error indication
+fc6bb6e msf2-soc, stellaris: Don't wire up SYSRESETREQ
+9e60d75 hw/intc/armv7m_nvic: Provide default "reset the system" behaviour for SYSRESETREQ
+faf7c6d include/hw/irq.h: New function qemu_irq_is_connected()
+e7e5a95 hw/arm/netduino2, netduinoplus2: Set system_clock_scale
+edadc99 iotests/169: Test source cont with backing bmap
+fe16c7d qcow2: Release read-only bitmaps when inactivated
+f7160f3 schemas: Add vim modeline
+fbeed19 qapi: Delete unwanted indentation of top-level expressions
+6ac3f1e qapi/machine.json: Fix missing newline in doc comment
+1f42e24 seabios: update to master snapshot
+0008224 tracetool: carefully define SDT_USE_VARIADIC
+148d25e s390x/s390-virtio-ccw: fix off-by-one in loadparm getter
+1b7157b trace/simple: Allow enabling simple traces from command line
+
+Downstream changes:
+- bumped required libusbx-devel version to 1.0.23
+
+Downstream commits:
+-------------------
+- 96743 RHEL-only: Enable vTPM for POWER in downstream configs
+- 97457 redhat: fix 5.0 rebase missing ISA TPM TIS
+- 97662 redhat: define hw_compat_8_2
+- 97663 x86: Add 8.3.0 x86_64 machine type
+
+Queued patches applied:
+- 97663 x86: Add 8.3.0 x86_64 machine type
+- 97844 hw/arm: Changes to rhel820 machine
+- 97838 hw/arm: Introduce rhel_virt_instance_init() helper
+- 97845 hw/arm: Add rhel830 machine type
+- 97904 redhat: define pseries-rhel8.3.0 machine type
+- 98073 ppc: Set correct max_cpus value on spapr-rhel* machine types
+- 98074 arm: Set correct max_cpus value on virt-rhel* machine types
+- 98075 vl: Remove downstream-only MAX_RHEL_CPUS code
+- 98076 q35: Set max_cpus to 512
+==============================================================================
+2020-07-29 - 5.1.0-rc2
+==============================================================================
+New upstream commits:
+---------------------
+5772f2b Update version for v5.1.0-rc2 release
+5045be8 Merge remote-tracking branch 'remotes/ericb/tags/pull-nbd-2020-07-28' into staging
+b175383 Merge remote-tracking branch 'remotes/elmarco/tags/slirp-pull-request' into staging
+3461487 Merge remote-tracking branch 'remotes/pmaydell/tags/pull-target-arm-20200727' into staging
+0c4fa5b Merge remote-tracking branch 'remotes/maxreitz/tags/pull-block-2020-07-28' into staging
+0a58e39 Merge remote-tracking branch 'remotes/vivier2/tags/linux-user-for-5.1-pull-request' into staging
+a466dd0 Merge remote-tracking branch 'remotes/jasowang/tags/net-pull-request' into staging
+12c75e2 block/nbd: nbd_co_reconnect_loop(): don't sleep if drained
+fbeb3e6 block/nbd: on shutdown terminate connection attempt
+dd1ec1a block/nbd: allow drain during reconnect attempt
+fa35591 block/nbd: split nbd_establish_connection out of nbd_client_connect
+03a970b iotests: Test convert to qcow2 compressed to NBD
+4b914b0 iotests: Add more qemu_img helpers
+b7719bc iotests: Make qemu_nbd_popen() a contextmanager
+a2b333c block: nbd: Fix convert qcow2 compressed to nbd
+9c15f57 slirp: update to latest stable-4.2 branch
+297641d test-char: abort on serial test error
+1e0e091 Merge remote-tracking branch 'remotes/mdroth/tags/qga-pull-2020-07-27-tag' into staging
+890cbcc nbd: Fix large trim/zero requests
+2649915 Merge remote-tracking branch 'remotes/ericb/tags/pull-bitmaps-2020-07-27' into staging
+afac471 iotests/197: Fix for non-qcow2 formats
+ae15945 iotests/028: Add test for cross-base-EOF reads
+134b7de block: Fix bdrv_aligned_p*v() for qiov_offset != 0
+1b242c3 Merge remote-tracking branch 'remotes/mcayland/tags/qemu-openbios-20200727' into staging
+22dc866 net: forbid the reentrant RX
+c546ecf virtio-net: check the existence of peer before accessing vDPA config
+a48aaf8 virtio-pci: fix wrong index in virtio_pci_queue_enabled
+23ae287 Merge remote-tracking branch 'remotes/maxreitz/tags/pull-block-2020-07-27' into staging
+ba62054 qga/qapi-schema: Document -1 for invalid PCI address fields
+3aaebc0 qga-win: fix "guest-get-fsinfo" wrong filesystem type
+37931e0 migration: Fix typos in bitmap migration comments
+fbd1c1b iotests: Adjust which migration tests are quick
+058a08a qemu-iotests/199: add source-killed case to bitmaps postcopy
+845b220 qemu-iotests/199: add early shutdown case to bitmaps postcopy
+d4c6fcc qemu-iotests/199: check persistent bitmaps
+48f4382 qemu-iotests/199: prepare for new test-cases addition
+ee64722 migration/savevm: don't worry if bitmap migration postcopy failed
+1499ab0 migration/block-dirty-bitmap: cancel migration on shutdown
+b91f33b migration/block-dirty-bitmap: relax error handling in incoming part
+0a47190 migration/block-dirty-bitmap: keep bitmap state for all bitmaps
+f3045b9 migration/block-dirty-bitmap: simplify dirty_bitmap_load_complete
+8949121 migration/block-dirty-bitmap: rename finish_lock to just lock
+3b52726 migration/block-dirty-bitmap: refactor state global variables
+d0cccbd migration/block-dirty-bitmap: move mutex init to dirty_bitmap_mig_init
+b25d364 migration/block-dirty-bitmap: rename dirty_bitmap_mig_cleanup
+fbbc6b1 migration/block-dirty-bitmap: rename state structure types
+e6ce5e9 migration/block-dirty-bitmap: fix dirty_bitmap_mig_before_vm_start
+e80a415 qemu-iotests/199: increase postcopy period
+31e3827 qemu-iotests/199: change discard patterns
+edb90bb qemu-iotests/199: improve performance: set bitmap by discard
+09feea6 qemu-iotests/199: better catch postcopy time
+f3f483a qemu-iotests/199: drop extra constraints
+8243219 qemu-iotests/199: fix style
+8098969 qcow2: Fix capitalization of header extension constant.
+0f6bb19 linux-user: Use getcwd syscall directly
+4d21300 linux-user: Fix syscall rt_sigtimedwait() implementation
+c9f8066 linux-user: Ensure mmap_min_addr is non-zero
+93ea484 Merge remote-tracking branch 'remotes/mst/tags/for_upstream' into staging
+9303ecb Merge remote-tracking branch 'remotes/cohuck/tags/s390x-20200727' into staging
+0c9753e virtio-pci: fix virtio_pci_queue_enabled()
+d4f6dda target/arm: Improve IMPDEF algorithm for IRG
+7ad01d7 hw/arm/boot: Fix MTE for EL3 direct kernel boot
+24ac0d3 hw/arm/boot: Fix PAUTH for EL3 direct kernel boot
+222f45b docs/system/arm/virt: Document 'mte' machine option
+a6d6f37 target/arm: Always pass cacheattr in S1_ptw_translate
+ca05a24 hw/misc/aspeed_sdmc: Fix incorrect memory size
+4bf7c0c ACPI: Assert that we don't run out of the preallocated memory
+54414d0 Update OpenBIOS images to 7f28286f built from submodule.
+cb320a0 Merge remote-tracking branch 'remotes/stsquad/tags/pull-fixes-for-rc2-270720-1' into staging
+1855536 iotests/197: Fix for compat=0.10
+d0d8952 MAINTAINERS: Cover the firmware JSON schema
+386494f vhost-vdpa :Fix Coverity CID 1430270 / CID 1420267
+8fe9805 libvhost-user: Report descriptor index on panic
+4fdecf0 Fix vhost-user buffer over-read on ram hot-unplug
+2ebc212 hw/pci-host: save/restore pci host config register
+c22aba1 virtio-mem-pci: force virtio version 1
+733dafe iotests: Select a default machine for the rx and avr targets
+984c367 block/amend: Check whether the node exists
+4a70232 tests/vm: add shutdown timeout in basevm.py
+80ded8e python/qemu: Change ConsoleSocket to optionally drain socket.
+4b84d87 python/qemu: Cleanup changes to ConsoleSocket
+4458838 linux-user, ppc: fix clock_nanosleep() for linux-user-ppc
+8ec68a0 linux-user: fix clock_nanosleep()
+4c5aeb1 tests/docker: add support for DEB_KEYRING
+182ec06 tests/docker: fix binfmt_misc image building
+e336cec tests/docker: fix update command due to python3 str/bytes distinction
+2667e06 linux-user: don't use MAP_FIXED in pgd_find_hole_fallback
+163b3d1 target/i386: floatx80: avoid compound literals in static initializers
+c83d628 accel/tcg: better handle memory constrained systems
+986baba util/oslib-win32: add qemu_get_host_physmem implementation
+ad06ef0 util: add qemu_get_host_physmem utility function
+7d2d652 semihosting: don't send the trailing '\0'
+619985e semihosting: defer connect_chardevs a little more to use serialx
+3b6b499 shippable: add one more qemu to registry url
+4215d34 Merge remote-tracking branch 'remotes/dgibson/tags/ppc-for-5.1-20200727' into staging
+aef92d8 pseries: fix kvmppc_set_fwnmi()
+194f8ca Merge remote-tracking branch 'remotes/rth/tags/pull-tcg-20200725' into staging
+57cdde4 Merge remote-tracking branch 'remotes/stefanberger/tags/pull-tpm-2020-07-24-1' into staging
+b0ce3f0 Merge remote-tracking branch 'remotes/kraxel/tags/fixes-20200724-pull-request' into staging
+8226a4b python/machine: Change default timeout to 30 seconds
+3cb3a77 target/i386: Save cc_op before loop insns
+79826f9 target/hppa: Free some temps in do_sub
+570ef30 tcg: update comments for save_iotlb_data in cputlb
+88f8307 tpm_emulator: Report an error if chardev is missing
+5a6791c tpm: Improve help on TPM types when none are available
+d64072c0 Revert "tpm: Clean up error reporting in tpm_init_tpmdev()"
+9b52b17 configure: Allow to build tools without pixman
+e68808a Merge remote-tracking branch 'remotes/armbru/tags/pull-error-2020-07-24' into staging
+2c9728c hw/input/virtio-input-hid.c: Don't undef CONFIG_CURSES
+8d94298 hw: Only compile the usb-dwc2 controller if it is really needed
+192cf54 qapi/error: Check format string argument in error_*prepend()
+8388863 sd/milkymist-memcard: Fix format string
+ff5b5d5 error: Strip trailing '\n' from error string arguments (again)
+cb3fa1e coccinelle/err-bad-newline: Fix for Python 3, and add patterns
+7adfbea Merge remote-tracking branch 'remotes/ehabkost/tags/x86-next-for-5.1-pull-request' into staging
+d664548 s390x/s390-virtio-ccw: fix loadparm property getter
+d1bb69d s390x/protvirt: allow to IPL secure guests with -no-reboot
+0baa4b4 KVM: fix CPU reset wrt HF2_GIF_MASK
+09e0cd7 Merge remote-tracking branch 'remotes/alistair/tags/pull-riscv-to-apply-20200722-1' into staging
+8ffa52c Merge remote-tracking branch 'remotes/mst/tags/for_upstream' into staging
+53ce7b4 Merge remote-tracking branch 'remotes/philmd-gitlab/tags/avr-20200721' into staging
+8ba26b0 target/riscv: Fix the range of pmpcfg of CSR funcion table
+e79d27c hw/riscv: sifive_e: Correct debug block size
+3e09396 target/riscv: fix vector index load/store constraints
+eabfeb0 target/riscv: Quiet Coverity complains about vamo*
+8380b3a goldfish_rtc: Fix non-atomic read behaviour of TIME_LOW/TIME_HIGH
+ccec7e9 virtio-pci: Changed vdev to proxy for VirtIO PCI BAR callbacks.
+a4544c4 intel_iommu: Use correct shift for 256 bits qi descriptor
+9b3a35e virtio: verify that legacy support is not accidentally on
+7c78bdd virtio: list legacy-capable devices
+3219b42 virtio-balloon: Replace free page hinting references to 'report' with 'hint'
+1a83e0b virtio-balloon: Add locking to prevent possible race when starting hinting
+20a4da0 virtio-balloon: Prevent guest from starting a report when we didn't request one
+cf4e3d0 virtio: Drop broken and superfluous object_property_set_link()
+dba04c3 acpi: accept byte and word access to core ACPI registers
+d0cc248 Merge remote-tracking branch 'remotes/philmd-gitlab/tags/fw_cfg-20200721' into staging
+3cbc897 Merge remote-tracking branch 'remotes/armbru/tags/pull-monitor-2020-07-21' into staging
+029afc4 qdev: Fix device_add DRIVER,help to print to monitor
+0771951 hw/nvram/fw_cfg: Let fw_cfg_add_from_generator() return boolean value
+a3ad583 hw/nvram/fw_cfg: Simplify fw_cfg_add_from_generator() error propagation
+5e29521 hw/avr/boot: Fix memory leak in avr_load_firmware()
+b6c61f6 qemu-common: Document qemu_find_file()
+d450ccc qemu/osdep: Reword qemu_get_exec_dir() documentation
+7da1d7d qemu/osdep: Document os_find_datadir() return value
+
+Downstream commits:
+-------------------
+- 96743 RHEL-only: Enable vTPM for POWER in downstream configs
+- 97457 redhat: fix 5.0 rebase missing ISA TPM TIS
+- 97662 redhat: define hw_compat_8_2
+- 97663 x86: Add 8.3.0 x86_64 machine type
+
+Queued patches applied:
+- 97663 x86: Add 8.3.0 x86_64 machine type
+- 97844 hw/arm: Changes to rhel820 machine
+- 97838 hw/arm: Introduce rhel_virt_instance_init() helper
+- 97845 hw/arm: Add rhel830 machine type
+- 97904 redhat: define pseries-rhel8.3.0 machine type
+- 98067 vl: Increase RHEL_MAX_CPUS on x86
+- 98068 q35: Set max_cpus to 512
+==============================================================================
+2020-07-22 - 5.1.0-rc1
+==============================================================================
+New upstream commits:
+---------------------
+c8004fe Update version for v5.1.0-rc1 release
+0c1fd2f Merge remote-tracking branch 'remotes/kevin/tags/for-upstream' into staging
+b50dab9 Merge remote-tracking branch 'remotes/armbru/tags/pull-qom-2020-07-21' into staging
+a418695 Merge remote-tracking branch 'remotes/kraxel/tags/fixes-20200721-pull-request' into staging
+5252220 Merge remote-tracking branch 'remotes/jasowang/tags/net-pull-request' into staging
+4a01e27 iotests: Test sparseness for qemu-img convert -n
+0dde9fd qom: Make info qom-tree sort children more efficiently
+8856755 Merge remote-tracking branch 'remotes/armbru/tags/pull-qapi-2020-07-21' into staging
+61b3043 qcow2: Implement v2 zero writes with discard if possible
+bae127d file-posix: Handle `EINVAL` fallocate return value
+5bd929d qom: Document object_get_canonical_path() returns malloced string
+7a309cc qom: Change object_get_canonical_path_component() not to malloc
+5519724 hw/net/xgmac: Fix buffer overflow in xgmac_enet_send()
+e219d30 hw/net: Added plen fix for IPv6
+98d897e Merge remote-tracking branch 'remotes/maxreitz/tags/pull-block-2020-07-21' into staging
+cbf97d5 qapi: Fix visit_type_STRUCT() not to fail for null object
+1d719dd block: fix bdrv_aio_cancel() for ENOMEDIUM requests
+90218a9 Merge remote-tracking branch 'remotes/huth-gitlab/tags/pull-request-2020-07-21' into staging
+d87350b module: ignore NULL type
+d97df4b qxl: fix modular builds with dtrace
+8e67fda xhci: fix valid.max_access_size to access address registers
+0fca43d qemu-iotests: add testcase for bz #1857490
+662d0c5 block/crypto: disallow write sharing by default
+7ad36e2 hw: Mark nd_table[] misuse in realize methods FIXME
+2b06502 msf2: Unbreak device-list-properties for "msf-soc"
+6184e5f MAINTAINERS: Extend the device fuzzing section
+09a14f5 docs/fuzz: add instructions for generating a coverage report
+19a91e4 docs/fuzz: add information about useful libFuzzer flags
+ee16da1 docs/fuzz: describe building fuzzers with enable-sanitizers
+dd01626 fuzz: build without AddressSanitizer, by default
+48eac10 gitlab-ci.yml: Add oss-fuzz build tests
+bcbad8b fuzz: Fix leak when assembling datadir path string
+7cee363 scripts/oss-fuzz: Limit target list to i386-softmmu
+af3d690 Merge remote-tracking branch 'remotes/pmaydell/tags/pull-target-arm-20200720' into staging
+6a0b750 docs/system: Document the arm virt board
+bb30900 docs/system: Briefly document gumstix boards
+b76b60f docs/system: Briefly document collie board
+2d21dd1 docs/system: Briefly document canon-a1100 board
+3f41003 hw/arm/armsse: Assert info->num_cpus is in-bounds in armsse_realize()
+cd07d7f qdev: Document GPIO related functions
+46ea1be qdev: Document qdev_unrealize()
+b51238e qdev: Move doc comments from qdev.c to qdev-core.h
+8edbca5 util: Implement qemu_get_thread_id() for OpenBSD
+19bd6aa hw/arm/virt: Disable memory hotplug when MTE is enabled
+7f6185e hw/arm/virt: Error for MTE enabled with KVM
+6f4e140 hw/arm/virt: Enable MTE via a machine property
+1e6c50a Merge remote-tracking branch 'remotes/dgibson/tags/ppc-for-5.1-20200720' into staging
+873ec69 Merge remote-tracking branch 'remotes/cminyard/tags/for-qemu-i2c-5' into staging
+d69cda7 Makefile: Remove config-devices.mak on "make clean"
+b25fbd6 pseries: Update SLOF firmware image
+a6030d7 spapr: Add a new level of NUMA for GPUs
+a4beb5f spapr_pci: Robustify support of PCI bridges
+14de3d4 ppc/pnv: Make PSI device types not user creatable
+9fc8711 Merge remote-tracking branch 'remotes/rth/tags/pull-tcg-20200717' into staging
+b442119 Merge remote-tracking branch 'remotes/cminyard/tags/for-qemu-ipmi-5' into staging
+939ab64 Merge remote-tracking branch 'remotes/ericb/tags/pull-bitmaps-2020-07-17' into staging
+97f750b Merge remote-tracking branch 'remotes/cohuck/tags/s390x-20200717' into staging
+ba3c35d tcg/cpu-exec: precise single-stepping after an interrupt
+e3f7320 ipmi: add SET_SENSOR_READING command
+789101b ipmi: Fix a man page entry
+323679d ipmi: Add man page pieces for the IPMI PCI devices
+920d213 Merge remote-tracking branch 'remotes/kevin/tags/for-upstream' into staging
+7cb0151 migration/block-dirty-bitmap: fix add_bitmaps_to_list
+a8c5cf2 file-posix: Fix leaked fd in raw_open_common() error path
+bca5283 file-posix: Fix check_hdev_writable() with auto-read-only
+20eaf1b file-posix: Move check_hdev_writable() up
+5edc855 file-posix: Allow byte-aligned O_DIRECT with NFS
+9c60a5d block: Require aligned image size to avoid assertion failure
+d047cfa iotests: test shutdown when bitmap is exported through NBD
+453cc6b nbd: make nbd_export_close_all() synchronous
+f21f129 iotests/030: Reduce job speed to make race less likely
+3e018af crypto: use a stronger private key for tests
+1c404d7 qemu-img resize: Require --shrink for shrinking all image formats
+a084645 Remove VXHS block device
+4b7c5bc vvfat: set status to odd fixes
+b7bda69 Merge remote-tracking branch 'remotes/huth-gitlab/tags/pull-request-2020-07-17' into staging
+9ece07d docs/s390x: fix vfio-ccw type
+b610eba gitlab-ci.yml: Add fuzzer tests
+ab2d185 qom: Plug memory leak in "info qom-tree"
+12a9b8d configure: Fix for running with --enable-werror on macOS
+f5ec79f fuzz: Expect the cmdline in a freeable GString
+15c51f7 tests: qmp-cmd-test: fix memory leak
+82e258d qtest: bios-tables-test: fix a memory leak
+a7ba744 tcg/cpu-exec: precise single-stepping after an exception
+151f76c Merge remote-tracking branch 'remotes/ehabkost/tags/x86-next-pull-request' into staging
+69c918d tcg: Save/restore vecop_list around minmax fallback
+818b9f1 i386: hvf: Explicitly set CR4 guest/host mask
+95d1fba Merge remote-tracking branch 'remotes/kraxel/tags/fixes-20200716-pull-request' into staging
+73d5f22 hw/i2c: Document the I2C qdev helpers
+1373b15 hw/i2c: Rename i2c_create_slave() as i2c_slave_create_simple()
+2616f57 hw/i2c: Rename i2c_realize_and_unref() as i2c_slave_realize_and_unref()
+db437ca hw/i2c: Rename i2c_try_create_slave() as i2c_slave_new()
+7a204cb hw/i2c/aspeed_i2c: Simplify aspeed_i2c_get_bus()
+ae163b8 hw/i2c/Kconfig: Add an entry for the SMBus
+644e3c5 target/i386: add the missing vmx features for Skylake-Server and Cascadelake-Server CPU models
+e001379 target/i386: fix model number and add missing features for Icelake-Server CPU model
+5cb287d target/i386: add fast short REP MOV support
+f9f08e7 i386/cpu: Don't add unavailable_features to env->user_features
+1f43671 i368/cpu: Clear env->user_features after loading versioned CPU model
+175788d Merge remote-tracking branch 'remotes/stefanberger/tags/pull-tpm-2020-07-15-1' into staging
+ee5128b Merge remote-tracking branch 'remotes/jasowang/tags/net-pull-request' into staging
+4084e35 usb: fix storage regression
+8ec1415 vfio: fix use-after-free in display
+df8a756 tests: tpm: Skip over pcrUpdateCounter byte in result comparison
+f8b332a tpm: tpm_spapr: Exit on TPM backend failures
+a134321 ftgmac100: fix dblac write test
+e7b347d net: detect errors from probing vnet hdr flag for TAP devices
+894022e net: check if the file descriptor is valid before using it
+2b28a7e qemu-options.hx: Clean up and fix typo for colo-compare
+a2e5cb7 net/colo-compare.c: Expose compare "max_queue_size" to users
+9a8d949 hw/net: Added CSO for IPv6
+6501810 virtio-net: fix removal of failover device
+
+Downstream changes:
+-------------------
+81f13ec Initial redhat build
+    - removed --disable-vxhs configure option (removed upstream)
+c17f26a Enable/disable devices for RHEL
+    - removed obsolete hw/bt/Makefile.objs chunk
+    - removed unnecessary changes in target/i386/cpu.c
+3be97ad Add aarch64 machine types
+    - added mte property (upstream)
+2a87177 Enable make check
+    - Enabled iotests 071 and 099
+
+Queued patches applied:
+- 96743 RHEL-only: Enable vTPM for POWER in downstream configs
+- 97457 redhat: fix 5.0 rebase missing ISA TPM TIS
+- 97662 redhat: define hw_compat_8_2
+- 97663 x86: Add 8.3.0 x86_64 machine type
+- 97844 hw/arm: Changes to rhel820 machine
+- 97838 hw/arm: Introduce rhel_virt_instance_init() helper
+- 97845 hw/arm: Add rhel830 machine type
+- 97904 redhat: define pseries-rhel8.3.0 machine type
+
+==============================================================================
+2020-07-16 - 5.1.0-rc0
+==============================================================================
+New upstream commits:
+---------------------
+8746309 Update version for v5.1.0-rc0 release
+0571d28 .travis.yml: skip ppc64abi32-linux-user with plugins
+406b53c plugins: expand the bb plugin to be thread safe and track per-cpu
+2f3a57e cputlb: ensure we save the IOTLB data in case of reset
+777dddc tests/plugins: don't unconditionally add -Wpsabi
+8cdf912 fpu/softfloat: fix up float16 nan recognition
+6f60a24 gitlab-ci/containers: Add missing wildcard where we should look for changes
+f73e485 docker.py: fix fetching of FROM layers
+a77312e tests/docker: Remove the libssh workaround from the ubuntu 20.04 image
+93154e7 docs/devel: fix grammar in multi-thread-tcg
+84dcdf0 python/qmp.py: add QMPProtocolError
+2e2d930 python/qmp.py: add casts to JSON deserialization
+ef5d474 python/qmp.py: Do not return None from cmd_obj
+e3a23b4 python/qmp.py: re-absorb MonitorResponseError
+2012453 iotests.py: use qemu.qmp type aliases
+a5d7637 python/qmp.py: Define common types
+04f0e36 python/machine.py: change default wait timeout to 3 seconds
+de6e08b python/machine.py: re-add sigkill warning suppression
+193bf1c python/machine.py: split shutdown into hard and soft flavors
+fdb87f0 tests/acceptance: Don't test reboot on cubieboard
+a0690c3 tests/acceptance: wait() instead of shutdown() where appropriate
+8952805 python/machine.py: Make wait() call shutdown()
+c9b3045 python/machine.py: Add a configurable timeout to shutdown()
+a3842cb python/machine.py: Prohibit multiple shutdown() calls
+3a7d64b python/machine.py: Perform early cleanup for wait() calls, too
+e2c97f1 python/machine.py: Add _early_cleanup hook
+671940e python/machine.py: Close QMP socket in cleanup
+14661d9 python/machine.py: consolidate _post_shutdown()
+01afa75 scripts/performance: Add dissect.py script
+15d983d MAINTAINERS: Adjust MIPS maintainership (add Huacai Chen & Jiaxun Yang)
+dda97e3 target/mips: Fix ADD.S FPU instruction
+9788e8c target/mips: Remove identical if/else branches
+790762e hw/sd/sdcard: Do not switch to ReceivingData if address is invalid
+794d68d hw/sd/sdcard: Update coding style to make checkpatch.pl happy
+a9bcedd hw/sd/sdcard: Do not allow invalid SD card sizes
+6dd3a16 hw/sd/sdcard: Simplify realize() a bit
+9157dd5 hw/sd/sdcard: Restrict Class 6 commands to SCSD cards
+6a289a5 tests/acceptance/boot_linux: Expand SD card image to power of 2
+b7dcbf1 tests/acceptance/boot_linux: Tag tests using a SD card with 'device:sd'
+1c2329b docs/orangepi: Add instructions for resizing SD image to power of two
+ba41247 MAINTAINERS: Cc qemu-block mailing list
+e6cada9 block: Avoid stale pointer dereference in blk_get_aio_context()
+d9f059a qemu-img: Deprecate use of -b without -F
+e54ee1b block: Add support to warn on backing file change without format
+b66ff2c iotests: Specify explicit backing format where sensible
+bc5ee6d qcow2: Deprecate use of qemu-img amend to change backing file
+add8200 block: Error if backing file fails during creation without -u
+344acbd qcow: Tolerate backing_fmt=
+d51a814 vmdk: Add trivial backing_fmt support
+80fa43e sheepdog: Add trivial backing_fmt support
+25956af block: Finish deprecation of 'qemu-img convert -n -o'
+4e2f441 qemu-img: Flush stdout before before potential stderr messages
+ffa244c file-posix: Mitigate file fragmentation with extent size hints
+046e07c iotests/059: Filter out disk size with more standard filter
+d0ceea8 qemu-img map: Don't limit block status request size
+4b196cd iotests: Simplify _filter_img_create() a bit
+42b1618 linux-user: fix print_syscall_err() when syscall returned value is negative
+6733d57 linux-user: fix the errno value in print_syscall_err()
+cfad709 target/riscv: Fix pmp NA4 implementation
+895bfa8 tcg/riscv: Remove superfluous breaks
+59093cc hw/char: Convert the Ibex UART to use the registerfields API
+940aabb hw/char: Convert the Ibex UART to use the qdev Clock model
+fbcbafa target/riscv: fix vill bit index in vtype register
+a69f97c target/riscv: fix return value of do_opivx_widen()
+1989205 target/riscv: correct the gvec IR called in gen_vec_rsub16_i64()
+7acafcf target/riscv: fix rsub gvec tcg_assert_listed_vecop assertion
+9eb8b14 hw/riscv: Modify MROM size to end at 0x10000
+8590f53 RISC-V: Support 64 bit start address
+dc144fe riscv: Add opensbi firmware dynamic support
+66b1205 RISC-V: Copy the fdt in dram instead of ROM
+43cf723 riscv: Unify Qemu's reset vector code path
+2c44bbf hw/riscv: virt: Sort the SoC memmap table entries
+e92fb01 MAINTAINERS: Add an entry for OpenSBI firmware
+0d3a8f3 qga: Use qemu_get_host_name() instead of g_get_host_name()
+e47f476 util: Introduce qemu_get_host_name()
+844bd70 qga: fix assert regression on guest-shutdown
+917ebcb qga-win: Fix QGA VSS Provider service stop failure
+65b261a linux-user: add netlink RTM_SETLINK command
+d9679ee linux-user: add new netlink types
+4c1850c linux-user: Fix Coverity CID 1430271 / CID 1430272
+d8c08b1 linux-user: refactor ipc syscall and support of semtimedop syscall
+71e2443 linux-user: Use EPROTONOSUPPORT for unimplemented netlink protocols
+eb9bd46 migration/migration.c: Remove superfluous breaks
+66270a4 migration/savevm: respect qemu_fclose() error code in save_snapshot()
+9728ebf migration: fix memory leak in qmp_migrate_set_parameters
+df0e032 iotests.py: filter_testfiles(): filter SOCK_DIR too
+1f4b774 iotests.py: QemuIoInteractive: print output on failure
+a1a7f56 iotests: QemuIoInteractive: use qemu_io_args_no_fmt
+8cf58a4 hax: Fix setting of FD_CLOEXEC
+00d6998 nbd: Avoid off-by-one in long export name truncation
+756f739 hw/arm/aspeed: Do not create and attach empty SD cards by default
+ad938fc hw/arm/palm.c: Encapsulate misc GPIO handling in a device
+c1abd46 hw/arm/palm.c: Detabify
+d4e1d8f hw/arm/tosa: Encapsulate misc GPIO handling in a device
+ad9d854 hw/arm/tosa.c: Detabify
+dcef727 hw/nios2: exit to main CPU loop only when unmasking interrupts
+77b3f2a target/nios2: Use gen_io_start around wrctl instruction
+c769453 target/nios2: in line the semantics of DISAS_UPDATE with other targets
+42928f2 target/nios2: add DISAS_NORETURN case for nothing more to generate
+0b823cb util/drm: make portable by avoiding struct dirent d_type
+2b9b9e7 util/oslib-posix.c: Implement qemu_init_exec_dir() for Haiku
+81b7b1e util/compatfd.c: Only include <sys/syscall.h> if CONFIG_SIGNALFD
+652a46e bswap.h: Include <endian.h> on Haiku for bswap operations
+8bf0f17 osdep.h: For Haiku, define SIGIO as equivalent to SIGPOLL
+2a4b472 osdep.h: Always include <sys/signal.h> if it exists
+195588c build: Check that mlockall() exists
+c9c8b88 util/qemu-openpty.c: Don't assume pty.h is glibc-only
+fc43343 build: Enable BSD symbols for Haiku
+e95e05d virtio-iommu: Fix coverity issue in virtio_iommu_handle_command()
+887c0f1 target/arm: Don't do raw writes for PMINTENCLR
+1f7197d Add the ability to change the FEC PHY MDIO devices numbers on i.MX7 processor
+a9c167a Add the ability to change the FEC PHY MDIO device number on i.MX6 processor
+74c1330 Add the ability to change the FEC PHY MDIO device number on i.MX25 processor
+cdecb3f target/arm: Fix mtedesc for do_mem_zpz
+75a73a1 hw/arm/bcm2836: Remove unused 'cpu_type' field
+631009e usb: fix usb-host build on windows.
+1859518 ui: fix vc_chr_write call in text_console_do_init
+2a84f48 docs/system/s390x: Improve the 3270 documentation
+c02b2ea GitLab Gating CI: introduce pipeline-status contrib script
+ccb2370 disas/sh4: Add missing fallthrough annotations
+7aa12aa Remove the CONFIG_PRAGMA_DIAGNOSTIC_AVAILABLE switch
+590246e docs/devel/fuzzing: Fix bugs in documentation
+2c65fef tests/qtest/fuzz: Add missing spaces in description
+230225e fuzz: add missing header for rcu_enable_atfork
+0ab6c23 configure: do not clobber CFLAGS with --enable-fuzzing
+d1abf3f configure: fix malloc check
+480324e docs/qdev-device-use: Clean up the sentences related to -usbdevice
+4f50d4a ossaudio: fix out of bounds write
+30827ba chardev: Extract system emulation specific code
+ffa0f7e chardev: Reduce "char-mux.h" scope, rename it "chardev-internal.h"
+c383efd chardev: Restrict msmouse / wctablet / testdev to system emulation
+35b49e9 tests/test-char: Remove unused "chardev/char-mux.h" include
+833ef7e monitor/misc: Remove unused "chardev/char-mux.h" include
+6806601 char: fix use-after-free with dup chardev & reconnect
+14a7a20 chardev: don't abort on attempt to add duplicated chardev
+2b61bb7 char-socket: initialize reconnect timer only when the timer doesn't start
+4a40f56 iotests: Set LC_ALL=C for sort
+e94f068 Revert "vga: build virtio-gpu as module"
+024ce1e tests: fix "make check-qtest" for modular builds
+83c85bf .cirrus.yml: add bash to the brew packages
+bf7801d tests/docker: update toolchain set in debian-xtensa-cross
+85c5e69 tests/docker: fall back more gracefully when pull fails
+5067946 docs: Add to gdbstub documentation the PhyMemMode
+4d7fe02 docs/devel: add some notes on tcg-icount for developers
+c8c06e5 docs/devel: convert and update MTTCG design document
+78441c0 tests/qht-bench: Adjust threshold computation
+d11f824 tests/qht-bench: Adjust testing rate by -1
+100a5ef travis.yml: Test also the other targets on s390x
+6e3ede3 shippable: pull images from registry instead of building
+a6eeac3 testing: add check-build target
+c8e6793 containers.yml: build with docker.py tooling
+f2c5466 gitlab: limit re-builds of the containers
+3e7b80f tests: improve performance of device-introspect-test
+6957fd9 gitlab: add avocado asset caching
+62c902e gitlab: enable check-tcg for linux-user tests
+c1f6ad7 linux-user/elfload: use MAP_FIXED_NOREPLACE in pgb_reserved_va
+27ebeda tests/docker: add a linux-user testing focused image
+634ef78 tests/tcg: add more default compilers to configure.sh
+c5008c7 gitlab: add acceptance testing to system builds
+3c1de3a tests/acceptance: skip LinuxInitrd 2gib with v4.16 on GitLab
+61bbce9 tests/acceptance: skip multicore mips_malta tests on GitLab
+fcae604 tests/acceptance: fix dtb path for machine_rx_gdbsim
+0f26d94 tests/acceptance: skip s390x_ccw_vrtio_tcg on GitLab
+cdc6181 tests/docker: add packages needed for check-acceptance
+e6f1306 tests/docker: add --registry support to tooling
+8a8a50a gitlab: build containers with buildkit and metadata
+c962864 gitlab: convert jobs to use custom built containers
+fa821f2 gitlab: build all container images during CI
+d0caa0a gitlab: introduce explicit "container" and "build" stages
+5117ba2 gitlab-ci: Fix the change rules after moving the YML files
+91f6ff7 .gitignore: un-ignore .gitlab-ci.d
+767b6bd tests/docker: change tag naming scheme of our images
+10c927d tests/docker: check for an parameters not empty string
+b095394 tests/vm: allow us to take advantage of MTTCG
+2fea3a1 tests/vm: switch from optsparse to argparse
+ff14ab0 tests/vm: Add workaround to consume console
+0fc8f66 python/qemu: Add ConsoleSocket for optional use in QEMUMachine
+df00168 tests/vm: change scripts to use self._config
+d322fe2 tests/vm: Added a new script for centos.aarch64.
+1333660 tests/vm: Added a new script for ubuntu.aarch64.
+e56833b tests/vm: Add common Ubuntu python module
+3f1e813 tests/vm: Added configuration file support
+5d67619 tests/vm: Add configuration to basevm.py
+1f335d1 tests/vm: pass args through to BaseVM's __init__
+995f5c3 util/coroutine: Cleanup start_switch_fiber_ for TSAN.
+b418d26 crypto/linux_keyring: fix 'secret_keyring' configure test
+19b2934 target/avr/disas: Fix store instructions display order
+2e34e62 target/avr/cpu: Fix $PC displayed address
+a291bc8 target/avr/cpu: Drop tlb_flush() in avr_cpu_reset()
+c0a659f target/avr: Add section into QEMU documentation
+f5d31d6 tests/acceptance: Test the Arduino MEGA2560 board
+36838e5 tests/boot-serial: Test some Arduino boards (AVR based)
+50486d6 hw/avr: Add limited support for some Arduino boards
+af55b78 hw/avr: Add some ATmega microcontrollers
+7dd8f6f hw/avr: Add support for loading ELF/raw binaries
+dc288de hw/misc: avr: Add limited support for power reduction device
+8ff47bc hw/timer: avr: Add limited support for 16-bit timer peripheral
+429ca9d hw/char: avr: Add limited support for USART peripheral
+754cea8 tests/machine-none: Add AVR support
+42f3ff0 target/avr: Register AVR support with the rest of QEMU
+9d8caa6 target/avr: Add support for disassembling via option '-d in_asm'
+a107fdb target/avr: Initialize TCG register variables
+9baade8 target/avr: Add instruction translation - CPU main translation function
+46188ca target/avr: Add instruction translation - MCU Control Instructions
+5718cef target/avr: Add instruction translation - Bit and Bit-test Instructions
+9732b02 target/avr: Add instruction translation - Data Transfer Instructions
+9d316c7 target/avr: Add instruction translation - Branch Instructions
+865f3bb target/avr: Add instruction translation - Arithmetic and Logic Instructions
+e03feba target/avr: Add instruction translation - Register definitions
+84a71e9 target/avr: Add instruction helpers
+56908dc linux-headers: update again to 5.8
+6e083c0 apic: Report current_count via 'info lapic'
+86f13ef scripts: improve message when TAP based tests fail
+b3c7344 target/i386: Enable TSX Suspend Load Address Tracking feature
+5dd13f2 target/i386: Add SERIALIZE cpu feature
+2f7057a softmmu/vl: Remove the check for colons in -accel parameters
+b0c3cf9 cpu-throttle: new module, extracted from cpus.c
+c7f419f softmmu: move softmmu only files from root
+0b33521 pc: fix leak in pc_system_flash_cleanup_unused
+421a75e cpus: Move CPU code from exec.c to cpus-common.c
+cbe0dad target/i386: Correct the warning message of Intel PT
+143a768 checkpatch: Change occurences of 'kernel' to 'qemu' in user messages
+c58daf7 iscsi: return -EIO when sense fields are meaningless
+dd3b002 iscsi: handle check condition status in retry loop
+1b38750 target/i386: sev: fail query-sev-capabilities if QEMU cannot use SEV
+e4f6278 target/i386: sev: provide proper error reporting for query-sev-capabilities
+e1e4381 KVM: x86: believe what KVM says about WAITPKG
+c0c8445 target/i386: implement undocumented "smsw r32" behavior
+6c9cce1 target/i386: remove gen_io_end
+aaa1b70 Makefile: simplify MINIKCONF rules
+bb321b2 accel/tcg: Add stub for probe_access()
+96df0fd accel/Kconfig: Add the TCG selector
+06e89e1 accel/Kconfig: Extract accel selectors into their own config
+1e0ef87 Makefile: Write MINIKCONF variables as one entry per line
+f4bda37 Makefile: Remove dangerous EOL trailing backslash
+f7091f5 MAINTAINERS: Cover the HAX accelerator stub
+79ac391 MAINTAINERS: Add an 'overall' entry for accelerators
+a6bb42f MAINTAINERS: Fix KVM path expansion glob
+de6b528 MAINTAINERS: Add Cameron as HVF co-maintainer
+eae009d i386: hvf: Clean up synchronize functions
+5009ef2 i386: hvf: Don't duplicate register reset
+82695a1 i386: hvf: Move Guest LMA reset to macvm_set_cr0()
+a4e26fa i386: hvf: Make long mode enter and exit clearer
+5536c98 i386: hvf: Add hvf_cpu_synchronize_pre_loadvm()
+4bb19f9 i386: hvf: Move synchronize functions to sysemu
+b8d864f i386: hvf: Set env->eip in macvm_set_rip()
+6553aa1 coverity: provide Coverity-friendly MIN_CONST and MAX_CONST
+b16c0e2 KVM: add support for AMD nested live migration
+418b0f9 target/i386: fix IEEE SSE floating-point exception raising
+3ddc0ec target/i386: set SSE FTZ in correct floating-point state
+9e7871b hw/core/null-machine: Do not initialize unused chardev backends
+5b88849 tests/qmp-cmd-test: Add qmp/object-add-failure-modes
+9fc719b tests/qmp-cmd-test: Add qmp/object-add-duplicate-id
+db57fef qom: Introduce object_property_try_add_child()
+2880ffb util/qemu-error: prepend guest name to error message to identify affected VM owner
+3bcb584 tests: Inject test name also when the test fails
+a2d5770 tcg/svm: use host cr4 during NPT page table walk
+669d27e target/avr: Add definitions of AVR core types
+25a0840 target/avr: Introduce enumeration AVRFeature
+12b3540 target/avr: CPU class: Add GDB support
+3fa28dd target/avr: CPU class: Add migration support
+e2a2b0b target/avr: CPU class: Add memory management support
+7ccda78 target/avr: CPU class: Add interrupt handling support
+f1c671f target/avr: Introduce basic CPU class object
+c8c0d26 target/avr: Add basic parameters of the new platform
+1de7096 xen: Use ERRP_GUARD()
+795d946 nbd: Use ERRP_GUARD()
+92c4512 virtio-9p: Use ERRP_GUARD()
+8b4b527 fw_cfg: Use ERRP_GUARD()
+7661245 pflash: Use ERRP_GUARD()
+de1b380 sd: Use ERRP_GUARD()
+8220f3a scripts: Coccinelle script to use ERRP_GUARD()
+ae7c80a error: New macro ERRP_GUARD()
+a43770d hmp: Ignore Error objects where the return value suffices
+2d226cf qdev: Ignore Error objects where the return value suffices
+9e194e0 qemu-img: Ignore Error objects where the return value suffices
+386f6c0 error: Avoid error_propagate() after migrate_add_blocker()
+7b3cb80 qapi: Purge error_propagate() from QAPI core
+cdd2b22 qapi: Smooth visitor error checking in generated code
+b11a093 qapi: Smooth another visitor error checking pattern
+4bc6d7e block/parallels: Simplify parallels_open() after previous commit
+a5f9b9d error: Reduce unnecessary error propagation
+992861f error: Eliminate error_propagate() manually
+af175e8 error: Eliminate error_propagate() with Coccinelle, part 2
+668f62e error: Eliminate error_propagate() with Coccinelle, part 1
+dcfe480 error: Avoid unnecessary error_propagate() after error_setg()
+0c0e618 qdev: Use returned bool to check for failure, Coccinelle part
+73ac1aa qdev: Make functions taking Error ** return bool, not void
+b783f54 qom: Make functions taking Error ** return bool, not 0/-1
+f07ad48 qom: Use returned bool to check for failure, manual part
+778a2dc qom: Use returned bool to check for failure, Coccinelle part
+6fd5bef qom: Make functions taking Error ** return bool, not void
+5325cc3 qom: Put name parameter before value / visitor parameter
+1c94a35 qom: Use return values to check for error where that's simpler
+4d21fcd qom: Don't handle impossible object_property_get_link() failure
+552d7f4 qom: Crash more nicely on object_property_get_link() failure
+90c69fb qom: Rename qdev_get_type() to object_get_type()
+fdb0df8 qom: Use error_reportf_err() instead of g_printerr() in examples
+5af3a05 s390x/pci: Fix harmless mistake in zpci's property fid's setter
+1421703 qapi: Use returned bool to check for failure, manual part
+62a35aa qapi: Use returned bool to check for failure, Coccinelle part
+012d4c9 qapi: Make visitor functions taking Error ** return bool, not void
+3c4b89c hmp: Eliminate a variable in hmp_migrate_set_parameter()
+3882578 block: Avoid error accumulation in bdrv_img_create()
+235e59c qemu-option: Use returned bool to check for failure
+c75d7f7 qemu-option: Make functions taking Error ** return bool, not void
+64af7a8 qemu-option: Replace opt_set() by cleaner opt_validate()
+81a8a07 qemu-option: Factor out helper opt_create()
+44b0b7d qemu-option: Simplify around find_default_by_name()
+f23db65 qemu-option: Factor out helper find_default_by_name()
+9da7197 qemu-option: Make uses of find_desc_by_name() more similar
+c6ecec4 qemu-option: Check return value instead of @err where convenient
+79c3e2b virtio-crypto-pci: Tidy up virtio_crypto_pci_realize()
+0a15a73 macio: Tidy up error handling in macio_newworld_realize()
+118bfd7 qdev: Use returned bool to check for qdev_realize() etc. failure
+e3fe398 error: Document Error API usage rules
+9aac7d4 error: Improve error.h's big comment
+47ff5ac error: Fix examples in error.h's big comment
+dd29b5c xen: cleanup unrealized flash devices
+104a7f4 xen: Fix xen-legacy-backend qdev types
+353b5a9 9p: null terminate fs driver options list
+4dc5acc vhost-vdpa: fix the compile issue without kvm
+1e04092 Update OpenBIOS images to 75fbb41d built from submodule.
+27e08ba tracetool: work around ust <sys/sdt.h> include conflict
+ef138c7 chardev: enable modules, use for braille
+8d5a24c vga: build virtio-gpu as module
+9ad7ecf vga: build virtio-gpu only once
+d39e93d vga: build qxl as module
+aa9c857 usb: build usb-redir as module
+8887312 ccid: build smartcard as module
+c4ddab7 build: fix device module builds
+7ab6e7f qdev: device module support
+0f8198f object: qom module support
+2845774 module: qom module support
+89615cf net/tap-solaris.c: Include qemu-common.h for TFR macro
+2a34514 intel_iommu: "aw-bits" error message still refers to "x-aw-bits"
+8f4d955 util/qemu-option: Document the get_opt_value() function
+428a377 MAINTAINERS: Update Radoslaw Biernacki email address
+0f57f8d .mailmap: Update Alexander Graf email address
+be99a9a trivial: Respect alphabetical order of .o files in Makefile.objs
+d159dd0 softfloat,m68k: disable floatx80_invalid_encoding() for m68k
+852002b target/m68k: consolidate physical translation offset into get_physical_address()
+7831811 target/m68k: fix physical address translation in m68k_cpu_get_phys_page_debug()
+852f933 tcg: Fix do_nonatomic_op_* vs signed operations
+94248cf tcg/ppc: Sanitize immediate shifts
+db7b62e fix the prototype of muls64/mulu64
+2336172 audio: set default value for pcspk.iobase property
+59e7583 pcspk: update docs/system/target-i386-desc.rst.inc
+825ff02 audio: add soundhw deprecation notice
+2e16ec0 audio: deprecate -soundhw pcspk
+6b8d141 audio: create pcspk device early
+525d654 audio: rework pcspk_init()
+dea1fb8 softmmu: initialize spice and audio earlier
+8859f07 pc_basic_device_init: drop no_vmport arg
+c52e7bb pc_basic_device_init: drop has_pit arg
+10e2483 pc_basic_device_init: pass PCMachineState
+fcb541c audio: deprecate -soundhw hda
+4b96159 audio: deprecate -soundhw sb16
+ba54117 audio: deprecate -soundhw gus
+6497a63 audio: deprecate -soundhw cs4231a
+86388a3 audio: deprecate -soundhw adlib
+0e933fe audio: deprecate -soundhw es1370
+2957f5a audio: deprecate -soundhw ac97
+542e0c5 audio: add deprecated_register_soundhw
+3af87d9 stubs: add pci_create_simple
+89aa165 stubs: add isa_create_simple
+69699f3 crypto/tls-cipher-suites: Produce fw_cfg consumable blob
+f7d8afb softmmu/vl: Allow -fw_cfg 'gen_id' option to use the 'etc/' namespace
+6552d87 softmmu/vl: Let -fw_cfg option take a 'gen_id' argument
+3203148 hw/nvram/fw_cfg: Add the FW_CFG_DATA_GENERATOR interface
+993aec2 crypto: Add tls-cipher-suites object
+
+Downstream changes:
+-------------------
+836d66f Initial redhat build
+ - usb-redir, smartcard-reader and qxl display moved to submodule
+
+Queued patches applied:
+- 96743 RHEL-only: Enable vTPM for POWER in downstream configs
+- 97457 redhat: fix 5.0 rebase missing ISA TPM TIS
+- 97662 redhat: define hw_compat_8_2
+- 97663 x86: Add 8.3.0 x86_64 machine type
+- 97844 hw/arm: Changes to rhel820 machine
+- 97838 hw/arm: Introduce rhel_virt_instance_init() helper
+- 97845 hw/arm: Add rhel830 machine type
+- 97904 redhat: define pseries-rhel8.3.0 machine type
+
+==============================================================================
+2020-07-08
+==============================================================================
+New upstream commits:
+---------------------
+1e0a84e vhost-vdpa: introduce vhost-vdpa net client
+108a648 vhost-vdpa: introduce vhost-vdpa backend
+365fed5 qed: Simplify backing reads
+a2adbbf block: drop unallocated_blocks_are_zero
+cdf9ebf block/vhdx: drop unallocated_blocks_are_zero
+ac91856 block/file-posix: drop unallocated_blocks_are_zero
+32d293c block/iscsi: drop unallocated_blocks_are_zero
+7403639 block/crypto: drop unallocated_blocks_are_zero
+2c060c0 block/vpc: return ZERO block-status when appropriate
+8c43292 tests/acceptance: Add a test for the sun4u sparc64 machine
+c7aab58 hw/m68k/mcf5206: Replace remaining hw_error()s by qemu_log_mask()
+2ea0332 block/vdi: return ZERO block-status when appropriate
+7b1efe9 block: inline bdrv_unallocated_blocks_are_zero()
+2253d86 qemu-img: convert: don't use unallocated_blocks_are_zero
+a2cd85f iotests: add tests for blockdev-amend
+8ea1613 block/qcow2: implement blockdev-amend
+30da9dd block/crypto: implement blockdev-amend
+ced914d block/core: add generic infrastructure for x-blockdev-amend qmp command
+11d80bf iotests: qemu-img tests for luks key management
+90766d9 block/qcow2: extend qemu-img amend interface with crypto options
+bbfdae9 block/crypto: implement the encryption key management
+e0d0ddc block/crypto: rename two functions
+0b6786a block/amend: refactor qcow2 amend options
+df373fb block/amend: separate amend and create options for qemu-img
+a3579bf block/amend: add 'force' option
+557d2bd qcrypto/luks: implement encryption key management
+43cbd06 qcrypto/core: add generic infrastructure for crypto options amendment
+d2a839e iotests: Check whether luks works
+6649f4b iotests.py: Add (verify|has)_working_luks()
+d849aca iotests.py: Add qemu_img_pipe_and_status()
+dc4ab02 iotests/common.rc: Add _require_working_luks
+cbb32e7 iotests: filter few more luks specific create options
+57ee95e iotests: Make _filter_img_create more active
+a5675f3 qcow2: Fix preallocation on images with unaligned sizes
+e8de7ba block/block-copy: block_copy_dirty_clusters: fix failure check
+9df8b20 configure / util: Auto-detect the availability of openpty()
+51b3ca9 tests/qtest: Unify the test for the xenfv and xenpv machines
+dda2f55 fuzz: do not use POSIX shm for coverage bitmap
+45222b9 fuzz: fix broken qtest check at rcu_disable_atfork
+8f902c5 MAINTAINERS: update linux-user maintainer
+79482e59 linux-user: Add strace support for printing arguments of ioctl()
+0f10bf8 Deprecate TileGX port
+213f63d Replace uses of FROM_SSI_SLAVE() macro with QOM casts
+62a4d34 hw/arm/spitz: Provide usual QOM macros for corgi-ssp and spitz-lcdtg
+e53652e hw/arm/pxa2xx_pic: Use LOG_GUEST_ERROR for bad guest register accesses
+eb2d6db hw/arm/spitz: Use LOG_GUEST_ERROR for bad guest register accesses
+a0a8cf7 hw/gpio/zaurus.c: Use LOG_GUEST_ERROR for bad guest register accesses
+eb2dc88 hw/arm/spitz: Encapsulate misc GPIO handling in a device
+3029681 hw/misc/max111x: Create header file for documentation, TYPE_ macros
+871f827 hw/misc/max111x: Use GPIO lines rather than max111x_set_input()
+4aed7b5 hw/arm/spitz: Use max111x properties to set initial values
+581e109 ssi: Add ssi_realize_and_unref()
+40d9d2f hw/misc/max111x: Don't use vmstate_register()
+b064d51 hw/misc/max111x: provide QOM properties for setting initial values
+2e354c0 hw/arm/spitz: Implement inbound GPIO lines for bit5 and power signals
+ffe7f90 hw/arm/spitz: Keep pointers to scp0, scp1 in SpitzMachineState
+3985442 hw/arm/spitz: Keep pointers to MPU and SSI devices in SpitzMachineState
+e3d986d hw/arm/spitz: Create SpitzMachineClass abstract base class
+f6319db hw/arm/spitz: Detabify
+e757db2 hw/display/bcm2835_fb.c: Initialize all fields of struct
+4b4dc97 target/arm: Fix temp double-free in sve ldr/str
+7fb3949 tests/acpi: virt: update golden masters for DSDT
+2c1fb4d hw/arm/virt-acpi-build: Only expose flash on older machine types
+50824a8 tests/acpi: virt: allow DSDT acpi table changes
+4be3de3 tests/acpi: remove stale allowed tables
+1711bfa target/arm: kvm: Handle misconfigured dabt injection
+694bcaa target/arm: kvm: Handle DABT with no valid ISS
+1b6f99d hw/arm/virt: Let the virtio-iommu bypass MSIs
+8077b8e virtio-iommu-pci: Add array of Interval properties
+0f5a309 virtio-iommu: Handle reserved regions in the translation process
+1733eeb virtio-iommu: Implement RESV_MEM probe request
+f780692 qdev: Introduce DEFINE_PROP_RESERVED_REGION
+6552bbc Select MDIO device 2 and 1 as PHY devices for i.MX6UL EVK board.
+456914a Add the ability to select a different PHY for each i.MX6UL FEC interface
+461c51a Add a phy-num property to the i.MX FEC emulator
+fb61358 migration: Count new_dirty instead of real_dirty
+617a32f migration: postcopy take proper error return
+3005c09 virtiofsd: Allow addition or removal of capabilities
+55b22a6 virtiofsd: Check capability calls
+b1288df virtiofsd: Terminate capability list
+38140cc vhost_net: introduce set_config & get_config
+7a47169 vhost: implement vhost_force_iommu method
+f6c99c3 vhost: introduce new VhostOps vhost_force_iommu
+b4ab225 vhost: implement vhost_vq_get_addr method
+35f20bb vhost: introduce new VhostOps vhost_vq_get_addr
+ca71db4 vhost: implement vhost_dev_start method
+68513bc vhost: introduce new VhostOps vhost_dev_start
+3f63b4c vhost: check the existence of vhost_set_iotlb_callback
+f19bcdf virtio-pci: implement queue_enabled method
+b2a5f62 virtio-bus: introduce queue_enabled method
+92fbc3e vhost_net: use the function qemu_get_peer
+0165daa net: introduce qemu_get_peer
+8bc43f3 MAINTAINERS: add VT-d entry
+553dc66 docs: vhost-user: add Virtio status protocol feature
+3e1dc4d tests/acpi: remove stale allowed tables
+195784a numa: Auto-enable NUMA when any memory devices are possible
+0bc7806 virtio-mem: Exclude unplugged memory during migration
+43e5495 virtio-mem: Add trace events
+383ee44 virtio-mem: Migration sanity checks
+722a3c7 virtio-pci: Send qapi events when the virtio-mem size changes
+c95b443 virtio-mem: Allow notifiers for size changes
+0ed48fd pc: Support for virtio-mem-pci
+16647a8 numa: Handle virtio-mem in NUMA stats
+2e70874 hmp: Handle virtio-mem when printing memory device info
+751c7bd MAINTAINERS: Add myself as virtio-mem maintainer
+0b9a244 virtio-pci: Proxy for virtio-mem
+910b257 virtio-mem: Paravirtualized memory hot(un)plug
+4517536 s390x/pci: fix set_ind_atomic
+1a8242f virtio-ccw: fix virtio_set_ind_atomic
+9bf728a target/s390x: Fix SQXBR
+4f071a9 iotests: Fix 051 output after qdev_init_nofail() removal
+4943897 iotests.py: Do not wait() before communicate()
+3dfa23b vvfat: Fix array_remove_slice()
+c79e243 vvfat: Check that updated filenames are valid
+f10802d qemu-storage-daemon: add missing cleanup calls
+5b99bde qemu-storage-daemon: remember to add qemu_object_opts
+edafc70 qemu-img convert: Don't pre-zero images
+6bf9161 target/riscv: configure and turn on vector extension from command line
+31bf42a target/riscv: vector compress instruction
+e4b83d5 target/riscv: vector register gather instruction
+ec17e03 target/riscv: vector slide instructions
+2843420 target/riscv: floating-point scalar move instructions
+9fc08be target/riscv: integer scalar move instruction
+90355f3 target/riscv: integer extract instruction
+126bec3 target/riscv: vector element index instruction
+78d90cf target/riscv: vector iota instruction
+81fbf7d target/riscv: set-X-first mask bit
+0db67e1 target/riscv: vmfirst find-first-set mask bit
+2e88f55 target/riscv: vector mask population count vmpopc
+c21f34a target/riscv: vector mask-register logical instructions
+696b0c2 target/riscv: vector widening floating-point reduction instructions
+523547f target/riscv: vector single-width floating-point reduction instructions
+bba7182 target/riscv: vector wideing integer reduction instructions
+fe5c9ab target/riscv: vector single-width integer reduction instructions
+878d406 target/riscv: narrowing floating-point/integer type-convert instructions
+4514b7b target/riscv: widening floating-point/integer type-convert instructions
+9210097 target/riscv: vector floating-point/integer type-convert instructions
+64ab584 target/riscv: vector floating-point merge instructions
+121ddbb target/riscv: vector floating-point classify instructions
+2a68e9e target/riscv: vector floating-point compare instructions
+1d426b8 target/riscv: vector floating-point sign-injection instructions
+230b53d target/riscv: vector floating-point min/max instructions
+d9e4ce7 target/riscv: vector floating-point square-root instruction
+0dd5095 target/riscv: vector widening floating-point fused multiply-add instructions
+4aa5a8f target/riscv: vector single-width floating-point fused multiply-add instructions
+f7c7b7c target/riscv: vector widening floating-point multiply
+0e0057c target/riscv: vector single-width floating-point multiply/divide instructions
+eeffab2 target/riscv: vector widening floating-point add/subtract instructions
+ce2a034 target/riscv: vector single-width floating-point add/subtract instructions
+9ff3d28 target/riscv: vector narrowing fixed-point clip instructions
+04a6140 target/riscv: vector single-width scaling shift instructions
+0a1eaf0 target/riscv: vector widening saturating scaled multiply-add
+9f0ff9e target/riscv: vector single-width fractional multiply with rounding and saturation
+b7aee48 target/riscv: vector single-width averaging add and subtract
+eb2650e target/riscv: vector single-width saturating add and subtract
+f020a7a target/riscv: vector integer merge and move instructions
+2b587b3 target/riscv: vector widening integer multiply-add instructions
+54df813 target/riscv: vector single-width integer multiply-add instructions
+97b1cba target/riscv: vector widening integer multiply instructions
+85e6658 target/riscv: vector integer divide instructions
+958b85f target/riscv: vector single-width integer multiply instructions
+558fa77 target/riscv: vector integer min/max instructions
+1366fc7 target/riscv: vector integer comparison instructions
+7689b02 target/riscv: vector narrowing integer right shift instructions
+3277d95 target/riscv: vector single-width bit shift instructions
+d384292 target/riscv: vector bitwise logical instructions
+3a6f8f6 target/riscv: vector integer add-with-carry / subtract-with-borrow instructions
+8fcdf77 target/riscv: vector widening integer add and subtract
+43740e3 target/riscv: vector single-width integer add and subtract
+268fcca target/riscv: add vector amo operations
+022b4ec target/riscv: add fault-only-first unit stride load
+f732560 target/riscv: add vector index load and store instructions
+751538d target/riscv: add vector stride load and store instructions
+f476f17 target/riscv: add an internals.h header
+2b7168f target/riscv: add vector configure instruction
+8e3a1f1 target/riscv: support vector extension csr
+3293138 target/riscv: implementation-defined constant parameters
+ad9e5aa target/riscv: add vector extension field in CPURISCVState
+70b78d4 hw/riscv: Allow 64 bit access to SiFive CLINT
+5576582 riscv: plic: Add a couple of mising sifive_plic_update calls
+aa4d30f riscv: plic: Honour source priorities
+563b9d0 seabios: update binaries
+4879d1b seabios: update 128k config
+de15df5 seabios: update submodule to pre-1.14 master snapshot
+18b1d3c migration/colo: Use ram_block_discard_disable()
+5f1f190 migration/rdma: Use ram_block_discard_disable()
+fee3f3b target/i386: sev: Use ram_block_discard_disable()
+06df2e6 virtio-balloon: Rip out qemu_balloon_inhibit()
+b030958 s390x/pv: Convert to ram_block_discard_disable()
+956b109 accel/kvm: Convert to ram_block_discard_disable()
+aff92b8 vfio: Convert to ram_block_discard_disable()
+d24f31d exec: Introduce ram_block_discard_(disable|require)()
+af1d039 pc: Support coldplugging of virtio-pmem-pci devices on all buses
+dd8eeb9 virtio-balloon: always indicate S_DONE when migration fails
+0d935ff Revert "tests/migration: Reduce autoconverge initial bandwidth"
+9cde9ca migration/rdma: Plug memory leaks in qemu_rdma_registration_stop()
+7cd1c98 arm/{bcm2835,fsl-imx25,fsl-imx6}: Fix realize error API violations
+17d5d49 hw/arm/armsse: Fix armsse_realize() error API violation
+2255f6b aspeed: Fix realize error API violation
+b401819 arm/stm32f205 arm/stm32f405: Fix realize error API violation
+475fc97 amd_iommu: Fix amdvi_realize() error API violation
+18d588f x86: Fix x86_cpu_new() error handling
+b71db6b pc-bios/s390: Update s390-ccw bios binaries with the latest changes
+1c9f655 pc-bios/s390-ccw: Generate and include dependency files in the Makefile
+9598c22 pc-bios: s390x: Make u32 ptr check explicit
+78182ae pc-bios: s390x: Use ebcdic2ascii table
+add923b pc-bios: s390x: Move panic() into header and add infinite loop
+fe75c65 pc-bios: s390x: Use PSW masks where possible and introduce PSW_MASK_SHORT_ADDR
+b88faa1 pc-bios: s390x: Rename PSW_MASK_ZMODE to PSW_MASK_64
+e6d393d pc-bios: s390x: Get rid of magic offsets into the lowcore
+12ea90d pc-bios: s390x: Move sleep and yield to helper.h
+e70bc57 pc-bios: s390x: Consolidate timing functions into time.h
+8c6cc7b pc-bios: s390x: cio.c cleanup and compile fix
+81f66cf mips/cps: Fix mips_cps_realize() error API violations
+3e9a88c riscv_hart: Fix riscv_harts_realize() error API violations
+cbe3a8c riscv/sifive_u: Fix sifive_u_soc_realize() error API violations
+c24d9716 hw/arm: Drop useless object_property_set_link() error handling
+2726dc5 hw: Fix error API violation around object_property_set_link()
+9bc6bfd qdev: Drop qbus_set_hotplug_handler() parameter @errp
+cd7c866 qdev: Drop qbus_set_bus_hotplug_handler() parameter @errp
+123327d aspeed: Clean up roundabout error propagation
+b94b3c0 vnc: Plug minor memory leak in vnc_display_open()
+05584d1 test-util-filemonitor: Plug unlikely memory leak
+b98e8d1 sd/milkymist-memcard: Plug minor memory leak in realize
+b368123 qga: Plug unlikely memory leak in guest-set-memory-blocks
+14963c3 spapr: Plug minor memory leak in spapr_machine_init()
+562a558 usb/dev-mtp: Fix Error double free after inotify failure
+7b8eb7f tests: Use error_free_or_abort() where appropriate
+d8da9e7 tests: Use &error_abort where appropriate
+9261ef5 Clean up some calls to ignore Error objects the right way
+5a79d10 pci: Delete useless error_propagate()
+ca72efc net/virtio: Fix failover_replug_primary() return value regression
+590090b hw/virtio/virtio-iommu-pci.c: Fix typo in error message
+ed4e0d2 chardev/tcp: Fix error message double free error
+e6e68e3 tests: disassemble-aml.sh: generate AML in readable format
+8db2a4f configure: vgabios cleanups
+2bbcaa7 ati-vga: Add dummy MEM_SDRAM_MODE_REG
+41977c6 ati-vga: Do not assert on error
+d634c88 ati-vga: Support unaligned access to hardware cursor registers
+9982c60 sm501: Fix and optimize overlap check
+d8327a6 sm501: Convert debug printfs to traces
+f018edc sm501: Do not allow guest to set invalid format
+ba27110 sm501: Use stn_he_p/ldn_he_p instead of switch/case
+c208085 sm501: Optimise 1 pixel 2d ops
+299778d sm501: Introduce variable for commonly used value for better readability
+1cb62e3 sm501: Ignore no-op blits
+4decaad sm501: Drop unneded variable
+84ec3f9 sm501: Fix bounds checks
+a20a7c2 linux-user: Add thunk argument types for SIOCGSTAMP and SIOCGSTAMPNS
+f4d92c5 linux-user: Add strace support for printing arguments of fallocate()
+5844f4b linux-user: Add strace support for printing arguments of chown()/lchown()
+af861de linux-user: Add strace support for printing arguments of lseek()
+4fc3cdd linux-user: Add strace support for printing argument of syscalls used for extended attributes
+c42569f linux-user: Add strace support for a group of syscalls
+c84be71 linux-user: Extend strace support to enable argument printing after syscall execution
+e865b97 linux-user: syscall: ioctls: support DRM_IOCTL_VERSION
+d43624c linux-user/sparc64: Fix the handling of window spill trap
+aa04c9d9 target/sparc: Translate flushw opcode
+24b861c iotests: don't test qcow2.py inside 291
+e11543c iotests: Fix 051 output after qdev_init_nofail() removal
+
+Downstream changes:
+-------------------
+cc88b27 Use qemu-kvm in documentation instead of qemu-system-<arch>
+ - patch rewritten to reflect new docs structure
+0e4d9f0 virtio-net: fix removal of failover device
+ - forwardported from 8.2.1
+
+Queued patches applied:
+- 96743 RHEL-only: Enable vTPM for POWER in downstream configs
+- 97457 redhat: fix 5.0 rebase missing ISA TPM TIS
+- 97662 redhat: define hw_compat_8_2
+- 97663 x86: Add 8.3.0 x86_64 machine type
+- 97844 hw/arm: Changes to rhel820 machine
+- 97838 hw/arm: Introduce rhel_virt_instance_init() helper
+- 97845 hw/arm: Add rhel830 machine type
+- 97904 redhat: define pseries-rhel8.3.0 machine type
+==============================================================================
+2020-07-01
+==============================================================================
+New upstream commits:
+---------------------
+fc1bff9 hw/misc/pca9552: Add missing TypeInfo::class_size field
+53fb8bf MAINTAINERS: Add 'Performance Tools and Tests' subsection
+5c362cc scripts/performance: Add topN_callgrind.py script
+c5a5839 scripts/performance: Add topN_perf.py script
+2c5b1a7 MAINTAINERS: Add Loongson-3 maintainer and reviewer
+c012e0b hw/intc: Add Loongson LIOINTC support
+719d109 hw/mips: Implement the kvm_type() hook in MachineClass
+730319a i386: Mask SVM features if nested SVM is disabled
+c8d7fd0 ibex_uart: fix XOR-as-pow
+f983ff9 vmport: move compat properties to hw_compat_5_0
+8f06f22 hyperv: vmbus: Remove the 2nd IRQ
+74aaddc kvm: i386: allow TSC to differ by NTP correction bounds without TSC scaling
+32a354d numa: forbid '-numa node, mem' for 5.1 and newer machine types
+f991911 osdep: Make MIN/MAX evaluate arguments only once
+47f0d11 target/i386: Add notes for versioned CPU models
+ff57bb7 target/i386: reimplement fpatan using floatx80 operations
+1f18a1e target/i386: reimplement fyl2x using floatx80 operations
+5eebc49 target/i386: reimplement fyl2xp1 using floatx80 operations
+5ef396e target/i386: reimplement fprem, fprem1 using floatx80 operations
+445810e softfloat: return low bits of quotient from floatx80_modrem
+566601f softfloat: do not set denominator high bit for floatx80 remainder
+b662495 softfloat: do not return pseudo-denormal from floatx80 remainder
+499a2f7 softfloat: fix floatx80 remainder pseudo-denormal check for zero
+6b8b013 softfloat: merge floatx80_mod and floatx80_rem
+eca3064 target/i386: reimplement f2xm1 using floatx80 operations
+b00de3a xen: Actually fix build without passthrough
+c13dba2 Makefile: Install qemu-[qmp/ga]-ref.* into the directory "interop"
+ee760ac hw/scsi/megasas: Fix possible out-of-bounds array access in tracepoints
+5f50975 docs/nvdimm: add description of alignment requirement of device dax
+c745963 target/arm: Enable MTE
+e4d5bf4 target/arm: Add allocation tag storage for system mode
+8bce44a target/arm: Create tagged ram when MTE is enabled
+337a03f target/arm: Cache the Tagged bit for a page in MemTxAttrs
+7e98e21 target/arm: Always pass cacheattr to get_phys_addr
+3466933 target/arm: Set PSTATE.TCO on exception entry
+eb82116 target/arm: Implement data cache set allocation tags
+c4af8ba target/arm: Complete TBI clearing for user-only for SVE
+d28d12f target/arm: Add mte helpers for sve scatter/gather memory ops
+9473d0e target/arm: Handle TBI for sve scalar + int memory ops
+aa13f7c target/arm: Add mte helpers for sve scalar + int ff/nf loads
+71b9f39 target/arm: Add mte helpers for sve scalar + int stores
+206adac target/arm: Add mte helpers for sve scalar + int loads
+149d3b3 target/arm: Add arm_tlb_bti_gp
+c0ed916 target/arm: Tidy trans_LD1R_zpri
+4ac430e target/arm: Use mte_check1 for sve LD1R
+bba87d0 target/arm: Use mte_checkN for sve unpredicated stores
+b2aa887 target/arm: Use mte_checkN for sve unpredicated loads
+46dc1bc target/arm: Add helper_mte_check_zva
+5add824 target/arm: Implement helper_mte_checkN
+2e34ff4 target/arm: Implement helper_mte_check1
+73ceeb0 target/arm: Add gen_mte_checkN
+0a405be target/arm: Add gen_mte_check1
+38659d3 target/arm: Move regime_tcr to internals.h
+9c7ab8f target/arm: Move regime_el to internals.h
+5463df1 target/arm: Implement the access tag cache flushes
+5f716a8 target/arm: Implement the LDGM, STGM, STZGM instructions
+e26d0d2 target/arm: Simplify DC_ZVA
+a4157b8 target/arm: Restrict the values of DCZID.BS under TCG
+6439d67 target/arm: Implement the STGP instruction
+c15294c target/arm: Implement LDG, STG, ST2G instructions
+0d1762e target/arm: Define arm_cpu_do_unaligned_access for user-only
+dad3015 target/arm: Implement the SUBP instruction
+438efea target/arm: Implement the GMI instruction
+efbc78a target/arm: Implement the ADDG, SUBG instructions
+21a8b34 target/arm: Revise decoding for disas_add_sub_imm
+da54941 target/arm: Implement the IRG instruction
+81ae05f target/arm: Add MTE bits to tb_flags
+4b779ce target/arm: Add MTE system registers
+3298332 target/arm: Add DISAS_UPDATE_NOCHAIN
+14407ec target/arm: Rename DISAS_UPDATE to DISAS_UPDATE_EXIT
+8ddb300 target/arm: Add support for MTE to HCR_EL2 and SCR_EL3
+f00faf1 target/arm: Add support for MTE to SCTLR_ELx
+252e8c6 target/arm: Improve masking of SCR RES0 bits
+c7fd0ba target/arm: Add isar tests for mte
+586f495 hw/misc/pca9552: Model qdev output GPIOs
+d82ab29 hw/misc/pca9552: Trace GPIO change events
+15ce12c hw/arm/aspeed: Describe each PCA9552 device
+b989b89 hw/misc/pca9552: Trace GPIO High/Low events
+2df252d hw/misc/pca9552: Add a 'description' property for debugging purpose
+736132e hw/misc/pca9552: Add generic PCA955xClass, parent of TYPE_PCA9552
+ec17228 hw/misc/pca9552: Rename generic code as pca955x
+8208335 hw/misc/pca9552: Rename 'nr_leds' as 'pin_count'
+d88c42f hw/i2c/core: Add i2c_try_create_slave() and i2c_realize_and_unref()
+888b2b0 hw/arm/aspeed: QOM'ify AspeedMachineState
+612b219 hw/arm/aspeed: Rename AspeedBoardState as AspeedMachineState
+f489960 hw/arm/aspeed: Remove extraneous MemoryRegion object owner
+ce317be exec: fetch the alignment of Linux devdax pmem character device nodes
+21b2eca configure: add libdaxctl support
+677a3ba replay: synchronize on every virtual timer callback
+255ae6e replay: notify the main loop when there are no instructions
+5d971f9 memory: Revert "memory: accept mismatching sizes in memory_region_access_valid"
+4b7c068 libqos: pci-pc: use 32-bit write for EJ register
+89ed83d libqos: usb-hcd-ehci: use 32-bit write for config register
+ae2b720 util/getauxval: Porting to FreeBSD getauxval feature
+494cd11 kvm: support to get/set dirty log initial-all-set capability
+e590e7f adb: add ADB bus trace events
+fa6c953 adb: use adb_device prefix for ADB device trace events
+913f47e adb: only call autopoll callbacks when autopoll is not blocked
+975fced mac_via: rework ADB state machine to be compatible with both MacOS and Linux
+378a503 mac_via: move VIA1 portB write logic into mos6522_q800_via1_write()
+cf093b0 pmu: add adb_autopoll_block() and adb_autopoll_unblock() functions
+45c9d72 cuda: add adb_autopoll_block() and adb_autopoll_unblock() functions
+4e5df03 adb: add autopoll_blocked variable to block autopoll
+d2288b7 adb: use adb_request() only for explicit requests
+3fe02cc adb: add status field for holding information about the last ADB request
+244a0ee adb: keep track of devices with pending data
+969ca2f adb: introduce new ADBDeviceHasData method to ADBDeviceClass
+f3d6145 mac_via: convert to use ADBBusState internal autopoll variables
+df381d5 pmu: convert to use ADBBusState internal autopoll variables
+b12a0b1 cuda: convert to use ADBBusState internal autopoll variables
+da52c08 adb: create autopoll variables directly within ADBBusState
+0606b28 adb: introduce realize/unrealize and VMStateDescription for ADB bus
+414eb1d pmu: honour autopoll_rate_ms when rearming the ADB autopoll timer
+dcb091c pmu: fix duplicate autopoll mask variable
+d9b8989 cuda: convert ADB autopoll timer from ns to ms
+167f166 adb: fix adb-mouse read length and revert disable-reg3-direct-writes workaround
+bcaaefd adb: coding style update to fix checkpatch errors
+737ef96 target/ppc: Remove TIDR from POWER10 processor
+38d2448 ppc/pnv: Silence missing BMC warning with qtest
+7861e08 spapr: Fix typos in comments and macro indentation
+a816f2d spapr: Simplify some warning printing paths in spapr_caps.c
+0affda0 Rename use_acpi_pci_hotplug to more appropriate use_acpi_hotplug_bridge
+8d19371 Stop vhost-user sending uninitialized mmap_offsets
+56172c4 docs/specs/tpm: ACPI boot now supported for TPM/ARM
+5ab540e arm/acpi: Add the TPM2.0 device under the DSDT
+e27e1e6 acpi: Some build_tpm2() code reshape
+93dd625 tests/acpi: update expected data files
+e0d1a82 acpi: q35: drop _SB.PCI0.ISA.LPCD opregion.
+9b3bff1 acpi: drop build_piix4_pm()
+d23f783 acpi: drop serial/parallel enable bits from dsdt
+13371f9 acpi: simplify build_isa_devices_aml()
+0575c2f acpi: factor out fw_cfg_add_acpi_dsdt()
+df0f3d1 acpi: move aml builder code for i8042 (kbd+mouse) device
+89ed90e floppy: move cmos_get_fd_drive_type() from pc
+ffdf43e floppy: make isa_fdc_get_drive_max_chs static
+2055dbc acpi: move aml builder code for floppy device
+b20fdf2 acpi: bios-tables-test: show more context on asl diffs
+48fedfd qtest: allow DSDT acpi table changes
+db25d56 trace/simple: Fix unauthorized enable
+f892b49 scripts/tracetool: Update maintainer email address
+7838c67 block/nvme: support nested aio_poll()
+b75fd5f block/nvme: keep BDRVNVMeState pointer in NVMeQueuePair
+a5db74f block/nvme: clarify that free_req_queue is protected by q->lock
+1086e95 block/nvme: switch to a NVMeRequest freelist
+04b3fb3 block/nvme: don't access CQE after moving cq.head
+d38253c block/nvme: drop tautologous assertion
+2446e0e block/nvme: poll queues without q->lock
+d6d1a65 check-block: enable iotests with SafeStack
+1e4f606 configure: add flags to support SafeStack
+ff76097 coroutine: add check for SafeStack in sigaltstack
+58ebc2c coroutine: support SafeStack in ucontext backend
+ddd633e minikconf: explicitly set encoding to UTF-8
+953cd66 sd/milkymist-memcard: Fix error API violation
+17d26ac sd/pxa2xx_mmci: Don't crash on pxa2xx_mmci_init() error
+c20b4cc arm/aspeed: Drop aspeed_board_init_flashes() parameter @errp
+934df91 qdev: Make qdev_prop_set_drive() match the other helpers
+9572a78 qdev: Reject chardev property override
+84b0475 qdev: Reject drive property override
+1bc1333 qdev: Improve netdev property override error a bit
+466c298 qdev: Eliminate get_pointer(), set_pointer()
+a1b40bd blockdev: Deprecate -drive with bogus interface type
+63d5dfb docs/qdev-device-use.txt: Update section "Default Devices"
+4a27a63 fdc: Deprecate configuring floppies with -global isa-fdc
+fed2c17 fdc: Open-code fdctrl_init_isa()
+6172e06 fdc: Reject clash between -drive if=floppy and -global isa-fdc
+02b83f7 iotests/172: Cover -global floppy.drive=...
+2017173 iotests/172: Cover empty filename and multiple use of drives
+6a1a643 iotests/172: Include "info block" in test output
+539533b arm/virt: Add memory hot remove support
+92a7099 tests/qtest/arm-cpu-features: Add feature setting tests
+7d20e68 target/arm: Check supported KVM features globally (not per vCPU)
+2e34818 hw/arm/mps2-tz: Use the ARM SBCon two-wire serial bus interface
+7b46564 hw/arm/mps2: Add audio I2S interface as unimplemented device
+ada45de hw/arm/mps2: Add I2C devices
+58f7f3c hw/arm/mps2: Add SPI devices
+adbb23b hw/arm/mps2: Map the FPGA I/O block
+bb8fba9 hw/arm/mps2: Add CMSDK AHB GPIO peripherals as unimplemented devices
+ecbe51a hw/arm/mps2: Add CMSDK APB watchdog device
+90b1b6e hw/arm/mps2: Rename CMSDK AHB peripheral region
+75ca834 hw/arm/mps2: Document CMSDK/FPGA APB subsystem sections
+440c9f9 hw/arm: Use TYPE_VERSATILE_I2C instead of hardcoded string
+f61c3fb hw/i2c: Add header for ARM SBCon two-wire serial bus interface
+cfcfbae hw/i2c/versatile_i2c: Add SCL/SDA definitions
+faa1bdf hw/i2c/versatile_i2c: Add definitions for register addresses
+69ed08e hw/watchdog/cmsdk-apb-watchdog: Add trace event for lock status
+ced7e8e target/arm: Remove dead code relating to SABA and UABA
+55c812b target/arm: Remove unnecessary gen_io_end() calls
+6fb5787 target/arm: Move some functions used only in translate-neon.inc.c to that file
+d436619 target/arm: Convert Neon VTRN to decodetree
+8ab3a22 target/arm: Convert Neon VSWP to decodetree
+a183d5f target/arm: Convert Neon 2-reg-misc VCVT insns to decodetree
+128123e target/arm: Convert Neon 2-reg-misc VRINT insns to decodetree
+baa59323 target/arm: Convert Neon 2-reg-misc fp-compare-with-zero insns to decodetree
+3e96b20 target/arm: Convert simple fp Neon 2-reg-misc insns
+4936f38 target/arm: Convert Neon VQABS, VQNEG to decodetree
+84eae77 target/arm: Convert remaining simple 2-reg-misc Neon ops
+8966808 target/arm: Convert Neon 2-reg-misc VREV32 and VREV16 to decodetree
+8ec3de7 target/arm: Make gen_swap_half() take separate src and dest
+5de3fd0 target/arm: Fix capitalization in NeonGenTwo{Single, Double}OPFn typedefs
+039f4e8 target/arm: Rename NeonGenOneOpFn to NeonGenOne64OpFn
+0b30dd5 target/arm: Convert Neon 2-reg-misc crypto operations to decodetree
+7515317 target/arm: Convert vectorised 2-reg-misc Neon ops to decodetree
+654a517 target/arm: Convert Neon VCVT f16/f32 insns to decodetree
+749e2be target/arm: Convert Neon 2-reg-misc VSHLL to decodetree
+3882bda target/arm: Convert Neon narrowing moves to decodetree
+567663a target/arm: Convert VZIP, VUZP to decodetree
+6106af3 target/arm: Convert Neon 2-reg-misc pairwise ops to decodetree
+353d2b8 target/arm: Convert Neon 2-reg-misc VREV64 to decodetree
+2032e24 util/oslib-posix : qemu_init_exec_dir implementation for Mac
+c622880 hw/arm/virt: Add 5.0 HW compat props
+8a3a814 target/xtensa: drop gen_io_end call
+ca64b08 tpm: Move backend code under the 'backends/' directory
+0f7d214 hw/tpm: Make 'tpm_util.h' publicly accessible as "sysemu/tpm_util.h"
+a350061 hw/tpm: Move DEFINE_PROP_TPMBE() macro to 'tmp_prop.h' local header
+eccc0b0 hw/tpm: Move few declarations from 'tpm_util.h' to 'tpm_int.h'
+f670a56 hw/tpm: Make TRACE_TPM_UTIL_SHOW_BUFFER check local to tpm_util.c
+6807256 hw/tpm: Remove unnecessary 'tpm_int.h' header inclusion
+4021476 hw/tpm: Move 'hw/acpi/tpm.h' inclusion from header to sources
+ae96040 hw/tpm: Include missing 'qemu/option.h' header
+29ce02b hw/tpm: Do not include 'qemu/osdep.h' in header
+81c7aa0 hw/tpm: Rename TPMDEV as TPM_BACKEND in Kconfig
+8ae92e2 backends: Add TPM files into their own directory
+8a5fee0 docs/specs/tpm: Correct header path name
+
+Downstream changes:
+-------------------
+b9d9599 Initial redhat build
+  - Moved qemu-ga-ref.* and qemu-qmp-ref.* docs files to interop diretory (upstream)
+
+Queued patches applied:
+- 96743 RHEL-only: Enable vTPM for POWER in downstream configs
+- 97457 redhat: fix 5.0 rebase missing ISA TPM TIS
+- 97662 redhat: define hw_compat_8_2
+- 97663 x86: Add 8.3.0 x86_64 machine type
+- 97844 hw/arm: Changes to rhel820 machine
+- 97838 hw/arm: Introduce rhel_virt_instance_init() helper
+- 97845 hw/arm: Add rhel830 machine type
+==============================================================================
+2020-06-24
+==============================================================================
+New upstream commits:
+---------------------
+4adbfa4 docs: Document the RX target
+cf66562 BootLinuxConsoleTest: Test the RX GDB simulator
+bda19d7 hw/rx: Add RX GDB simulator
+1db2086 hw/rx: Register R5F562N7 and R5F562N8 MCUs
+7d272cb hw/rx: Honor -accel qtest
+0c80f50 hw/rx: RX62N microcontroller (MCU)
+645194c hw/char: RX62N serial communication interface (SCI)
+c7f37ba hw/timer: RX62N compare match timer (CMT)
+7adca78 hw/timer: RX62N 8-Bit timer (TMR)
+e78597c hw/intc: RX62N interrupt controller (ICUa)
+f4d2382 hw/timer/sh_timer: Remove unused 'qemu/timer.h' include
+95f4dc4 hw/sh4: Extract timer definitions to 'hw/timer/tmu012.h'
+ba2afd0 hw/sh4: Use MemoryRegion typedef
+7bd0d13 MAINTAINERS: Add an entry for common Renesas peripherals
+65b8dc2 MAINTAINERS: Cover sh_intc files in the R2D/Shix machine sections
+b52d7e2 tests/acceptance: record/replay tests with advcal images
+20b1bf2 tests/acceptance: add record/replay test for m68k
+2e1206b tests/acceptance: add record/replay test for ppc64
+2f2d83a tests/acceptance: add record/replay test for arm
+152a41b tests/acceptance: add record/replay test for aarch64
+904be13 tests/acceptance: add kernel record/replay test for x86_64
+c7ebab0 tests/acceptance: add base class record/replay kernel tests
+6634f1c MAINTAINERS: Add an entry to review Avocado based acceptance tests
+06c4cc3 qht: Fix threshold rate calculation
+3eaea6e hw/riscv: sifive_u: Add a dummy DDR memory controller device
+4909391 hw/riscv: sifive_u: Sort the SoC memmap table entries
+17aad9f hw/riscv: sifive_u: Support different boot source per MSEL pin state
+495134b hw/riscv: sifive: Change SiFive E/U CPU reset vector to 0x1004
+e8905c6 target/riscv: Rename IBEX CPU init routine
+cfa3263 hw/riscv: sifive_u: Add a new property msel for MSEL pin state
+3e9667c hw/riscv: sifive_u: Rename serial property get/set functions to a generic name
+5133ed1 hw/riscv: sifive_u: Add reset functionality
+621c100 hw/riscv: sifive_gpio: Do not blindly trigger output IRQs
+8a88b9f hw/riscv: sifive_u: Hook a GPIO controller
+4bb216f hw/riscv: sifive_gpio: Add a new 'ngpio' property
+2e30ccb hw/riscv: sifive_gpio: Clean up the codes
+ea85f27 hw/riscv: sifive_u: Generate device tree node for OTP
+5874f0a hw/riscv: sifive_u: Simplify the GEM IRQ connect code a little bit
+8949446 hw/riscv: opentitan: Remove the riscv_ prefix of the machine* and soc* functions
+8f8c6c1 hw/riscv: sifive_e: Remove the riscv_ prefix of the machine* and soc* functions
+1145188 target/riscv: Use a smaller guess size for no-MMU PMP
+cc41126 riscv/opentitan: Connect the UART device
+b9fc513 riscv/opentitan: Connect the PLIC device
+879f60f hw/intc: Initial commit of lowRISC Ibex PLIC
+a7d2d98 hw/char: Initial commit of Ibex UART
+888c9af riscv/opentitan: Fix the ROM size
+2761db5 target/riscv: Implement checks for hfence
+b8429de target/riscv: Move the hfence instructions to the rvh decode
+8891447 target/riscv: Report errors validating 2nd-stage PTEs
+efe9f9c target/riscv: Set access as data_load when validating stage-2 PTEs
+2fdd2c0 riscv: Keep the CPU init routine names consistent
+d8e72bd riscv: Generalize CPU init routine for the imacu CPU
+4c56793 riscv: Generalize CPU init routine for the gcsu CPU
+e7b5dfd riscv: Generalize CPU init routine for the base CPU
+5a84206 sifive_e: Support the revB machine
+354908c riscv: Add helper to make NaN-boxing for FP register
+5868034 hw/audio/gus: Fix registers 32-bit access
+71830d8 net: Drop the NetLegacy structure, always use Netdev instead
+9d903f3 net: Drop the legacy "name" parameter from the -net option
+fda43b1 hw/net/e1000e: Do not abort() on invalid PSRCTL register value
+bdadbb0 colo-compare: Fix memory leak in packet_enqueue()
+5bd57eb net/colo-compare.c: Correct ordering in complete and finalize
+45942b7 net/colo-compare.c: Check that colo-compare is active
+7665854 net/colo-compare.c: Only hexdump packets if tracing is enabled
+9c55fe9 net/colo-compare.c: Fix deadlock in compare_chr_send
+2158fa1 chardev/char.c: Use qemu_co_sleep_ns if in coroutine
+5893c73 net/colo-compare.c: Create event_bh with the right AioContext
+5fe19fb net: use peer when purging queue in qemu_flush_or_purge_queue_packets()
+fbc14a0 net: cadence_gem: Fix RX address filtering
+fdd3519 net: cadence_gem: TX_LAST bit should be set by guest
+15baf5e net: cadence_gem: Update the reset value for interrupt mask register
+d48cb51 net: cadnece_gem: Update irq_read_clear field of designcfg_debug1 reg
+7ca151c net: cadence_gem: Add support for jumbo frames
+88dba7e net: cadence_gem: Fix up code style
+24d62fd net: cadence_gem: Move tx/rx packet buffert to CadenceGEMState
+68dbee3 net: cadence_gem: Set ISR according to queue in use
+4c70e32 net: cadence_gem: Define access permission for interrupt registers
+86a29d4 net: cadence_gem: Fix irq update w.r.t queue
+96ea126 net: cadence_gem: Fix the queue address update during wrap around
+6fe7661 net: cadence_gem: Fix debug statements
+97d7fb5 hw/net/tulip: Log descriptor overflows
+171ce2e hw/net/tulip: Fix 'Descriptor Error' definition
+d9b6964 Fix tulip breakage
+dd3d85e virtio-net: align RSC fields with updated virtio-net header
+e41b711 virtio-net: add migration support for RSS and hash report
+ff4e6d5 vmstate.h: provide VMSTATE_VARRAY_UINT16_ALLOC macro
+e22f060 virtio-net: reference implementation of hash report
+fbbdbdd tap: allow extended virtio header with hash info
+4474e37 virtio-net: implement RX RSS processing
+5907902 virtio-net: implement RSS configuration command
+458e056 docs/s390x: fix vfio-ap device_del description
+f030532 vfio-ccw: Add support for the CRW region and IRQ
+f6dde1b s390x/css: Refactor the css_queue_crw() routine
+690e29b vfio-ccw: Refactor ccw irq handler
+46ea384 vfio-ccw: Add support for the schib region
+2a3b9cb vfio-ccw: Refactor cleanup of regions
+f76b348 Linux headers: update
+bac8d22 configure: Add -Wno-psabi
+aabab96 configure: Disable -Wtautological-type-limit-compare
+00849b9 configure: Clean up warning flag lists
+9227140 migration: fix xbzrle encoding rate calculation
+4066288 fpu/softfloat: Silence 'bitwise negation of boolean expression' warning
+7e89a14 migration: fix multifd_send_pages() next channel
+6bcd361 docs/xbzrle: update 'cache miss rate' and 'encoding rate' to docs
+afb5d01 monitor/hmp-cmds: improvements for the 'info migrate'
+ac9c95b monitor/hmp-cmds: add 'goto end' to reduce duplicate code.
+0705ecc monitor/hmp-cmds: delete redundant Error check before invoke hmp_handle_error()
+fe02550 monitor/hmp-cmds: don't silently output when running 'migrate_set_downtime' fails
+39337f1 monitor/hmp-cmds: add units for migrate_parameters
+71cfce7 tests/migration: fix unreachable path in stress test
+f663492 tests/migration: mem leak fix
+2d9e3dd hmp: Make json format optional for qom-set
+246da7d qom-hmp-cmds: fix a memleak in hmp_qom_get
+63659fe virtiofsd: Whitelist fchmod
+3419ec7 iotests: Add copyright line in qcow2.py
+2e3becf iotests/{190,291}: compat=0.10 is unsupported
+73b2b7b iotests/229: data_file is unsupported
+e6de31b iotests/292: data_file is unsupported
+c707094 iotests/041: Skip test_small_target for qed
+ff3caf5 iotests.py: Add skip_for_formats() decorator
+6510ba1 block: lift blocksize property limit to 2 MiB
+031ffd9 qdev-properties: add getter for size32 and blocksize
+4f44bbc block: make BlockConf size props 32bit and accept size suffixes
+645b55d qdev-properties: make blocksize accept size suffixes
+914e74c qdev-properties: add size32 property type
+a345c55 qdev-properties: blocksize: use same limits in code and description
+c56ee92 block: consolidate blocksize properties consistency checks
+6abee26 virtio-blk: store opt_io_size with correct size
+d54f36e .gitignore: Ignore storage-daemon files
+1c0c216 hw/block/nvme: verify msix_init_exclusive_bar() return value
+6a25a4b hw/block/nvme: add msix_qsize parameter
+fbf2e53 hw/block/nvme: Verify msix_vector_use() returned value
+945cb8f hw/block/nvme: factor out controller identify setup
+0c35ad4 hw/block/nvme: do cmb/pmr init as part of pci init
+37712e0 hw/block/nvme: factor out pmr setup
+51ec094 hw/block/nvme: factor out cmb setup
+c3f5526 hw/block/nvme: factor out pci setup
+d634d74 hw/block/nvme: factor out namespace setup
+3adee1c hw/block/nvme: add namespace helpers
+90f4511 hw/block/nvme: factor out block backend setup
+a17f501 hw/block/nvme: factor out device state setup
+54000c6 hw/block/nvme: factor out property/constraint checks
+e1731e8 hw/block/nvme: remove redundant cmbloc/cmbsz members
+dce22c8 hw/block/nvme: add max_ioqpairs device parameter
+ca247d3 hw/block/nvme: fix pin-based interrupt behavior
+b4529c5 hw/block/nvme: refactor nvme_addr_read
+3e829fd hw/block/nvme: use constants in identify
+1065abf hw/block/nvme: move device parameters to separate struct
+4920786 hw/block/nvme: remove superfluous breaks
+6f4ee2e hw/block/nvme: rename trace events to pci_nvme
+f7e8c23 hw/block/nvme: fix pci doorbell size calculation
+f17d684 qcow2: Tweak comments on qcow2_get_persistent_dirty_bitmap_size
+e37adbe block: Refactor subdirectory recursion during make
+49b4454 virtio-blk: On restart, process queued requests in the proper context
+7aa1c24 virtio-blk: Refactor the code that processes queued requests
+5fb0a6b icount: make dma reads deterministic
+ae0cebd hw/ide: Make IDEDMAOps handlers take a const IDEDMA pointer
+bc81e6e audio/jack: simplify the re-init code path
+81e0efb audio/jack: honour the enable state of the audio device
+de82640 audio/jack: do not remove ports when finishing
+f8f0f21 audio/jack: remove invalid set of input support bool
+2f33ee0 audio/jack: remove unused stopped state
+36963ed audio/jack: fix invalid minimum buffer size check
+c8b4735 microvm: move virtio base to 0xfeb00000
+9a45729 x86: move max-ram-below-4g to pc
+3235936 microvm: drop max-ram-below-4g support
+e289655 microvm: use 3G split unconditionally
+54cdfe5 usb-host: workaround libusb bug
+9f815e8 usb: add hostdevice property to usb-host
+
+Downstream changes:
+-------------------
+Queued patches applied:
+- 96743 RHEL-only: Enable vTPM for POWER in downstream configs (BZ 1781911)
+- 97388 hw/arm: Changes to rhel820 machine (BZ 1818843)
+- 97391 hw/arm: Introduce rhel_virt_instance_init() helper (BZ 1818843)
+- 97390 hw/arm: Add rhel830 machine type (BZ 1818843)
+- 97457 redhat: fix 5.0 rebase missing ISA TPM TIS
+- 97662 redhat: define hw_compat_8_2 
+- 97663 x86: Add 8.3.0 x86_64 machine type
+==============================================================================
+2020-06-17
+==============================================================================
+New upstream commits:
+---------------------
+c81950a plugins: new lockstep plugin for debugging TCG changes
+d16242e tests/tcg: ensure -cpu max also used for plugin run
+fefa027 tests/tcg: build plugin list from contents of src directory
+7e12361 cirrus.yml: serialise make check
+8cb14db Revert ".shippable: temporaily disable some cross builds"
+ff8f63d tests: Disable select tests under TSan, which hit TSan issue.
+3b6882b docs: Added details on TSan to testing.rst
+ce9f0e5 util: Added tsan annotate for thread name.
+e51345e include/qemu: Added tsan.h for annotations.
+df79fd5 tests/docker: Added docker build support for TSan.
+45a9595 thread: add tsan annotations to QemuSpin
+3f640eb translate-all: call qemu_spin_destroy for PageDesc
+938e897 tcg: call qemu_spin_destroy for tb->jmp_lock
+5107a47 qht: call qemu_spin_destroy for head buckets
+816d9be cputlb: destroy CPUTLB with tlb_destroy
+4384a70 thread: add qemu_spin_destroy
+0c0fcc2 cpu: convert queued work to a QSIMPLEQ
+0aebab0 configure: add --enable-tsan flag + fiber annotations for coroutine-ucontext
+897e34f Makefile: remove old compatibility gunks
+67953a3 Makefile: dtc: update, build the libfdt target
+7ec1edd tests/docker: bump fedora to 32
+64b3974 hw: arm: Set vendor property for IMX SDHCI emulations
+3b2d817 sd: sdhci: Implement basic vendor specific register support
+8095508 hw/net/imx_fec: Convert debug fprintf() to trace events
+9e6f8d8 target/arm/cpu: adjust virtual time for all KVM arm cpus
+d7a64d0 Implement configurable descriptor size in ftgmac100
+3d26d7d hw/misc/imx6ul_ccm: Implement non writable bits in CCM registers
+9aaa23c target/arm: Convert Neon VDUP (scalar) to decodetree
+54e96c7 target/arm: Convert Neon VTBL, VTBX to decodetree
+0aad761 target/arm: Convert Neon VEXT to decodetree
+77e576a target/arm: Convert Neon 2-reg-scalar long multiplies to decodetree
+aa318f5 target/arm: Convert Neon 2-reg-scalar VQRDMLAH, VQRDMLSH to decodetree
+b2fc7be target/arm: Convert Neon 2-reg-scalar VQDMULH, VQRDMULH to decodetree
+85ac9ae target/arm: Convert Neon 2-reg-scalar float multiplies to decodetree
+96fc80f target/arm: Convert Neon 2-reg-scalar integer multiplies to decodetree
+a4f67e1 target/arm: Add missing TCG temp free in do_2shift_env_64()
+448f0e5 target/arm: Add 'static' and 'const' annotations to VSHLL function arrays
+18fb58d target/arm: Convert Neon 3-reg-diff polynomial VMULL
+9546ca5 target/arm: Convert Neon 3-reg-diff saturating doubling multiplies
+3a1d9eb target/arm: Convert Neon 3-reg-diff long multiplies
+f5b2840 target/arm: Convert Neon 3-reg-diff VABAL, VABDL to decodetree
+0fa1ab0 target/arm: Convert Neon 3-reg-diff narrowing ops to decodetree
+b28be09 target/arm: Convert Neon 3-reg-diff prewidening ops to decodetree
+9593a39 target/arm: Fix missing temp frees in do_vshll_2sh
+b77b5b3 MAINTAINERS: Make section QOM cover hw/core/*bus.c as well
+c835fac qdev: qdev_init_nofail() is now unused, drop
+ce189ab qdev: Convert bus-less devices to qdev_realize() with Coccinelle
+464a22c qdev: Use qdev_realize() in qdev_device_add()
+510ef98 qdev: Make qdev_realize() support bus-less devices
+1afec9e s390x/event-facility: Simplify creation of SCLP event devices
+e9a8298 microbit: Eliminate two local variables in microbit_init()
+034b61d sysbus: sysbus_init_child_obj() is now unused, drop
+7089e0c sysbus: Convert qdev_set_parent_bus() use with Coccinelle, part 4
+5a147c8 sysbus: Convert qdev_set_parent_bus() use with Coccinelle, part 3
+db873cc sysbus: Convert qdev_set_parent_bus() use with Coccinelle, part 2
+0074fce sysbus: Convert qdev_set_parent_bus() use with Coccinelle, part 1
+cfe9140 qdev: Drop qdev_realize() support for null bus
+3c6ef47 sysbus: Convert to sysbus_realize() etc. with Coccinelle
+496a852 sysbus: New sysbus_realize(), sysbus_realize_and_unref()
+b45ad78 sysbus: Tidy up sysbus_init_child_obj()'s @childsize arg, part 2
+287f431 hw/arm/armsse: Pass correct child size to sysbus_init_child_obj()
+8352a5b sysbus: Tidy up sysbus_init_child_obj()'s @childsize arg, part 1
+b0d0994 microbit: Tidy up sysbus_init_child_obj() @child argument
+9bdee7f sysbus: Drop useless OBJECT() in sysbus_init_child_obj() calls
+8fb9cfe macio: Eliminate macio_init_child_obj()
+f4a0df7 macio: Convert use of qdev_set_parent_bus()
+9fc7fc4 qom: Less verbose object_initialize_child()
+19dc7e9 qom: Tidy up a few object_initialize_child() calls
+cd9ae80 auxbus: Eliminate aux_create_slave()
+2214985 auxbus: Convert a use of qdev_set_parent_bus()
+b7a1b54 auxbus: New aux_bus_realize(), pairing with aux_bus_init()
+dbe4070 auxbus: Rename aux_init_bus() to aux_bus_init()
+2194abd qdev: qdev_create(), qdev_try_create() are now unused, drop
+5357705 usb: Eliminate usb_try_create_simple()
+8cd81a9 usb: usb_create() is now unused, drop
+590ce74 usb: Convert uses of usb_create()
+32aaaeb usb: New usb_new(), usb_realize_and_unref()
+7ce8d8c ssi: ssi_create_slave_no_init() is now unused, drop
+7e272a0 ssi: Convert last use of ssi_create_slave_no_init() manually
+57d479c ssi: Convert uses of ssi_create_slave_no_init() with Coccinelle
+7f16c76 ssi: ssi_auto_connect_slaves() never does anything, drop
+bd2f053 isa: isa_create(), isa_try_create() are now unused, drop
+c23e056 isa: Convert uses of isa_create(), isa_try_create() manually
+96927c7 isa: Convert uses of isa_create() with Coccinelle
+0fe9d90 isa: New isa_new(), isa_realize_and_unref() etc.
+a9cf5c4 pci: pci_create(), pci_create_multifunction() are now unused, drop
+db23224 pci: Convert uses of pci_create() etc. manually
+9307d06 pci: Convert uses of pci_create() etc. with Coccinelle
+7d61226 hw/ppc: Eliminate two superfluous QOM casts
+7411aa6 pci: New pci_new(), pci_realize_and_unref() etc.
+6842411 qdev: Convert uses of qdev_set_parent_bus() manually
+99ba777 qdev: Convert uses of qdev_set_parent_bus() with Coccinelle
+df70796 qdev: Convert uses of qdev_create() manually
+3e80f69 qdev: Convert uses of qdev_create() with Coccinelle
+dc3edf8 qdev: Convert to qdev_unrealize() manually
+981c3dc qdev: Convert to qdev_unrealize() with Coccinelle
+f1483b4 qdev: Convert to qbus_realize(), qbus_unrealize()
+4e3a677 qdev: Put qdev_new() to use with Coccinelle
+9940b2c qdev: New qdev_new(), qdev_realize(), etc.
+da9630c Revert "hw/versatile: realize the PCI root bus as part of the versatile init"
+9e1b990 Revert "hw/prep: realize the PCI root bus as part of the prep init"
+30884d1 qdev: Rename qbus_realize() to qbus_init()
+dfe8c79 qdev: Assert onboard devices all get realized properly
+007d1db sd: Hide the qdev-but-not-quite thing created by sd_init()
+81cb057 qdev: Assert devices are plugged into a bus that can take them
+d6b78ac sparc/leon3: Fix to put grlib,* devices on sysbus
+589b1be riscv: Fix type of SiFive[EU]SocState, member parent_obj
+75a6ed8 riscv: Fix to put "riscv.hart_array" devices on sysbus
+734a591 display/sm501 display/ati: Fix to realize "i2c-ddc"
+2f35254 pnv/psi: Correct the pnv-psi* devices not to be sysbus devices
+9354eaa ppc/pnv: Put "*-pnv-chip" and "pnv-xive" on the main system bus
+6741a34 macio: Fix macio-bus to be a subtype of System bus
+514db77 macio: Put "macio-nvram" device on the macio bus
+b15fe4a ppc4xx: Drop redundant device realization
+157ed95 MAINTAINERS: Make section PowerNV cover pci-host/pnv* as well
+efa0559 pnv/phb4: Delete unused "pnv-phb4-pec-stack" devices
+3320843 macio: Delete unused "macio-gpio" devices
+3d81f59 macio: Fix to realize "mos6522-cuda" and "mos6522-pmu" devices
+5e769ec mac_via: Fix to realize "mos6522-q800-via*" devices
+6b888ee auxbus: Fix aux-to-i2c-bridge to be a subtype of aux-slave
+210d186 armv7m: Delete unused "ARM,bitband-memory" devices
+d3bad7e arm/aspeed: Rework NIC attachment
+b7f1a0c arm/aspeed: Compute the number of CPUs from the SoC definition
+71e5770 sd/pxa2xx_mmci: Fix to realize "pxa2xx-mmci" device
+f6a1f93 display/xlnx_dp: Fix to realize "i2c-ddc" and "aux-to-i2c-bridge"
+2fb1f7d arm/stm32f405: Fix realization of "stm32f2xx-adc" devices
+e8c9e65 qom: Make "info qom-tree" show children sorted
+e8512df qom: Constify object_get_canonical_path{,_component}()'s parameter
+250bc43 translations: Add Swedish language
+a9fb446 MAINTAINERS: Adjust sh4 maintainership
+0513503 target/mips: msa: Split helpers for MULV.<B|H|W|D>
+83b2e79 target/mips: msa: Split helpers for SUBV.<B|H|W|D>
+cb4ac99 target/mips: msa: Split helpers for SUBSUU_S.<B|H|W|D>
+55a0464 target/mips: msa: Split helpers for SUBSUS_U.<B|H|W|D>
+81b5385 target/mips: msa: Split helpers for SUBS_U.<B|H|W|D>
+534e400 target/mips: msa: Split helpers for SUBS_S.<B|H|W|D>
+72c6a6e target/mips: msa: Split helpers for DOTP_U.<H|W|D>
+165cacb target/mips: msa: Split helpers for DOTP_S.<H|W|D>
+0c8c76a target/mips: msa: Split helpers for DPSUB_U.<H|W|D>
+8ed8671 target/mips: msa: Split helpers for DPSUB_S.<H|W|D>
+e5e0777 target/mips: msa: Split helpers for DPADD_U.<H|W|D>
+9f5840a target/mips: msa: Split helpers for DPADD_S.<H|W|D>
+5f148a0 target/mips: msa: Split helpers for MSUBV.<B|H|W|D>
+7a7a162 target/mips: msa: Split helpers for MADDV.<B|H|W|D>
+7f4d065 target/mips: Add comments for vendor-specific ASEs
+8e2d583 target/mips: Legalize Loongson insn flags
+1ef6bfc configure: Let SLOF be initialized by ./scripts/git-submodule.sh
+8662404 tests/acceptance: Add boot tests for sh4 QEMU advent calendar image
+dc0ad02 tests/qtest: Fix LGPL information in the file headers
+211635b fuzz: add oss-fuzz build-script
+8efebd4 fuzz: Add support for logging QTest commands
+d92e1b6 fuzz: skip QTest serialization
+55b9757 bios-tables-test: Fix "-tpmdev: invalid option"
+d6cca8e crypto: Remove use of GCRYPT_VERSION macro.
+9250036 test-crypto-secret: add 'secret_keyring' object tests.
+54e7aac crypto/linux_keyring: add 'secret_keyring' secret object.
+4862bd3 crypto/secret: move main logic from 'secret' to 'secret_common'.
+b767d25 crypto: add "none" random provider
+3575b0a target/i386: Remove obsolete TODO file
+234b749 stubs: move Xen stubs to accel/
+ed5d7ff replay: fix replay shutdown for console mode
+efb22b2 exec/cpu-common: Move MUSB specific typedefs to 'hw/usb/hcd-musb.h'
+2c89d91 hw/usb: Move device-specific declarations to new 'hcd-musb.h' header
+e1bc619 exec/memory: Remove unused MemoryRegionMmio type
+2046811 checkpatch: reversed logic with acpi test checks
+421522e target/i386: sev: Unify SEVState and SevGuestState
+cf504cd target/i386: sev: Remove redundant handle field
+0bd1527 target/i386: sev: Remove redundant policy field
+a06d2ba target/i386: sev: Remove redundant cbitpos and reduced_phys_bits fields
+8673dee target/i386: sev: Partial cleanup to sev_state global
+75a877e target/i386: sev: Embed SEVState in SevGuestState
+d2d8a19 target/i386: sev: Rename QSevGuestInfo
+a86ab19 target/i386: sev: Move local structure definitions into .c file
+b5b9b1a target/i386: sev: Remove unused QSevGuestInfoClass
+acd0c94 xen: fix build without pci passthrough
+e77cb0b i386: hvf: Drop HVFX86EmulatorState
+fe76b09 i386: hvf: Move mmio_buf into CPUX86State
+577f02b i386: hvf: Move lazy_flags into CPUX86State
+167c6ae i386: hvf: Drop regs in HVFX86EmulatorState
+ea48ae9 i386: hvf: Drop copy of RFLAGS defines
+967f4da i386: hvf: Drop rflags from HVFX86EmulatorState
+2d5f696 i386: hvf: Drop fetch_rip from HVFX86EmulatorState
+5d32173f i386: hvf: Use IP from CPUX86State
+81ae3d0 i386: hvf: Use ins_len to advance IP
+6345d7e i386: hvf: Drop unused variable
+8598135 i386: hvf: Clean stray includes in sysemu
+583ae16 i386: hvf: Drop useless declarations in sysemu
+2411534 i386: hvf: Move HVFState definition into hvf
+e89aac1 target/ppc: Restrict PPCVirtualHypervisorClass to system-mode
+f291cf5 sysemu/hvf: Only declare hvf_allowed when HVF is available
+ce4049e sysemu/tcg: Only declare tcg_allowed when TCG is available
+33fb9bf sysemu/accel: Restrict machine methods to system-mode
+bc921b2 target/i386: correct fix for pcmpxstrx substring search
+10d35e5 virtio-pci: fix queue_enable write
+12fcf49 pci: Display PCI IRQ pin in "info pci"
+62925fd Fix parameter type in vhost migration log path
+32905fc acpi: ged: rename event memory region
+c8ed8f5 acpi: fadt: add hw-reduced sleep register support
+5794d34 acpi: madt: skip pci override on pci-less systems.
+eb66ffa acpi: create acpi-common.c and move madt code
+1dc32f9 acpi: make build_madt() more generic.
+9b83bb2 virtio: add vhost-user-vsock-pci device
+5fe97d8 virtio: add vhost-user-vsock base device
+c6136ec vhost-vsock: add vhost-vsock-common abstraction
+0082398 hw/pci: Fix crash when running QEMU with "-nic model=rocker"
+a9a5c47 libvhost-user: advertise vring features
+b650d5f Lift max ram slots limit in libvhost-user
+875b9fd Support individual region unmap in libvhost-user
+ec94c8e Support adding individual regions in libvhost-user
+6fb2e17 Support ram slot configuration in libvhost-user
+08fccf8 Refactor out libvhost-user fault generation logic
+2759839 Lift max memory slots limit imposed by vhost-user
+f1aeb14 Transmit vhost-user memory regions individually
+6b0eff1 Add VHOST_USER_PROTOCOL_F_CONFIGURE_MEM_SLOTS
+643a4ea hw/vfio/pci-quirks: Fix broken legacy IGD passthrough
+ee7932b hw/vfio: Add VMD Passthrough Quirk
+5c86bdf block: Call attention to truncation of long NBD exports
+5c4fe01 nbd/server: Avoid long error message assertions CVE-2020-10761
+975af79 target/i386: fix IEEE x87 floating-point exception raising
+77f55ea exec: set map length to zero when returning NULL
+f2dfe54 configure: Do not ignore malloc value
+c08790f qemu/thread: Mark qemu_thread_exit() with 'noreturn' attribute
+2261d39 memory: Make 'info mtree' not display disabled regions by default
+9548a89 util/oslib: Returns the real thread identifier on FreeBSD and NetBSD
+ea39f9b target/i386: define a new MSR based feature word - FEAT_PERF_CAPABILITIES
+20c8fa2 i386: Remove unused define's from hax and hvf
+ddf63df replay: implement fair mutex
+2356ff8 hw/i386/amd_iommu: Fix the reserved bits definition of IOMMU commands
+bbad173 tests: machine-none-test: Enable MicroBlaze testing
+4d1d460 chardev/char-socket: Properly make qio connections non blocking
+c82d9d4 KVM: Kick resamplefd for split kernel irqchip
+ff66ba8 KVM: Pass EventNotifier into kvm_irqchip_assign_irqfd
+97a3757 vfio/pci: Use kvm_irqchip_add_irqfd_notifier_gsi() for irqfds
+353f98c x86/cpu: Enable AVX512_VP2INTERSECT cpu feature
+c781a2c hw/i386/vmport: Allow QTest use without crashing
+c8af85b target/i386: fix fisttpl, fisttpll handling of out-of-range values
+374ff4d target/i386: fix fbstp handling of out-of-range values
+18c53e1 target/i386: fix fbstp handling of negative zero
+34b9cc0 target/i386: fix fxam handling of invalid encodings
+80b4008 target/i386: fix floating-point load-constant rounding
+5579b52 hw/elf_ops: Do not ignore write failures when loading ELF
+6766ba5 disas: Let disas::read_memory() handler return EIO on error
+ddfc8b9 exec: Propagate cpu_memory_rw_debug() error
+38df19f exec: Let address_space_read/write_cached() propagate MemTxResult
+c535d68 target/i386: fix fscale handling of rounding precision
+c1c5fb8 target/i386: fix fscale handling of infinite exponents
+b40eec9 target/i386: fix fscale handling of invalid exponent encodings
+0d48b43 target/i386: fix fscale handling of signaling NaN
+c415f2c target/i386: implement special cases for fxtract
+2b15129 megasas: use unsigned type for positive numeric fields
+fd69185 megasas: avoid NULL pointer dereference
+f50ab86 megasas: use unsigned type for reply_queue_head and check index
+2a69314 i386/kvm: fix a use-after-free when vcpu plug/unplug
+34a0950 hax: Dynamic allocate vcpu state structure
+6c1ddc3 cpus: Fix botched configure_icount() error API violation fix
+c5e1870 qom/container: remove .instance_size initializer from container_info
+e27a959 qom/object: pass (Object *) to object_initialize_with_type()
+3d91293 qom/object: simplify type_initialize_interface()
+e5a0cc5 qom/object: factor out the initialization of hash table of properties
+ad195c8 qom: remove index from object_resolve_abs_path()
+da278d5 accel: Move Xen accelerator code under accel/xen/
+23accdf hw/i386/vmport: Assert vmport initialized before registering commands
+d6048bf hw/i386/vmport: Add support for CMD_GETHZ
+73b994f i386/cpu: Store LAPIC bus frequency in CPU structure
+7f9114b hw/i386/vmport: Allow x2apic without IR
+acacd35 hw/i386/vmport: Add support for CMD_GET_VCPU_INFO
+aaacf1c hw/i386/vmport: Add support for CMD_GETBIOSUUID
+dcd938f hw/i386/vmport: Define enum for all commands
+d8f23d6 hw/i386/vmport: Introduce vmport.h
+f8bdc55 hw/i386/vmport: Report vmware-vmx-type in CMD_GETVERSION
+2fd2f79 hw/i386/vmport: Introduce vmware-vmx-version property
+0342ee7 hw/i386/vmport: Set EAX to -1 on failed and unsupported commands
+b889212 hw/i386/vmport: Propagate IOPort read to vCPU EAX register
+c9ab24c hw/i386/vmport: Add device properties
+2928225 hw/i386/vmport: Add reference to VMware open-vm-tools
+2dfbea1 target/i386: fix phadd* with identical destination and source register
+cac9edf target/i386: Fix the CPUID leaf CPUID_Fn80000008
+4dd8a70 vmbus: add infrastructure to save/load vmbus requests
+6775d15 i386: Hyper-V VMBus ACPI DSDT entry
+cab78e7 i386:pc: whitelist dynamic vmbus-bridge
+0d71f70 vmbus: vmbus implementation
+973b1fb vmbus: add vmbus protocol definitions
+d42cd96 hyperv: expose API to determine if synic is enabled
+fdbff6b Makefile: Let the 'help' target list the helper targets
+78f8d49 io/task: Move 'qom/object.h' header to source
+ca27b5e qom/object: Move Object typedef to 'qemu/typedefs.h'
+ce8540f target/i386: Fix OUTL debug output
+4a39181 qom/object: Fix object_child_foreach_recursive() return value
+b8164e6 icount: fix shift=auto for record/replay
+ea81f98 numa: prevent usage of -M memory-backend and -numa memdev at the same time
+59d55a1 vl.c: run preconfig loop before creating default RAM backend
+fbb84f0 run-coverity-scan: support --update-tools-only --docker
+2e90470 run-coverity-scan: download tools outside the container
+3077453 run-coverity-scan: use --no-update-tools in docker run
+b99b007 run-coverity-scan: add --no-update-tools option
+7265905 run-coverity-scan: use docker.py
+6ed4075 run-coverity-scan: get Coverity token and email from special git config section
+af50973 docker.py/build: support binary files in --extra-files
+dfae628 docker.py/build: support -t and -f arguments
+fe18e6e semihosting: remove the pthread include which seems unused
+1db889c hw/openrisc/openrisc_sim: Add assertion to silence GCC warning
+93d4878 iotests: 194: wait for migration completion on target too
+adf92f4 iotests: Fix 291 across more file systems
+820c6be qcow2_format.py: dump bitmaps header extension
+aef8778 qcow2: QcowHeaderExtension print names for extension magics
+a9e750e qcow2_format: refactor QcowHeaderExtension as a subclass of Qcow2Struct
+0931fcc qcow2_format.py: QcowHeaderExtension: add dump method
+860543f qcow2_format.py: add field-formatting class
+0903e3b qcow2_format.py: separate generic functionality of structure classes
+5432a0d qcow2_format.py: use strings to specify c-type of struct fields
+621ca49 qcow2_format.py: use modern string formatting
+b2f1415 qcow2_format.py: use tuples instead of lists for fields
+eeafed5 qcow2_format.py: drop new line printing at end of dump()
+d5262c7 qcow2.py: move qcow2 format classes to separate module
+16306a7 qcow2.py: add licensing blurb
+0275605 qcow2.py: python style fixes
+1d74594 qemu-img: Fix doc typo for 'bitmap' subcommand
+23374a8 Add vhost-user helper to get MemoryRegion data
+ece9909 Add helper to populate vhost-user message regions
+4bcad76 vhost-user-blk: delay vhost_user_blk_disconnect
+2710944 char-socket: return -1 in case of disconnect during tcp_chr_write
+51eae1e hw/pci-host: Use the IEC binary prefix definitions
+37e7211 hw/pci/pci_bridge: Use the IEC binary prefix definitions
+2dc48da hw/pci/pci_bridge: Correct pci_bridge_io memory region size
+ea2fe4d hw/pci-host/prep: Correct RAVEN bus bridge memory region size
+f7d6a63 pci: assert configuration access is within bounds
+0dabc0f hw/pci/pcie: Move hot plug capability check to pre_plug callback
+b963ea1 MAINTAINERS: Fix the classification of bios-tables-test-allowed-diff.h
+91b8671 virtio-balloon: Provide an interface for free page reporting
+7483cbb virtio-balloon: Implement support for page poison reporting feature
+105aef9 virtio-balloon: unref the iothread when unrealizing
+49b0171 virtio-balloon: fix free page hinting check on unrealize
+12fc890 virtio-balloon: fix free page hinting without an iothread
+cae98d8 bios-tables-test: Generate reference tables for Q35/TPM-TIS
+5da7c35 bios-tables-test: Add Q35/TPM-TIS test
+c7504b9 tests: tpm-emu: Remove assert on TPM2_ST_NO_SESSIONS
+6d6d1a2 tests/acpi: Add void tables for Q35/TPM-TIS bios-tables-test
+266345a test/tpm-emu: include sockets and channel headers in tpm-emu header
+c7a856b target/unicore32: Prefer qemu_semihosting_log_out() over curses
+7a7b663 target/unicore32: Replace DPRINTF() by qemu_log_mask(GUEST_ERROR)
+c421f81 target/unicore32: Remove unused headers
+3fb7934 target/i386/cpu: Use the IEC binary prefix definitions
+039a93b hw/i386/xen/xen-hvm: Use the IEC binary prefix definitions
+94c1253 hw/hppa/dino: Use the IEC binary prefix definitions
+7df9f02 hw/arm/aspeed: Correct DRAM container region size
+547f8f6 qemu-img: Fix doc typo for 'bitmap' subcommand
+d263425 hw/misc/auxbus: Use qemu_log_mask(UNIMP) instead of debug printf
+18cdeb7 hw/isa/apm: Convert debug printf()s to trace events
+3b34ee6 hw/unicore32/puv3: Use qemu_log_mask(ERROR) instead of debug printf()
+449fd1f .mailmap: Update Fred Konrad email address
+0561dfa net: Do not include a newline in the id of -nic devices
+80bde69 arm/acpi: TPM2 ACPI table support
+4338416 acpi: Move build_tpm2() in the generic part
+04b7786 acpi: Convert build_tpm2() to build_append* API
+7e7c1b8 acpi: tpm: Do not build TCPA table for TPM 2
+bab16ab tests/acpi: update DSDT expected files
+ed003c8 acpi: move aml builder code for parallel device
+3e824d3 acpi: parallel: don't use _STA method
+dcdbfaa acpi: move aml builder code for serial device
+4b8e369 acpi: serial: don't use _STA method
+f592b94 acpi: rtc: use a single crs range
+df9b9b4 acpi: move aml builder code for rtc device
+9b20a33 qtest: allow DSDT acpi table changes
+8a49b30 tests/acpi: update expected SRAT files
+705f7f2 Fix parameter type in vhost migration log path
+d6084fb target/arm: Use a non-overlapping group for misc control
+fe079aa decodetree: Drop check for less than 2 patterns in a group
+6db0611 target/mips: Enable hardware page table walker and CMGCR features for P5600
+af86899 target/mips: Add Loongson-3 CPU definition
+9579f78 target/mips: fpu: Refactor conversion from ieee to mips exception flags
+485cd2e target/mips: fpu: Name better paired-single variables
+bdbe48d target/mips: fpu: Remove now unused FLOAT_RINT macro
+728e424 target/mips: fpu: Demacro RINT.<D|S>
+6971a1b target/mips: fpu: Remove now unused FLOAT_CLASS macro
+0bd99ac target/mips: fpu: Demacro CLASS.<D|S>
+32574f1 target/mips: fpu: Remove now unused UNFUSED_FMA and FLOAT_FMA macros
+5c591e2 target/mips: fpu: Demacro NMSUB.<D|S|PS>
+0278586 target/mips: fpu: Demacro NMADD.<D|S|PS>
+faec752 target/mips: fpu: Demacro MSUB.<D|S|PS>
+16734cc target/mips: fpu: Demacro MADD.<D|S|PS>
+8248c9c target/mips: fpu: Remove now unused macro FLOAT_BINOP
+bcca8c4 target/mips: fpu: Demacro DIV.<D|S|PS>
+1181119 target/mips: fpu: Demacro MUL.<D|S|PS>
+92ebdd7 target/mips: fpu: Demacro SUB.<D|S|PS>
+1ace099 target/mips: fpu: Demacro ADD.<D|S|PS>
+f364a8d mailmap: Change email address of Stefan Brankovic
+cdcb639 mailmap: Change email address of Filip Bozuta
+c3b0cf6 hw/acpi/nvdimm: add a helper to augment SRAT generation
+acc5c98 diffs-allowed: add the SRAT AML to diffs-allowed
+191f90c msix: allow qword MSI-X table accesses
+33c0f25 tests/decode: Test non-overlapping groups
+067e8b0 decodetree: Implement non-overlapping groups
+08561fc decodetree: Move semantic propagation into classes
+b44b344 decodetree: Allow group covering the entire insn space
+df63044 decodetree: Split out MultiPattern from IncMultiPattern
+040145c decodetree: Rename MultiPattern to IncMultiPattern
+2fd51b1 decodetree: Tidy error_with_file
+a5b04cc scripts/coverity-scan: Remove flex/bison packages
+48ba32e cirrus-ci: Remove flex/bison packages
+e661e95 tests/vm: Remove flex/bison packages
+c6dd82e tests/docker: Remove flex/bison packages
+8ef6188 linux-user: detect overflow of MAP_FIXED mmap
+b677121 tests/tcg: add simple commpage test case
+5c3e87f linux-user: deal with address wrap for ARM_COMMPAGE on 32 bit
+ad592e3 linux-user: provide fallback pgd_find_hole for bare chroots
+083b9bd hw/virtio/vhost: re-factor vhost-section and allow DIRTY_MEMORY_CODE
+a970988 docker: update Ubuntu to 20.04
+e035e6f tests/docker: fix pre-requisite for debian-tricore-cross
+12d43b5 .shippable: temporaily disable some cross builds
+1de8e4c .travis.yml: allow failure for unreliable hosts
+2e886a2 exec: flush the whole TLB if a watchpoint crosses a page boundary
+4e62bfa tests/plugin: correctly honour io_count
+a6703e6 scripts/clean-includes: Mark 'qemu/qemu-plugin.h' as special header
+02324a4 qemu-plugin.h: add missing include <stddef.h> to define size_t
+
+Downstream changes:
+-------------------
+827bf7c Initial redhat build
+  - Fix qemu-kvm-test content
+    - Properly do python shenigans
+    - Include all iotests files
+  - qemu-pr-helper path changed
+Queued patches applied:
+- 96743 RHEL-only: Enable vTPM for POWER in downstream configs (BZ 1781911)
+- 97388 hw/arm: Changes to rhel820 machine (BZ 1818843)
+- 97391 hw/arm: Introduce rhel_virt_instance_init() helper (BZ 1818843)
+- 97390 hw/arm: Add rhel830 machine type (BZ 1818843)
+- 97457 redhat: fix 5.0 rebase missing ISA TPM TIS
+==============================================================================
+2020-06-10
+==============================================================================
+New upstream commits:
+---------------------
+86e8c35 target/sparc/int32_helper: Extract and use excp_name_str()
+304c1c8 target/sparc/int32_helper: Remove DEBUG_PCALL definition
+8e071cd hw/timer/grlib_gptimer: Display frequency in decimal
+d15188d hw/misc/grlib_ahb_apb_pnp: Add trace events on read accesses
+1a5a557 hw/misc/grlib_ahb_apb_pnp: Fix AHB PnP 8-bit accesses
+bb15013 hw/misc/grlib_ahb_apb_pnp: Avoid crash when writing to AHB PnP registers
+aceeb71 hw/sparc64/niagara: Remove duplicated NIAGARA_UART_BASE definition
+bec6e07 hw/sparc64/niagara: Map the UART device unconditionally
+acd2a00 hw/sparc/leon3: Map the UART device unconditionally
+28c78fe hw/misc/empty_slot: Name the slots when created
+6007523 hw/misc/empty_slot: Move the 'hw/misc' and cover in MAINTAINERS
+c0e4308 hw/misc/empty_slot: Convert debug printf() to trace event
+07ddf5c hw/misc/empty_slot: Add a 'name' qdev property
+4bbadef hw/misc/empty_slot: Convert 'size' field as qdev property
+6c33949 hw/misc/empty_slot: Lower address space priority
+077f0f3 hw/sparc/sun4m: Use UnimplementedDevice for I/O devices
+95722b2 stubs: Restrict ui/win32-kbd-hook to system-mode
+cfe35d4 hw/core: Restrict CpuClass::get_crash_info() to system-mode
+6b4bf66 target/s390x: Restrict CpuClass::get_crash_info() to system-mode
+b75c990 target/i386: Restrict CpuClass::get_crash_info() to system-mode
+32f5b7e arch_init: Remove unused 'qapi-commands-misc.h' include
+3e07593 exec: Assert CPU migration is not used on user-only build
+0c4e993 target/riscv/cpu: Restrict CPU migration to system-mode
+dc70f80 stubs/Makefile: Reduce the user-mode object list
+e4d6d41 util/Makefile: Reduce the user-mode object list
+37914f6 tests/Makefile: Restrict some softmmu-only tests
+ca6db46 tests/Makefile: Only display TCG-related tests when TCG is available
+1cf295b configure: Avoid building TCG when not needed
+57159bb Makefile: Only build virtiofsd if system-mode is enabled
+2d92c68 linux-user: implement OFD locks
+257a7e2 linux-user/mmap.c: fix integer underflow in target_mremap
+fd56866 linux-user/strace.list: fix epoll_create{,1} -strace output
+93a5661 linux-user: Add support for /proc/cpuinfo on hppa platform
+2c35a39 target/arm: Convert Neon one-register-and-immediate insns to decodetree
+3da26f1 target/arm: Convert VCVT fixed-point ops to decodetree
+968bf84 target/arm: Convert Neon VSHLL, VMOVL to decodetree
+b4a3a77 target/arm: Convert Neon narrowing shifts with op==9 to decodetree
+712182d target/arm: Convert Neon narrowing shifts with op==8 to decodetree
+37bfce8 target/arm: Convert VQSHLU, VQSHL 2-reg-shift insns to decodetree
+434f71e target/arm: Convert Neon VSRA, VSRI, VRSHR, VRSRA 2-reg-shift insns to decodetree
+66432d6 target/arm: Convert Neon VSHR 2-reg-shift insns to decodetree
+d3c8c73 target/arm: Convert Neon VSHL and VSLI 2-reg-shift insn to decodetree
+d02ded0 raspi2 acceptance test: add test for dwc-hsotg (dwc2) USB host
+60bf734 wire in the dwc-hsotg (dwc2) USB host controller emulation
+7ad3d51 usb: add short-packet handling to usb-storage driver
+153ef166 dwc-hsotg (dwc2) USB host controller emulation
+104a010 dwc-hsotg (dwc2) USB host controller state definitions
+3f5b312 dwc-hsotg (dwc2) USB host controller register definitions
+3d46938 raspi: add BCM2835 SOC MPHI emulation
+7a1e049 docs/system: Document Aspeed boards
+27dfbaf tests/acceptance: Add a boot test for the xlnx-versal-virt machine
+d04bf49 hw/adc/stm32f2xx_adc: Correct memory region size and access size
+43fa36c target/arm: Split helper_crypto_sm3tt
+afc8b7d target/arm: Split helper_crypto_sha1_3reg
+effa992 target/arm: Convert sha1 and sha256 to gvec helpers
+aaffebd target/arm: Convert sha512 and sm3 to gvec helpers
+1738860 target/arm: Convert rax1 to gvec helpers
+a04b68e target/arm: Convert aes and sm4 to gvec helpers
+fc417e5 hw/arm/pxa2xx: Replace printf() call by qemu_log_mask()
+3a37f23 hw/input/pxa2xx_keypad: Replace hw_error() by qemu_log_mask()
+6d68614 hw/ssi/imx_spi: Removed unnecessary cast of rx data received from slave
+9c49c83 hw/ssi/imx_spi: changed while statement to prevent underflow
+c44d26a target/s390x: Restrict system-mode declarations
+8c4b4e3 target/s390x/helper: Clean ifdef'ry
+d64c1bd target/s390x: Only compile decode_basedisp() on system-mode
+cdb509a MAINTAINERS: add Thomas as additional s390x maintainer
+8e75b83 docs/s390x: document vfio-ccw
+24e58a7 vfio-ccw: allow non-prefetch ORBs
+61a3d5e docs/s390x: document 3270
+f31270d docs/s390x: document the virtual css
+9a43259 s390x: pv: Fix KVM_PV_PREP_RESET command wrapper name
+f555638 s390x/kvm: help valgrind in several places
+7d2410c block: Factor out bdrv_run_co()
+ab7e41e exec: Rename qemu_ram_writeback() as qemu_ram_msync()
+bc2a236 hw/block: Let the NVMe emulated device be target-agnostic
+9ecc996 memory: Extract memory_region_msync() from memory_region_writeback()
+4dfe59d memory: Rename memory_region_do_writeback -> memory_region_writeback
+dfd5ddb fuzz: run the main-loop in fork-server process
+3b11322 fuzz: add mangled object name to linker script
+6851803 fuzz: fix typo in i440fx-qtest-reboot arguments
+7a071a9 fuzz: add datadir for oss-fuzz compatability
+769335e io_uring: use io_uring_cq_ready() to check for ready cqes
+b4e44c9 io_uring: retry io_uring_submit() if it fails with errno=EINTR
+ae3887e hw/display/cirrus_vga: Fix code mis-indentation
+a98610c ati-vga: check mm_index before recursive call (CVE-2020-13800)
+fe0fe47 riscv: Initial commit of OpenTitan machine
+36b80ad target/riscv: Add the lowRISC Ibex CPU
+ff832b7 target/riscv: Don't set PMP feature in the cpu init
+8be6971 target/riscv: Disable the MMU correctly
+f92d46a target/riscv: Don't overwrite the reset vector
+757e99b riscv/boot: Add a missing header include
+0869490 riscv: sifive_e: Manually define the machine
+f33559a docs: deprecated: Update the -bios documentation
+1a9540d target/riscv: Drop support for ISA spec version 1.09.1
+65a117d target/riscv: Remove the deprecated CPUs
+26cd036 hw/riscv: spike: Remove deprecated ISA specific machines
+b2a3a07 hw/riscv: virt: Remove the riscv_ prefix of the machine* functions
+139177b hw/riscv: sifive_u: Remove the riscv_ prefix of the soc* functions
+087a424 riscv: Change the default behavior if no -bios option is specified
+ac5f724 riscv: Suppress the error report for QEMU testing with riscv_find_firmware()
+
+Downstream changes:
+-------------------
+Included changes up to qemu-kvm-4.2.0-25.el8 (rhel-av 8.2.1):
+  db9a859 Initial redhat build
+    - 63f12d4 redhat: Always use module build target for rh-brew (modified)
+    - 9b1e140 redhat: updating the modular target
+  09a1750 Enable/disable devices for RHEL
+    - 559d589 Revert "RHEL: disable hostmem-memfd" 
+    - 441128e enable ramfb
+Queued patches applied:
+- 96743 RHEL-only: Enable vTPM for POWER in downstream configs (BZ 1781911)
+- 97388 hw/arm: Changes to rhel820 machine (BZ 1818843)
+- 97391 hw/arm: Introduce rhel_virt_instance_init() helper (BZ 1818843)
+- 97390 hw/arm: Add rhel830 machine type (BZ 1818843)
+- 97457 redhat: fix 5.0 rebase missing ISA TPM TIS
+==============================================================================
+2020-06-03
+==============================================================================
+New upstream commits:
+---------------------
+71b0432 accel/tcg: Provide a NetBSD specific aarch64 cpu_signal_handler
+853d9a4 accel/tcg: Adjust cpu_signal_handler for NetBSD/arm
+61f15c4 tcg: Improve move ops in liveness_pass_2
+cea94ba target/s390x: Use tcg_gen_gvec_rotl{i,s,v}
+3e114ac target/ppc: Use tcg_gen_gvec_rotlv
+ab87a66 tcg/ppc: Implement INDEX_op_rot[lr]v_vec
+7cff898 tcg/aarch64: Implement INDEX_op_rotl{i,v}_vec
+885b170 tcg/i386: Implement INDEX_op_rotl{i,s,v}_vec
+23850a7 tcg: Implement gvec support for rotate by scalar
+3d5bb2e tcg: Remove expansion to shift by vector from do_shifts
+5d0ceda tcg: Implement gvec support for rotate by vector
+b0f7e74 tcg: Implement gvec support for rotate by immediate
+250b1da target/m68k: implement opcode fetoxm1
+6a0e8bb target/m68k: implement fmove.l #<data>,FPCR
+7738612 migration/migration.c: Fix hang in ram_save_host_page
+4fa8ed2 migration/colo.c: Move colo_notify_compares_event to the right place
+92c932d migration/colo.c: Relaunch failover even if there was an error
+24fa16f migration/colo.c: Flush ram cache only after receiving device state
+786d8b8 migration/colo.c: Use cpu_synchronize_all_states()
+bb70b66 migration/colo.c: Use event instead of semaphore
+e0d138a migration/vmstate: Remove unnecessary MemoryRegion forward declaration
+93bb3d8 virtiofsd: remove symlink fallbacks
+7d2ef6d hmp: Simplify qom-set
+89cf4fe hmp: Implement qom-get HMP command
+2f0c285 migration/rdma: cleanup rdma context before g_free to avoid memleaks
+3b59ee7 migration/rdma: fix potential nullptr access in rdma_start_incoming_migration
+d127de3 target/tricore: Implement gdbstub
+e00a56d target/tricore: Implement tricore_cpu_get_phys_page_debug
+1ed8739 target/tricore: Raise EXCP_DEBUG in gen_goto_tb() for singlestep
+44ee3ba target/tricore: Move translate feature check to ctx
+a564c31 target/tricore: Don't save pc in generate_qemu_excp
+a08d60b hw/mips: fuloong2e: Set preferred page size to 16KB
+ee3863b target/mips: Support variable page size
+7e0896b target/mips: Add more CP0 register for save/restore
+c3173a3 hw/mips: Add CPU IRQ3 delivery for KVM
+aa2953f configure: Add KVM target support for MIPS64
+9865f39 tests/Makefile: Fix description of "make check"
+1c80c87 tests/acceptance: refactor boot_linux to allow code reuse
+12121c4 tests/acceptance: refactor boot_linux_console test to allow code reuse
+a5ba86d tests/acceptance: allow console interaction with specific VMs
+2c9120a tests/acceptance/migration.py: Wait for both sides
+83389e2 tests/migration/guestperf: Use Python 3 interpreter
+6ee982c tests/vm: allow wait_ssh() to specify command
+e56c450 tests/vm: Add ability to select QEMU from current build
+d5326a2 tests/vm: Pass --debug through for vm-boot-ssh
+c95dddc python/qemu/qtest: Check before accessing _qtest
+de210ec python/qemu/qmp: assert sockfile is not None
+7af67d6 python/qemu/qmp: use True/False for non/blocking modes
+1dda040 python/qemu: Adjust traceback typing
+0add048 python/qemu: fix socket.makefile() typing
+3797dbc python/qemu: remove Python2 style super() calls
+8dfac2e python/qemu: delint; add flake8 config
+9b8ccd6 python/qemu: delint and add pylintrc
+053774b python/qemu/machine: remove logging configuration
+e0e925a python/qemu/machine: add kill() method
+2d110c1 python: remove more instances of sys.version_info
+c7b942d scripts/qmp: Fix shebang and imports
+5aa6280 scripts/modules/module_block: Use Python 3 interpreter & add pseudo-main
+e57a707 scripts/kvm/vmxcap: Use Python 3 interpreter and add pseudo-main()
+06d4c71 scripts/qmp: Use Python 3 interpreter
+806c200 scripts/qemu-gdb: Use Python 3 interpreter
+6acc5c0 scripts/qemugdb: Remove shebang header
+b809667 hw/m68k/mcf52xx: Replace hw_error() by qemu_log_mask()
+ccff1ae hw/m68k/mcf5206: Reduce m5206_mbar_read/write() offset arg to 16-bit
+cf2d120 iotests: Add test 291 to for qemu-img bitmap coverage
+15e39ad qemu-img: Add convert --bitmaps option
+6c729dd qemu-img: Factor out code for merging bitmaps
+5d72c68 qcow2: Expose bitmaps' size during measure
+ca01b7a iotests: Fix test 178
+4ff5cc1 migration: forbid bitmap migration by generated node-name
+82640ed migration: add_bitmaps_to_list: check disk name once
+ae00aa2 iotests: 194: test also migration of dirty bitmap
+107cfb7 migration: fix bitmaps pre-blockdev migration with mirror job
+7ae89a0 block/dirty-bitmap: add bdrv_has_named_bitmaps helper
+38908bb migration: refactor init_dirty_bitmap_migration
+fa0013a sm501: Remove obsolete changelog and todo comment
+fa70c28 sm501: Optimize small overlapping blits
+b15a22b sm501: Replace hand written implementation with pixman where possible
+3d0b096 sm501: Clean up local variables in sm501_2d_operation
+2824809 sm501: Use BIT(x) macro to shorten constant
+6f8183b sm501: Shorten long variable names in sm501_2d_operation
+e29da77 sm501: Convert printf + abort to qemu_log_mask
+b3a7e24 hw/display/pxa2xx_lcd: Replace printf() call by qemu_log_mask()
+00a946a hw/display/omap_dss: Replace fprintf() call by qemu_log_mask(LOG_UNIMP)
+b3caeaf hw/display/exynos4210_fimd: Use qemu_log_mask(GUEST_ERROR)
+becce5e hw/display/vmware_vga: Let the PCI device own its I/O MemoryRegion
+aa0fd16 hw/display/vmware_vga: Replace printf() calls by qemu_log_mask(ERROR)
+7bbdf0f hw/display/xlnx_dp: Replace disabled DPRINTF() by error_report()
+eeb1168 hw/display/dpcd: Convert debug printf()s to trace events
+91e7fd3 hw/display/dpcd: Fix memory region size
+6152772 hw/display/cirrus_vga: Convert debug printf() to trace event
+2b55f4d hw/display/cirrus_vga: Use qemu_log_mask(ERROR) instead of debug printf
+bb6e9e9 hw/display/cirrus_vga: Use qemu_log_mask(UNIMP) instead of debug printf
+bee61ca hw/display/cirrus_vga: Convert debug printf() to trace event
+85664cf hw/display/cg3: Convert debug printf()s to trace events
+edcbea0 hw/display/edid: Add missing 'qdev-properties.h' header
+0016afa gitlab-ci: Determine the number of jobs dynamically
+b5d621f gitlab-ci: Do not use the standard container images from gitlab
+922febe gitlab-ci: Move edk2 and opensbi YAML files to .gitlab-ci.d folder
+65ea4e6 GitLab CI: avoid calling before_scripts on unintended jobs
+f3ea07c gitlab-ci: Remove flex/bison packages
+d1d3ba2 MAINTAINERS: Add Philippe, Alex and Wainer to the Gitlab-CI section
+a932eec linux-user: limit check to HOST_LONG_BITS < TARGET_ABI_BITS
+5932a46 hw/registerfields: Prefix local variables with underscore in macros
+919bfbf tests/tcg: add new threadcount test
+1f81ce9 linux-user: properly "unrealize" vCPU object
+716386e cpus-common: ensure auto-assigned cpu_indexes don't clash
+c729a99 tests/docker: use a gcc-10 based image for arm64 tests
+086f269 tests/docker: add debian11 base image
+8ec6f33 tests/tcg: better detect confused gdb which can't connect
+8281a15 tests/fp: split and audit the conversion tests
+91fa8b6 tests/fp: enable extf80_le_quite tests
+be9bc1b tests/tcg: fix invocation of the memory record/replay tests
+6f83cf8 travis.yml: Use clang++ in the Clang tests
+92fecad tests/vm: pass --genisoimage to basevm script
+3df437c configure: add alternate binary for genisoimage
+49e2fa8 i386: Fix x86_cpu_load_model() error API violation
+3b91440 arm/sabrelite: Consistently use &error_fatal in sabrelite_init()
+3e1df4c mips/boston: Plug memory leak in boston_mach_init()
+932d3a6 mips/boston: Fix boston_mach_init() error handling
+a729f9b mips/malta: Fix create_cps() error handling
+5217f18 error: Use error_reportf_err() where appropriate
+d011275 tests/migration: Tighten error checking
+5e959d2 s390x/cpumodel: Fix harmless misuse of visit_check_struct()
+56f9dde xen: Fix and improve handling of device_add usb-host errors
+75de4ef nvdimm: Plug memory leak in uuid property setter
+9c7c040 vfio/nvlink: Remove exec permission to avoid SELinux AVCs
+47e112c target/ppc: Fix argument to ppc_radix64_partition_scoped_xlate() again
+1521735 hw/nvram/mac_nvram: Convert debug printf()s to trace events
+a1cf0c7 hw/pci-bridge/dec: Remove dead debug code
+e606a55 target/ppc: Don't update radix PTE R/C bits with gdbstub
+31efae9 target/ppc: Fix arguments to ppc_radix64_partition_scoped_xlate()
+b577031 target/ppc: Add missing braces in ppc_radix64_partition_scoped_xlate()
+7caee78 target/ppc: Don't initialize some local variables in ppc_radix64_xlate()
+1830422 target/ppc: Pass const pointer to ppc_radix64_get_fully_qualified_addr()
+6fc0096 target/ppc: Pass const pointer to ppc_radix64_get_prot_amr()
+0911a60 ppc/spapr: Add hotremovable flag on DIMM LMBs on drmem_v2
+3c89b8d target/ppc: Add support for scv and rfscv instructions
+ececb88 target/ppc: Untabify excp_helper.c
+0bbf14a ppc/spapr: add a POWER10 CPU model
+fe83771 ppc/pnv: Fix NMI system reset SRR1 value
+97d8974 MAINTAINERS: Change Aleksandar Rikalo's email address
+56b92ee hw/mips/mips_int: De-duplicate KVM interrupt delivery
+c707f06 hw/mips/malta: Add some logging for bad register offset cases
+5298722 hw/mips: Rename malta/mipssim/r4k/jazz files
+c3a09ff hw/mips/fuloong2e: Fix typo in Fuloong machine name
+3e5fe8d hw/mips/fuloong2e: Move code and update a comment
+1f8a6c8 hw/pci-host/bonito: Set the Config register reset value with FIELD_DP32
+7a29699 hw/pci-host/bonito: Better describe the I/O CS regions
+a0b544c hw/pci-host/bonito: Map the different PCI ranges more detailed
+25cca0a hw/pci-host/bonito: Map all the Bonito64 I/O range
+86313bd hw/pci-host/bonito: Map peripheral using physical address
+3d14264 hw/pci-host/bonito: Fix DPRINTF() format strings
+abc82de hw/pci-host: Use CONFIG_PCI_BONITO to select the Bonito North Bridge
+97eeef8 MAINTAINERS: Add Huacai Chen as fuloong2e co-maintainer
+70b6d52 hostmem: don't use mbind() if host-nodes is empty
+
+Downstream changes:
+-------------------
+7973c47 Enable/disable devices for RHEL
+ - Merged patches:
+   - patchwork 96743 RHEL-only: Enable vTPM for POWER in downstream configs
+100d8e1 Add aarch64 machine types
+ - Merged patches:
+   - patchwork 97095 hw/arm: Add aarch64 (8.3.0) machine type
