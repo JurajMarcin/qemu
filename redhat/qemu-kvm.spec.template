@@ -131,7 +131,6 @@ BuildRequires: python3-sphinx
 BuildRequires: spice-protocol >= 0.12.12
 BuildRequires: spice-server-devel >= 0.12.8
 BuildRequires: libcacard-devel
-BuildRequires: virglrenderer-devel
 # For smartcard NSS support
 BuildRequires: nss-devel
 %endif
@@ -448,11 +447,9 @@ buildldflags="VL_LDFLAGS=-Wl,--build-id"
 %if 0%{have_spice}
   --enable-spice \
   --enable-smartcard \
-  --enable-virglrenderer \
 %else
   --disable-spice \
   --disable-smartcard \
-  --disable-virglrenderer \
 %endif
 %if 0%{have_opengl}
   --enable-opengl \
@@ -568,6 +565,7 @@ buildldflags="VL_LDFLAGS=-Wl,--build-id"
   --enable-iconv \
   --disable-lzfse \
   --enable-vhost-kernel \
+  --disable-virglrenderer \
   --without-default-devices
 
 echo "config-host.mak contents:"
@@ -992,10 +990,6 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %if 0%{have_memlock_limits}
     %{_sysconfdir}/security/limits.d/95-kvm-memlock.conf
 %endif
-%if %{have_spice}
-%{_libexecdir}/vhost-user-gpu
-%{_datadir}/%{name}/vhost-user/50-qemu-gpu.json
-%endif
 %{_libexecdir}/virtiofsd
 %{_datadir}/%{name}/vhost-user/50-qemu-virtiofsd.json
 
@@ -1041,6 +1035,12 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Thu Jun 04 2020 Danilo C. L. de Paula <ddepaula@redhat.com> - 4.2.0-23.el8
+- Resolves: bz#1810193
+  (Upgrade components in virt:rhel module:stream for RHEL-8.3 release)
+  Another syncronization
+
+
 * Thu Jun 04 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-23.el8
 - kvm-target-arm-Fix-PAuth-sbox-functions.patch [bz#1813940]
 - kvm-Don-t-leak-memory-when-reallocation-fails.patch [bz#1749737]
