@@ -1041,6 +1041,23 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Thu Jun 04 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-23.el8
+- kvm-target-arm-Fix-PAuth-sbox-functions.patch [bz#1813940]
+- kvm-Don-t-leak-memory-when-reallocation-fails.patch [bz#1749737]
+- kvm-Replace-remaining-malloc-free-user-with-glib.patch [bz#1749737]
+- kvm-Revert-RHEL-disable-hostmem-memfd.patch [bz#1839030]
+- kvm-block-introducing-bdrv_co_delete_file-interface.patch [bz#1827630]
+- kvm-block.c-adding-bdrv_co_delete_file.patch [bz#1827630]
+- kvm-crypto.c-cleanup-created-file-when-block_crypto_co_c.patch [bz#1827630]
+- Resolves: bz#1749737
+  (CVE-2019-15890 qemu-kvm: QEMU: Slirp: use-after-free during packet reassembly [rhel-av-8])
+- Resolves: bz#1813940
+  (CVE-2020-10702 virt:8.1/qemu-kvm: qemu: weak signature generation in Pointer Authentication support for ARM [rhel-av-8])
+- Resolves: bz#1827630
+  (volume creation leaving uncleaned stuff behind on error (vol-clone/libvirt/qemu-kvm))
+- Resolves: bz#1839030
+  (RFE: enable the "memfd" memory backend)
+
 * Mon May 25 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-22.el8
 - kvm-block-always-fill-entire-LUKS-header-space-with-zero.patch [bz#1775462]
 - kvm-numa-remove-not-needed-check.patch [bz#1600217]
