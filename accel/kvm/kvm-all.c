@@ -1772,7 +1772,7 @@ void kvm_irqchip_set_qemuirq_gsi(KVMState *s, qemu_irq irq, int gsi)
     g_hash_table_insert(s->gsimap, irq, GINT_TO_POINTER(gsi));
 }
 
-static void kvm_irqchip_create(MachineState *machine, KVMState *s)
+static void kvm_irqchip_create(KVMState *s)
 {
     int ret;
 
@@ -1790,9 +1790,9 @@ static void kvm_irqchip_create(MachineState *machine, KVMState *s)
 
     /* First probe and see if there's a arch-specific hook to create the
      * in-kernel irqchip for us */
-    ret = kvm_arch_irqchip_create(machine, s);
+    ret = kvm_arch_irqchip_create(s);
     if (ret == 0) {
-        if (machine_kernel_irqchip_split(machine)) {
+        if (kvm_kernel_irqchip_split()) {
             perror("Split IRQ chip mode not supported.");
             exit(1);
         } else {
@@ -2076,7 +2076,7 @@ static int kvm_init(MachineState *ms)
     }
 
     if (machine_kernel_irqchip_allowed(ms)) {
-        kvm_irqchip_create(ms, s);
+        kvm_irqchip_create(s);
     }
 
     if (kvm_eventfds_allowed) {
@@ -2964,6 +2964,21 @@ static bool kvm_accel_has_memory(MachineState *ms, AddressSpace *as,
     }
 
     return false;
+}
+
+bool kvm_kernel_irqchip_allowed(void)
+{
+    return machine_kernel_irqchip_allowed(current_machine);
+}
+
+bool kvm_kernel_irqchip_required(void)
+{
+    return machine_kernel_irqchip_required(current_machine);
+}
+
+bool kvm_kernel_irqchip_split(void)
+{
+    return machine_kernel_irqchip_split(current_machine);
 }
 
 static void kvm_accel_class_init(ObjectClass *oc, void *data)
