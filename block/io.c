@@ -3315,12 +3315,12 @@ static void bdrv_parent_cb_resize(BlockDriverState *bs)
  * 'offset' bytes in length.
  */
 int coroutine_fn bdrv_co_truncate(BdrvChild *child, int64_t offset, bool exact,
-                                  PreallocMode prealloc, Error **errp)
+                                  PreallocMode prealloc, BdrvRequestFlags flags,
+                                  Error **errp)
 {
     BlockDriverState *bs = child->bs;
     BlockDriver *drv = bs->drv;
     BdrvTrackedRequest req;
-    BdrvRequestFlags flags = 0;
     int64_t old_size, new_bytes;
     int ret;
 
@@ -3378,7 +3378,7 @@ int coroutine_fn bdrv_co_truncate(BdrvChild *child, int64_t offset, bool exact,
         }
         ret = drv->bdrv_co_truncate(bs, offset, exact, prealloc, flags, errp);
     } else if (bs->file && drv->is_filter) {
-        ret = bdrv_co_truncate(bs->file, offset, exact, prealloc, errp);
+        ret = bdrv_co_truncate(bs->file, offset, exact, prealloc, flags, errp);
     } else {
         error_setg(errp, "Image format driver does not support resize");
         ret = -ENOTSUP;
@@ -3411,6 +3411,7 @@ typedef struct TruncateCo {
     int64_t offset;
     bool exact;
     PreallocMode prealloc;
+    BdrvRequestFlags flags;
     Error **errp;
     int ret;
 } TruncateCo;
@@ -3419,12 +3420,12 @@ static void coroutine_fn bdrv_truncate_co_entry(void *opaque)
 {
     TruncateCo *tco = opaque;
     tco->ret = bdrv_co_truncate(tco->child, tco->offset, tco->exact,
-                                tco->prealloc, tco->errp);
+                                tco->prealloc, tco->flags, tco->errp);
     aio_wait_kick();
 }
 
 int bdrv_truncate(BdrvChild *child, int64_t offset, bool exact,
-                  PreallocMode prealloc, Error **errp)
+                  PreallocMode prealloc, BdrvRequestFlags flags, Error **errp)
 {
     Coroutine *co;
     TruncateCo tco = {
@@ -3432,6 +3433,7 @@ int bdrv_truncate(BdrvChild *child, int64_t offset, bool exact,
         .offset     = offset,
         .exact      = exact,
         .prealloc   = prealloc,
+        .flags      = flags,
         .errp       = errp,
         .ret        = NOT_DONE,
     };
