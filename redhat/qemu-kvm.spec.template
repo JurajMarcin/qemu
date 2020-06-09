@@ -1035,11 +1035,43 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
-* Thu Jun 04 2020 Danilo C. L. de Paula <ddepaula@redhat.com> - 4.2.0-23.el8
-- Resolves: bz#1810193
-  (Upgrade components in virt:rhel module:stream for RHEL-8.3 release)
-  Another syncronization
-
+* Mon Jun 08 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-24.el8
+- kvm-target-i386-set-the-CPUID-level-to-0x14-on-old-machi.patch [bz#1513681]
+- kvm-block-curl-HTTP-header-fields-allow-whitespace-aroun.patch [bz#1841038]
+- kvm-block-curl-HTTP-header-field-names-are-case-insensit.patch [bz#1841038]
+- kvm-MAINTAINERS-fix-qcow2-bitmap.c-under-Dirty-Bitmaps-h.patch [bz#1779893 bz#1779904]
+- kvm-iotests-Let-_make_test_img-parse-its-parameters.patch [bz#1779893 bz#1779904]
+- kvm-qemu_img-add-cvtnum_full-to-print-error-reports.patch [bz#1779893 bz#1779904]
+- kvm-block-Make-it-easier-to-learn-which-BDS-support-bitm.patch [bz#1779893 bz#1779904]
+- kvm-blockdev-Promote-several-bitmap-functions-to-non-sta.patch [bz#1779893 bz#1779904]
+- kvm-blockdev-Split-off-basic-bitmap-operations-for-qemu-.patch [bz#1779893 bz#1779904]
+- kvm-qemu-img-Add-bitmap-sub-command.patch [bz#1779893 bz#1779904]
+- kvm-iotests-Fix-test-178.patch [bz#1779893 bz#1779904]
+- kvm-qcow2-Expose-bitmaps-size-during-measure.patch [bz#1779893 bz#1779904]
+- kvm-qemu-img-Factor-out-code-for-merging-bitmaps.patch [bz#1779893 bz#1779904]
+- kvm-qemu-img-Add-convert-bitmaps-option.patch [bz#1779893 bz#1779904]
+- kvm-iotests-Add-test-291-to-for-qemu-img-bitmap-coverage.patch [bz#1779893 bz#1779904]
+- kvm-iotests-Add-more-skip_if_unsupported-statements-to-t.patch [bz#1778593]
+- kvm-iotests-don-t-use-format-for-drive_add.patch [bz#1778593]
+- kvm-iotests-055-refactor-compressed-backup-to-vmdk.patch [bz#1778593]
+- kvm-iotests-055-skip-vmdk-target-tests-if-vmdk-is-not-wh.patch [bz#1778593]
+- kvm-backup-Improve-error-for-bdrv_getlength-failure.patch [bz#1778593]
+- kvm-backup-Make-sure-that-source-and-target-size-match.patch [bz#1778593]
+- kvm-iotests-Backup-with-different-source-target-size.patch [bz#1778593]
+- kvm-iotests-109-Don-t-mirror-with-mismatched-size.patch [bz#1778593]
+- kvm-iotests-229-Use-blkdebug-to-inject-an-error.patch [bz#1778593]
+- kvm-mirror-Make-sure-that-source-and-target-size-match.patch [bz#1778593]
+- kvm-iotests-Mirror-with-different-source-target-size.patch [bz#1778593]
+- Resolves: bz#1513681
+  ([Intel 8.2.1 Feat] qemu-kvm PT VMX -- Fast Train)
+- Resolves: bz#1778593
+  (Qemu coredump when backup to a existing small size image)
+- Resolves: bz#1779893
+  (RFE: Copy bitmaps with qemu-img convert)
+- Resolves: bz#1779904
+  (RFE: ability to estimate bitmap space utilization for qcow2)
+- Resolves: bz#1841038
+  (qemu-img: /var/tmp/v2vovl56bced.qcow2: CURL: Error opening file: Server does not support 'range' (byte ranges) with HTTP/2 server in VMware ESXi 7)
 
 * Thu Jun 04 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-23.el8
 - kvm-target-arm-Fix-PAuth-sbox-functions.patch [bz#1813940]
