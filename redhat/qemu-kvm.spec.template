@@ -1041,6 +1041,31 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Tue Jun 09 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-25.el8
+- kvm-enable-ramfb.patch [bz#1841068]
+- kvm-block-Add-flags-to-BlockDriver.bdrv_co_truncate.patch [bz#1780574]
+- kvm-block-Add-flags-to-bdrv-_co-_truncate.patch [bz#1780574]
+- kvm-block-backend-Add-flags-to-blk_truncate.patch [bz#1780574]
+- kvm-qcow2-Support-BDRV_REQ_ZERO_WRITE-for-truncate.patch [bz#1780574]
+- kvm-raw-format-Support-BDRV_REQ_ZERO_WRITE-for-truncate.patch [bz#1780574]
+- kvm-file-posix-Support-BDRV_REQ_ZERO_WRITE-for-truncate.patch [bz#1780574]
+- kvm-block-truncate-Don-t-make-backing-file-data-visible.patch [bz#1780574]
+- kvm-iotests-Add-qemu_io_log.patch [bz#1780574]
+- kvm-iotests-Filter-testfiles-out-in-filter_img_info.patch [bz#1780574]
+- kvm-iotests-Test-committing-to-short-backing-file.patch [bz#1780574]
+- kvm-qcow2-Forward-ZERO_WRITE-flag-for-full-preallocation.patch [bz#1780574]
+- kvm-i386-Add-MSR-feature-bit-for-MDS-NO.patch [bz#1769912]
+- kvm-i386-Add-macro-for-stibp.patch [bz#1769912]
+- kvm-target-i386-Add-new-bit-definitions-of-MSR_IA32_ARCH.patch [bz#1769912]
+- kvm-i386-Add-new-CPU-model-Cooperlake.patch [bz#1769912]
+- kvm-target-i386-Add-missed-features-to-Cooperlake-CPU-mo.patch [bz#1769912]
+- Resolves: bz#1769912
+  ([Intel 8.2.1 Feature] introduce Cooper Lake cpu model - qemu-kvm Fast Train)
+- Resolves: bz#1780574
+  (Data corruption with resizing short overlay over longer backing files)
+- Resolves: bz#1841068
+  (RFE: please support the "ramfb" display device model)
+
 * Mon Jun 08 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-24.el8
 - kvm-target-i386-set-the-CPUID-level-to-0x14-on-old-machi.patch [bz#1513681]
 - kvm-block-curl-HTTP-header-fields-allow-whitespace-aroun.patch [bz#1841038]
