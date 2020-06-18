@@ -1041,6 +1041,12 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Wed Jun 17 2020 Eduardo Lima (Etrunko) <elima@redhat.com> - 4.2.0-26.el8
+- kvm-nbd-server-Avoid-long-error-message-assertions-CVE-2.patch [bz#1845384]
+- kvm-block-Call-attention-to-truncation-of-long-NBD-expor.patch [bz#1845384]
+- Resolves: bz#1845384
+  (CVE-2020-10761 virt:8.2/qemu-kvm: QEMU: nbd: reachable assertion failure in nbd_negotiate_send_rep_verr via remote client [rhel-av-8])
+
 * Tue Jun 09 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-25.el8
 - kvm-enable-ramfb.patch [bz#1841068]
 - kvm-block-Add-flags-to-BlockDriver.bdrv_co_truncate.patch [bz#1780574]
