@@ -1035,6 +1035,17 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Thu Jun 18 2020 Eduardo Lima (Etrunko) <elima@redhat.com> - 4.2.0-27.el8
+- kvm-hw-pci-pcie-Move-hot-plug-capability-check-to-pre_pl.patch [bz#1820531]
+- kvm-spec-Fix-python-shenigans-for-tests.patch [bz#1845779]
+- kvm-target-i386-Add-ARCH_CAPABILITIES-related-bits-into-.patch [bz#1840342]
+- Resolves: bz#1820531
+  (qmp command query-pci get wrong result after hotplug device under hotplug=off controller)
+- Resolves: bz#1840342
+  ([Intel 8.2.1 Bug] qemu-kvm Add ARCH_CAPABILITIES to Icelake-Server cpu model - Fast Train)
+- Resolves: bz#1845779
+  (Install 'qemu-kvm-tests' failed as nothing provides /usr/libexec/platform-python3 - virt module 6972)
+
 * Wed Jun 17 2020 Eduardo Lima (Etrunko) <elima@redhat.com> - 4.2.0-26.el8
 - kvm-nbd-server-Avoid-long-error-message-assertions-CVE-2.patch [bz#1845384]
 - kvm-block-Call-attention-to-truncation-of-long-NBD-expor.patch [bz#1845384]
