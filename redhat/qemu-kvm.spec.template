@@ -1040,6 +1040,56 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Fri Jun 19 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-28.el8
+- kvm-redhat-Install-the-s390-netboot.img-that-we-ve-built.patch [bz#1828317]
+- kvm-linux-headers-update-kvm.h.patch [bz#1828317]
+- kvm-s390x-Don-t-do-a-normal-reset-on-the-initial-cpu.patch [bz#1828317]
+- kvm-s390x-Move-reset-normal-to-shared-reset-handler.patch [bz#1828317]
+- kvm-s390x-Move-initial-reset.patch [bz#1828317]
+- kvm-s390x-Move-clear-reset.patch [bz#1828317]
+- kvm-s390x-Beautify-diag308-handling.patch [bz#1828317]
+- kvm-s390x-kvm-Make-kvm_sclp_service_call-void.patch [bz#1828317]
+- kvm-s390x-Fix-cpu-normal-reset-ri-clearing.patch [bz#1828317]
+- kvm-tests-boot-sector-Fix-the-bad-s390x-assembler-code.patch [bz#1828317]
+- kvm-pc-bios-s390x-Fix-reset-psw-mask.patch [bz#1828317]
+- kvm-s390x-Properly-fetch-and-test-the-short-psw-on-diag3.patch [bz#1828317]
+- kvm-s390x-Rename-and-use-constants-for-short-PSW-address.patch [bz#1828317]
+- kvm-s390x-Add-missing-vcpu-reset-functions.patch [bz#1828317]
+- kvm-s390-sclp-improve-special-wait-psw-logic.patch [bz#1828317]
+- kvm-pc-bios-s390x-Save-iplb-location-in-lowcore.patch [bz#1828317]
+- kvm-s390-ipl-sync-back-loadparm.patch [bz#1828317]
+- kvm-s390-ipl-fix-off-by-one-in-update_machine_ipl_proper.patch [bz#1828317]
+- kvm-s390x-ipl-Consolidate-iplb-validity-check-into-one-f.patch [bz#1828317]
+- kvm-vhost-correctly-turn-on-VIRTIO_F_IOMMU_PLATFORM.patch [bz#1828317]
+- kvm-s390x-Move-diagnose-308-subcodes-and-rcs-into-ipl.h.patch [bz#1828317]
+- kvm-s390x-protvirt-Support-unpack-facility.patch [bz#1828317]
+- kvm-s390x-protvirt-Add-migration-blocker.patch [bz#1828317]
+- kvm-s390x-protvirt-Inhibit-balloon-when-switching-to-pro.patch [bz#1828317]
+- kvm-s390x-protvirt-KVM-intercept-changes.patch [bz#1828317]
+- kvm-s390x-Add-SIDA-memory-ops.patch [bz#1828317]
+- kvm-s390x-protvirt-Move-STSI-data-over-SIDAD.patch [bz#1828317]
+- kvm-s390x-protvirt-SCLP-interpretation.patch [bz#1828317]
+- kvm-s390x-protvirt-Set-guest-IPL-PSW.patch [bz#1828317]
+- kvm-s390x-protvirt-Move-diag-308-data-over-SIDA.patch [bz#1828317]
+- kvm-s390x-protvirt-Disable-address-checks-for-PV-guest-I.patch [bz#1828317]
+- kvm-s390x-protvirt-Move-IO-control-structures-over-SIDA.patch [bz#1828317]
+- kvm-s390x-protvirt-Handle-SIGP-store-status-correctly.patch [bz#1828317]
+- kvm-s390x-Add-unpack-facility-feature-to-GA1.patch [bz#1828317]
+- kvm-s390x-protvirt-Fix-stray-error_report_err-in-s390_ma.patch [bz#1828317]
+- kvm-s390x-pv-Retry-ioctls-on-EINTR.patch [bz#1828317]
+- kvm-s390x-s390-virtio-ccw-Fix-build-on-systems-without-K.patch [bz#1828317]
+- kvm-s390x-pv-Fix-KVM_PV_PREP_RESET-command-wrapper-name.patch [bz#1828317]
+- kvm-spapr-Pass-the-maximum-number-of-vCPUs-to-the-KVM-in.patch [bz#1756946]
+- kvm-introduce-kvm_kernel_irqchip_-functions.patch [bz#1756946]
+- kvm-target-s390x-kvm-Enable-adapter-interruption-suppres.patch [bz#1756946]
+- kvm-vfio-nvlink-Remove-exec-permission-to-avoid-SELinux-.patch [bz#1823275]
+- Resolves: bz#1756946
+  ([zKVM] Re-enable KVM_CAP_S390_AIS for new machine types)
+- Resolves: bz#1823275
+  (RHEL8.1 - GPU Numa nodes not visible in guest post the pass-through.)
+- Resolves: bz#1828317
+  ([IBM 8.3 FEAT] s390x: Base KVM setup for secure guests - qemu part)
+
 * Thu Jun 18 2020 Eduardo Lima (Etrunko) <elima@redhat.com> - 4.2.0-27.el8
 - kvm-hw-pci-pcie-Move-hot-plug-capability-check-to-pre_pl.patch [bz#1820531]
 - kvm-spec-Fix-python-shenigans-for-tests.patch [bz#1845779]
