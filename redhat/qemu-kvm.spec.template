@@ -1040,6 +1040,24 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Sun Jun 28 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-29.el8
+- kvm-vfio-ccw-Fix-error-message.patch [bz#1660916]
+- kvm-vfio-ccw-allow-non-prefetch-ORBs.patch [bz#1660916]
+- kvm-linux-headers-support-vfio-ccw-features.patch [bz#1660916]
+- kvm-vfio-ccw-Refactor-cleanup-of-regions.patch [bz#1660916]
+- kvm-vfio-ccw-Add-support-for-the-schib-region.patch [bz#1660916]
+- kvm-vfio-ccw-Refactor-ccw-irq-handler.patch [bz#1660916]
+- kvm-s390x-css-Refactor-the-css_queue_crw-routine.patch [bz#1660916]
+- kvm-vfio-ccw-Add-support-for-the-CRW-region-and-IRQ.patch [bz#1660916]
+- kvm-config-enable-VFIO_CCW.patch [bz#1660916]
+- kvm-virtio-blk-Refactor-the-code-that-processes-queued-r.patch []
+- kvm-virtio-blk-On-restart-process-queued-requests-in-the.patch []
+- kvm-Fix-use-afte-free-in-ip_reass-CVE-2020-1983.patch [bz#1838070]
+- Resolves: bz#1660916
+  ([IBM 8.3 FEAT] KVM s390x: DASD passthrough support - qemu part)
+- Resolves: bz#1838070
+  (CVE-2020-1983 virt:rhel/qemu-kvm: QEMU: slirp: use-after-free in ip_reass() function in ip_input.c [rhel-8])
+
 * Fri Jun 19 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-28.el8
 - kvm-redhat-Install-the-s390-netboot.img-that-we-ve-built.patch [bz#1828317]
 - kvm-linux-headers-update-kvm.h.patch [bz#1828317]
