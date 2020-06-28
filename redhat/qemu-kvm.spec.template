@@ -1041,6 +1041,15 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Sun Jun 28 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-28.el8
+- kvm-virtio-blk-Refactor-the-code-that-processes-queued-r.patch [bz#1812765]
+- kvm-virtio-blk-On-restart-process-queued-requests-in-the.patch [bz#1812765]
+- kvm-Fix-use-afte-free-in-ip_reass-CVE-2020-1983.patch [bz#1838082]
+- Resolves: bz#1812765
+  (qemu with iothreads enabled crashes on resume after enospc pause for disk extension)
+- Resolves: bz#1838082
+  (CVE-2020-1983 virt:8.2/qemu-kvm: QEMU: slirp: use-after-free in ip_reass() function in ip_input.c [rhel-av-8])
+
 * Thu Jun 18 2020 Eduardo Lima (Etrunko) <elima@redhat.com> - 4.2.0-27.el8
 - kvm-hw-pci-pcie-Move-hot-plug-capability-check-to-pre_pl.patch [bz#1820531]
 - kvm-spec-Fix-python-shenigans-for-tests.patch [bz#1845779]
