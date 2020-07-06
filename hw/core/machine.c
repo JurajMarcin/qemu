@@ -54,6 +54,17 @@ GlobalProperty hw_compat_rhel_8_2[] = {
     { "qxl-vga", "revision", "4" },
     /* hw_compat_rhel_8_2 from hw_compat_4_2 */
     { "fw_cfg", "acpi-mr-restore", "false" },
+    /* hw_compat_rhel_8_2 from hw_compat_5_0 */
+    { "virtio-balloon-device", "page-poison", "false" },
+    /* hw_compat_rhel_8_2 from hw_compat_5_0 */
+    { "vmport", "x-read-set-eax", "off" },
+    /* hw_compat_rhel_8_2 from hw_compat_5_0 */
+    { "vmport", "x-signal-unsupported-cmd", "off" },
+    /* hw_compat_rhel_8_2 from hw_compat_5_0 */
+    { "vmport", "x-report-vmx-type", "off" },
+    /* hw_compat_rhel_8_2 from hw_compat_5_0 */
+    { "vmport", "x-cmds-v2", "off" },
+
 };
 const size_t hw_compat_rhel_8_2_len = G_N_ELEMENTS(hw_compat_rhel_8_2);
 /*
