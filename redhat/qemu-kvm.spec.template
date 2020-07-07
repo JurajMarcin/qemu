@@ -1040,6 +1040,16 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Tue Jul 07 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-30.el8
+- kvm-i386-Mask-SVM-features-if-nested-SVM-is-disabled.patch [bz#1835390]
+- kvm-s390x-sigp-Fix-sense-running-reporting.patch [bz#1854092]
+- kvm-s390x-tcg-clear-local-interrupts-on-reset-normal.patch [bz#1854092]
+- kvm-virtio-net-fix-removal-of-failover-device.patch []
+- Resolves: bz#1835390
+  (qemu promote host does not support 'EDX.npt' and 'EDX.nrip-save' when test with Q35 machine type on EPYC host)
+- Resolves: bz#1854092
+  (kvm-unit-tests: tcg smp FAIL)
+
 * Sun Jun 28 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-29.el8
 - kvm-vfio-ccw-Fix-error-message.patch [bz#1660916]
 - kvm-vfio-ccw-allow-non-prefetch-ORBs.patch [bz#1660916]
