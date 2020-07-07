@@ -1041,6 +1041,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Tue Jul 07 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-29.el8
+- kvm-virtio-net-fix-removal-of-failover-device.patch [bz#1820120]
+- Resolves: bz#1820120
+  (After hotunplugging the vitrio device and netdev, hotunpluging the failover VF will cause qemu core dump)
+
 * Sun Jun 28 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-28.el8
 - kvm-virtio-blk-Refactor-the-code-that-processes-queued-r.patch [bz#1812765]
 - kvm-virtio-blk-On-restart-process-queued-requests-in-the.patch [bz#1812765]
