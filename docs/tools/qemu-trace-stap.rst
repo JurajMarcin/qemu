@@ -45,19 +45,19 @@ The following commands are valid:
   any of the listed names. If no *PATTERN* is given, the all possible
   probes will be listed.
 
-  For example, to list all probes available in the ``qemu-system-x86_64``
+  For example, to list all probes available in the ``qemu-kvm``
   binary:
 
   ::
 
-    $ qemu-trace-stap list qemu-system-x86_64
+    $ qemu-trace-stap list qemu-kvm
 
   To filter the list to only cover probes related to QEMU's cryptographic
   subsystem, in a binary outside ``$PATH``
 
   ::
 
-    $ qemu-trace-stap list /opt/qemu/4.0.0/bin/qemu-system-x86_64 'qcrypto*'
+    $ qemu-trace-stap list /opt/qemu/4.0.0/bin/qemu-kvm 'qcrypto*'
 
 .. option:: run OPTIONS BINARY PATTERN...
 
@@ -89,18 +89,18 @@ The following commands are valid:
     Restrict the tracing session so that it only triggers for the process
     identified by *PID*.
 
-  For example, to monitor all processes executing ``qemu-system-x86_64``
+  For example, to monitor all processes executing ``qemu-kvm``
   as found on ``$PATH``, displaying all I/O related probes:
 
   ::
 
-    $ qemu-trace-stap run qemu-system-x86_64 'qio*'
+    $ qemu-trace-stap run qemu-kvm 'qio*'
 
   To monitor only the QEMU process with PID 1732
 
   ::
 
-    $ qemu-trace-stap run --pid=1732 qemu-system-x86_64 'qio*'
+    $ qemu-trace-stap run --pid=1732 qemu-kvm 'qio*'
 
   To monitor QEMU processes running an alternative binary outside of
   ``$PATH``, displaying verbose information about setup of the
@@ -108,7 +108,7 @@ The following commands are valid:
 
   ::
 
-    $ qemu-trace-stap -v run /opt/qemu/4.0.0/qemu-system-x86_64 'qio*'
+    $ qemu-trace-stap -v run /opt/qemu/4.0.0/qemu-kvm 'qio*'
 
 See also
 --------
