@@ -116,7 +116,7 @@ Export ``/var/lib/fs/vm001/`` on vhost-user UNIX domain socket
 ::
 
   host# virtiofsd --socket-path=/var/run/vm001-vhost-fs.sock -o source=/var/lib/fs/vm001
-  host# qemu-system-x86_64 \
+  host# qemu-kvm \
       -chardev socket,id=char0,path=/var/run/vm001-vhost-fs.sock \
       -device vhost-user-fs-pci,chardev=char0,tag=myfs \
       -object memory-backend-memfd,id=mem,size=4G,share=on \
