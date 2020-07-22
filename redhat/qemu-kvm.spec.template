@@ -1040,6 +1040,14 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Wed Jul 22 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-31.el8
+- kvm-qcow2-Fix-alloc_cluster_abort-for-pre-existing-clust.patch [bz#1807057]
+- kvm-iotests-026-Test-EIO-on-preallocated-zero-cluster.patch [bz#1807057]
+- kvm-iotests-026-Test-EIO-on-allocation-in-a-data-file.patch [bz#1807057]
+- kvm-iotests-026-Move-v3-exclusive-test-to-new-file.patch [bz#1807057]
+- Resolves: bz#1807057
+  (qcow2_alloc_cluster_abort() frees preallocated zero clusters)
+
 * Tue Jul 07 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-30.el8
 - kvm-i386-Mask-SVM-features-if-nested-SVM-is-disabled.patch [bz#1835390]
 - kvm-s390x-sigp-Fix-sense-running-reporting.patch [bz#1854092]
