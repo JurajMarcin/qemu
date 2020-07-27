@@ -29,6 +29,34 @@
 #include "migration/vmstate.h"
 
 /*
+ * The same as hw_compat_4_2
+ */
+GlobalProperty hw_compat_rhel_8_2[] = {
+    /* hw_compat_rhel_8_2 from hw_compat_4_2 */
+    { "virtio-blk-device", "queue-size", "128"},
+    /* hw_compat_rhel_8_2 from hw_compat_4_2 */
+    { "virtio-scsi-device", "virtqueue_size", "128"},
+    /* hw_compat_rhel_8_2 from hw_compat_4_2 */
+    { "virtio-blk-device", "x-enable-wce-if-config-wce", "off" },
+    /* hw_compat_rhel_8_2 from hw_compat_4_2 */
+    { "virtio-blk-device", "seg-max-adjust", "off"},
+    /* hw_compat_rhel_8_2 from hw_compat_4_2 */
+    { "virtio-scsi-device", "seg_max_adjust", "off"},
+    /* hw_compat_rhel_8_2 from hw_compat_4_2 */
+    { "vhost-blk-device", "seg_max_adjust", "off"},
+    /* hw_compat_rhel_8_2 from hw_compat_4_2 */
+    { "usb-host", "suppress-remote-wake", "off" },
+    /* hw_compat_rhel_8_2 from hw_compat_4_2 */
+    { "usb-redir", "suppress-remote-wake", "off" },
+    /* hw_compat_rhel_8_2 from hw_compat_4_2 */
+    { "qxl", "revision", "4" },
+    /* hw_compat_rhel_8_2 from hw_compat_4_2 */
+    { "qxl-vga", "revision", "4" },
+    /* hw_compat_rhel_8_2 from hw_compat_4_2 */
+    { "fw_cfg", "acpi-mr-restore", "false" },
+};
+const size_t hw_compat_rhel_8_2_len = G_N_ELEMENTS(hw_compat_rhel_8_2);
+/*
  * The same as hw_compat_4_1
  */
 GlobalProperty hw_compat_rhel_8_1[] = {
