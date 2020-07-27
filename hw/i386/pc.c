@@ -361,6 +361,12 @@ GlobalProperty pc_rhel_compat[] = {
 };
 const size_t pc_rhel_compat_len = G_N_ELEMENTS(pc_rhel_compat);
 
+GlobalProperty pc_rhel_8_2_compat[] = {
+    /* pc_rhel_8_2_compat from pc_compat_4_2 */
+    { "mch", "smbase-smram", "off" },
+};
+const size_t pc_rhel_8_2_compat_len = G_N_ELEMENTS(pc_rhel_8_2_compat);
+
 /* pc_rhel_8_1_compat is empty since pc_4_1_compat is */
 GlobalProperty pc_rhel_8_1_compat[] = { };
 const size_t pc_rhel_8_1_compat_len = G_N_ELEMENTS(pc_rhel_8_1_compat);
