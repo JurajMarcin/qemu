@@ -1040,6 +1040,18 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Mon Aug 10 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-32.el8
+- kvm-i386-Add-2nd-Generation-AMD-EPYC-processors.patch [bz#1780385]
+- kvm-target-i386-sev-provide-proper-error-reporting-for-q.patch [bz#1689341]
+- kvm-target-i386-sev-fail-query-sev-capabilities-if-QEMU-.patch [bz#1689341]
+- kvm-s390x-protvirt-allow-to-IPL-secure-guests-with-no-re.patch [bz#1863034]
+- Resolves: bz#1689341
+  (QEMU should report an error and return failure if AMD SEV is not enabled in the kernel)
+- Resolves: bz#1780385
+  ([RFE] AMD EPYC-Rome support for KVM / QEMU guest)
+- Resolves: bz#1863034
+  (RHEL8.3 Beta - Secure Execution: Unable to start Qemu with "-no-reboot" option (qemu-kvm))
+
 * Wed Jul 22 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-31.el8
 - kvm-qcow2-Fix-alloc_cluster_abort-for-pre-existing-clust.patch [bz#1807057]
 - kvm-iotests-026-Test-EIO-on-preallocated-zero-cluster.patch [bz#1807057]
