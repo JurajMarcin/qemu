@@ -2738,6 +2738,7 @@ static void rhel_machine_class_init(ObjectClass *oc, void *data)
     mc->init = machvirt_init;
     /* Maximum supported VCPU count for all virt-rhel* machines */
     mc->max_cpus = 384;
+    machine_class_allow_dynamic_sysbus_dev(mc, TYPE_TPM_TIS_SYSBUS);
     mc->block_default_type = IF_VIRTIO;
     mc->no_cdrom = 1;
     mc->pci_allow_0_address = true;
