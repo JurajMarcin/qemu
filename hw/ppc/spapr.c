@@ -4996,15 +4996,41 @@ DEFINE_SPAPR_MACHINE(2_1, "2.1", false);
 #endif
 
 /*
- * pseries-rhel8.2.0
+ * pseries-rhel8.3.0
+ * like pseries-5.1
  */
 
-static void spapr_machine_rhel820_class_options(MachineClass *mc)
+static void spapr_machine_rhel830_class_options(MachineClass *mc)
 {
     /* Defaults for the latest behaviour inherited from the base class */
 }
 
-DEFINE_SPAPR_MACHINE(rhel820, "rhel8.2.0", true);
+DEFINE_SPAPR_MACHINE(rhel830, "rhel8.3.0", true);
+
+/*
+ * pseries-rhel8.2.0
+ * like pseries-4.2 + pseries-5.0
+ * except SPAPR_CAP_CCF_ASSIST that has been backported to pseries-rhel8.1.0
+ */
+
+static void spapr_machine_rhel820_class_options(MachineClass *mc)
+{
+    SpaprMachineClass *smc = SPAPR_MACHINE_CLASS(mc);
+
+    spapr_machine_rhel830_class_options(mc);
+    compat_props_add(mc->compat_props, hw_compat_rhel_8_2,
+                     hw_compat_rhel_8_2_len);
+
+    /* from pseries-4.2 */
+    smc->default_caps.caps[SPAPR_CAP_FWNMI] = SPAPR_CAP_OFF;
+    smc->rma_limit = 16 * GiB;
+    mc->nvdimm_supported = false;
+
+    /* from pseries-5.0 */
+    mc->numa_mem_supported = true;
+}
+
+DEFINE_SPAPR_MACHINE(rhel820, "rhel8.2.0", false);
 
 /*
  * pseries-rhel8.1.0
