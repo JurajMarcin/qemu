@@ -5003,6 +5003,9 @@ DEFINE_SPAPR_MACHINE(2_1, "2.1", false);
 static void spapr_machine_rhel830_class_options(MachineClass *mc)
 {
     /* Defaults for the latest behaviour inherited from the base class */
+
+    /* Maximum supported VCPU count for all pseries-rhel* machines */
+    mc->max_cpus = 384;
 }
 
 DEFINE_SPAPR_MACHINE(rhel830, "rhel8.3.0", true);
