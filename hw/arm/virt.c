@@ -2105,6 +2105,7 @@ static void virt_set_acpi(Object *obj, Visitor *v, const char *name,
     visit_type_OnOffAuto(v, name, &vms->acpi, errp);
 }
 
+#if 0 /* Disabled for Red Hat Enterprise Linux */
 static bool virt_get_ras(Object *obj, Error **errp)
 {
     VirtMachineState *vms = VIRT_MACHINE(obj);
@@ -2125,6 +2126,7 @@ static bool virt_get_mte(Object *obj, Error **errp)
 
     return vms->mte;
 }
+#endif /* disabled for RHEL */
 
 static void virt_set_mte(Object *obj, bool value, Error **errp)
 {
@@ -2802,12 +2804,8 @@ static void rhel820_virt_instance_init(Object *obj)
     object_property_set_description(obj, "highmem",
                                     "Set on/off to enable/disable using "
                                     "physical address space above 32 bits");
-    /*
-     * Default GIC type is still v2, but became configurable for RHEL. We
-     * keep v2 instead of max as TCG CI test cases require an MSI controller
-     * and there is no userspace ITS MSI emulation available.
-     */
-    vms->gic_version = 2;
+
+    vms->gic_version = VIRT_GIC_VERSION_NOSEL;
     object_property_add_str(obj, "gic-version", virt_get_gic_version,
                         virt_set_gic_version);
     object_property_set_description(obj, "gic-version",
@@ -2834,13 +2832,8 @@ static void rhel820_virt_instance_init(Object *obj)
     object_property_set_description(obj, "iommu",
                                     "Set the IOMMU type. "
                                     "Valid values are none and smmuv3");
-    vms->ras = false;
-    object_property_add_bool(obj, "ras", virt_get_ras,
-                             virt_set_ras);
-    object_property_set_description(obj, "ras",
-                                    "Set on/off to enable/disable reporting host memory errors "
-                                    "to a KVM guest using ACPI and guest external abort exceptions");
 
+    vms->ras = false;
     /* MTE is disabled by default.  */
     vms->mte = false;
 
