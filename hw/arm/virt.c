@@ -2788,7 +2788,7 @@ static void rhel_machine_init(void)
 }
 type_init(rhel_machine_init);
 
-static void rhel820_virt_instance_init(Object *obj)
+static void rhel_virt_instance_init(Object *obj)
 {
     VirtMachineState *vms = VIRT_MACHINE(obj);
     VirtMachineClass *vmc = VIRT_MACHINE_GET_CLASS(vms);
@@ -2839,6 +2839,11 @@ static void rhel820_virt_instance_init(Object *obj)
 
     vms->irqmap=a15irqmap;
     virt_flash_create(vms);
+}
+
+static void rhel820_virt_instance_init(Object *obj)
+{
+    rhel_virt_instance_init(obj);
 }
 
 static void rhel820_virt_options(MachineClass *mc)
