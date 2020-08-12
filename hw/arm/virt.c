@@ -2841,6 +2841,17 @@ static void rhel_virt_instance_init(Object *obj)
     virt_flash_create(vms);
 }
 
+static void rhel830_virt_instance_init(Object *obj)
+{
+    rhel_virt_instance_init(obj);
+}
+
+static void rhel830_virt_options(MachineClass *mc)
+{
+    compat_props_add(mc->compat_props, arm_rhel_compat, arm_rhel_compat_len);
+}
+DEFINE_RHEL_MACHINE_AS_LATEST(8, 3, 0)
+
 static void rhel820_virt_instance_init(Object *obj)
 {
     rhel_virt_instance_init(obj);
@@ -2848,6 +2859,8 @@ static void rhel820_virt_instance_init(Object *obj)
 
 static void rhel820_virt_options(MachineClass *mc)
 {
-    compat_props_add(mc->compat_props, arm_rhel_compat, arm_rhel_compat_len);
+    rhel830_virt_options(mc);
+    compat_props_add(mc->compat_props, hw_compat_rhel_8_2,
+                     hw_compat_rhel_8_2_len);
 }
-DEFINE_RHEL_MACHINE_AS_LATEST(8, 2, 0)
+DEFINE_RHEL_MACHINE(8, 2, 0)
