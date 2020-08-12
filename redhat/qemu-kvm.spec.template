@@ -1073,6 +1073,15 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Wed Aug 12 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-1.el8
+- Quick changelog fix to reflect the current fixes:
+- Resolve: bz#1781911
+- Resolve: bz#1841529
+- Resolve: bz#1842902
+- Resolve: bz#1818843
+- Resolve: bz#1819292
+- Resolve: bz#1801242
+
 * Wed Aug 12 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-0.el8
 - Rebase to 5.1.0
 - Resolves: bz#1809650
