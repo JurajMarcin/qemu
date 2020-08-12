@@ -23,5 +23,4 @@ DOWNSTREAM-BZ-qa-ack = +
 DOWNSTREAM-BZ-pm-ack = +
 DOWNSTREAM-BZ-devel-ack = +
 
-#DOWNSTREAM-REPOSITORY = https://code.engineering.redhat.com/gerrit/virt-rhel8-qemu-kvm
-DOWNSTREAM-REPOSITORY = https://gitlab.cee.redhat.com/mrezanin/qemu-kvm-rebase.git
+DOWNSTREAM-REPOSITORY = https://code.engineering.redhat.com/gerrit/virt-rhel8-qemu-kvm

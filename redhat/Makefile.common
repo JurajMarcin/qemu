@@ -6,14 +6,11 @@ COMMIT:=
 RELEASE:=0
 ZRELEASE:=
 RELEASE_SEPARATOR:=-
-WEEKLY_DATE:=2020805
 RC:=
 BUILD_TARGET=module-virt-8.3-8030020200811120152-30b713e6
 
-#TARFILE:=qemu-$(VERSION).tar.xz
-TARFILE:=qemu-$(VERSION)$(RC).tar.xz
+TARFILE:=qemu-$(VERSION).tar.xz
 TARURL:=https://download.qemu.org/$(TARFILE)
-#TARURL:=http://batcave.lab.eng.brq.redhat.com/www/qemu/weekly/$(WEEKLY_DATE)/$(TARFILE)
 TARSHA256:=c9174eb5933d9eb5e61f541cd6d1184cd3118dfe4c5c4955bc1bdc4d390fa4e5
 MARKER:=d0ed6a69d399ae193959225cdeaa9382746c91cc
 

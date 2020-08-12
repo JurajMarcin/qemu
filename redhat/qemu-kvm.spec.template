@@ -1073,6 +1073,10 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Wed Aug 12 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-0.el8
+- Rebase to 5.1.0
+- Resolves: bz#1809650
+
 * Tue Jul 07 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-29.el8
 - kvm-virtio-net-fix-removal-of-failover-device.patch [bz#1820120]
 - Resolves: bz#1820120
