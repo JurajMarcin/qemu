@@ -2736,11 +2736,8 @@ static void rhel_machine_class_init(ObjectClass *oc, void *data)
 
     mc->family = "virt-rhel-Z";
     mc->init = machvirt_init;
-    /* Start with max_cpus set to 512, which is the maximum supported by KVM.
-     * The value may be reduced later when we have more information about the
-     * configuration of the particular instance.
-     */
-    mc->max_cpus = 512;
+    /* Maximum supported VCPU count for all virt-rhel* machines */
+    mc->max_cpus = 384;
     mc->block_default_type = IF_VIRTIO;
     mc->no_cdrom = 1;
     mc->pci_allow_0_address = true;
