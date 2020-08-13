@@ -1073,6 +1073,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Wed Aug 12 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-2.el8
+- kvm-redhat-define-hw_compat_8_2.patch [bz#1853265]
+- Resolves: bz#1853265
+  (Forward and backward migration from rhel-av-8.3.0(qemu-kvm-5.0.0) to rhel-av-8.2.1(qemu-kvm-4.2.0) failed with "qemu-kvm: error while loading state for instance 0x0 of device 'spapr'")
+
 * Wed Aug 12 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-1.el8
 - Quick changelog fix to reflect the current fixes:
 - Resolve: bz#1781911
