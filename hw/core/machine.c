@@ -29,7 +29,7 @@
 #include "migration/vmstate.h"
 
 /*
- * The same as hw_compat_4_2
+ * The same as hw_compat_4_2 + hw_compat_5_0
  */
 GlobalProperty hw_compat_rhel_8_2[] = {
     /* hw_compat_rhel_8_2 from hw_compat_4_2 */
@@ -55,6 +55,8 @@ GlobalProperty hw_compat_rhel_8_2[] = {
     /* hw_compat_rhel_8_2 from hw_compat_4_2 */
     { "fw_cfg", "acpi-mr-restore", "false" },
     /* hw_compat_rhel_8_2 from hw_compat_5_0 */
+    { "pci-host-bridge", "x-config-reg-migration-enabled", "off" },
+    /* hw_compat_rhel_8_2 from hw_compat_5_0 */
     { "virtio-balloon-device", "page-poison", "false" },
     /* hw_compat_rhel_8_2 from hw_compat_5_0 */
     { "vmport", "x-read-set-eax", "off" },
@@ -64,9 +66,9 @@ GlobalProperty hw_compat_rhel_8_2[] = {
     { "vmport", "x-report-vmx-type", "off" },
     /* hw_compat_rhel_8_2 from hw_compat_5_0 */
     { "vmport", "x-cmds-v2", "off" },
-
 };
 const size_t hw_compat_rhel_8_2_len = G_N_ELEMENTS(hw_compat_rhel_8_2);
+
 /*
  * The same as hw_compat_4_1
  */
