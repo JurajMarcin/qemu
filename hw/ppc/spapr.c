@@ -5019,10 +5019,15 @@ DEFINE_SPAPR_MACHINE(rhel830, "rhel8.3.0", true);
 static void spapr_machine_rhel820_class_options(MachineClass *mc)
 {
     SpaprMachineClass *smc = SPAPR_MACHINE_CLASS(mc);
+    /* from pseries-5.0 */
+    static GlobalProperty compat[] = {
+        { TYPE_SPAPR_PCI_HOST_BRIDGE, "pre-5.1-associativity", "on" },
+    };
 
     spapr_machine_rhel830_class_options(mc);
     compat_props_add(mc->compat_props, hw_compat_rhel_8_2,
                      hw_compat_rhel_8_2_len);
+    compat_props_add(mc->compat_props, compat, G_N_ELEMENTS(compat));
 
     /* from pseries-4.2 */
     smc->default_caps.caps[SPAPR_CAP_FWNMI] = SPAPR_CAP_OFF;
@@ -5031,6 +5036,7 @@ static void spapr_machine_rhel820_class_options(MachineClass *mc)
 
     /* from pseries-5.0 */
     mc->numa_mem_supported = true;
+    smc->pre_5_1_assoc_refpoints = true;
 }
 
 DEFINE_SPAPR_MACHINE(rhel820, "rhel8.2.0", false);
