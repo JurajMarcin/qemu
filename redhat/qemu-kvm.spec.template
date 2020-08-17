@@ -1041,6 +1041,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Mon Aug 17 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-29.el8_2
+- kvm-qemu-img-convert-Don-t-pre-zero-images.patch [bz#1861682]
+- Resolves: bz#1861682
+  (qemu-img convert uses possibly slow pre-zeroing on block storage [rhel-8.2.1.z])
+
 * Tue Jul 07 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-29.el8
 - kvm-virtio-net-fix-removal-of-failover-device.patch [bz#1820120]
 - Resolves: bz#1820120
