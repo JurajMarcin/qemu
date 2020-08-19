@@ -1043,6 +1043,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Wed Aug 19 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-33.el8
+- kvm-Require-libfdt-1.6.0.patch [bz#1867847]
+- Resolves: bz#1867847
+  ([ppc] virt module 7629: /usr/libexec/qemu-kvm: undefined symbol: fdt_check_full, version LIBFDT_1.2)
+
 * Mon Aug 10 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-32.el8
 - kvm-i386-Add-2nd-Generation-AMD-EPYC-processors.patch [bz#1780385]
 - kvm-target-i386-sev-provide-proper-error-reporting-for-q.patch [bz#1689341]
