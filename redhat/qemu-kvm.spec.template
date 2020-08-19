@@ -1075,6 +1075,18 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Wed Aug 19 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-3.el8
+- kvm-redhat-Update-hw_compat_8_2.patch [bz#1843348]
+- kvm-redhat-update-pseries-rhel8.2.0-machine-type.patch [bz#1843348]
+- kvm-Disable-TPM-passthrough-backend-on-ARM.patch [bz#1801242]
+- kvm-Require-libfdt-1.6.0.patch [bz#1867847]
+- Resolves: bz#1801242
+  ([aarch64] vTPM support in machvirt)
+- Resolves: bz#1843348
+  (8.3 machine types for POWER)
+- Resolves: bz#1867847
+  ([ppc] virt module 7629: /usr/libexec/qemu-kvm: undefined symbol: fdt_check_full, version LIBFDT_1.2)
+
 * Wed Aug 12 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-2.el8
 - kvm-redhat-define-hw_compat_8_2.patch [bz#1853265]
 - Resolves: bz#1853265
