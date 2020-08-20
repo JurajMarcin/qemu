@@ -2757,6 +2757,7 @@ static void rhel_machine_class_init(ObjectClass *oc, void *data)
     hc->unplug = virt_machine_device_unplug_cb;
     mc->nvdimm_supported = true;
     mc->auto_enable_numa_with_memhp = true;
+    mc->auto_enable_numa_with_memdev = true;
     mc->default_ram_id = "mach-virt.ram";
 
     object_class_property_add(oc, "acpi", "OnOffAuto",
@@ -2860,5 +2861,6 @@ static void rhel820_virt_options(MachineClass *mc)
     compat_props_add(mc->compat_props, hw_compat_rhel_8_2,
                      hw_compat_rhel_8_2_len);
     mc->numa_mem_supported = true;
+    mc->auto_enable_numa_with_memdev = false;
 }
 DEFINE_RHEL_MACHINE(8, 2, 0)
