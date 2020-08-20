@@ -1009,6 +1009,7 @@ static void pc_machine_rhel7_options(MachineClass *m)
     pcmc->default_nic_model = "e1000";
     m->default_display = "std";
     m->no_parallel = 1;
+    m->numa_mem_supported = true;
     machine_class_allow_dynamic_sysbus_dev(m, TYPE_RAMFB_DEVICE);
     compat_props_add(m->compat_props, pc_rhel_compat, pc_rhel_compat_len);
     m->alias = "pc";

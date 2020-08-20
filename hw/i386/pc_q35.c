@@ -617,6 +617,7 @@ static void pc_q35_machine_rhel820_options(MachineClass *m)
     pc_q35_machine_rhel_options(m);
     m->desc = "RHEL-8.2.0 PC (Q35 + ICH9, 2009)";
     m->alias = NULL;
+    m->numa_mem_supported = true;
     pcmc->smbios_stream_product = "RHEL-AV";
     pcmc->smbios_stream_version = "8.2.0";
     compat_props_add(m->compat_props, hw_compat_rhel_8_2,
