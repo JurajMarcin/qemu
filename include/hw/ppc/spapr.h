@@ -212,6 +212,9 @@ struct SpaprMachineState {
     int fwnmi_machine_check_interlock;
     QemuCond fwnmi_machine_check_interlock_cond;
 
+    /* Secure Guest support via x-svm-allowed */
+    bool svm_allowed;
+
     /*< public >*/
     char *kvm_type;
     char *host_model;

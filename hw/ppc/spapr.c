@@ -1636,6 +1636,9 @@ static void spapr_machine_reset(MachineState *machine)
 
     kvmppc_svm_off(&error_fatal);
     spapr_caps_apply(spapr);
+    if (spapr->svm_allowed) {
+        kvmppc_svm_allow(&error_fatal);
+    }
 
     first_ppc_cpu = POWERPC_CPU(first_cpu);
     if (kvm_enabled() && kvmppc_has_cap_mmu_radix() &&
@@ -3303,6 +3306,20 @@ static void spapr_set_host_serial(Object *obj, const char *value, Error **errp)
     spapr->host_serial = g_strdup(value);
 }
 
+static bool spapr_get_svm_allowed(Object *obj, Error **errp)
+{
+    SpaprMachineState *spapr = SPAPR_MACHINE(obj);
+
+    return spapr->svm_allowed;
+}
+
+static void spapr_set_svm_allowed(Object *obj, bool value, Error **errp)
+{
+    SpaprMachineState *spapr = SPAPR_MACHINE(obj);
+
+    spapr->svm_allowed = value;
+}
+
 static void spapr_instance_init(Object *obj)
 {
     SpaprMachineState *spapr = SPAPR_MACHINE(obj);
@@ -3358,6 +3375,12 @@ static void spapr_instance_init(Object *obj)
         spapr_get_host_serial, spapr_set_host_serial);
     object_property_set_description(obj, "host-serial",
         "Host serial number to advertise in guest device tree");
+    object_property_add_bool(obj, "x-svm-allowed",
+                            spapr_get_svm_allowed,
+                            spapr_set_svm_allowed);
+    object_property_set_description(obj, "x-svm-allowed",
+                                    "Allow the guest to become a Secure Guest"
+                                    " (experimental only)");
 }
 
 static void spapr_machine_finalizefn(Object *obj)
