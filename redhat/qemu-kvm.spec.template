@@ -864,6 +864,9 @@ rm -rf $RPM_BUILD_ROOT%{qemudocdir}/user/.buildinfo
 # Remove spec
 rm -rf $RPM_BUILD_ROOT%{qemudocdir}/specs
 
+# Hack to keep qemu-pr-helper in original location
+mv $RPM_BUILD_ROOT%{_libexecdir}/qemu-pr-helper $RPM_BUILD_ROOT%{_bindir}/qemu-pr-helper
+
 %check
 cd qemu-kvm-build
 export DIFF=diff; make check V=1
@@ -927,7 +930,7 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %{_mandir}/man7/qemu-qmp-ref.7*
 %{_mandir}/man7/qemu-cpu-models.7*
 %{_bindir}/qemu-keymap
-%{_libexecdir}/qemu-pr-helper
+%{_bindir}/qemu-pr-helper
 %{_bindir}/qemu-edid
 %{_bindir}/qemu-trace-stap
 %{_unitdir}/qemu-pr-helper.service
