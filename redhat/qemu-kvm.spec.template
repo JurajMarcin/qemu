@@ -652,6 +652,7 @@ pushd %{qemu_kvm_build}
   --enable-vnc-sasl \
   --enable-werror \
   --enable-xkbcommon \
+  --without-default-devices
 
 
 echo "qemu-kvm config-host.mak contents:"
@@ -1015,6 +1016,7 @@ echo "Skipping tests as not fixed yet"
 #export DIFF=diff; make check V=1
 popd
 
+
 %post -n qemu-kvm-common
 %systemd_post ksm.service
 %systemd_post ksmtuned.service
@@ -1179,9 +1181,10 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
     %{_libdir}/qemu-kvm/hw-usb-redirect.so
 %endif
 %{_libdir}/qemu-kvm/hw-display-virtio-gpu.so
-%{_libdir}/qemu-kvm/hw-display-virtio-gpu-pci.so
 %ifarch s390x
     %{_libdir}/qemu-kvm/hw-s390x-virtio-gpu-ccw.so
+%else
+    %{_libdir}/qemu-kvm/hw-display-virtio-gpu-pci.so
 %endif
 %endif
 
