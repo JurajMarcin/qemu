@@ -94,7 +94,6 @@ qtests_i386 = \
    'drive_del-test',
    'tco-test',
    'cpu-plug-test',
-   'q35-test',
    'vmgenid-test',
    'migration-test',
    'test-x86-cpuid-compat',
@@ -223,7 +222,6 @@ qtests_s390x = \
   (config_host.has_key('CONFIG_POSIX') ? ['test-filter-redirector'] : []) +                     \
   ['boot-serial-test',
    'drive_del-test',
-   'device-plug-test',
    'virtio-ccw-test',
    'cpu-plug-test',
    'migration-test']
