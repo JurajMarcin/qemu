@@ -1372,6 +1372,7 @@ static void test_acpi_virt_tcg_numamem(void)
 
 }
 
+#if 0 /* Disabled for Red Hat Enterprise Linux */
 static void test_acpi_virt_tcg_pxb(void)
 {
     test_data data = {
@@ -1403,6 +1404,7 @@ static void test_acpi_virt_tcg_pxb(void)
 
     free_test_data(&data);
 }
+#endif
 
 static void test_acpi_tcg_acpi_hmat(const char *machine)
 {
@@ -1644,7 +1646,8 @@ int main(int argc, char *argv[])
             qtest_add_func("acpi/virt", test_acpi_virt_tcg);
             qtest_add_func("acpi/virt/numamem", test_acpi_virt_tcg_numamem);
             qtest_add_func("acpi/virt/memhp", test_acpi_virt_tcg_memhp);
-            qtest_add_func("acpi/virt/pxb", test_acpi_virt_tcg_pxb);
+            /* Disabled for Red Hat Enterprise Linux
+            qtest_add_func("acpi/virt/pxb", test_acpi_virt_tcg_pxb); */
             qtest_add_func("acpi/virt/oem-fields", test_acpi_oem_fields_virt);
         }
     }
