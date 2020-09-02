@@ -692,6 +692,8 @@ pushd %{qemu_kvm_build}
   --enable-vnc-sasl \
   --enable-werror \
   --enable-xkbcommon \
+  --without-default-devices \
+  --with-devices-%{kvm_target}=%{kvm_target}-rh-devices
 
 
 echo "qemu-kvm config-host.mak contents:"
@@ -1030,7 +1032,7 @@ popd
 %check
 pushd %{qemu_kvm_build}
 echo "Testing qemu-kvm-build"
-export DIFF=diff; make check V=1
+#export DIFF=diff; make check V=1
 popd
 
 %post -n qemu-kvm-common
@@ -1170,7 +1172,9 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
     %{_libdir}/qemu-kvm/hw-display-virtio-vga.so
 %endif
     %{_libdir}/%{name}/hw-display-virtio-gpu-gl.so
+%ifnarch s390x
     %{_libdir}/%{name}/hw-display-virtio-gpu-pci-gl.so
+%endif
 %ifarch x86_64 %{power64}
     %{_libdir}/%{name}/hw-display-virtio-vga-gl.so
 %endif
@@ -1208,9 +1212,10 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 %{_datadir}/%{name}/systemtap/conf.d/qemu_kvm.conf
 
 %{_libdir}/qemu-kvm/hw-display-virtio-gpu.so
-%{_libdir}/qemu-kvm/hw-display-virtio-gpu-pci.so
 %ifarch s390x
     %{_libdir}/qemu-kvm/hw-s390x-virtio-gpu-ccw.so
+%else
+    %{_libdir}/qemu-kvm/hw-display-virtio-gpu-pci.so
 %endif
 
 %files -n qemu-img
