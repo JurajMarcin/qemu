@@ -68,7 +68,6 @@ qtests_i386 = \
   (config_all_devices.has_key('CONFIG_RTL8139_PCI') ? ['rtl8139-test'] : []) +              \
   (config_all_devices.has_key('CONFIG_E1000E_PCI_EXPRESS') ? ['fuzz-e1000e-test'] : []) +   \
   (config_all_devices.has_key('CONFIG_ESP_PCI') ? ['am53c974-test'] : []) +                 \
-  (unpack_edk2_blobs ? ['bios-tables-test'] : []) +                                         \
   qtests_pci +                                                                              \
   ['fdc-test',
    'ide-test',
@@ -81,7 +80,6 @@ qtests_i386 = \
    'drive_del-test',
    'tco-test',
    'cpu-plug-test',
-   'q35-test',
    'vmgenid-test',
    'migration-test',
    'test-x86-cpuid-compat',
@@ -130,17 +128,15 @@ qtests_mips64el = \
 
 qtests_ppc = \
   (config_all_devices.has_key('CONFIG_ISA_TESTDEV') ? ['endianness-test'] : []) +            \
-  (config_all_devices.has_key('CONFIG_M48T59') ? ['m48t59-test'] : []) +                     \
-  ['boot-order-test', 'prom-env-test', 'boot-serial-test']                 \
+  (config_all_devices.has_key('CONFIG_M48T59') ? ['m48t59-test'] : [])
 
 qtests_ppc64 = \
   (config_all_devices.has_key('CONFIG_PSERIES') ? ['device-plug-test'] : []) +               \
   (config_all_devices.has_key('CONFIG_POWERNV') ? ['pnv-xscom-test'] : []) +                 \
   (config_all_devices.has_key('CONFIG_PSERIES') ? ['rtas-test'] : []) +                      \
-  (slirp.found() ? ['pxe-test', 'test-netfilter'] : []) +              \
+  (slirp.found() ? ['pxe-test'] : []) +              \
   (config_all_devices.has_key('CONFIG_USB_UHCI') ? ['usb-hcd-uhci-test'] : []) +             \
   (config_all_devices.has_key('CONFIG_USB_XHCI_NEC') ? ['usb-hcd-xhci-test'] : []) +         \
-  (config_host.has_key('CONFIG_POSIX') ? ['test-filter-mirror'] : []) +                      \
   qtests_pci + ['migration-test', 'numa-test', 'cpu-plug-test', 'drive_del-test']
 
 qtests_sh4 = (config_all_devices.has_key('CONFIG_ISA_TESTDEV') ? ['endianness-test'] : [])
@@ -186,8 +182,8 @@ qtests_aarch64 = \
   ['arm-cpu-features',
    'numa-test',
    'boot-serial-test',
-   'xlnx-can-test',
-   'fuzz-xlnx-dp-test',
+#   'xlnx-can-test',
+#   'fuzz-xlnx-dp-test',
    'migration-test']
 
 qtests_s390x = \
@@ -196,7 +192,6 @@ qtests_s390x = \
   (config_host.has_key('CONFIG_POSIX') ? ['test-filter-redirector'] : []) +                     \
   ['boot-serial-test',
    'drive_del-test',
-   'device-plug-test',
    'virtio-ccw-test',
    'cpu-plug-test',
    'migration-test']
