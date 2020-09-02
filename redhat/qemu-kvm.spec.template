@@ -1065,12 +1065,12 @@ popd
 %check
 pushd %{qemu_kvm_build}
 echo "Testing qemu-kvm-build"
-#export DIFF=diff; make check V=1
+export DIFF=diff; make check V=1
 popd
 
 echo "Testing qemu-kiwi"
 pushd %{qemu_kiwi_build}
-#export DIFF=diff; make check V=1
+export DIFF=diff; make check V=1
 popd
 
 %post -n qemu-kvm-common

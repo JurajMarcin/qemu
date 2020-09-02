@@ -140,6 +140,7 @@ static void add_x86_tests(void)
         qtest_add_data_func("cdrom/boot/isapc", "-M isapc "
                             "-drive if=ide,media=cdrom,file=", test_cdboot);
     }
+#if 0  /* Disabled for Red Hat Enterprise Linux */
     qtest_add_data_func("cdrom/boot/am53c974",
                         "-device am53c974 -device scsi-cd,drive=cd1 "
                         "-drive if=none,id=cd1,format=raw,file=", test_cdboot);
@@ -155,6 +156,7 @@ static void add_x86_tests(void)
     qtest_add_data_func("cdrom/boot/megasas-gen2", "-M q35 "
                         "-device megasas-gen2 -device scsi-cd,drive=cd1 "
                         "-blockdev file,node-name=cd1,filename=", test_cdboot);
+#endif
 }
 
 static void add_s390x_tests(void)
