@@ -38,7 +38,7 @@ static void test_issue542_ich6(void)
 {
     QTestState *s;
 
-    s = qtest_init("-nographic -nodefaults -M pc-q35-6.2 "
+    s = qtest_init("-nographic -nodefaults -M pc-q35-rhel9.0.0 "
                    "-device intel-hda,id=" HDA_ID CODEC_DEVICES);
 
     qtest_outl(s, 0xcf8, 0x80000804);
