@@ -1011,11 +1011,9 @@ popd
 
 %check
 pushd %{qemu_kvm_build}
-echo "Skipping tests as not fixed yet"
-#echo "Testing qemu-kvm-build"
-#export DIFF=diff; make check V=1
+echo "Testing qemu-kvm-build"
+export DIFF=diff; make check V=1
 popd
-
 
 %post -n qemu-kvm-common
 %systemd_post ksm.service

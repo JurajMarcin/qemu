@@ -21,6 +21,7 @@ static void test_xhci_hotplug(void)
     usb_test_hotplug(global_qtest, "xhci", "1", NULL);
 }
 
+#if 0 /* Disabled for Red Hat Enterprise Linux */
 static void test_usb_uas_hotplug(void)
 {
     QTestState *qts = global_qtest;
@@ -36,6 +37,7 @@ static void test_usb_uas_hotplug(void)
     qtest_qmp_device_del(qts, "scsihd");
     qtest_qmp_device_del(qts, "uas");
 }
+#endif
 
 static void test_usb_ccid_hotplug(void)
 {
@@ -56,7 +58,9 @@ int main(int argc, char **argv)
 
     qtest_add_func("/xhci/pci/init", test_xhci_init);
     qtest_add_func("/xhci/pci/hotplug", test_xhci_hotplug);
+#if 0 /* Disabled for Red Hat Enterprise Linux */
     qtest_add_func("/xhci/pci/hotplug/usb-uas", test_usb_uas_hotplug);
+#endif
     qtest_add_func("/xhci/pci/hotplug/usb-ccid", test_usb_ccid_hotplug);
 
     qtest_start("-device nec-usb-xhci,id=xhci"

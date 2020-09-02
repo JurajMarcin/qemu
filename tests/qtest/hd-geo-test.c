@@ -737,6 +737,7 @@ static void test_override_ide(void)
     test_override(args, expected);
 }
 
+#if 0 /* Require lsi53c895a - not supported on RHEL */
 static void test_override_scsi(void)
 {
     TestArgs *args = create_args();
@@ -781,6 +782,7 @@ static void test_override_scsi_2_controllers(void)
     add_scsi_disk(args, 3, 1, 0, 1, 2, 0, 1, 0);
     test_override(args, expected);
 }
+#endif
 
 static void test_override_virtio_blk(void)
 {
@@ -960,9 +962,11 @@ int main(int argc, char **argv)
     qtest_add_func("hd-geo/ide/device/user/chst", test_ide_device_user_chst);
     if (have_qemu_img()) {
         qtest_add_func("hd-geo/override/ide", test_override_ide);
+#if 0 /* Require lsi53c895a - not supported on RHEL */
         qtest_add_func("hd-geo/override/scsi", test_override_scsi);
         qtest_add_func("hd-geo/override/scsi_2_controllers",
                        test_override_scsi_2_controllers);
+#endif
         qtest_add_func("hd-geo/override/virtio_blk", test_override_virtio_blk);
         qtest_add_func("hd-geo/override/zero_chs", test_override_zero_chs);
         qtest_add_func("hd-geo/override/scsi_hot_unplug",
