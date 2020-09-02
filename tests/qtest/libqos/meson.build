@@ -43,7 +43,7 @@ libqos_srcs = files(
         'virtio-rng.c',
         'virtio-scsi.c',
         'virtio-serial.c',
-        'virtio-iommu.c',
+#        'virtio-iommu.c',
         'virtio-gpio.c',
         'virtio-scmi.c',
         'generic-pcihost.c',

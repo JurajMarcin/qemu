@@ -1707,6 +1707,7 @@ static void test_acpi_microvm_ioapic2_tcg(void)
     free_test_data(&data);
 }
 
+#if 0 /* Disabled for Red Hat Enterprise Linux */
 static void test_acpi_riscv64_virt_tcg_numamem(void)
 {
     test_data data = {
@@ -1732,6 +1733,7 @@ static void test_acpi_riscv64_virt_tcg_numamem(void)
                   &data);
     free_test_data(&data);
 }
+#endif /* disabled for RHEL */
 
 static void test_acpi_aarch64_virt_tcg_numamem(void)
 {
@@ -2085,6 +2087,7 @@ static void test_acpi_microvm_acpi_erst(void)
 }
 #endif /* CONFIG_POSIX */
 
+#if 0 /* Disabled for Red Hat Enterprise Linux */
 static void test_acpi_riscv64_virt_tcg(void)
 {
     test_data data = {
@@ -2106,6 +2109,7 @@ static void test_acpi_riscv64_virt_tcg(void)
     test_acpi_one("-cpu rva22s64 ", &data);
     free_test_data(&data);
 }
+#endif /* disabled for RHEL */
 
 static void test_acpi_aarch64_virt_tcg(void)
 {
@@ -2587,12 +2591,14 @@ int main(int argc, char *argv[])
                 qtest_add_func("acpi/virt/viot", test_acpi_aarch64_virt_viot);
             }
         }
+#if 0 /* Disabled for Red Hat Enterprise Linux */
     } else if (strcmp(arch, "riscv64") == 0) {
         if (has_tcg && qtest_has_device("virtio-blk-pci")) {
             qtest_add_func("acpi/virt", test_acpi_riscv64_virt_tcg);
             qtest_add_func("acpi/virt/numamem",
                            test_acpi_riscv64_virt_tcg_numamem);
         }
+#endif /* disabled for RHEL */
     }
     ret = g_test_run();
     boot_sector_cleanup(disk);

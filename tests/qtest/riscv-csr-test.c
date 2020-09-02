@@ -20,6 +20,7 @@
 #define CSR_MVENDORID       0xf11
 #define CSR_MISELECT        0x350
 
+#if 0 /* Disabled for Red Hat Enterprise Linux */
 static void run_test_csr(void)
 {
     uint64_t res;
@@ -45,12 +46,15 @@ static void run_test_csr(void)
 
     qtest_quit(qts);
 }
+#endif /* disabled for RHEL */
 
 int main(int argc, char **argv)
 {
     g_test_init(&argc, &argv, NULL);
 
+#if 0 /* Disabled for Red Hat Enterprise Linux */
     qtest_add_func("/cpu/csr", run_test_csr);
+#endif /* disabled for RHEL */
 
     return g_test_run();
 }

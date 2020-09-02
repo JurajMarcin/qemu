@@ -18,7 +18,7 @@ class Aarch64Replay(ReplayKernelBase):
 
     def test_aarch64_virt(self):
         self.set_machine('virt')
-        self.cpu = 'cortex-a53'
+        self.cpu = 'cortex-a57'
         kernel_path = self.ASSET_KERNEL.fetch()
         kernel_command_line = (self.KERNEL_COMMON_COMMAND_LINE +
                                'console=ttyAMA0')

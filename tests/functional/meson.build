@@ -291,7 +291,7 @@ tests_sparc64_system_thorough = [
 
 tests_x86_64_system_quick = [
   'cpu_queries',
-  'mem_addr_space',
+#  'mem_addr_space',
   'migration',
   'pc_cpu_hotplug_props',
   'virtio_version',
