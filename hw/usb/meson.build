@@ -48,7 +48,7 @@ softmmu_ss.add(when: 'CONFIG_USB_SMARTCARD', if_true: files('dev-smartcard-reade
 if config_host.has_key('CONFIG_SMARTCARD')
   usbsmartcard_ss = ss.source_set()
   usbsmartcard_ss.add(when: 'CONFIG_USB_SMARTCARD',
-                      if_true: [cacard, files('ccid-card-emulated.c', 'ccid-card-passthru.c')])
+                      if_true: [cacard, files('ccid-card-passthru.c')])
   hw_usb_modules += {'smartcard': usbsmartcard_ss}
 endif
 
