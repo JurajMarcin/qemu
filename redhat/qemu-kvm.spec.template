@@ -133,7 +133,6 @@ BuildRequires: python3-sphinx
 BuildRequires: spice-protocol >= 0.12.12
 BuildRequires: spice-server-devel >= 0.12.8
 BuildRequires: libcacard-devel
-BuildRequires: virglrenderer-devel
 # For smartcard NSS support
 BuildRequires: nss-devel
 %endif
@@ -563,11 +562,7 @@ cd qemu-kvm-build
   --enable-vhost-user \
   --enable-vhost-vdpa \
   --enable-vhost-vsock \
-%if 0%{have_spice}
-  --enable-virglrenderer \
-%else
   --disable-virglrenderer \
-%endif
   --disable-virtfs \
   --enable-vnc \
   --disable-vnc-jpeg \
@@ -1013,10 +1008,6 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 %if 0%{have_memlock_limits}
     %{_sysconfdir}/security/limits.d/95-kvm-memlock.conf
-%endif
-%if %{have_spice}
-%{_libexecdir}/vhost-user-gpu
-%{_datadir}/%{name}/vhost-user/50-qemu-gpu.json
 %endif
 %{_libexecdir}/virtiofsd
 %{_datadir}/%{name}/vhost-user/50-qemu-virtiofsd.json
