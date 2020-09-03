@@ -145,7 +145,7 @@ BuildRequires: librados-devel
 BuildRequires: librbd-devel
 %if %{have_gluster}
 # For gluster block driver
-BuildRequires: glusterfs-api-devel >= 3.6.0
+BuildRequires: glusterfs-api-devel
 BuildRequires: glusterfs-devel
 %endif
 # We need both because the 'stap' binary is probed for by configure
@@ -255,9 +255,6 @@ Requires: %{name}-common = %{epoch}:%{version}-%{release}
 Requires: libseccomp >= 2.4.0
 # For compressed guest memory dumps
 Requires: lzo snappy
-%if %{have_gluster}
-Requires: glusterfs-api >= 3.6.0
-%endif
 %if %{have_kvm_setup}
 Requires(post): systemd-units
 Requires(preun): systemd-units
