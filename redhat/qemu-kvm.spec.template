@@ -1063,6 +1063,29 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Tue Sep 08 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-5.el8
+- kvm-Revert-i386-Fix-pkg_id-offset-for-EPYC-cpu-models.patch [bz#1873417]
+- kvm-Revert-target-i386-Enable-new-apic-id-encoding-for-E.patch [bz#1873417]
+- kvm-Revert-hw-i386-Move-arch_id-decode-inside-x86_cpus_i.patch [bz#1873417]
+- kvm-Revert-i386-Introduce-use_epyc_apic_id_encoding-in-X.patch [bz#1873417]
+- kvm-Revert-hw-i386-Introduce-apicid-functions-inside-X86.patch [bz#1873417]
+- kvm-Revert-target-i386-Cleanup-and-use-the-EPYC-mode-top.patch [bz#1873417]
+- kvm-Revert-hw-386-Add-EPYC-mode-topology-decoding-functi.patch [bz#1873417]
+- kvm-nvram-Exit-QEMU-if-NVRAM-cannot-contain-all-prom-env.patch [bz#1867739]
+- kvm-usb-fix-setup_len-init-CVE-2020-14364.patch [bz#1869715]
+- kvm-Remove-explicit-glusterfs-api-dependency.patch [bz#1872853]
+- kvm-disable-virgl.patch [bz#1831271]
+- Resolves: bz#1831271
+  (Drop virgil acceleration support and remove virglrenderer dependency)
+- Resolves: bz#1867739
+  (-prom-env does not validate input)
+- Resolves: bz#1869715
+  (CVE-2020-14364 qemu-kvm: QEMU: usb: out-of-bounds r/w access issue while processing usb packets [rhel-av-8.3.0])
+- Resolves: bz#1872853
+  (move the glusterfs dependency out of qemu-kvm-core to the glusterfs module)
+- Resolves: bz#1873417
+  (AMD/NUMA topology - revert 5.1 changes)
+
 * Thu Aug 27 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-4.el8
 - kvm-Drop-bogus-IPv6-messages.patch [bz#1867075]
 - kvm-machine-types-numa-set-numa_mem_supported-on-old-mac.patch [bz#1849707]
