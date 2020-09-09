@@ -261,7 +261,7 @@ Requires(preun): systemd-units
 Requires: powerpc-utils
     %endif
 %endif
-Requires: libusbx >= 1.0.19
+Requires: libusbx >= 1.0.23
 %if %{have_usbredir}
 Requires: usbredir >= 0.7.1
 %endif
