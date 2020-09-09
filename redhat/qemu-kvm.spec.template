@@ -1038,6 +1038,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Wed Sep 09 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-29.el8_2.3
+- kvm-Remove-explicit-glusterfs-api-dependency.patch [bz#1877431]
+- Resolves: bz#1877431
+  (move the glusterfs dependency out of qemu-kvm-core to the glusterfs module)
+
 * Wed Aug 19 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-29.el8_2.2
 - kvm-Drop-bogus-IPv6-messages.patch [bz#1838092]
 - Resolves: bz#1838092
