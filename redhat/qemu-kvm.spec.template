@@ -1038,6 +1038,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Wed Sep 09 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-29.el8_2.4
+- kvm-usb-fix-setup_len-init-CVE-2020-14364.patch [bz#1869714]
+- Resolves: bz#1869714
+  (CVE-2020-14364 qemu-kvm: QEMU: usb: out-of-bounds r/w access issue while processing usb packets [rhel-av-8.2.0.z])
+
 * Wed Sep 09 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-29.el8_2.3
 - kvm-Remove-explicit-glusterfs-api-dependency.patch [bz#1877431]
 - Resolves: bz#1877431
