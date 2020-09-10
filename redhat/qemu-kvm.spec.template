@@ -1066,6 +1066,14 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Thu Sep 10 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-6.el8
+- kvm-spec-Move-qemu-pr-helper-back-to-usr-bin.patch [bz#1869635]
+- kvm-Bump-required-libusbx-version.patch [bz#1856591]
+- Resolves: bz#1856591
+  (libusbx isn't updated with qemu-kvm)
+- Resolves: bz#1869635
+  ('/usr/bin/qemu-pr-helper' is not a suitable pr helper: No such file or directory)
+
 * Tue Sep 08 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-5.el8
 - kvm-Revert-i386-Fix-pkg_id-offset-for-EPYC-cpu-models.patch [bz#1873417]
 - kvm-Revert-target-i386-Enable-new-apic-id-encoding-for-E.patch [bz#1873417]
