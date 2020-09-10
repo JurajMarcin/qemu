@@ -996,6 +996,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Wed Sep 09 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 2.12.0-65.el8_0.9
+- kvm-usb-fix-setup_len-init-CVE-2020-14364.patch [bz#1869707]
+- Resolves: bz#1869707
+  (CVE-2020-14364 qemu-kvm: QEMU: usb: out-of-bounds r/w access issue while processing usb packets [rhel-8.0.0.z])
+
 * Tue May 26 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 2.12.0-65.el8_0.8
 - kvm-util-add-slirp_fmt-helpers.patch [bz#1834475]
 - kvm-dhcpv6-use-slirp_fmt.patch [bz#1834475]
