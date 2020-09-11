@@ -678,6 +678,11 @@ install -m 0644 %{_sourcedir}/99-qemu-guest-agent.rules %{buildroot}%{_udevrules
 install -D --preserve-timestamps \
             scripts/qemu-guest-agent/fsfreeze-hook \
             $RPM_BUILD_ROOT%{_sysconfdir}/qemu-ga/fsfreeze-hook
+# Workaround for the missing /etc/qemu-kvm/fsfreeze-hook
+# Please, do not carry this over to RHEL-9
+mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/qemu-kvm/
+ln -s %{_sysconfdir}/qemu-ga/fsfreeze-hook \
+      $RPM_BUILD_ROOT%{_sysconfdir}/qemu-kvm/fsfreeze-hook
 
 # - the directory for user scripts:
 mkdir $RPM_BUILD_ROOT%{_sysconfdir}/qemu-ga/fsfreeze-hook.d
@@ -1041,6 +1046,7 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %{_udevrulesdir}/99-qemu-guest-agent.rules
 %config(noreplace) %{_sysconfdir}/sysconfig/qemu-ga
 %{_sysconfdir}/qemu-ga
+%{_sysconfdir}/qemu-kvm/fsfreeze-hook
 %{_datadir}/%{name}/qemu-ga
 %dir %{_localstatedir}/log/qemu-ga
 
