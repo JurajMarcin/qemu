@@ -1054,6 +1054,14 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Thu Sep 10 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.1.0-23.el8_1.4
+- kvm-Fix-use-afte-free-in-ip_reass-CVE-2020-1983.patch [bz#1838077]
+- kvm-usb-fix-setup_len-init-CVE-2020-14364.patch [bz#1869713]
+- Resolves: bz#1838077
+  (CVE-2020-1983 virt:8.1/qemu-kvm: QEMU: slirp: use-after-free in ip_reass() function in ip_input.c [rhel-av-8])
+- Resolves: bz#1869713
+  (CVE-2020-14364 qemu-kvm: QEMU: usb: out-of-bounds r/w access issue while processing usb packets [rhel-av-8.1.1.z])
+
 * Mon Apr 06 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.1.0-23.el8_1.3
 - kvm-vfio-pci-Don-t-remove-irqchip-notifier-if-not-regist.patch [bz#1782678 bz#1818739]
 - Resolves: bz#1782678
