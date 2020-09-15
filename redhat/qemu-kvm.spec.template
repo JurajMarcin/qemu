@@ -1066,6 +1066,18 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Tue Sep 15 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-7.el8
+- kvm-target-ppc-Add-experimental-option-for-enabling-secu.patch [bz#1789757 bz#1870384]
+- kvm-target-arm-Move-start-powered-off-property-to-generi.patch [bz#1849483]
+- kvm-target-arm-Move-setting-of-CPU-halted-state-to-gener.patch [bz#1849483]
+- kvm-ppc-spapr-Use-start-powered-off-CPUState-property.patch [bz#1849483]
+- Resolves: bz#1789757
+  ([IBM 8.4 FEAT] Add machine option to enable secure VM support)
+- Resolves: bz#1849483
+  (Failed to boot up guest when hotplugging vcpus on bios stage)
+- Resolves: bz#1870384
+  ([IBM 8.3 FEAT] Add interim/unsupported machine option to enable secure VM support for testing purposes)
+
 * Thu Sep 10 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-6.el8
 - kvm-spec-Move-qemu-pr-helper-back-to-usr-bin.patch [bz#1869635]
 - kvm-Bump-required-libusbx-version.patch [bz#1856591]
