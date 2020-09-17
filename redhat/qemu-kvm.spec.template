@@ -1072,6 +1072,20 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Thu Sep 17 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-8.el8
+- kvm-redhat-link-etc-qemu-ga-fsfreeze-hook-to-etc-qemu-kv.patch [bz#1738820]
+- kvm-seccomp-fix-killing-of-whole-process-instead-of-thre.patch [bz#1752376]
+- kvm-Revert-Drop-bogus-IPv6-messages.patch [bz#1867075]
+- kvm-block-rbd-add-namespace-to-qemu_rbd_strong_runtime_o.patch [bz#1821528]
+- Resolves: bz#1738820
+  ('-F' option of qemu-ga command  cause the guest-fsfreeze-freeze command doesn't work)
+- Resolves: bz#1752376
+  (qemu use SCMP_ACT_TRAP even SCMP_ACT_KILL_PROCESS is available)
+- Resolves: bz#1821528
+  (missing namespace attribute when access the rbd image with namespace)
+- Resolves: bz#1867075
+  (CVE-2020-10756 virt:8.3/qemu-kvm: QEMU: slirp: networking out-of-bounds read information disclosure vulnerability [rhel-av-8])
+
 * Tue Sep 15 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-7.el8
 - kvm-target-ppc-Add-experimental-option-for-enabling-secu.patch [bz#1789757 bz#1870384]
 - kvm-target-arm-Move-start-powered-off-property-to-generi.patch [bz#1849483]
