@@ -1072,6 +1072,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Mon Sep 28 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-10.el8
+- kvm-qemu-img-Support-bitmap-merge-into-backing-image.patch [bz#1877209]
+- Resolves: bz#1877209
+  ('qemu-img bitmaps --merge' failed when trying to merge top volume bitmap to base volume bitmap)
+
 * Mon Sep 21 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-9.el8
 - kvm-hw-nvram-fw_cfg-fix-FWCfgDataGeneratorClass-get_data.patch [bz#1688978]
 - Resolves: bz#1688978
