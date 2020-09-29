@@ -66,6 +66,8 @@ GlobalProperty hw_compat_rhel_8_2[] = {
     { "vmport", "x-report-vmx-type", "off" },
     /* hw_compat_rhel_8_2 from hw_compat_5_0 */
     { "vmport", "x-cmds-v2", "off" },
+    /* hw_compat_rhel_8_2 from hw_compat_5_0 */
+    { "virtio-device", "x-disable-legacy-check", "true" },
 };
 const size_t hw_compat_rhel_8_2_len = G_N_ELEMENTS(hw_compat_rhel_8_2);
 
@@ -246,6 +248,7 @@ GlobalProperty hw_compat_5_0[] = {
     { "vmport", "x-signal-unsupported-cmd", "off" },
     { "vmport", "x-report-vmx-type", "off" },
     { "vmport", "x-cmds-v2", "off" },
+    { "virtio-device", "x-disable-legacy-check", "true" },
 };
 const size_t hw_compat_5_0_len = G_N_ELEMENTS(hw_compat_5_0);
 
