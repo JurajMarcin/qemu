@@ -856,9 +856,9 @@ install -m 0644 %{_sourcedir}/qemu-pr-helper.socket %{buildroot}%{_unitdir}
 
 find $RPM_BUILD_ROOT -name '*.la' -or -name '*.a' | xargs rm -f
 
-# We need to make the block device modules executable else
-# RPM won't pick up their dependencies.
-chmod +x $RPM_BUILD_ROOT%{_libdir}/qemu-kvm/block-*.so
+# We need to make the block device modules and other qemu SO files executable
+# otherwise RPM won't pick up their dependencies.
+chmod +x $RPM_BUILD_ROOT%{_libdir}/qemu-kvm/*.so
 
 # Remove buildinfo
 rm -rf $RPM_BUILD_ROOT%{qemudocdir}/interop/.buildinfo
