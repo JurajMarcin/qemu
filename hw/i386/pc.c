@@ -358,6 +358,8 @@ GlobalProperty pc_rhel_compat[] = {
     { TYPE_X86_CPU, "vmx-exit-load-perf-global-ctrl", "off" },
     /* bz 1508330 */ 
     { "vfio-pci", "x-no-geforce-quirks", "on" },
+    /* BZ 1846886 */
+    { "ICH9-LPC", "x-smi-cpu-hotplug", "off" },
 };
 const size_t pc_rhel_compat_len = G_N_ELEMENTS(pc_rhel_compat);
 
