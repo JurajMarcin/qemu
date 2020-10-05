@@ -1072,6 +1072,14 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Mon Oct 05 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-11.el8_3
+- kvm-migration-increase-max-bandwidth-to-128-MiB-s-1-Gib-.patch [bz#1874004]
+- kvm-redhat-Make-all-generated-so-files-executable-not-on.patch [bz#1876635]
+- Resolves: bz#1874004
+  (Live migration performance is poor during guest installation process on power host)
+- Resolves: bz#1876635
+  (VM fails to start with a passthrough smartcard)
+
 * Mon Sep 28 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-10.el8
 - kvm-qemu-img-Support-bitmap-merge-into-backing-image.patch [bz#1877209]
 - Resolves: bz#1877209
