@@ -1072,6 +1072,13 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Thu Oct 08 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-13.el8_3
+- kvm-x86-lpc9-let-firmware-negotiate-CPU-hotplug-with-SMI.patch [bz#1846886]
+- kvm-x86-cpuhp-prevent-guest-crash-on-CPU-hotplug-when-br.patch [bz#1846886]
+- kvm-x86-cpuhp-refuse-cpu-hot-unplug-request-earlier-if-n.patch [bz#1846886]
+- Resolves: bz#1846886
+  (Guest hit soft lockup or reboots if hotplug vcpu under ovmf)
+
 * Mon Oct 05 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-12.el8_3
 - kvm-virtio-skip-legacy-support-check-on-machine-types-le.patch [bz#1868449]
 - kvm-vhost-vsock-pci-force-virtio-version-1.patch [bz#1868449]
