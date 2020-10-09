@@ -289,7 +289,6 @@ int main(void)
     boot_setup();
     if (have_iplb) {
         find_boot_device();
-        enable_subchannel(blk_schid);
         ipl_boot_device();
     } else {
         probe_boot_device();
