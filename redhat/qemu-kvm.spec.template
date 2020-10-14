@@ -1072,6 +1072,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Tue Oct 13 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-14.el8_3
+- kvm-virtiofsd-avoid-proc-self-fd-tempdir.patch [bz#1884276]
+- Resolves: bz#1884276
+  (Pod with kata-runtime won't start, QEMU: "vhost_user_dev init failed, Operation not permitted" [mkdtemp failing in sandboxing])
+
 * Thu Oct 08 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-13.el8_3
 - kvm-x86-lpc9-let-firmware-negotiate-CPU-hotplug-with-SMI.patch [bz#1846886]
 - kvm-x86-cpuhp-prevent-guest-crash-on-CPU-hotplug-when-br.patch [bz#1846886]
