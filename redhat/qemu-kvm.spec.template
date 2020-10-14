@@ -1038,6 +1038,15 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Wed Oct 14 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-29.el8_2.5
+- kvm-virtiofsd-Whitelist-fchmod.patch [bz#1883869]
+- kvm-virtiofsd-avoid-proc-self-fd-tempdir.patch [bz#1883869]
+- kvm-hw-net-net_tx_pkt-fix-assertion-failure-in-net_tx_pk.patch [bz#1860996]
+- Resolves: bz#1860996
+  (CVE-2020-16092 virt:8.2/qemu-kvm: QEMU: reachable assertion failure in net_tx_pkt_add_raw_fragment() in hw/net/net_tx_pkt.c [rhel-av-8])
+- Resolves: bz#1883869
+  (virtiofsd core dump in KATA Container [rhel-8.2.1.z])
+
 * Wed Sep 09 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-29.el8_2.4
 - kvm-usb-fix-setup_len-init-CVE-2020-14364.patch [bz#1869714]
 - Resolves: bz#1869714
