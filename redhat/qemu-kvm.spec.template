@@ -1040,6 +1040,30 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Mon Oct 19 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-35.el8
+- kvm-qga-commands-posix-Rework-build_guest_fsinfo_for_rea.patch [bz#1755075]
+- kvm-qga-commands-posix-Move-the-udev-code-from-the-pci-t.patch [bz#1755075]
+- kvm-qga-commands-posix-Support-fsinfo-for-non-PCI-virtio.patch [bz#1755075]
+- kvm-nvram-Exit-QEMU-if-NVRAM-cannot-contain-all-prom-env.patch [bz#1874780]
+- kvm-pc-bios-s390-ccw-Makefile-Compile-with-std-gnu99-fwr.patch [bz#1846975]
+- kvm-pc-bios-s390-ccw-Move-ipl-related-code-from-main-int.patch [bz#1846975]
+- kvm-pc-bios-s390-ccw-Introduce-ENODEV-define-and-remove-.patch [bz#1846975]
+- kvm-pc-bios-s390-ccw-Move-the-inner-logic-of-find_subch-.patch [bz#1846975]
+- kvm-pc-bios-s390-ccw-Do-not-bail-out-early-if-not-findin.patch [bz#1846975]
+- kvm-pc-bios-s390-ccw-Scan-through-all-devices-if-no-boot.patch [bz#1846975]
+- kvm-pc-bios-s390-ccw-Allow-booting-in-case-the-first-vir.patch [bz#1846975]
+- kvm-pc-bios-s390-ccw-main-Remove-superfluous-call-to-ena.patch [bz#1846975]
+- kvm-aio-posix-completely-stop-polling-when-disabled.patch [bz#1846975]
+- kvm-Remove-explicit-glusterfs-api-dependency.patch [bz#1872854]
+- Resolves: bz#1755075
+  ([qemu-guest-agent] fsinfo doesn't return disk info on s390x)
+- Resolves: bz#1846975
+  (Failed to boot up a s390x guest with virtio-blk-ccw if attaching a virtio-scsi-ccw bus in previous)
+- Resolves: bz#1872854
+  (move the glusterfs dependency out of qemu-kvm-core to the glusterfs module)
+- Resolves: bz#1874780
+  (-prom-env does not validate input)
+
 * Tue Sep 08 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-34.el8
 - kvm-usb-fix-setup_len-init-CVE-2020-14364.patch [bz#1869710]
 - Resolves: bz#1869710
