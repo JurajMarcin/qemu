@@ -468,6 +468,9 @@ buildldflags="VL_LDFLAGS=-Wl,--build-id"
   --disable-libpmem \
 %endif
   --enable-vhost-user \
+%ifarch s390x
+  --enable-vhost-user-fs \
+%endif
 %ifarch %{ix86} x86_64
   --enable-avx2 \
 %else
