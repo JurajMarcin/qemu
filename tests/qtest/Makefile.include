@@ -92,7 +92,6 @@ check-qtest-moxie-y += boot-serial-test
 check-qtest-ppc-$(CONFIG_ISA_TESTDEV) = endianness-test
 #check-qtest-ppc-y += boot-order-test
 check-qtest-ppc-y += prom-env-test
-check-qtest-ppc-y += drive_del-test
 check-qtest-ppc-y += boot-serial-test
 check-qtest-ppc-$(CONFIG_M48T59) += m48t59-test
 
@@ -100,6 +99,7 @@ check-qtest-ppc64-y += $(check-qtest-ppc-y)
 check-qtest-ppc64-$(CONFIG_PSERIES) += device-plug-test
 check-qtest-ppc64-$(CONFIG_POWERNV) += pnv-xscom-test
 check-qtest-ppc64-y += migration-test
+check-qtest-ppc64-y += drive_del-test
 check-qtest-ppc64-$(CONFIG_PSERIES) += rtas-test
 check-qtest-ppc64-$(CONFIG_SLIRP) += pxe-test
 check-qtest-ppc64-$(CONFIG_USB_UHCI) += usb-hcd-uhci-test
