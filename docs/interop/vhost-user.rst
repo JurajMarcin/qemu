@@ -563,7 +563,7 @@ For split virtqueue, queue region can be implemented as:
       uint16_t used_idx;
 
       /* Used to track the state of each descriptor in descriptor table */
-      DescStateSplit desc[0];
+      DescStateSplit desc[];
   } QueueRegionSplit;
 
 To track inflight I/O, the queue region should be processed as follows:
@@ -685,7 +685,7 @@ For packed virtqueue, queue region can be implemented as:
       uint8_t padding[7];
 
       /* Used to track the state of each descriptor fetched from descriptor ring */
-      DescStatePacked desc[0];
+      DescStatePacked desc[];
   } QueueRegionPacked;
 
 To track inflight I/O, the queue region should be processed as follows:
