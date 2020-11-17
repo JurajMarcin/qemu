@@ -1079,6 +1079,39 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Mon Nov 16 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-15.el8
+- kvm-redhat-add-un-pre-install-systemd-hooks-for-qemu-ga.patch [bz#1882719]
+- kvm-rcu-Implement-drain_call_rcu.patch [bz#1812399 bz#1866707]
+- kvm-libqtest-Rename-qmp_assert_error_class-to-qmp_expect.patch [bz#1812399 bz#1866707]
+- kvm-qtest-rename-qtest_qmp_receive-to-qtest_qmp_receive_.patch [bz#1812399 bz#1866707]
+- kvm-qtest-Reintroduce-qtest_qmp_receive-with-QMP-event-b.patch [bz#1812399 bz#1866707]
+- kvm-qtest-remove-qtest_qmp_receive_success.patch [bz#1812399 bz#1866707]
+- kvm-device-plug-test-use-qtest_qmp-to-send-the-device_de.patch [bz#1812399 bz#1866707]
+- kvm-qtest-switch-users-back-to-qtest_qmp_receive.patch [bz#1812399 bz#1866707]
+- kvm-qtest-check-that-drives-are-really-appearing-and-dis.patch [bz#1812399 bz#1866707]
+- kvm-qemu-iotests-qtest-rewrite-test-067-as-a-qtest.patch [bz#1812399 bz#1866707]
+- kvm-qdev-add-check-if-address-free-callback-for-buses.patch [bz#1812399 bz#1866707]
+- kvm-scsi-scsi_bus-switch-search-direction-in-scsi_device.patch [bz#1812399 bz#1866707]
+- kvm-device_core-use-drain_call_rcu-in-in-qmp_device_add.patch [bz#1812399 bz#1866707]
+- kvm-device-core-use-RCU-for-list-of-children-of-a-bus.patch [bz#1812399 bz#1866707]
+- kvm-scsi-switch-to-bus-check_address.patch [bz#1812399 bz#1866707]
+- kvm-device-core-use-atomic_set-on-.realized-property.patch [bz#1812399 bz#1866707]
+- kvm-scsi-scsi-bus-scsi_device_find-don-t-return-unrealiz.patch [bz#1812399]
+- kvm-scsi-scsi_bus-Add-scsi_device_get.patch [bz#1812399 bz#1866707]
+- kvm-virtio-scsi-use-scsi_device_get.patch [bz#1812399 bz#1866707]
+- kvm-scsi-scsi_bus-fix-races-in-REPORT-LUNS.patch [bz#1812399 bz#1866707]
+- kvm-tests-migration-fix-memleak-in-wait_command-wait_com.patch [bz#1812399 bz#1866707]
+- kvm-libqtest-fix-the-order-of-buffered-events.patch [bz#1812399 bz#1866707]
+- kvm-libqtest-fix-memory-leak-in-the-qtest_qmp_event_ref.patch [bz#1812399 bz#1866707]
+- kvm-iotests-add-filter_qmp_virtio_scsi-function.patch [bz#1812399 bz#1866707]
+- kvm-iotests-rewrite-iotest-240-in-python.patch [bz#1812399 bz#1866707]
+- Resolves: bz#1812399
+  (Qemu crash when detach disk with cache="none" discard="ignore" io="native")
+- Resolves: bz#1866707
+  (qemu-kvm is crashing with error "scsi_target_emulate_report_luns: Assertion `i == n + 8' failed")
+- Resolves: bz#1882719
+  (qemu-ga service still active and can work after qemu-guest-agent been removed)
+
 * Tue Oct 13 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-14.el8_3
 - kvm-virtiofsd-avoid-proc-self-fd-tempdir.patch [bz#1884276]
 - Resolves: bz#1884276
