@@ -198,7 +198,7 @@ tracetool-y += $(shell find $(SRC_PATH)/scripts/tracetool -name "*.py")
 		$< > $@,"GEN","$(@:%-timestamp=%)")
 
 %/trace-dtrace.h: %/trace-dtrace.dtrace $(tracetool-y)
-	$(call quiet-command,dtrace -o $@ -h -s $<, "GEN","$@")
+	$(call quiet-command,dtrace -o $@ -DSTAP_SDT_V2 -h -s $<, "GEN","$@")
 
 %/trace-dtrace.o: %/trace-dtrace.dtrace $(tracetool-y)
 
@@ -258,7 +258,7 @@ trace-dtrace-root.dtrace-timestamp: $(SRC_PATH)/trace-events $(BUILD_DIR)/config
 		$< > $@,"GEN","$(@:%-timestamp=%)")
 
 trace-dtrace-root.h: trace-dtrace-root.dtrace
-	$(call quiet-command,dtrace -o $@ -h -s $<, "GEN","$@")
+	$(call quiet-command,dtrace -o $@ -DSTAP_SDT_V2 -h -s $<, "GEN","$@")
 
 trace-dtrace-root.o: trace-dtrace-root.dtrace
 
