@@ -4961,6 +4961,17 @@ static void spapr_machine_2_1_class_options(MachineClass *mc)
 DEFINE_SPAPR_MACHINE(2_1, "2.1", false);
 #endif
 
+static void spapr_machine_rhel_default_class_options(MachineClass *mc)
+{
+    /*
+     * Defaults for the latest behaviour inherited from the base class
+     * can be overriden here for all pseries-rhel* machines.
+     */
+
+    /* Maximum supported VCPU count */
+    mc->max_cpus = 384;
+}
+
 /*
  * pseries-rhel8.3.0
  * like pseries-5.1
@@ -4968,10 +4979,8 @@ DEFINE_SPAPR_MACHINE(2_1, "2.1", false);
 
 static void spapr_machine_rhel830_class_options(MachineClass *mc)
 {
-    /* Defaults for the latest behaviour inherited from the base class */
-
-    /* Maximum supported VCPU count for all pseries-rhel* machines */
-    mc->max_cpus = 384;
+    /* The default machine type must apply the RHEL specific defaults */
+    spapr_machine_rhel_default_class_options(mc);
 }
 
 DEFINE_SPAPR_MACHINE(rhel830, "rhel8.3.0", true);
