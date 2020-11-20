@@ -369,6 +369,9 @@ extern const size_t hw_compat_2_2_len;
 extern GlobalProperty hw_compat_2_1[];
 extern const size_t hw_compat_2_1_len;
 
+extern GlobalProperty hw_compat_rhel_8_3[];
+extern const size_t hw_compat_rhel_8_3_len;
+
 extern GlobalProperty hw_compat_rhel_8_2[];
 extern const size_t hw_compat_rhel_8_2_len;
 

@@ -29,6 +29,27 @@
 #include "migration/vmstate.h"
 
 /*
+ * The same as hw_compat_5_1
+ */
+GlobalProperty hw_compat_rhel_8_3[] = {
+    /* hw_compat_rhel_8_3 from hw_compat_5_1 */
+    { "vhost-scsi", "num_queues", "1"},
+    /* hw_compat_rhel_8_3 from hw_compat_5_1 */
+    { "vhost-user-blk", "num-queues", "1"},
+    /* hw_compat_rhel_8_3 from hw_compat_5_1 */
+    { "vhost-user-scsi", "num_queues", "1"},
+    /* hw_compat_rhel_8_3 from hw_compat_5_1 */
+    { "virtio-blk-device", "num-queues", "1"},
+    /* hw_compat_rhel_8_3 from hw_compat_5_1 */
+    { "virtio-scsi-device", "num_queues", "1"},
+    /* hw_compat_rhel_8_3 from hw_compat_5_1 */
+    { "nvme", "use-intel-id", "on"},
+    /* hw_compat_rhel_8_3 from hw_compat_5_1 */
+    { "pvpanic", "events", "1"}, /* PVPANIC_PANICKED */
+};
+const size_t hw_compat_rhel_8_3_len = G_N_ELEMENTS(hw_compat_rhel_8_3);
+
+/*
  * The same as hw_compat_4_2 + hw_compat_5_0
  */
 GlobalProperty hw_compat_rhel_8_2[] = {
