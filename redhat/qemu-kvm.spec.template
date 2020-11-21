@@ -1043,6 +1043,36 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Fri Nov 20 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-36.el8
+- kvm-qga-fix-assert-regression-on-guest-shutdown.patch [bz#1884531]
+- kvm-libvhost-user-handle-endianness-as-mandated-by-the-s.patch [bz#1857733]
+- kvm-virtio-add-vhost-user-fs-ccw-device.patch [bz#1857733]
+- kvm-Ensure-vhost-user-fs-is-enabled-on-s390x.patch [bz#1857733]
+- kvm-s390x-sclp.c-remove-unneeded-label-in-sclp_service_c.patch [bz#1798506]
+- kvm-s390-sclp-get-machine-once-during-read-scp-cpu-info.patch [bz#1798506]
+- kvm-s390-sclp-rework-sclp-boundary-checks.patch [bz#1798506]
+- kvm-s390-sclp-read-sccb-from-mem-based-on-provided-lengt.patch [bz#1798506]
+- kvm-s390-sclp-check-sccb-len-before-filling-in-data.patch [bz#1798506]
+- kvm-s390-sclp-use-cpu-offset-to-locate-cpu-entries.patch [bz#1798506]
+- kvm-s390-sclp-add-extended-length-sccb-support-for-kvm-g.patch [bz#1798506]
+- kvm-linux-headers-Partial-update-against-Linux-5.9-rc4.patch [bz#1798506]
+- kvm-misc-Replace-zero-length-arrays-with-flexible-array-.patch [bz#1798506]
+- kvm-s390-guest-support-for-diagnose-0x318.patch [bz#1798506]
+- kvm-s390x-pv-Remove-sclp-boundary-checks.patch [bz#1798506]
+- kvm-s390x-pv-Fix-diag318-PV-fencing.patch [bz#1798506]
+- kvm-s390-kvm-fix-diag318-propagation-and-reset-functiona.patch [bz#1659412]
+- kvm-trace-use-STAP_SDT_V2-to-work-around-symbol-visibili.patch [bz#1898700]
+- Resolves: bz#1659412
+  ([IBM 8.4 FEAT] KVM enablement for enhanced hardware diagnose data of guest kernel on s390x - qemu part)
+- Resolves: bz#1798506
+  ([IBM 8.4 FEAT] KVM: Support extended-length SCCBs - qemu part)
+- Resolves: bz#1857733
+  ([IBM 8.4 FEAT] KVM: Add support for virtio-fs on s390x - qemu part)
+- Resolves: bz#1884531
+  (qemu-ga aborts after guest-shutdown command)
+- Resolves: bz#1898700
+  (qemu-kvm for RHEL-8.4 doesn't build due to a possible incompatibility with systemtap-sdt-devel-4.4-1)
+
 * Mon Oct 19 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-35.el8
 - kvm-qga-commands-posix-Rework-build_guest_fsinfo_for_rea.patch [bz#1755075]
 - kvm-qga-commands-posix-Move-the-udev-code-from-the-pci-t.patch [bz#1755075]
