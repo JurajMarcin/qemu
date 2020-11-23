@@ -996,6 +996,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Fri Nov 20 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 2.12.0-65.el8_0.10
+- kvm-hw-net-net_tx_pkt-fix-assertion-failure-in-net_tx_pk.patch [bz#1860994]
+- Resolves: bz#1860994
+  (CVE-2020-16092 virt:rhel/qemu-kvm: QEMU: reachable assertion failure in net_tx_pkt_add_raw_fragment() in hw/net/net_tx_pkt.c [rhel-8])
+
 * Wed Sep 09 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 2.12.0-65.el8_0.9
 - kvm-usb-fix-setup_len-init-CVE-2020-14364.patch [bz#1869707]
 - Resolves: bz#1869707
