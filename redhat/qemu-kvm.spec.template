@@ -1043,6 +1043,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Mon Nov 23 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-34.el8_3.1
+- kvm-seccomp-fix-killing-of-whole-process-instead-of-thre.patch [bz#1890885]
+- Resolves: bz#1890885
+  (qemu use SCMP_ACT_TRAP even SCMP_ACT_KILL_PROCESS is available [rhel-8.3.0.z])
+
 * Tue Sep 08 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-34.el8
 - kvm-usb-fix-setup_len-init-CVE-2020-14364.patch [bz#1869710]
 - Resolves: bz#1869710
