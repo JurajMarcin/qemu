@@ -1043,6 +1043,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Mon Nov 23 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-37.el8
+- kvm-hw-net-net_tx_pkt-fix-assertion-failure-in-net_tx_pk.patch [bz#1860994]
+- Resolves: bz#1860994
+  (CVE-2020-16092 virt:rhel/qemu-kvm: QEMU: reachable assertion failure in net_tx_pkt_add_raw_fragment() in hw/net/net_tx_pkt.c [rhel-8])
+
 * Fri Nov 20 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-36.el8
 - kvm-qga-fix-assert-regression-on-guest-shutdown.patch [bz#1884531]
 - kvm-libvhost-user-handle-endianness-as-mandated-by-the-s.patch [bz#1857733]
