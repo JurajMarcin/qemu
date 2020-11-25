@@ -409,6 +409,116 @@ buildldflags="VL_LDFLAGS=-Wl,--build-id"
 %endif
 
 
+%define disable_everything         \\\
+  --disable-attr                   \\\
+  --disable-auth-pam               \\\
+  --disable-avx2                   \\\
+  --disable-avx512f                \\\
+  --disable-bochs                  \\\
+  --disable-brlapi                 \\\
+  --disable-bsd-user               \\\
+  --disable-bzip2                  \\\
+  --disable-cap-ng                 \\\
+  --disable-capstone               \\\
+  --disable-cloop                  \\\
+  --disable-cocoa                  \\\
+  --disable-coroutine-pool         \\\
+  --disable-crypto-afalg           \\\
+  --disable-curl                   \\\
+  --disable-curses                 \\\
+  --disable-debug-info             \\\
+  --disable-debug-mutex            \\\
+  --disable-debug-tcg              \\\
+  --disable-dmg                    \\\
+  --disable-docs                   \\\
+  --disable-fdt                    \\\
+  --disable-gcrypt                 \\\
+  --disable-git-update             \\\
+  --disable-glusterfs              \\\
+  --disable-gnutls                 \\\
+  --disable-gtk                    \\\
+  --disable-guest-agent            \\\
+  --disable-guest-agent-msi        \\\
+  --disable-hax                    \\\
+  --disable-hvf                    \\\
+  --disable-iconv                  \\\
+  --disable-jemalloc               \\\
+  --disable-kvm                    \\\
+  --disable-libdaxctl              \\\
+  --disable-libiscsi               \\\
+  --disable-libnfs                 \\\
+  --disable-libpmem                \\\
+  --disable-libssh                 \\\
+  --disable-libusb                 \\\
+  --disable-libxml2                \\\
+  --disable-linux-aio              \\\
+  --disable-linux-io-uring         \\\
+  --disable-linux-user             \\\
+  --disable-live-block-migration   \\\
+  --disable-lzfse                  \\\
+  --disable-lzo                    \\\
+  --disable-malloc-trim            \\\
+  --disable-membarrier             \\\
+  --disable-modules                \\\
+  --disable-module-upgrades        \\\
+  --disable-mpath                  \\\
+  --disable-netmap                 \\\
+  --disable-nettle                 \\\
+  --disable-numa                   \\\
+  --disable-opengl                 \\\
+  --disable-parallels              \\\
+  --disable-pie                    \\\
+  --disable-pvrdma                 \\\
+  --disable-qcow1                  \\\
+  --disable-qed                    \\\
+  --disable-qom-cast-debug         \\\
+  --disable-rbd                    \\\
+  --disable-rdma                   \\\
+  --disable-replication            \\\
+  --disable-rng-none               \\\
+  --disable-safe-stack             \\\
+  --disable-sanitizers             \\\
+  --disable-sdl                    \\\
+  --disable-sdl-image              \\\
+  --disable-seccomp                \\\
+  --disable-sheepdog               \\\
+  --disable-smartcard              \\\
+  --disable-snappy                 \\\
+  --disable-sparse                 \\\
+  --disable-spice                  \\\
+  --disable-strip                  \\\
+  --disable-system                 \\\
+  --disable-tcg                    \\\
+  --disable-tcmalloc               \\\
+  --disable-tools                  \\\
+  --disable-tpm                    \\\
+  --disable-usb-redir              \\\
+  --disable-user                   \\\
+  --disable-vde                    \\\
+  --disable-vdi                    \\\
+  --disable-vhost-crypto           \\\
+  --disable-vhost-kernel           \\\
+  --disable-vhost-net              \\\
+  --disable-vhost-scsi             \\\
+  --disable-vhost-user             \\\
+  --disable-vhost-vdpa             \\\
+  --disable-vhost-vsock            \\\
+  --disable-virglrenderer          \\\
+  --disable-virtfs                 \\\
+  --disable-vnc                    \\\
+  --disable-vnc-jpeg               \\\
+  --disable-vnc-png                \\\
+  --disable-vnc-sasl               \\\
+  --disable-vte                    \\\
+  --disable-vvfat                  \\\
+  --disable-werror                 \\\
+  --disable-whpx                   \\\
+  --disable-xen                    \\\
+  --disable-xen-pci-passthrough    \\\
+  --disable-xfsctl                 \\\
+  --disable-xkbcommon              \\\
+  --disable-zstd
+
 cd qemu-kvm-build
 ../configure  \
   --prefix="%{_prefix}" \
@@ -431,152 +541,74 @@ cd qemu-kvm-build
   --with-coroutine=ucontext \
   --with-git=git \
   --tls-priority=NORMAL \
+  %{disable_everything} \
   --enable-attr \
-  --disable-auth-pam \
 %ifarch %{ix86} x86_64
   --enable-avx2 \
-%else
-  --disable-avx2 \
 %endif
-  --disable-avx512f \
-  --disable-bochs \
-  --disable-brlapi \
-  --disable-bsd-user \
-  --disable-bzip2 \
   --enable-cap-ng \
   --enable-capstone \
-  --disable-cloop \
-  --disable-cocoa \
   --enable-coroutine-pool \
-  --disable-crypto-afalg \
   --enable-curl \
-  --disable-curses \
   --enable-debug-info \
-  --disable-debug-mutex \
-  --disable-debug-tcg \
-  --disable-dmg \
   --enable-docs \
 %if 0%{have_fdt}
   --enable-fdt \
-%else
-  --disable-fdt \
- %endif
+%endif
   --enable-gcrypt \
-  --disable-git-update \
 %if 0%{have_gluster}
   --enable-glusterfs \
-%else
-  --disable-glusterfs \
 %endif
   --enable-gnutls \
-  --disable-gtk \
   --enable-guest-agent \
-  --disable-guest-agent-msi \
-  --disable-hax \
-  --disable-hvf \
   --enable-iconv \
-  --disable-jemalloc \
   --enable-kvm \
-  --disable-libdaxctl \
   --enable-libiscsi \
-  --disable-libnfs \
 %ifarch x86_64
   --enable-libpmem \
-%else
-  --disable-libpmem \
 %endif
   --enable-libssh \
   --enable-libusb \
-  --disable-libxml2 \
   --enable-linux-aio \
-  --disable-linux-io-uring \
-  --disable-linux-user \
-  --disable-live-block-migration \
-  --disable-lzfse \
   --enable-lzo \
   --enable-malloc-trim \
-  --disable-membarrier \
   --enable-modules \
-  --disable-module-upgrades \
   --enable-mpath \
-  --disable-netmap \
-  --disable-nettle \
 %ifnarch s390x
   --enable-numa \
-%else
-  --disable-numa \
 %endif
 %if 0%{have_opengl}
   --enable-opengl \
-%else
-  --disable-opengl \
 %endif
-  --disable-parallels \
   --enable-pie \
-  --disable-pvrdma \
-  --disable-qcow1 \
-  --disable-qed \
-  --disable-qom-cast-debug \
   --enable-rbd \
 %if 0%{have_librdma}
   --enable-rdma \
-%else
-  --disable-rdma \
 %endif
-  --disable-rng-none \
-  --disable-replication \
-  --disable-safe-stack \
-  --disable-sanitizers \
-  --disable-sdl \
-  --disable-sdl-image \
   --enable-seccomp \
-  --disable-sheepdog \
   --enable-snappy \
-  --disable-sparse \
 %if 0%{have_spice}
   --enable-smartcard \
   --enable-spice \
-%else
-  --disable-smartcard \
-  --disable-spice \
 %endif
-  --disable-strip \
   --enable-system \
   --enable-tcg \
-  --disable-tcmalloc \
   --enable-tools \
   --enable-tpm \
   --enable-trace-backend=dtrace \
 %if 0%{have_usbredir}
   --enable-usb-redir \
-%else
-  --disable-usb-redir \
 %endif
-  --disable-user \
-  --disable-vde \
-  --disable-vdi \
-  --disable-vhost-crypto \
   --enable-vhost-kernel \
   --enable-vhost-net \
-  --disable-vhost-scsi \
   --enable-vhost-user \
   --enable-vhost-vdpa \
   --enable-vhost-vsock \
-  --disable-virglrenderer \
-  --disable-virtfs \
   --enable-vnc \
-  --disable-vnc-jpeg \
   --enable-vnc-png \
   --enable-vnc-sasl \
-  --disable-vte \
-  --disable-vvfat \
   --enable-werror \
-  --disable-whpx \
-  --disable-xen \
-  --disable-xen-pci-passthrough \
-  --disable-xfsctl \
   --enable-xkbcommon \
-  --disable-zstd \
   --without-default-devices
 
 echo "config-host.mak contents:"
