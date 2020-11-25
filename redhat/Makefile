@@ -73,7 +73,7 @@ rh-brew: rh-srpm
 rh-brew-module: rh-brew
 
 rh-env-prep: rh-prep
-	$(DS)sudo dnf builddep $(RPMBUILD)/SPECS/$(SPECFILE)
+	$(DS)sudo dnf builddep $(RPMBUILD)/SPECS/$(SPECFILE) || echo "Build dependency installation FAILED."
 	$(DS)mkdir -p ../build
 	$(DS)cd ../build; $(shell rpmspec -P $(RPMBUILD)/SPECS/$(SPECFILE) | ../redhat/scripts/extract_build_cmd.py | \
 	              sed "s/--disable-git-update/--enable-git-update/g")
