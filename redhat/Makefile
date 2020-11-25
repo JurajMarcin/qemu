@@ -75,7 +75,7 @@ rh-brew-module: rh-brew
 rh-env-prep: rh-prep
 	$(DS)sudo dnf builddep $(RPMBUILD)/SPECS/$(SPECFILE)
 	$(DS)mkdir -p ../build
-	$(DS)cd ../build; $(shell rpmspec -P $(RPMBUILD)/SPECS/$(SPECFILE) | scripts/extract_build_cmd.py | \
+	$(DS)cd ../build; $(shell rpmspec -P $(RPMBUILD)/SPECS/$(SPECFILE) | ../redhat/scripts/extract_build_cmd.py | \
 	              sed "s/--disable-git-update/--enable-git-update/g")
 
 rh-local: rh-env-prep
