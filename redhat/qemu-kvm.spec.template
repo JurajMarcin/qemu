@@ -233,24 +233,18 @@ hardware for a full system such as a PC and its associated peripherals.
 
 %package -n qemu-kvm-core
 Summary: qemu-kvm core components
+Requires: %{name}-common = %{epoch}:%{version}-%{release}
 Requires: qemu-img = %{epoch}:%{version}-%{release}
 %ifarch %{ix86} x86_64
-Requires: seabios-bin >= 1.10.2-1
-Requires: sgabios-bin
 Requires: edk2-ovmf
 %endif
 %ifarch aarch64
 Requires: edk2-aarch64
 %endif
 
-%ifnarch aarch64 s390x
-Requires: seavgabios-bin >= 1.12.0-3
-Requires: ipxe-roms-qemu >= 20170123-1
-%endif
 %ifarch %{power64}
 Requires: SLOF >= %{SLOF_gittagdate}-1.git%{SLOF_gittagcommit}
 %endif
-Requires: %{name}-common = %{epoch}:%{version}-%{release}
 Requires: libseccomp >= 2.4.0
 # For compressed guest memory dumps
 Requires: lzo snappy
@@ -296,6 +290,14 @@ Requires(post): /usr/sbin/useradd
 Requires(post): systemd-units
 Requires(preun): systemd-units
 Requires(postun): systemd-units
+%ifarch %{ix86} x86_64
+Requires: seabios-bin >= 1.10.2-1
+Requires: sgabios-bin
+%endif
+%ifnarch aarch64 s390x
+Requires: seavgabios-bin >= 1.12.0-3
+Requires: ipxe-roms-qemu >= 20170123-1
+%endif
 
 %rhev_ma_conflicts qemu-kvm-common
 
@@ -908,7 +910,16 @@ mv $RPM_BUILD_ROOT%{_libexecdir}/qemu-pr-helper $RPM_BUILD_ROOT%{_bindir}/qemu-p
 cd qemu-kvm-build
 export DIFF=diff; make check V=1
 
-%post -n qemu-kvm-core
+%post -n qemu-kvm-common
+%systemd_post ksm.service
+%systemd_post ksmtuned.service
+
+getent group kvm >/dev/null || groupadd -g 36 -r kvm
+getent group qemu >/dev/null || groupadd -g 107 -r qemu
+getent passwd qemu >/dev/null || \
+useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
+  -c "qemu user" qemu
+
 # load kvm modules now, so we can make sure no reboot is needed.
 # If there's already a kvm module installed, we don't mess with it
 %udev_rules_update
@@ -922,24 +933,12 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
     fi
 %endif
 
-%if %{have_kvm_setup}
-%preun -n qemu-kvm-core
-%systemd_preun kvm-setup.service
-%endif
-
-%post -n qemu-kvm-common
-%systemd_post ksm.service
-%systemd_post ksmtuned.service
-
-getent group kvm >/dev/null || groupadd -g 36 -r kvm
-getent group qemu >/dev/null || groupadd -g 107 -r qemu
-getent passwd qemu >/dev/null || \
-useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
-  -c "qemu user" qemu
-
 %preun -n qemu-kvm-common
 %systemd_preun ksm.service
 %systemd_preun ksmtuned.service
+%if %{have_kvm_setup}
+%systemd_preun kvm-setup.service
+%endif
 
 %postun -n qemu-kvm-common
 %systemd_postun_with_restart ksm.service
@@ -1007,8 +1006,6 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %{_datadir}/%{name}/tracetool/backend/*.py*
 %{_datadir}/%{name}/tracetool/format/*.py*
 
-%files -n qemu-kvm-core
-%defattr(-,root,root)
 %ifarch x86_64
     %{_datadir}/%{name}/bios.bin
     %{_datadir}/%{name}/bios-256k.bin
@@ -1041,13 +1038,7 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %{_datadir}/icons/*
 %{_datadir}/%{name}/linuxboot_dma.bin
 %{_datadir}/%{name}/dump-guest-memory.py*
-%{_libexecdir}/qemu-kvm
-%{_datadir}/systemtap/tapset/qemu-kvm.stp
-%{_datadir}/systemtap/tapset/qemu-kvm-log.stp
 %{_datadir}/%{name}/trace-events-all
-%{_datadir}/systemtap/tapset/qemu-kvm-simpletrace.stp
-%{_datadir}/%{name}/systemtap/script.d/qemu_kvm.stp
-%{_datadir}/%{name}/systemtap/conf.d/qemu_kvm.conf
 %if 0%{have_kvm_setup}
     %{_prefix}/lib/systemd/kvm-setup
     %{_unitdir}/kvm-setup.service
@@ -1058,6 +1049,16 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 %{_libexecdir}/virtiofsd
 %{_datadir}/%{name}/vhost-user/50-qemu-virtiofsd.json
+
+%files -n qemu-kvm-core
+%defattr(-,root,root)
+%{_libexecdir}/qemu-kvm
+%{_datadir}/systemtap/tapset/qemu-kvm.stp
+%{_datadir}/systemtap/tapset/qemu-kvm-log.stp
+%{_datadir}/systemtap/tapset/qemu-kvm-simpletrace.stp
+%{_datadir}/%{name}/systemtap/script.d/qemu_kvm.stp
+%{_datadir}/%{name}/systemtap/conf.d/qemu_kvm.conf
+
 %if %{have_usbredir}
     %{_libdir}/qemu-kvm/hw-usb-redirect.so
 %endif
