@@ -65,6 +65,9 @@ rh-prep: rh-clean-sources
 rh-srpm: rh-prep
 	$(DS)rpmbuild --define "_sourcedir $(RPMBUILD)/SOURCES" --define "_builddir $(RPMBUILD)/BUILD" --define "_srcrpmdir $(RPMBUILD)/SRPMS" --define "_rpmdir $(RPMBUILD)/RPMS" --define "_specdir $(RPMBUILD)/SPECS" --define "dist $(DIST)" --nodeps -bs $(RPMBUILD)/SPECS/$(SPECFILE)
 
+rh-rpm: rh-prep
+	$(DS)rpmbuild --define "_sourcedir $(RPMBUILD)/SOURCES" --define "_builddir $(RPMBUILD)/BUILD" --define "_srcrpmdir $(RPMBUILD)/SRPMS" --define "_rpmdir $(RPMBUILD)/RPMS" --define "_specdir $(RPMBUILD)/SPECS" --define "dist $(DIST)" -bb $(RPMBUILD)/SPECS/$(SPECFILE)
+
 rh-brew: rh-srpm
 	@echo "Build $(SRPM_NAME)$(LOCALVERSION).src.rpm as $(BUILD_TARGET)"
 	$(DS)brew build $(BREW_OPTIONS) $(BUILD_TARGET) $(RPMBUILD)/SRPMS/$(SRPM_NAME)$(LOCALVERSION).src.rpm
