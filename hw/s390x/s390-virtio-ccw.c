@@ -1056,15 +1056,29 @@ static void ccw_machine_2_4_class_options(MachineClass *mc)
 DEFINE_CCW_MACHINE(2_4, "2.4", false);
 #endif
 
+static void ccw_machine_rhel840_instance_options(MachineState *machine)
+{
+}
+
+static void ccw_machine_rhel840_class_options(MachineClass *mc)
+{
+}
+DEFINE_CCW_MACHINE(rhel840, "rhel8.4.0", true);
+
 static void ccw_machine_rhel820_instance_options(MachineState *machine)
 {
+    ccw_machine_rhel840_instance_options(machine);
 }
 
 static void ccw_machine_rhel820_class_options(MachineClass *mc)
 {
+    ccw_machine_rhel840_class_options(mc);
     mc->fixup_ram_size = s390_fixup_ram_size;
+    /* we did not publish a rhel8.3.0 machine */
+    compat_props_add(mc->compat_props, hw_compat_rhel_8_3, hw_compat_rhel_8_3_len);
+    compat_props_add(mc->compat_props, hw_compat_rhel_8_2, hw_compat_rhel_8_2_len);
 }
-DEFINE_CCW_MACHINE(rhel820, "rhel8.2.0", true);
+DEFINE_CCW_MACHINE(rhel820, "rhel8.2.0", false);
 
 static void ccw_machine_rhel760_instance_options(MachineState *machine)
 {
@@ -1086,6 +1100,7 @@ static void ccw_machine_rhel760_class_options(MachineClass *mc)
 {
     ccw_machine_rhel820_class_options(mc);
     /* We never published the s390x version of RHEL-AV 8.0 and 8.1, so add this here */
+    compat_props_add(mc->compat_props, hw_compat_rhel_8_1, hw_compat_rhel_8_1_len);
     compat_props_add(mc->compat_props, hw_compat_rhel_8_0, hw_compat_rhel_8_0_len);
     compat_props_add(mc->compat_props, hw_compat_rhel_7_6, hw_compat_rhel_7_6_len);
 }
