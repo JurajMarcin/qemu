@@ -1248,6 +1248,18 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Tue Dec 01 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-16.el8
+- kvm-redhat-introduces-disable_everything-macro-into-the-.patch [bz#1884611]
+- kvm-redhat-scripts-extract_build_cmd.py-Avoid-listing-em.patch [bz#1884611]
+- kvm-redhat-Removing-unecessary-configurations.patch [bz#1884611]
+- kvm-redhat-Fixing-rh-local-build.patch [bz#1884611]
+- kvm-redhat-allow-Makefile-rh-prep-builddep-to-fail.patch [bz#1884611]
+- kvm-redhat-adding-rh-rpm-target.patch [bz#1884611]
+- kvm-redhat-move-shareable-files-from-qemu-kvm-core-to-qe.patch [bz#1884611]
+- kvm-redhat-Add-qemu-kiwi-subpackage.patch [bz#1884611]
+- Resolves: bz#1884611
+  (Build kata-specific version of qemu)
+
 * Mon Nov 16 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-15.el8
 - kvm-redhat-add-un-pre-install-systemd-hooks-for-qemu-ga.patch [bz#1882719]
 - kvm-rcu-Implement-drain_call_rcu.patch [bz#1812399 bz#1866707]
