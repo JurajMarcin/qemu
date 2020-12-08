@@ -17,7 +17,8 @@ static void test_panic(void)
     QDict *response, *data;
     QTestState *qts;
 
-    qts = qtest_init("-device pvpanic");
+    /* RHEL: Use q35 */
+    qts = qtest_init("-M q35 -device pvpanic");
 
     val = qtest_inb(qts, 0x505);
     g_assert_cmpuint(val, ==, 3);
