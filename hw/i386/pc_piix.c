@@ -1045,6 +1045,11 @@ static void pc_machine_rhel760_options(MachineClass *m)
     m->smbus_no_migration_support = true;
     pcmc->pvh_enabled = false;
     pcmc->default_cpu_version = CPU_VERSION_LEGACY;
+    pcmc->kvmclock_create_always = false;
+    compat_props_add(m->compat_props, hw_compat_rhel_8_3,
+                     hw_compat_rhel_8_3_len);
+    compat_props_add(m->compat_props, pc_rhel_8_3_compat,
+                     pc_rhel_8_3_compat_len);
     compat_props_add(m->compat_props, hw_compat_rhel_8_2,
                      hw_compat_rhel_8_2_len);
     compat_props_add(m->compat_props, pc_rhel_8_2_compat,
