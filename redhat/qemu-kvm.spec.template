@@ -1294,6 +1294,11 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Wed Dec 09 2020 Miroslav Rezanina <mrezanin@redhat.com> - 5.2.0-1.el8
+- Rebase to QEMU 5.2.0 [bz#1905933]
+- Resolves: bz#1905933
+  (Rebase qemu-kvm to version 5.2.0)
+
 * Tue Dec 01 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-16.el8
 - kvm-redhat-introduces-disable_everything-macro-into-the-.patch [bz#1884611]
 - kvm-redhat-scripts-extract_build_cmd.py-Avoid-listing-em.patch [bz#1884611]
