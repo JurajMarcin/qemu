@@ -235,6 +235,7 @@ hardware for a full system such as a PC and its associated peripherals.
 Summary: qemu-kvm core components
 Requires: %{name}-common = %{epoch}:%{version}-%{release}
 Requires: qemu-img = %{epoch}:%{version}-%{release}
+Recommends: qemu-kvm-docs
 %ifarch %{ix86} x86_64
 Requires: edk2-ovmf
 %endif
@@ -279,6 +280,12 @@ Requires: qemu-kvm-common = %{epoch}:%{version}-%{release}
 qemu-kiwi is a version of qemu-kvm with a restricted set of features
 intended for use by specific applications.
 It's experimental and unsupported.
+
+%package -n qemu-kvm-docs
+Summary: qemu-kvm documentation
+
+%description -n qemu-kvm-docs
+qemu-kvm-docs provides documentation files regarding qemu-kvm.
 
 %package -n qemu-img
 Summary: QEMU command line tool for manipulating disk images
@@ -1083,8 +1090,7 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 %files
 # Deliberately empty
 
-
-%files -n qemu-kvm-common
+%files -n qemu-kvm-docs
 %defattr(-,root,root)
 %dir %{qemudocdir}
 %doc %{qemudocdir}/Changelog
@@ -1099,6 +1105,9 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 %doc %{qemudocdir}/system/*
 %doc %{qemudocdir}/tools/*
 %doc %{qemudocdir}/user/*
+
+%files -n qemu-kvm-common
+%defattr(-,root,root)
 %{_mandir}/man7/qemu-qmp-ref.7*
 %{_mandir}/man7/qemu-cpu-models.7*
 %{_bindir}/qemu-keymap
