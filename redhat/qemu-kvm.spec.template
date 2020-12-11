@@ -1043,6 +1043,17 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Fri Dec 11 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-38.el8
+- kvm-seccomp-fix-killing-of-whole-process-instead-of-thre.patch [bz#1880546]
+- kvm-pc-bios-s390x-Rename-PSW_MASK_ZMODE-to-PSW_MASK_64.patch [bz#1903135]
+- kvm-pc-bios-s390x-Use-PSW-masks-where-possible-and-intro.patch [bz#1903135]
+- kvm-pc-bios-s390x-Ensure-Read-IPL-memory-is-clean.patch [bz#1903135]
+- kvm-pc-bios-s390x-Clear-out-leftover-S390EP-string.patch [bz#1903135]
+- Resolves: bz#1880546
+  (qemu use SCMP_ACT_TRAP even SCMP_ACT_KILL_PROCESS is available)
+- Resolves: bz#1903135
+  (RHEL8.3 - KVM Distro install to vfio_ccw backed DASD gets error at the reboot step (qemu-kvm))
+
 * Mon Nov 23 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-37.el8
 - kvm-hw-net-net_tx_pkt-fix-assertion-failure-in-net_tx_pk.patch [bz#1860994]
 - Resolves: bz#1860994
