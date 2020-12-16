@@ -111,7 +111,7 @@ Source36: README.tests
 BuildRequires: wget
 BuildRequires: rpm-build
 BuildRequires: ninja-build
-BuildRequires: meson
+BuildRequires: meson >= 0.55.3-3
 BuildRequires: zlib-devel
 BuildRequires: glib2-devel
 BuildRequires: which
