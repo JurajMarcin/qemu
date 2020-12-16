@@ -553,7 +553,7 @@ pushd %{qemu_kvm_build}
   --with-pkgversion="%{name}-%{version}-%{release}" \
   --with-suffix="%{name}" \
   --firmwarepath=%{_prefix}/share/qemu-firmware \
-  --python=%{__python3} \
+  --meson="%{__meson}" \
   --target-list="%{buildarch}" \
   --block-drv-rw-whitelist=%{block_drivers_list} \
   --audio-drv-list= \
@@ -684,7 +684,7 @@ find ../default-configs -name "*-rh-devices.mak" \
   --with-pkgversion="%{name}-%{version}-%{release}" \
   --with-suffix="%{name}" \
   --firmwarepath=%{_prefix}/share/qemu-firmware \
-  --python=%{__python3} \
+  --meson="%{__meson}" \
   --target-list="%{buildarch}" \
   --block-drv-rw-whitelist=%{block_drivers_list} \
   --audio-drv-list= \
