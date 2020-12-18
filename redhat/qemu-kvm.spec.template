@@ -1257,6 +1257,14 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Thu Dec 17 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-17.el8
+- kvm-virtiofsd-drop-CAP_DAC_READ_SEARCH.patch [bz#1897623]
+- kvm-redhat-moving-all-documentation-files-to-qemu-kvm-do.patch [bz#1881170]
+- Resolves: bz#1881170
+  (split documentation from the qemu-kvm-core package to its own subpackage)
+- Resolves: bz#1897623
+  (virtiofsd: drop CAP_DAC_READ_SEARCH)
+
 * Tue Dec 01 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-16.el8
 - kvm-redhat-introduces-disable_everything-macro-into-the-.patch [bz#1884611]
 - kvm-redhat-scripts-extract_build_cmd.py-Avoid-listing-em.patch [bz#1884611]
