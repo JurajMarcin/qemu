@@ -1043,6 +1043,30 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Wed Dec 23 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-39.el8
+- kvm-ppc-spapr-Add-hotremovable-flag-on-DIMM-LMBs-on-drme.patch [bz#1901837]
+- kvm-ppc-spapr-re-assert-IRQs-during-event-scan-if-there-.patch [bz#1901837]
+- kvm-slirp-check-pkt_len-before-reading-protocol-header.patch [bz#1902237]
+- kvm-s390x-s390-virtio-ccw-Reset-PCI-devices-during-subsy.patch [bz#1905386]
+- kvm-qapi-enable-use-of-g_autoptr-with-QAPI-types.patch [bz#1859494]
+- kvm-error-Fix-examples-in-error.h-s-big-comment.patch [bz#1859494]
+- kvm-error-Improve-error.h-s-big-comment.patch [bz#1859494]
+- kvm-error-Document-Error-API-usage-rules.patch [bz#1859494]
+- kvm-error-New-macro-ERRP_GUARD.patch [bz#1859494]
+- kvm-qga-add-command-guest-get-disks.patch [bz#1859494]
+- kvm-qga-add-implementation-of-guest-get-disks-for-Linux.patch [bz#1859494]
+- kvm-qga-add-implementation-of-guest-get-disks-for-Window.patch [bz#1859494]
+- kvm-qga-fix-missing-closedir-in-qmp_guest_get_disks.patch [bz#1859494]
+- kvm-qga-update-schema-for-guest-get-disks-dependents-fie.patch [bz#1859494]
+- Resolves: bz#1859494
+  (Report logical_name for disks without mounted file-system)
+- Resolves: bz#1901837
+  (Failed to hotunplug pc-dimm device)
+- Resolves: bz#1902237
+  (CVE-2020-29129 CVE-2020-29130 virt:rhel/qemu-kvm: QEMU: slirp: out-of-bounds access while processing ARP/NCSI packets [rhel-8])
+- Resolves: bz#1905386
+  (RHEL8.3 - s390x/s390-virtio-ccw: Reset PCI devices during subsystem reset (qemu-kvm))
+
 * Fri Dec 11 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-38.el8
 - kvm-seccomp-fix-killing-of-whole-process-instead-of-thre.patch [bz#1880546]
 - kvm-pc-bios-s390x-Rename-PSW_MASK_ZMODE-to-PSW_MASK_64.patch [bz#1903135]
