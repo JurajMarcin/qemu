@@ -8,7 +8,7 @@ ZRELEASE:=
 RELEASE_SEPARATOR:=-
 WEEKLY_DATE:=20201209
 RC:=
-BUILD_TARGET=module-virt-av-8040020201125000344-9f9e2e7e
+BUILD_TARGET=rhel-9.0.0-alpha-candidate
 
 TARFILE:=qemu-$(VERSION)$(RC).tar.xz
 TARURL:=https://download.qemu.org/$(TARFILE)

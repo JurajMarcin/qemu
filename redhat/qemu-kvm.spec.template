@@ -61,11 +61,6 @@ Requires: %{name}-block-iscsi = %{epoch}:%{version}-%{release}   \
 Requires: %{name}-block-rbd = %{epoch}:%{version}-%{release}     \
 Requires: %{name}-block-ssh = %{epoch}:%{version}-%{release}
 
-# Macro to properly setup RHEL/RHEV conflict handling
-%define rhev_ma_conflicts()                                      \
-Obsoletes: %1-ma                                                 \
-Obsoletes: %1-rhev
-
 Summary: QEMU is a machine emulator and virtualizer
 Name: qemu-kvm
 Version: %%VERSION%%
@@ -220,7 +215,6 @@ Requires:      mesa-dri-drivers
 BuildRequires: perl-Test-Harness
 
 Requires: qemu-kvm-core = %{epoch}:%{version}-%{release}
-%rhev_ma_conflicts qemu-kvm
 
 %{requires_all_modules}
 
@@ -265,8 +259,6 @@ Requires: usbredir >= 0.7.1
 Requires: libfdt >= 1.6.0
 %endif
 
-%rhev_ma_conflicts qemu-kvm
-
 %description -n qemu-kvm-core
 qemu-kvm is an open source virtualizer that provides hardware
 emulation for the KVM hypervisor. qemu-kvm acts as a virtual
@@ -285,8 +277,6 @@ It's experimental and unsupported.
 %package -n qemu-img
 Summary: QEMU command line tool for manipulating disk images
 Group: Development/Tools
-
-%rhev_ma_conflicts qemu-img
 
 %description -n qemu-img
 This package provides a command line tool for manipulating disk images.
@@ -308,8 +298,6 @@ Requires: sgabios-bin
 Requires: seavgabios-bin >= 1.12.0-3
 Requires: ipxe-roms-qemu >= 20170123-1
 %endif
-
-%rhev_ma_conflicts qemu-kvm-common
 
 %description -n qemu-kvm-common
 qemu-kvm is an open source virtualizer that provides hardware emulation for
