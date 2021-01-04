@@ -1056,6 +1056,19 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Mon Jan 04 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-40.el8
+- kvm-redhat-link-etc-qemu-ga-fsfreeze-hook-to-etc-qemu-kv.patch [bz#1910267]
+- kvm-qga-rename-Error-parameter-to-more-common-errp.patch [bz#1910326]
+- kvm-util-Introduce-qemu_get_host_name.patch [bz#1910326]
+- kvm-qga-Use-qemu_get_host_name-instead-of-g_get_host_nam.patch [bz#1910326]
+- kvm-redhat-add-un-pre-install-systemd-hooks-for-qemu-ga.patch [bz#1910220]
+- Resolves: bz#1910267
+  (There is no soft link '/etc/qemu-kvm/fsfreeze-hook')
+- Resolves: bz#1910326
+  (Incorrect hostname returned by  qga command 'guest-get-host-name')
+- Resolves: bz#1910220
+  (qemu-ga service still active and can work after qemu-guest-agent been removed)
+
 * Wed Dec 23 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-39.el8
 - kvm-ppc-spapr-Add-hotremovable-flag-on-DIMM-LMBs-on-drme.patch [bz#1901837]
 - kvm-ppc-spapr-re-assert-IRQs-during-event-scan-if-there-.patch [bz#1901837]
