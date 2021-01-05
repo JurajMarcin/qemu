@@ -136,7 +136,7 @@ if have_block
     'test-blockjob': [testblock],
     'test-blockjob-txn': [testblock],
     'test-block-backend': [testblock],
-    'test-block-iothread': [testblock],
+#    'test-block-iothread': [testblock],
     'test-write-threshold': [testblock],
     'test-crypto-hash': [crypto],
     'test-crypto-hmac': [crypto],
