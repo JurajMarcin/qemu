@@ -29,7 +29,7 @@
 #include "migration/vmstate.h"
 
 /*
- * The same as hw_compat_5_1
+ * Mostly the same as hw_compat_5_1
  */
 GlobalProperty hw_compat_rhel_8_3[] = {
     /* hw_compat_rhel_8_3 from hw_compat_5_1 */
@@ -46,6 +46,8 @@ GlobalProperty hw_compat_rhel_8_3[] = {
     { "nvme", "use-intel-id", "on"},
     /* hw_compat_rhel_8_3 from hw_compat_5_1 */
     { "pvpanic", "events", "1"}, /* PVPANIC_PANICKED */
+    /* hw_compat_rhel_8_3 bz 1912846 */
+    { "pci-xhci", "x-rh-late-msi-cap", "off" },
 };
 const size_t hw_compat_rhel_8_3_len = G_N_ELEMENTS(hw_compat_rhel_8_3);
 
