@@ -575,15 +575,18 @@ int pcistg_service_call(S390CPU *cpu, uint8_t r1, uint8_t r2, uintptr_t ra)
 static void s390_pci_update_iotlb(S390PCIIOMMU *iommu, S390IOTLBEntry *entry)
 {
     S390IOTLBEntry *cache = g_hash_table_lookup(iommu->iotlb, &entry->iova);
-    IOMMUTLBEntry notify = {
-        .target_as = &address_space_memory,
-        .iova = entry->iova,
-        .translated_addr = entry->translated_addr,
-        .perm = entry->perm,
-        .addr_mask = ~PAGE_MASK,
+    IOMMUTLBEvent event = {
+        .type = entry->perm ? IOMMU_NOTIFIER_MAP : IOMMU_NOTIFIER_UNMAP,
+        .entry = {
+            .target_as = &address_space_memory,
+            .iova = entry->iova,
+            .translated_addr = entry->translated_addr,
+            .perm = entry->perm,
+            .addr_mask = ~PAGE_MASK,
+        },
     };
 
-    if (entry->perm == IOMMU_NONE) {
+    if (event.type == IOMMU_NOTIFIER_UNMAP) {
         if (!cache) {
             return;
         }
@@ -595,9 +598,11 @@ static void s390_pci_update_iotlb(S390PCIIOMMU *iommu, S390IOTLBEntry *entry)
                 return;
             }
 
-            notify.perm = IOMMU_NONE;
-            memory_region_notify_iommu(&iommu->iommu_mr, 0, notify);
-            notify.perm = entry->perm;
+            event.type = IOMMU_NOTIFIER_UNMAP;
+            event.entry.perm = IOMMU_NONE;
+            memory_region_notify_iommu(&iommu->iommu_mr, 0, event);
+            event.type = IOMMU_NOTIFIER_MAP;
+            event.entry.perm = entry->perm;
         }
 
         cache = g_new(S390IOTLBEntry, 1);
@@ -608,7 +613,7 @@ static void s390_pci_update_iotlb(S390PCIIOMMU *iommu, S390IOTLBEntry *entry)
         g_hash_table_replace(iommu->iotlb, &cache->iova, cache);
     }
 
-    memory_region_notify_iommu(&iommu->iommu_mr, 0, notify);
+    memory_region_notify_iommu(&iommu->iommu_mr, 0, event);
 }
 
 int rpcit_service_call(S390CPU *cpu, uint8_t r1, uint8_t r2, uintptr_t ra)
