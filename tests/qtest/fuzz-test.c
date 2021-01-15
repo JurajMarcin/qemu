@@ -47,6 +47,32 @@ static void test_lp1878642_pci_bus_get_irq_level_assert(void)
     qtest_outl(s, 0x5d02, 0xebed205d);
 }
 
+/*
+ * https://bugs.launchpad.net/qemu/+bug/1879531
+ */
+static void test_lp1879531_eth_get_rss_ex_dst_addr(void)
+{
+    QTestState *s;
+
+    s = qtest_init("-nographic -monitor none -serial none -M pc-q35-5.0");
+
+    qtest_outl(s, 0xcf8 0x80001010);
+    qtest_outl(s, 0xcfc 0xe1020000);
+    qtest_outl(s, 0xcf8 0x80001004);
+    qtest_outw(s, 0xcfc 0x7);
+    qtest_writeb(s, 0x25 0x1 0x86);
+    qtest_writeb(s, 0x26 0x1 0xdd);
+    qtest_writeb(s, 0x4f 0x1 0x2b);
+    qtest_writel(s, 0xe1020030, 0x190002e1);
+    qtest_writew(s, 0xe102003a, 0x0807);
+    qtest_writel(s, 0xe1020048, 0x12077cdd);
+    qtest_writel(s, 0xe1020400, 0xba077cdd);
+    qtest_writel(s, 0xe1020420, 0x190002e1);
+    qtest_writel(s, 0xe1020428, 0x3509d807);
+    qtest_writeb(s, 0xe1020438, 0xe2);
+    qtest_quit(s);
+}
+
 int main(int argc, char **argv)
 {
     const char *arch = qtest_get_arch();
@@ -58,6 +84,9 @@ int main(int argc, char **argv)
                        test_lp1878263_megasas_zero_iov_cnt);
         qtest_add_func("fuzz/test_lp1878642_pci_bus_get_irq_level_assert",
                        test_lp1878642_pci_bus_get_irq_level_assert);
+        qtest_add_func("fuzz/test_lp1879531_eth_get_rss_ex_dst_addr",
+                       test_lp1879531_eth_get_rss_ex_dst_addr);
+
     }
 
     return g_test_run();
