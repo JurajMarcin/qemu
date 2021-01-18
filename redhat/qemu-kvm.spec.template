@@ -1056,6 +1056,35 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Mon Jan 18 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-41.el8
+- kvm-udev-kvm-check-remove-the-exceeded-subscription-limi.patch [bz#1909244]
+- kvm-hw-arm-smmu-common-Factorize-some-code-in-smmu_ptw_6.patch [bz#1843852]
+- kvm-hw-arm-smmu-common-Add-IOTLB-helpers.patch [bz#1843852]
+- kvm-hw-arm-smmu-Introduce-smmu_get_iotlb_key.patch [bz#1843852]
+- kvm-hw-arm-smmu-Introduce-SMMUTLBEntry-for-PTW-and-IOTLB.patch [bz#1843852]
+- kvm-hw-arm-smmu-common-Manage-IOTLB-block-entries.patch [bz#1843852]
+- kvm-hw-arm-smmuv3-Introduce-smmuv3_s1_range_inval-helper.patch [bz#1843852]
+- kvm-hw-arm-smmuv3-Get-prepared-for-range-invalidation.patch [bz#1843852]
+- kvm-hw-arm-smmuv3-Fix-potential-integer-overflow-CID-143.patch [bz#1843852]
+- kvm-memory-Rename-memory_region_notify_one-to-memory_reg.patch [bz#1843852]
+- kvm-memory-Add-IOMMUTLBEvent.patch [bz#1843852]
+- kvm-memory-Add-IOMMU_NOTIFIER_DEVIOTLB_UNMAP-IOMMUTLBNot.patch [bz#1843852]
+- kvm-intel_iommu-Skip-page-walking-on-device-iotlb-invali.patch [bz#1843852]
+- kvm-memory-Skip-bad-range-assertion-if-notifier-is-DEVIO.patch [bz#1843852]
+- kvm-memory-clamp-cached-translation-in-case-it-points-to.patch [bz#1904393]
+- kvm-hw-ehci-check-return-value-of-usb_packet_map.patch [bz#1898628]
+- kvm-hw-net-e1000e-advance-desc_offset-in-case-of-null-de.patch [bz#1903070]
+- Resolves: bz#1909244
+  (Remove KVM guest count and limit info message)
+- Resolves: bz#1843852
+  (qemu core dumped: qemu-kvm: /builddir/build/BUILD/qemu-4.2.0/memory.c:1928: memory_region_notify_one: Assertion `entry->iova >= notifier->start && entry_end <= notifier->end' failed.)
+- Resolves: bz#1904393
+  (CVE-2020-27821 virt:rhel/qemu-kvm: QEMU: heap buffer overflow in msix_table_mmio_write() in hw/pci/msix.c [rhel-8])
+- Resolves: bz#1898628
+  (CVE-2020-25723 virt:rhel/qemu-kvm: QEMU: assertion failure through usb_packet_unmap() in hw/usb/hcd-ehci.c [rhel-8])
+- Resolves: bz#1903070
+  (CVE-2020-25707 CVE-2020-28916 virt:rhel/qemu-kvm: various flaws [rhel-8])
+
 * Mon Jan 04 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-40.el8
 - kvm-redhat-link-etc-qemu-ga-fsfreeze-hook-to-etc-qemu-kv.patch [bz#1910267]
 - kvm-qga-rename-Error-parameter-to-more-common-errp.patch [bz#1910326]
