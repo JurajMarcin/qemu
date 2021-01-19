@@ -124,7 +124,6 @@ struct SpaprMachineClass {
     bool pre_4_1_migration; /* don't migrate hpt-max-page-size */
     bool linux_pci_probe;
     bool smp_threads_vsmt; /* set VSMT to smp_threads by default */
-    bool pre_6_0_memory_unplug;
 
     bool has_power9_support;
     void (*phb_placement)(SpaprMachineState *spapr, uint32_t index,
@@ -894,4 +893,5 @@ void spapr_check_pagesize(SpaprMachineState *spapr, hwaddr pagesize,
 #define SPAPR_OV5_XIVE_BOTH     0x80 /* Only to advertise on the platform */
 
 void spapr_set_all_lpcrs(target_ulong value, target_ulong mask);
+bool spapr_memory_hot_unplug_supported(SpaprMachineState *spapr);
 #endif /* HW_SPAPR_H */
