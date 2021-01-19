@@ -1257,6 +1257,20 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Mon Jan 18 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-18.el8
+- kvm-net-remove-an-assert-call-in-eth_get_gso_type.patch [bz#1894504]
+- kvm-memory-clamp-cached-translation-in-case-it-points-to.patch [bz#1904394]
+- kvm-hw-ehci-check-return-value-of-usb_packet_map.patch [bz#1898629]
+- kvm-hw-net-e1000e-advance-desc_offset-in-case-of-null-de.patch [bz#1895404]
+- Resolves: bz#1894504
+  (CVE-2020-27617 virt:8.3/qemu-kvm: QEMU: net: an assert failure via eth_get_gso_type [rhel-av-8])
+- Resolves: bz#1904394
+  (CVE-2020-27821 virt:8.3/qemu-kvm: QEMU: heap buffer overflow in msix_table_mmio_write() in hw/pci/msix.c [rhel-av-8])
+- Resolves: bz#1898629
+  (CVE-2020-25723 virt:8.2/qemu-kvm: QEMU: assertion failure through usb_packet_unmap() in hw/usb/hcd-ehci.c [rhel-av-8])
+- Resolves: bz#1895404
+  (CVE-2020-25707 virt:8.2/qemu-kvm: QEMU: infinite loop in e1000e_write_packet_to_guest() in hw/net/e1000e_core.c [rhel-av-8])
+
 * Thu Dec 17 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-17.el8
 - kvm-virtiofsd-drop-CAP_DAC_READ_SEARCH.patch [bz#1897623]
 - kvm-redhat-moving-all-documentation-files-to-qemu-kvm-do.patch [bz#1881170]
