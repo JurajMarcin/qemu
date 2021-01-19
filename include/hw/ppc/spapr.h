@@ -124,6 +124,7 @@ struct SpaprMachineClass {
     bool pre_4_1_migration; /* don't migrate hpt-max-page-size */
     bool linux_pci_probe;
     bool smp_threads_vsmt; /* set VSMT to smp_threads by default */
+    bool pre_6_0_memory_unplug;
 
     bool has_power9_support;
     void (*phb_placement)(SpaprMachineState *spapr, uint32_t index,
