@@ -6,7 +6,7 @@ COMMIT:=
 RELEASE:=101
 ZRELEASE:=2
 RELEASE_SEPARATOR:=-
-BUILD_TARGET=module-virt-rhel-8020020200909224913.4cda2c84
+BUILD_TARGET=module-virt-rhel-8020020200909224913-4cda2c84
 
 TARFILE:=qemu-$(VERSION).tar.xz
 TARURL:=http://download.qemu-project.org/$(TARFILE)
