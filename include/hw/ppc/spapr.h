@@ -142,6 +142,7 @@ struct SpaprMachineClass {
     hwaddr rma_limit;          /* clamp the RMA to this size */
     bool pre_5_1_assoc_refpoints;
     bool pre_5_2_numa_associativity;
+    bool pre_6_0_memory_unplug;
 
     bool has_power9_support;
     void (*phb_placement)(SpaprMachineState *spapr, uint32_t index,

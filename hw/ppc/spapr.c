@@ -4064,7 +4064,8 @@ static void spapr_machine_device_unplug_request(HotplugHandler *hotplug_dev,
     SpaprMachineClass *smc = SPAPR_MACHINE_CLASS(mc);
 
     if (object_dynamic_cast(OBJECT(dev), TYPE_PC_DIMM)) {
-        if (spapr_ovec_test(sms->ov5_cas, OV5_HP_EVT)) {
+        if (!smc->pre_6_0_memory_unplug ||
+            spapr_ovec_test(sms->ov5_cas, OV5_HP_EVT)) {
             spapr_memory_unplug_request(hotplug_dev, dev, errp);
         } else {
             /* NOTE: this means there is a window after guest reset, prior to
