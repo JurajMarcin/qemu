@@ -79,7 +79,7 @@ rh-env-prep: rh-prep
 	              sed "s/--disable-git-update/--enable-git-update/g")
 
 rh-local: rh-env-prep
-	make V=1 -j8 -C $(REDHAT)/../build  VL_LDFLAGS=-Wl,--build-id
+	$(MAKE) -C $(REDHAT)/../build  VL_LDFLAGS=-Wl,--build-id
 
 rh-help:
 	@echo "rh-brew: Build RHEL package on brew"
