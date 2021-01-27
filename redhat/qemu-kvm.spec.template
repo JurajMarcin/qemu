@@ -1056,6 +1056,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Wed Jan 27 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-43.el8
+- kvm-Drop-bogus-IPv6-messages.patch [bz#1918054]
+- Resolves: bz#1918054
+  (CVE-2020-10756 virt:rhel/qemu-kvm: QEMU: slirp: networking out-of-bounds read information disclosure vulnerability [rhel-8.4.0])
+
 * Thu Jan 21 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-42.el8
 - kvm-linux-headers-add-vfio-DMA-available-capability.patch [bz#1905391]
 - kvm-s390x-pci-Move-header-files-to-include-hw-s390x.patch [bz#1905391]
