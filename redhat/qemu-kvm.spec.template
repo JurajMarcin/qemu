@@ -1056,6 +1056,23 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Tue Feb 02 2021 Jon Maloy <jmaloy@redhat.com> - 4.2.0-44.el8
+- kvm-spapr-Improve-handling-of-fdt-buffer-size.patch [bz#1901837]
+- kvm-spapr-Fold-h_cas_compose_response-into-h_client_arch.patch [bz#1901837]
+- kvm-spapr-Don-t-use-spapr_drc_needed-in-CAS-code.patch [bz#1901837]
+- kvm-spapr-Fix-handling-of-unplugged-devices-during-CAS-a.patch [bz#1901837]
+- kvm-spapr-Allow-memory-unplug-to-always-succeed.patch [bz#1901837]
+- kvm-spapr-Improve-handling-of-memory-unplug-with-old-gue.patch [bz#1901837]
+- kvm-block-Require-aligned-image-size-to-avoid-assertion-.patch [bz#1834281]
+- kvm-file-posix-Allow-byte-aligned-O_DIRECT-with-NFS.patch [bz#1834281]
+- kvm-block-iscsi-fix-heap-buffer-overflow-in-iscsi_aio_io.patch [bz#1912974]
+- Resolves: bz#1834281
+  (qemu-img convert abort when converting image with unaligned size)
+- Resolves: bz#1901837
+  (Failed to hotunplug pc-dimm device)
+- Resolves: bz#1912974
+  (CVE-2020-11947 virt:rhel/qemu-kvm: QEMU: heap buffer overflow in iscsi_aio_ioctl_cb() in block/iscsi.c may lead to information disclosure [rhel-8])
+
 * Wed Jan 27 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-43.el8
 - kvm-Drop-bogus-IPv6-messages.patch [bz#1918054]
 - Resolves: bz#1918054
