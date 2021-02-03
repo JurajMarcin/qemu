@@ -335,6 +335,7 @@ int main(int argc, char *argv[])
         main_loop_wait(false);
     }
 
+    nbd_export_close_all();
     bdrv_drain_all_begin();
     bdrv_close_all();
 

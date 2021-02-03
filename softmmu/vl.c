@@ -66,6 +66,7 @@
 #include "qemu/log.h"
 #include "sysemu/blockdev.h"
 #include "hw/block/block.h"
+#include "block/nbd.h"
 #include "migration/misc.h"
 #include "migration/snapshot.h"
 #include "migration/global_state.h"
@@ -4511,6 +4512,14 @@ void qemu_cleanup(void)
      * try to do this early so that it also stops using devices.
      */
     migration_shutdown();
+
+    /*
+     * Close the exports before draining the block layer. The export
+     * drivers may have coroutines yielding on it, so we need to clean
+     * them up before the drain, as otherwise they may be get stuck in
+     * blk_wait_while_drained().
+     */
+    nbd_export_close_all();
 
     /*
      * We must cancel all block jobs while the block layer is drained,
