@@ -1038,6 +1038,14 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Wed Feb 03 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-29.el8_2.6
+- kvm-block-iscsi-fix-heap-buffer-overflow-in-iscsi_aio_io.patch [bz#1912973]
+- kvm-hw-ehci-check-return-value-of-usb_packet_map.patch [bz#1901875]
+- Resolves: bz#1912973
+  (CVE-2020-11947 virt:8.2/qemu-kvm: QEMU: heap buffer overflow in iscsi_aio_ioctl_cb() in block/iscsi.c may lead to information disclosure [rhel-av-8])
+- Resolves: bz#1901875
+  (CVE-2020-25723 virt:8.3/qemu-kvm: QEMU: assertion failure through usb_packet_unmap() in hw/usb/hcd-ehci.c [rhel-av-8])
+
 * Wed Oct 14 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-29.el8_2.5
 - kvm-virtiofsd-Whitelist-fchmod.patch [bz#1883869]
 - kvm-virtiofsd-avoid-proc-self-fd-tempdir.patch [bz#1883869]
