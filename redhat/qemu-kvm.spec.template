@@ -1257,6 +1257,20 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Wed Feb 03 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-19.el8
+- kvm-ide-atapi-assert-that-the-buffer-pointer-is-in-range.patch [bz#1921387]
+- kvm-block-Honor-blk_set_aio_context-context-requirements.patch [bz#1900326 bz#1900505]
+- kvm-nbd-server-Quiesce-coroutines-on-context-switch.patch [bz#1900326 bz#1900505]
+- kvm-block-Avoid-processing-BDS-twice-in-bdrv_set_aio_con.patch [bz#1900326 bz#1900505]
+- kvm-storage-daemon-Call-bdrv_close_all-on-exit.patch [bz#1900326 bz#1900505]
+- kvm-block-move-blk_exp_close_all-to-qemu_cleanup.patch [bz#1900326 bz#1900505]
+- Resolves: bz#1921387
+  (CVE-2020-29443 virt:8.3/qemu-kvm: QEMU: ide: atapi: OOB access while processing read commands [rhel-av-8.3.1])
+- Resolves: bz#1900326
+  ([incremental_backup] qemu aborts if guest reboot during backup when using virtio-blk: "aio_co_schedule: Co-routine was already scheduled in 'aio_co_schedule'")
+- Resolves: bz#1900505
+  ([incremental_backup] qemu deadlock after poweroff in guest during backup in nbd_export_close_all())
+
 * Mon Jan 18 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-18.el8
 - kvm-net-remove-an-assert-call-in-eth_get_gso_type.patch [bz#1894504]
 - kvm-memory-clamp-cached-translation-in-case-it-points-to.patch [bz#1904394]
