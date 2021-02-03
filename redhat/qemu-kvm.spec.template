@@ -991,6 +991,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Wed Feb 03 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 2.12.0-99.el8_2.5
+- kvm-hw-ehci-check-return-value-of-usb_packet_map.patch [bz#1920266]
+- Resolves: bz#1920266
+  (CVE-2020-25723 virt:8.3/qemu-kvm: QEMU: assertion failure through usb_packet_unmap() in hw/usb/hcd-ehci.c [rhel-8.2.1.z])
+
 * Wed Sep 09 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 2.12.0-99.el8_2.4
 - kvm-usb-fix-setup_len-init-CVE-2020-14364.patch [bz#1869708]
 - Resolves: bz#1869708
