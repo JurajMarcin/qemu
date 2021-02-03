@@ -315,8 +315,6 @@ tac $clogf | sed "1{/^$/d; /^- /i\
 test -n "$SPECFILE" &&
         sed -i -e "/%%PATCH_LIST%%/r $PATCHF
         /%%PATCH_LIST%%/d
-	/%%CONFIGS%%/r $CONFIGS2
-	/%%CONFIGS%%/d
         /%%PATCH_APPLICATION%%/r $patchf
         /%%PATCH_APPLICATION%%/d
 	/%%CHANGELOG%%/r $clogf.rev
@@ -335,5 +333,6 @@ if [ -n "$BUILDID" ]; then
 	sed -i -e "s/# % define buildid .local/%define buildid $BUILDID/" $SPECFILE;
 fi
 
-rm $PATCHF $patchf $clogf $clogf.rev $CONFIGS $CONFIGS2;
+rm $PATCHF $patchf $clogf $clogf.rev
+
 

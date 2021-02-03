@@ -147,7 +147,6 @@ Source19: README.rhel6-gpxe-source
 Source20: rhel6-e1000.rom
 Source21: sample_images.tar
 
-%%CONFIGS%%
 
 %%PATCH_LIST%%
 
