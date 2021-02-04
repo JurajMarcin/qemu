@@ -567,7 +567,7 @@ pushd %{qemu_kvm_build}
   --block-drv-ro-whitelist=vmdk,vhdx,vpc,https,ssh \
   --with-coroutine=ucontext \
   --with-git=git \
-  --tls-priority=NORMAL \
+  --tls-priority=@QEMU,SYSTEM \
   %{disable_everything} \
   --enable-attr \
 %ifarch %{ix86} x86_64
@@ -698,7 +698,7 @@ find ../default-configs -name "*-rh-devices.mak" \
   --block-drv-ro-whitelist=vmdk,vhdx,vpc,https,ssh \
   --with-coroutine=ucontext \
   --with-git=git \
-  --tls-priority=NORMAL \
+  --tls-priority=@QEMU,SYSTEM \
   %{disable_everything} \
   --enable-attr \
 %ifarch %{ix86} x86_64
