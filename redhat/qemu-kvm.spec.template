@@ -1043,6 +1043,20 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Fri Feb 05 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-34.el8_3.3
+- kvm-qapi-enable-use-of-g_autoptr-with-QAPI-types.patch [bz#1913818]
+- kvm-error-Fix-examples-in-error.h-s-big-comment.patch [bz#1913818]
+- kvm-error-Improve-error.h-s-big-comment.patch [bz#1913818]
+- kvm-error-Document-Error-API-usage-rules.patch [bz#1913818]
+- kvm-error-New-macro-ERRP_GUARD.patch [bz#1913818]
+- kvm-qga-add-command-guest-get-disks.patch [bz#1913818]
+- kvm-qga-add-implementation-of-guest-get-disks-for-Linux.patch [bz#1913818]
+- kvm-qga-add-implementation-of-guest-get-disks-for-Window.patch [bz#1913818]
+- kvm-qga-fix-missing-closedir-in-qmp_guest_get_disks.patch [bz#1913818]
+- kvm-qga-update-schema-for-guest-get-disks-dependents-fie.patch [bz#1913818]
+- Resolves: bz#1913818
+  (Report logical_name for disks without mounted file-system [rhel-8.3.0.z])
+
 * Wed Dec 09 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-34.el8_3.2
 - kvm-qga-fix-assert-regression-on-guest-shutdown.patch [bz#1900578]
 - Resolves: bz#1900578
