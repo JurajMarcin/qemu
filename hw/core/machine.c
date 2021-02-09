@@ -77,6 +77,8 @@ GlobalProperty hw_compat_rhel_8_2[] = {
     { "qxl-vga", "revision", "4" },
     /* hw_compat_rhel_8_2 from hw_compat_4_2 */
     { "fw_cfg", "acpi-mr-restore", "false" },
+    /* hw_compat_rhel_8_2 from hw_compat_4_2 */
+    { "virtio-device", "use-disabled-flag", "false" },
     /* hw_compat_rhel_8_2 from hw_compat_5_0 */
     { "pci-host-bridge", "x-config-reg-migration-enabled", "off" },
     /* hw_compat_rhel_8_2 from hw_compat_5_0 */
@@ -298,12 +300,12 @@ GlobalProperty hw_compat_4_2[] = {
     { "qxl", "revision", "4" },
     { "qxl-vga", "revision", "4" },
     { "fw_cfg", "acpi-mr-restore", "false" },
+    { "virtio-device", "use-disabled-flag", "false" },
 };
 const size_t hw_compat_4_2_len = G_N_ELEMENTS(hw_compat_4_2);
 
 GlobalProperty hw_compat_4_1[] = {
     { "virtio-pci", "x-pcie-flr-init", "off" },
-    { "virtio-device", "use-disabled-flag", "false" },
 };
 const size_t hw_compat_4_1_len = G_N_ELEMENTS(hw_compat_4_1);
 
