@@ -1018,7 +1018,7 @@ static void pc_machine_rhel7_options(MachineClass *m)
 {
     PCMachineClass *pcmc = PC_MACHINE_CLASS(m);
     m->family = "pc_piix_Y";
-    m->default_machine_opts = "firmware=bios-256k.bin";
+    m->default_machine_opts = "firmware=bios-256k.bin,hpet=off";
     pcmc->default_nic_model = "e1000";
     m->default_display = "std";
     m->no_parallel = 1;
