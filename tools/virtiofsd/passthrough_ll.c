@@ -878,11 +878,13 @@ static void posix_locks_value_destroy(gpointer data)
 }
 
 /*
- * Increments nlookup and caller must release refcount using
- * lo_inode_put(&parent).
+ * Increments nlookup on the inode on success. unref_inode_lolocked() must be
+ * called eventually to decrement nlookup again. If inodep is non-NULL, the
+ * inode pointer is stored and the caller must call lo_inode_put().
  */
 static int lo_do_lookup(fuse_req_t req, fuse_ino_t parent, const char *name,
-                        struct fuse_entry_param *e)
+                        struct fuse_entry_param *e,
+                        struct lo_inode **inodep)
 {
     int newfd;
     int res;
@@ -890,6 +892,10 @@ static int lo_do_lookup(fuse_req_t req, fuse_ino_t parent, const char *name,
     struct lo_data *lo = lo_data(req);
     struct lo_inode *inode = NULL;
     struct lo_inode *dir = lo_inode(req, parent);
+
+    if (inodep) {
+        *inodep = NULL;
+    }
 
     /*
      * name_to_handle_at() and open_by_handle_at() can reach here with fuse
@@ -953,7 +959,14 @@ static int lo_do_lookup(fuse_req_t req, fuse_ino_t parent, const char *name,
         pthread_mutex_unlock(&lo->mutex);
     }
     e->ino = inode->fuse_ino;
-    lo_inode_put(lo, &inode);
+
+    /* Transfer ownership of inode pointer to caller or drop it */
+    if (inodep) {
+        *inodep = inode;
+    } else {
+        lo_inode_put(lo, &inode);
+    }
+
     lo_inode_put(lo, &dir);
 
     fuse_log(FUSE_LOG_DEBUG, "  %lli/%s -> %lli\n", (unsigned long long)parent,
@@ -988,7 +1001,7 @@ static void lo_lookup(fuse_req_t req, fuse_ino_t parent, const char *name)
         return;
     }
 
-    err = lo_do_lookup(req, parent, name, &e);
+    err = lo_do_lookup(req, parent, name, &e, NULL);
     if (err) {
         fuse_reply_err(req, err);
     } else {
@@ -1098,7 +1111,7 @@ static void lo_mknod_symlink(fuse_req_t req, fuse_ino_t parent,
         goto out;
     }
 
-    saverr = lo_do_lookup(req, parent, name, &e);
+    saverr = lo_do_lookup(req, parent, name, &e, NULL);
     if (saverr) {
         goto out;
     }
@@ -1599,7 +1612,7 @@ static void lo_do_readdir(fuse_req_t req, fuse_ino_t ino, size_t size,
 
         if (plus) {
             if (!is_dot_or_dotdot(name)) {
-                err = lo_do_lookup(req, ino, name, &e);
+                err = lo_do_lookup(req, ino, name, &e, NULL);
                 if (err) {
                     goto error;
                 }
@@ -1793,7 +1806,7 @@ static void lo_create(fuse_req_t req, fuse_ino_t parent, const char *name,
         }
 
         fi->fh = fh;
-        err = lo_do_lookup(req, parent, name, &e);
+        err = lo_do_lookup(req, parent, name, &e, NULL);
     }
     if (lo->cache == CACHE_NONE) {
         fi->direct_io = 1;
