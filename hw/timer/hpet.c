@@ -733,6 +733,14 @@ static void hpet_realize(DeviceState *dev, Error **errp)
     int i;
     HPETTimer *timer;
 
+    /* Restricted for Red Hat Enterprise Linux */
+    MachineClass *mc = MACHINE_GET_CLASS(qdev_get_machine());
+    if (strstr(mc->name, "rhel")) {
+        error_setg(errp, "Device %s is not supported with machine type %s",
+                   object_get_typename(OBJECT(dev)), mc->name);
+        return;
+    }
+
     if (!s->intcap) {
         warn_report("Hpet's intcap not initialized");
     }
