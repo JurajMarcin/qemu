@@ -1257,6 +1257,13 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Thu Feb 11 2021 Eduardo Lima (Etrunko) <elima@redhat.com> - 5.1.0-20.el8
+- kvm-virtiofsd-extract-lo_do_open-from-lo_open.patch [bz#1919113]
+- kvm-virtiofsd-optionally-return-inode-pointer-from-lo_do.patch [bz#1919113]
+- kvm-virtiofsd-prevent-opening-of-special-files-CVE-2020-.patch [bz#1919113]
+- Resolves: bz#1919113
+  (CVE-2020-35517 virt:8.3/qemu-kvm: QEMU: virtiofsd: potential privileged host device access from guest [rhel-av-8.3.1])
+
 * Wed Feb 03 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-19.el8
 - kvm-ide-atapi-assert-that-the-buffer-pointer-is-in-range.patch [bz#1921387]
 - kvm-block-Honor-blk_set_aio_context-context-requirements.patch [bz#1900326 bz#1900505]
