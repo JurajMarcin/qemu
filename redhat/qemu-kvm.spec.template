@@ -1038,6 +1038,13 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Thu Feb 11 2021 Eduardo Lima (Etrunko) <elima@redhat.com> - 4.2.0-29.el8_2.7
+- kvm-virtiofsd-extract-lo_do_open-from-lo_open.patch [bz#1922046]
+- kvm-virtiofsd-optionally-return-inode-pointer-from-lo_do.patch [bz#1922046]
+- kvm-virtiofsd-prevent-opening-of-special-files-CVE-2020-.patch [bz#1922046]
+- Resolves: bz#1922046
+  (CVE-2020-35517 virt:8.3/qemu-kvm: QEMU: virtiofsd: potential privileged host device access from guest [rhel-av-8.2.1.z])
+
 * Wed Feb 03 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-29.el8_2.6
 - kvm-block-iscsi-fix-heap-buffer-overflow-in-iscsi_aio_io.patch [bz#1912973]
 - kvm-hw-ehci-check-return-value-of-usb_packet_map.patch [bz#1901875]
