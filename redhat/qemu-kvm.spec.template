@@ -977,9 +977,6 @@ rm -rf ${RPM_BUILD_ROOT}%{_datadir}/%{name}/QEMU,cgthree.bin
 rm -rf ${RPM_BUILD_ROOT}%{_bindir}/ivshmem-client
 rm -rf ${RPM_BUILD_ROOT}%{_bindir}/ivshmem-server
 
-# Remove qemu-storage-daemon
-rm -rf ${RPM_BUILD_ROOT}%{_bindir}/qemu-storage-daemon
-
 # Remove efi roms
 rm -rf ${RPM_BUILD_ROOT}%{_datadir}/%{name}/efi*.rom
 
@@ -1265,8 +1262,11 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 %{_bindir}/qemu-img
 %{_bindir}/qemu-io
 %{_bindir}/qemu-nbd
+%{_bindir}/qemu-storage-daemon
 %{_mandir}/man1/qemu-img.1*
 %{_mandir}/man8/qemu-nbd.8*
+%{_mandir}/man1/qemu-storage-daemon.1*
+%{_mandir}/man7/qemu-storage-daemon-qmp-ref.7*
 
 %files -n qemu-guest-agent
 %defattr(-,root,root,-)
