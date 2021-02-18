@@ -1291,6 +1291,20 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Fri Feb 12 2021 Eduardo Lima (Etrunko) <elima@redhat.com> - 5.2.0-7.el8
+- kvm-virtio-Add-corresponding-memory_listener_unregister-.patch [bz#1903521]
+- kvm-block-Honor-blk_set_aio_context-context-requirements.patch [bz#1918966 bz#1918968]
+- kvm-nbd-server-Quiesce-coroutines-on-context-switch.patch [bz#1918966 bz#1918968]
+- kvm-block-Avoid-processing-BDS-twice-in-bdrv_set_aio_con.patch [bz#1918966 bz#1918968]
+- kvm-storage-daemon-Call-bdrv_close_all-on-exit.patch [bz#1918966 bz#1918968]
+- kvm-block-move-blk_exp_close_all-to-qemu_cleanup.patch [bz#1918966 bz#1918968]
+- Resolves: bz#1903521
+  (hot unplug vhost-user cause qemu crash: qemu-kvm: ../softmmu/memory.c:2818: do_address_space_destroy: Assertion `QTAILQ_EMPTY(&as->listeners)' failed.)
+- Resolves: bz#1918966
+  ([incremental_backup] qemu aborts if guest reboot during backup when using virtio-blk: "aio_co_schedule: Co-routine was already scheduled in 'aio_co_schedule'")
+- Resolves: bz#1918968
+  ([incremental_backup] qemu deadlock after poweroff in guest during backup in nbd_export_close_all())
+
 * Tue Feb 09 2021 Eduardo Lima (Etrunko) <elima@redhat.com> - 5.2.0-6.el8
 - kvm-scsi-fix-device-removal-race-vs-IO-restart-callback-.patch [bz#1854811]
 - kvm-tracetool-also-strip-l-and-ll-from-systemtap-format-.patch [bz#1907264]
