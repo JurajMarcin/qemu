@@ -1303,6 +1303,34 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Fri Feb 19 2021 Eduardo Lima (Etrunko) <elima@redhat.com> - 5.2.0-9.el8
+- kvm-block-nbd-only-detach-existing-iochannel-from-aio_co.patch [bz#1887883]
+- kvm-block-nbd-only-enter-connection-coroutine-if-it-s-pr.patch [bz#1887883]
+- kvm-nbd-make-nbd_read-return-EIO-on-error.patch [bz#1887883]
+- kvm-virtio-move-use-disabled-flag-property-to-hw_compat_.patch [bz#1907255]
+- kvm-virtiofsd-extract-lo_do_open-from-lo_open.patch [bz#1920740]
+- kvm-virtiofsd-optionally-return-inode-pointer-from-lo_do.patch [bz#1920740]
+- kvm-virtiofsd-prevent-opening-of-special-files-CVE-2020-.patch [bz#1920740]
+- kvm-spapr-Adjust-firmware-path-of-PCI-devices.patch [bz#1920941]
+- kvm-pci-reject-too-large-ROMs.patch [bz#1917830]
+- kvm-pci-add-romsize-property.patch [bz#1917830]
+- kvm-redhat-Add-some-devices-for-exporting-upstream-machi.patch [bz#1917826]
+- kvm-vhost-Check-for-valid-vdev-in-vhost_backend_handle_i.patch [bz#1880299]
+- Resolves: bz#1887883
+  (qemu blocks client progress with various NBD actions)
+- Resolves: bz#1907255
+  (Migrate failed with vhost-vsock-pci from RHEL-AV 8.3.1 to RHEL-AV 8.2.1)
+- Resolves: bz#1920740
+  (CVE-2020-35517 virt:8.4/qemu-kvm: QEMU: virtiofsd: potential privileged host device access from guest [rhel-av-8.4.0])
+- Resolves: bz#1920941
+  ([ppc64le] [AV]--disk cdimage.iso,bus=usb fails to boot)
+- Resolves: bz#1917830
+  (Add romsize property to qemu-kvm)
+- Resolves: bz#1917826
+  (Add extra device support to qemu-kvm, but not to rhel machine types)
+- Resolves: bz#1880299
+  (vhost-user mq connection fails to restart after kill host testpmd which acts as vhost-user client)
+
 * Fri Feb 12 2021 Eduardo Lima (Etrunko) <elima@redhat.com> - 5.2.0-7.el8
 - kvm-virtio-Add-corresponding-memory_listener_unregister-.patch [bz#1903521]
 - kvm-block-Honor-blk_set_aio_context-context-requirements.patch [bz#1918966 bz#1918968]
