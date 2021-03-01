@@ -1303,6 +1303,24 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Mon Mar 01 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.2.0-9.el8
+- kvm-docs-generate-qemu-storage-daemon-qmp-ref-7-man-page.patch [bz#1901323]
+- kvm-docs-add-qemu-storage-daemon-1-man-page.patch [bz#1901323]
+- kvm-docs-Add-qemu-storage-daemon-1-manpage-to-meson.buil.patch [bz#1901323]
+- kvm-qemu-storage-daemon-Enable-object-add.patch [bz#1901323]
+- kvm-spec-Package-qemu-storage-daemon.patch [bz#1901323]
+- kvm-default-configs-Enable-vhost-user-blk.patch [bz#1930033]
+- kvm-qemu-nbd-Use-SOMAXCONN-for-socket-listen-backlog.patch [bz#1925345]
+- kvm-pcie-don-t-set-link-state-active-if-the-slot-is-empt.patch [bz#1917654]
+- Resolves: bz#1901323
+  (QSD (QEMU Storage Daemon): basic support - TechPreview)
+- Resolves: bz#1930033
+  (enable vhost-user-blk device)
+- Resolves: bz#1925345
+  (qemu-nbd needs larger backlog for Unix socket listen())
+- Resolves: bz#1917654
+  ([failover vf migration][RHEL84 vm] After start a vm with a failover vf + a failover virtio net device, the failvoer vf do not exist in the vm)
+
 * Fri Feb 19 2021 Eduardo Lima (Etrunko) <elima@redhat.com> - 5.2.0-9.el8
 - kvm-block-nbd-only-detach-existing-iochannel-from-aio_co.patch [bz#1887883]
 - kvm-block-nbd-only-enter-connection-coroutine-if-it-s-pr.patch [bz#1887883]
