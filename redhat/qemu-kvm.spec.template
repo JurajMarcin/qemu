@@ -1303,6 +1303,46 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Wed Mar 03 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.2.0-10.el8
+- kvm-migration-dirty-bitmap-Use-struct-for-alias-map-inne.patch [bz#1930757]
+- kvm-migration-dirty-bitmap-Allow-control-of-bitmap-persi.patch [bz#1930757]
+- kvm-qemu-iotests-300-Add-test-case-for-modifying-persist.patch [bz#1930757]
+- kvm-failover-fix-indentantion.patch [bz#1819991]
+- kvm-failover-Use-always-atomics-for-primary_should_be_hi.patch [bz#1819991]
+- kvm-failover-primary-bus-is-only-used-once-and-where-it-.patch [bz#1819991]
+- kvm-failover-Remove-unused-parameter.patch [bz#1819991]
+- kvm-failover-Remove-external-partially_hotplugged-proper.patch [bz#1819991]
+- kvm-failover-qdev_device_add-returns-err-or-dev-set.patch [bz#1819991]
+- kvm-failover-Rename-bool-to-failover_primary_hidden.patch [bz#1819991]
+- kvm-failover-g_strcmp0-knows-how-to-handle-NULL.patch [bz#1819991]
+- kvm-failover-Remove-primary_device_opts.patch [bz#1819991]
+- kvm-failover-remove-standby_id-variable.patch [bz#1819991]
+- kvm-failover-Remove-primary_device_dict.patch [bz#1819991]
+- kvm-failover-Remove-memory-leak.patch [bz#1819991]
+- kvm-failover-simplify-virtio_net_find_primary.patch [bz#1819991]
+- kvm-failover-should_be_hidden-should-take-a-bool.patch [bz#1819991]
+- kvm-failover-Rename-function-to-hide_device.patch [bz#1819991]
+- kvm-failover-virtio_net_connect_failover_devices-does-no.patch [bz#1819991]
+- kvm-failover-Rename-to-failover_find_primary_device.patch [bz#1819991]
+- kvm-failover-simplify-qdev_device_add-failover-case.patch [bz#1819991]
+- kvm-failover-simplify-qdev_device_add.patch [bz#1819991]
+- kvm-failover-make-sure-that-id-always-exist.patch [bz#1819991]
+- kvm-failover-remove-failover_find_primary_device-error-p.patch [bz#1819991]
+- kvm-failover-split-failover_find_primary_device_id.patch [bz#1819991]
+- kvm-failover-We-don-t-need-to-cache-primary_device_id-an.patch [bz#1819991]
+- kvm-failover-Caller-of-this-two-functions-already-have-p.patch [bz#1819991]
+- kvm-failover-simplify-failover_unplug_primary.patch [bz#1819991]
+- kvm-failover-Remove-primary_dev-member.patch [bz#1819991]
+- kvm-virtio-net-add-missing-object_unref.patch [bz#1819991]
+- kvm-x86-cpu-Populate-SVM-CPUID-feature-bits.patch [bz#1926785]
+- kvm-i386-Add-the-support-for-AMD-EPYC-3rd-generation-pro.patch [bz#1926785]
+- Resolves: bz#1930757
+  (Allow control of block-dirty-bitmap persistence via 'block-bitmap-mapping')
+- Resolves: bz#1819991
+  (Hostdev type interface with net failover enabled exists in domain xml and doesn't reattach to host after hot-unplug)
+- Resolves: bz#1926785
+  ([RFE] AMD Milan - Add KVM/support for EPYC-Milan CPU Model - Fast Train)
+
 * Mon Mar 01 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.2.0-9.el8
 - kvm-docs-generate-qemu-storage-daemon-qmp-ref-7-man-page.patch [bz#1901323]
 - kvm-docs-add-qemu-storage-daemon-1-man-page.patch [bz#1901323]
