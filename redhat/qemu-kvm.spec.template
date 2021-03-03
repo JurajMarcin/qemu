@@ -1056,6 +1056,14 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Wed Mar 03 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-46.el8
+- kvm-redhat-makes-qemu-respect-system-s-crypto-profile.patch [bz#1902960]
+- kvm-spapr-Adjust-firmware-path-of-PCI-devices.patch [bz#1912891]
+- Resolves: bz#1902960
+  (QEMU doesn't honour system crypto policies)
+- Resolves: bz#1912891
+  ([ppc64le] --disk cdimage.iso,bus=usb fails to boot)
+
 * Wed Feb 10 2021 Jon Maloy <jmaloy@redhat.com> - 4.2.0-45.el8
 - kvm-virtiofsd-extract-lo_do_open-from-lo_open.patch [bz#1919111]
 - kvm-virtiofsd-optionally-return-inode-pointer-from-lo_do.patch [bz#1919111]
