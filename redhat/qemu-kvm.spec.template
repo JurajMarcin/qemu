@@ -482,7 +482,7 @@ buildldflags="VL_LDFLAGS=-Wl,--build-id"
   --audio-drv-list= \
   --block-drv-ro-whitelist=vmdk,vhdx,vpc,https,ssh \
   --with-coroutine=ucontext \
-  --tls-priority=NORMAL \
+  --tls-priority=@QEMU,SYSTEM \
   --disable-bluez \
   --disable-brlapi \
   --enable-cap-ng \
