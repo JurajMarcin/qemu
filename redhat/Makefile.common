@@ -3,12 +3,12 @@ NAME:=qemu-kvm
 VERSION:=5.2.0
 DATE:=
 COMMIT:=
-RELEASE:=7
+RELEASE:=10
 ZRELEASE:=
 RELEASE_SEPARATOR:=-
 WEEKLY_DATE:=20201209
 RC:=
-BUILD_TARGET=rhel-9.0.0-alpha-candidate
+BUILD_TARGET=rhel-9.0.0-beta-candidate
 
 TARFILE:=qemu-$(VERSION)$(RC).tar.xz
 TARURL:=https://download.qemu.org/$(TARFILE)
