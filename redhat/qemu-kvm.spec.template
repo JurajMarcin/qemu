@@ -1056,6 +1056,14 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Mon Mar 08 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-47.el8
+- kvm-x86-cpu-Enable-AVX512_VP2INTERSECT-cpu-feature.patch [bz#1790620]
+- kvm-target-i386-add-fast-short-REP-MOV-support.patch [bz#1790620]
+- kvm-x86-cpu-Populate-SVM-CPUID-feature-bits.patch [bz#1790620]
+- kvm-i386-Add-the-support-for-AMD-EPYC-3rd-generation-pro.patch [bz#1790620]
+- Resolves: bz#1790620
+  ([RFE] AMD Milan - Add KVM/support for EPYC-Milan CPU Model - Slow Train)
+
 * Wed Mar 03 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-46.el8
 - kvm-redhat-makes-qemu-respect-system-s-crypto-profile.patch [bz#1902960]
 - kvm-spapr-Adjust-firmware-path-of-PCI-devices.patch [bz#1912891]
