@@ -421,6 +421,7 @@ static void pc_i440fx_machine_options(MachineClass *m)
 {
     PCMachineClass *pcmc = PC_MACHINE_CLASS(m);
     pcmc->default_nic_model = "e1000";
+    pcmc->pci_root_uid = 0;
 
     m->family = "pc_piix";
     m->desc = "Standard PC (i440FX + PIIX, 1996)";
@@ -452,6 +453,7 @@ static void pc_i440fx_5_1_machine_options(MachineClass *m)
     compat_props_add(m->compat_props, hw_compat_5_1, hw_compat_5_1_len);
     compat_props_add(m->compat_props, pc_compat_5_1, pc_compat_5_1_len);
     pcmc->kvmclock_create_always = false;
+    pcmc->pci_root_uid = 1;
 }
 
 DEFINE_I440FX_MACHINE(v5_1, "pc-i440fx-5.1", NULL,
@@ -1020,6 +1022,7 @@ static void pc_machine_rhel7_options(MachineClass *m)
     m->family = "pc_piix_Y";
     m->default_machine_opts = "firmware=bios-256k.bin,hpet=off";
     pcmc->default_nic_model = "e1000";
+    pcmc->pci_root_uid = 0;
     m->default_display = "std";
     m->no_parallel = 1;
     m->numa_mem_supported = true;
@@ -1046,6 +1049,8 @@ static void pc_machine_rhel760_options(MachineClass *m)
     pcmc->pvh_enabled = false;
     pcmc->default_cpu_version = CPU_VERSION_LEGACY;
     pcmc->kvmclock_create_always = false;
+    /* From pc_i440fx_5_1_machine_options() */
+    pcmc->pci_root_uid = 1;
     compat_props_add(m->compat_props, hw_compat_rhel_8_3,
                      hw_compat_rhel_8_3_len);
     compat_props_add(m->compat_props, pc_rhel_8_3_compat,

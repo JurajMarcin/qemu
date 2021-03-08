@@ -332,6 +332,7 @@ static void pc_q35_machine_options(MachineClass *m)
 {
     PCMachineClass *pcmc = PC_MACHINE_CLASS(m);
     pcmc->default_nic_model = "e1000e";
+    pcmc->pci_root_uid = 0;
 
     m->family = "pc_q35";
     m->desc = "Standard PC (Q35 + ICH9, 2009)";
@@ -367,6 +368,7 @@ static void pc_q35_5_1_machine_options(MachineClass *m)
     compat_props_add(m->compat_props, hw_compat_5_1, hw_compat_5_1_len);
     compat_props_add(m->compat_props, pc_compat_5_1, pc_compat_5_1_len);
     pcmc->kvmclock_create_always = false;
+    pcmc->pci_root_uid = 1;
 }
 
 DEFINE_Q35_MACHINE(v5_1, "pc-q35-5.1", NULL,
@@ -578,6 +580,7 @@ static void pc_q35_machine_rhel_options(MachineClass *m)
 {
     PCMachineClass *pcmc = PC_MACHINE_CLASS(m);
     pcmc->default_nic_model = "e1000e";
+    pcmc->pci_root_uid = 0;
     m->family = "pc_q35_Z";
     m->units_per_default_bus = 1;
     m->default_machine_opts = "firmware=bios-256k.bin,hpet=off";
@@ -630,6 +633,8 @@ static void pc_q35_machine_rhel830_options(MachineClass *m)
                      pc_rhel_8_3_compat_len);
     /* From pc_q35_5_1_machine_options() */
     pcmc->kvmclock_create_always = false;
+    /* From pc_q35_5_1_machine_options() */
+    pcmc->pci_root_uid = 1;
 }
 
 DEFINE_PC_MACHINE(q35_rhel830, "pc-q35-rhel8.3.0", pc_q35_init_rhel830,
