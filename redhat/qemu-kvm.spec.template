@@ -1303,6 +1303,16 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Mon Mar 08 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.2.0-11.el8
+- kvm-qxl-set-qxl.ssd.dcl.con-on-secondary-devices.patch [bz#1932190]
+- kvm-qxl-also-notify-the-rendering-is-done-when-skipping-.patch [bz#1932190]
+- kvm-virtiofsd-Save-error-code-early-at-the-failure-calls.patch [bz#1935071]
+- kvm-virtiofs-drop-remapped-security.capability-xattr-as-.patch [bz#1935071]
+- Resolves: bz#1932190
+  (Timeout when dump the screen from 2nd VGA)
+- Resolves: bz#1935071
+  (CVE-2021-20263 virt:8.4/qemu-kvm: QEMU: virtiofsd: 'security.capabilities' is not dropped with xattrmap option [rhel-av-8])
+
 * Wed Mar 03 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.2.0-10.el8
 - kvm-migration-dirty-bitmap-Use-struct-for-alias-map-inne.patch [bz#1930757]
 - kvm-migration-dirty-bitmap-Allow-control-of-bitmap-persi.patch [bz#1930757]
