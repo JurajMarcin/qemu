@@ -1303,6 +1303,18 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Mon Mar 15 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.2.0-12.el8
+- kvm-scsi-disk-move-scsi_handle_rw_error-earlier.patch [bz#1927530]
+- kvm-scsi-disk-do-not-complete-requests-early-for-rerror-.patch [bz#1927530]
+- kvm-scsi-introduce-scsi_sense_from_errno.patch [bz#1927530]
+- kvm-scsi-disk-pass-SCSI-status-to-scsi_handle_rw_error.patch [bz#1927530]
+- kvm-scsi-disk-pass-guest-recoverable-errors-through-even.patch [bz#1927530]
+- kvm-hw-intc-arm_gic-Fix-interrupt-ID-in-GICD_SGIR-regist.patch [bz#1936948]
+- Resolves: bz#1927530
+  (RHEL8 Hypervisor - OVIRT  - Issues seen on a virtualization guest with direct passthrough LUNS  pausing when a host gets a Thin threshold warning)
+- Resolves: bz#1936948
+  (CVE-2021-20221 virt:av/qemu-kvm: qemu: out-of-bound heap buffer access via an interrupt ID field [rhel-av-8.4.0])
+
 * Mon Mar 08 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.2.0-11.el8
 - kvm-qxl-set-qxl.ssd.dcl.con-on-secondary-devices.patch [bz#1932190]
 - kvm-qxl-also-notify-the-rendering-is-done-when-skipping-.patch [bz#1932190]
