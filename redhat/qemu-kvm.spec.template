@@ -1056,6 +1056,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Tue Mar 16 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-48.el8
+- kvm-ide-atapi-check-logical-block-address-and-read-size-.patch [bz#1917451]
+- Resolves: bz#1917451
+  (CVE-2020-29443 virt:rhel/qemu-kvm: QEMU: ide: atapi: OOB access while processing read commands [rhel-8.4.0])
+
 * Mon Mar 08 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-47.el8
 - kvm-x86-cpu-Enable-AVX512_VP2INTERSECT-cpu-feature.patch [bz#1790620]
 - kvm-target-i386-add-fast-short-REP-MOV-support.patch [bz#1790620]
