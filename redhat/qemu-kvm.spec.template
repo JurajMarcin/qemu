@@ -1303,6 +1303,11 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Tue Mar 16 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.2.0-13.el8
+- kvm-i386-acpi-restore-device-paths-for-pre-5.1-vms.patch [bz#1934158]
+- Resolves: bz#1934158
+  (Windows guest looses network connectivity when NIC was configured with static IP)
+
 * Mon Mar 15 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.2.0-12.el8
 - kvm-scsi-disk-move-scsi_handle_rw_error-earlier.patch [bz#1927530]
 - kvm-scsi-disk-do-not-complete-requests-early-for-rerror-.patch [bz#1927530]
