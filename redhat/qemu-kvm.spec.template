@@ -53,6 +53,9 @@
 #Versions of various parts:
 
 %global requires_all_modules                                     \
+%if %{have_spice}                                                \
+Requires: %{name}-ui-spice = %{epoch}:%{version}-%{release}      \
+%endif                                                           \
 Requires: %{name}-block-curl = %{epoch}:%{version}-%{release}    \
 %if %{have_gluster}                                              \
 Requires: %{name}-block-gluster = %{epoch}:%{version}-%{release} \
@@ -405,6 +408,16 @@ This package provides the additional SSH block driver for QEMU.
 
 Install this package if you want to access remote disks using
 the Secure Shell (SSH) protocol.
+
+
+%if %{have_spice}
+%package  ui-spice
+Summary: QEMU spice support
+Requires: %{name}-common%{?_isa} = %{epoch}:%{version}-%{release}
+
+%description ui-spice
+This package provides spice support.
+%endif
 
 
 %prep
@@ -1233,15 +1246,6 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 %if %{have_usbredir}
     %{_libdir}/qemu-kvm/hw-usb-redirect.so
 %endif
-%if 0%{have_spice}
-    %{_libdir}/qemu-kvm/hw-usb-smartcard.so
-    %{_libdir}/qemu-kvm/audio-spice.so
-    %{_libdir}/qemu-kvm/ui-spice-core.so
-    %{_libdir}/qemu-kvm/chardev-spice.so
-%endif
-%ifarch x86_64
-    %{_libdir}/qemu-kvm/hw-display-qxl.so
-%endif
 %{_libdir}/qemu-kvm/hw-display-virtio-gpu.so
 %ifnarch s390x
     %{_libdir}/qemu-kvm/hw-display-virtio-gpu-pci.so
@@ -1300,6 +1304,18 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 %files block-ssh
 %{_libdir}/qemu-kvm/block-ssh.so
+
+%if 0%{have_spice}
+%files ui-spice
+    %{_libdir}/qemu-kvm/hw-usb-smartcard.so
+    %{_libdir}/qemu-kvm/audio-spice.so
+    %{_libdir}/qemu-kvm/ui-spice-core.so
+    %{_libdir}/qemu-kvm/chardev-spice.so
+%ifarch x86_64
+    %{_libdir}/qemu-kvm/hw-display-qxl.so
+%endif
+%endif
+
 
 
 %changelog
