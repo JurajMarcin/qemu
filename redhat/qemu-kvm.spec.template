@@ -1336,6 +1336,20 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Sat Mar 20 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.2.0-14.el8
+- kvm-vhost-user-blk-fix-blkcfg-num_queues-endianness.patch [bz#1937004]
+- kvm-block-export-fix-blk_size-double-byteswap.patch [bz#1937004]
+- kvm-block-export-use-VIRTIO_BLK_SECTOR_BITS.patch [bz#1937004]
+- kvm-block-export-fix-vhost-user-blk-export-sector-number.patch [bz#1937004]
+- kvm-block-export-port-virtio-blk-discard-write-zeroes-in.patch [bz#1937004]
+- kvm-block-export-port-virtio-blk-read-write-range-check.patch [bz#1937004]
+- kvm-spec-ui-spice-sub-package.patch [bz#1936373]
+- kvm-spec-ui-opengl-sub-package.patch [bz#1936373]
+- Resolves: bz#1937004
+  (vhost-user-blk server endianness and input validation fixes)
+- Resolves: bz#1936373
+  (move spice & opengl modules to rpm subpackages)
+
 * Tue Mar 16 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.2.0-13.el8
 - kvm-i386-acpi-restore-device-paths-for-pre-5.1-vms.patch [bz#1934158]
 - Resolves: bz#1934158
