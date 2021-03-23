@@ -1257,6 +1257,11 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Tue Mar 23 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.1.0-21.el8_3
+- kvm-hw-intc-arm_gic-Fix-interrupt-ID-in-GICD_SGIR-regist.patch [bz#1925431]
+- Resolves: bz#1925431
+  (CVE-2021-20221 virt:8.3/qemu-kvm: qemu: out-of-bound heap buffer access via an interrupt ID field [rhel-av-8.3.1.z])
+
 * Thu Feb 11 2021 Eduardo Lima (Etrunko) <elima@redhat.com> - 5.1.0-20.el8
 - kvm-virtiofsd-extract-lo_do_open-from-lo_open.patch [bz#1919113]
 - kvm-virtiofsd-optionally-return-inode-pointer-from-lo_do.patch [bz#1919113]
