@@ -1324,7 +1324,38 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
-* Mon Mar 15 2021 Miroslav Rezanina <mrezanin@redhat.com> - 5.2.0-11.el9
+* Sat Mar 20 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.2.0-14.el8
+- kvm-vhost-user-blk-fix-blkcfg-num_queues-endianness.patch [bz#1937004]
+- kvm-block-export-fix-blk_size-double-byteswap.patch [bz#1937004]
+- kvm-block-export-use-VIRTIO_BLK_SECTOR_BITS.patch [bz#1937004]
+- kvm-block-export-fix-vhost-user-blk-export-sector-number.patch [bz#1937004]
+- kvm-block-export-port-virtio-blk-discard-write-zeroes-in.patch [bz#1937004]
+- kvm-block-export-port-virtio-blk-read-write-range-check.patch [bz#1937004]
+- kvm-spec-ui-spice-sub-package.patch [bz#1936373]
+- kvm-spec-ui-opengl-sub-package.patch [bz#1936373]
+- Resolves: bz#1937004
+  (vhost-user-blk server endianness and input validation fixes)
+- Resolves: bz#1936373
+  (move spice & opengl modules to rpm subpackages)
+
+* Tue Mar 16 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.2.0-13.el8
+- kvm-i386-acpi-restore-device-paths-for-pre-5.1-vms.patch [bz#1934158]
+- Resolves: bz#1934158
+  (Windows guest looses network connectivity when NIC was configured with static IP)
+
+* Mon Mar 15 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.2.0-12.el8
+- kvm-scsi-disk-move-scsi_handle_rw_error-earlier.patch [bz#1927530]
+- kvm-scsi-disk-do-not-complete-requests-early-for-rerror-.patch [bz#1927530]
+- kvm-scsi-introduce-scsi_sense_from_errno.patch [bz#1927530]
+- kvm-scsi-disk-pass-SCSI-status-to-scsi_handle_rw_error.patch [bz#1927530]
+- kvm-scsi-disk-pass-guest-recoverable-errors-through-even.patch [bz#1927530]
+- kvm-hw-intc-arm_gic-Fix-interrupt-ID-in-GICD_SGIR-regist.patch [bz#1936948]
+- Resolves: bz#1927530
+  (RHEL8 Hypervisor - OVIRT  - Issues seen on a virtualization guest with direct passthrough LUNS  pausing when a host gets a Thin threshold warning)
+- Resolves: bz#1936948
+  (CVE-2021-20221 virt:av/qemu-kvm: qemu: out-of-bound heap buffer access via an interrupt ID field [rhel-av-8.4.0])
+
+* Mon Mar 08 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.2.0-11.el8
 - kvm-qxl-set-qxl.ssd.dcl.con-on-secondary-devices.patch [bz#1932190]
 - kvm-qxl-also-notify-the-rendering-is-done-when-skipping-.patch [bz#1932190]
 - kvm-virtiofsd-Save-error-code-early-at-the-failure-calls.patch [bz#1935071]
