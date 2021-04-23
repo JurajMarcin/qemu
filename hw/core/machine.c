@@ -48,6 +48,8 @@ GlobalProperty hw_compat_rhel_8_3[] = {
     { "pvpanic", "events", "1"}, /* PVPANIC_PANICKED */
     /* hw_compat_rhel_8_3 bz 1912846 */
     { "pci-xhci", "x-rh-late-msi-cap", "off" },
+    /* hw_compat_rhel_8_3 from hw_compat_5_1 */
+    { "virtio-pci", "x-ats-page-aligned", "off"},
 };
 const size_t hw_compat_rhel_8_3_len = G_N_ELEMENTS(hw_compat_rhel_8_3);
 
@@ -274,6 +276,7 @@ GlobalProperty hw_compat_5_1[] = {
     { "virtio-scsi-device", "num_queues", "1"},
     { "nvme", "use-intel-id", "on"},
     { "pvpanic", "events", "1"}, /* PVPANIC_PANICKED */
+    { "virtio-pci", "x-ats-page-aligned", "off"},
 };
 const size_t hw_compat_5_1_len = G_N_ELEMENTS(hw_compat_5_1);
 

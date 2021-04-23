@@ -41,6 +41,7 @@ enum {
     VIRTIO_PCI_FLAG_INIT_LNKCTL_BIT,
     VIRTIO_PCI_FLAG_INIT_PM_BIT,
     VIRTIO_PCI_FLAG_INIT_FLR_BIT,
+    VIRTIO_PCI_FLAG_ATS_PAGE_ALIGNED_BIT,
 };
 
 /* Need to activate work-arounds for buggy guests at vmstate load. */
@@ -79,6 +80,10 @@ enum {
 
 /* Init Function Level Reset capability */
 #define VIRTIO_PCI_FLAG_INIT_FLR (1 << VIRTIO_PCI_FLAG_INIT_FLR_BIT)
+
+/* Page Aligned Address space Translation Service */
+#define VIRTIO_PCI_FLAG_ATS_PAGE_ALIGNED \
+  (1 << VIRTIO_PCI_FLAG_ATS_PAGE_ALIGNED_BIT)
 
 typedef struct {
     MSIMessage msg;
