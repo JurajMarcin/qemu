@@ -1358,6 +1358,14 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 %endif
 
 %changelog
+* Mon Apr 26 2021 Miroslav Rezanina <mrezanin@redhat.com> - 5.2.0-16
+- kvm-Limit-build-on-Power-to-qemu-img-and-qemu-ga-only.patch [bz#1944056]
+- Resolves: bz#1944056
+  (Do not build qemu-kvm for Power)
+
+* Fri Apr 16 2021 Mohan Boddu <mboddu@redhat.com> - 15:5.2.0-15
+- Rebuilt for RHEL 9 BETA on Apr 15th 2021. Related: rhbz#1947937
+
 * Sat Mar 20 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.2.0-14.el8
 - kvm-vhost-user-blk-fix-blkcfg-num_queues-endianness.patch [bz#1937004]
 - kvm-block-export-fix-blk_size-double-byteswap.patch [bz#1937004]
