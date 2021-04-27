@@ -244,6 +244,12 @@ Requires: usbredir >= 0.7.1
 Requires: libfdt >= 1.6.0
 %endif
 
+# Since SPICE is removed from RHEL-9, the following Obsoletes:
+# removes qemu-kvm-ui-spice for upgrades from RHEL-8
+# The "<= {version}" assumes RHEL-9 version >= RHEL-8 version (in
+# other words RHEL-9 rebases are done together/before RHEL-8 ones)
+Obsoletes: qemu-kvm-ui-spice <= %{version}
+
 %description -n qemu-kvm-core
 qemu-kvm is an open source virtualizer that provides hardware
 emulation for the KVM hypervisor. qemu-kvm acts as a virtual
