@@ -1336,6 +1336,11 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Wed Apr 28 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.2.0-16.el8_4
+- kvm-virtio-pci-compat-page-aligned-ATS.patch [bz#1942362]
+- Resolves: bz#1942362
+  (Live migration with iommu from rhel8.3.1 to rhel8.4 fails: qemu-kvm: get_pci_config_device: Bad config data)
+
 * Mon Apr 12 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.2.0-15.el8_4
 - kvm-block-Simplify-qmp_block_resize-error-paths.patch [bz#1903511]
 - kvm-block-Fix-locking-in-qmp_block_resize.patch [bz#1903511]
