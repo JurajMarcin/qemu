@@ -1250,6 +1250,10 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 %endif
 
 %changelog
+* Fri Apr 30 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-1
+- Rebase to QEMU 6.0
+- Resolves: bz#1872569
+
 * Mon Apr 26 2021 Miroslav Rezanina <mrezanin@redhat.com> - 5.2.0-16
 - kvm-Limit-build-on-Power-to-qemu-img-and-qemu-ga-only.patch [bz#1944056]
 - Resolves: bz#1944056
