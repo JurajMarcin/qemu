@@ -2,7 +2,6 @@
 %global SLOF_gittagcommit 899d9883
 
 %global have_usbredir 1
-%global have_spice    1
 %global have_opengl   1
 %global have_fdt      0
 %global have_gluster  1
@@ -27,7 +26,6 @@
 %ifarch x86_64
     %global kvm_target    x86_64
 %else
-    %global have_spice   0
     %global have_opengl  0
     %global have_gluster 0
 %endif
@@ -53,9 +51,6 @@
 #Versions of various parts:
 
 %global requires_all_modules                                     \
-%if %{have_spice}                                                \
-Requires: %{name}-ui-spice = %{epoch}:%{version}-%{release}      \
-%endif                                                           \
 %if %{have_opengl}                                               \
 Requires: %{name}-ui-opengl = %{epoch}:%{version}-%{release}     \
 %endif                                                           \
@@ -130,13 +125,6 @@ BuildRequires: usbredir-devel >= 0.7.1
 %endif
 BuildRequires: texinfo
 BuildRequires: python3-sphinx
-%if %{have_spice}
-BuildRequires: spice-protocol >= 0.12.12
-BuildRequires: spice-server-devel >= 0.12.8
-BuildRequires: libcacard-devel
-# For smartcard NSS support
-BuildRequires: nss-devel
-%endif
 BuildRequires: libseccomp-devel >= 2.4.0
 # For network block driver
 BuildRequires: libcurl-devel
@@ -382,19 +370,6 @@ Install this package if you want to access remote disks using
 the Secure Shell (SSH) protocol.
 
 
-%if %{have_spice}
-%package  ui-spice
-Summary: QEMU spice support
-Requires: %{name}-common%{?_isa} = %{epoch}:%{version}-%{release}
-%if %{have_opengl}
-Requires: %{name}-ui-opengl%{?_isa} = %{epoch}:%{version}-%{release}
-%endif
-
-%description ui-spice
-This package provides spice support.
-%endif
-
-
 %if %{have_opengl}
 %package  ui-opengl
 Summary: QEMU opengl support
@@ -626,10 +601,6 @@ pushd %{qemu_kvm_build}
   --enable-seccomp \
   --enable-slirp=system \
   --enable-snappy \
-%if 0%{have_spice}
-  --enable-smartcard \
-  --enable-spice \
-%endif
   --enable-system \
   --enable-tcg \
   --enable-tools \
@@ -891,8 +862,6 @@ rm -rf ${RPM_BUILD_ROOT}%{_datadir}/%{name}/opensbi-riscv64-virt-fw_jump.bin
 rm -rf ${RPM_BUILD_ROOT}%{_datadir}/%{name}/opensbi-riscv64-generic-fw_dynamic.*
 rm -rf ${RPM_BUILD_ROOT}%{_datadir}/%{name}/qemu-nsis.bmp
 rm -rf ${RPM_BUILD_ROOT}%{_datadir}/%{name}/npcm7xx_bootrom.bin
-
-rm -rf ${RPM_BUILD_ROOT}%{_libdir}/qemu-kvm/ui-spice-app.so
 
 # Remove virtfs-proxy-helper files
 rm -rf ${RPM_BUILD_ROOT}%{_libexecdir}/virtfs-proxy-helper
@@ -1223,17 +1192,6 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 %files block-ssh
 %{_libdir}/qemu-kvm/block-ssh.so
-
-%if 0%{have_spice}
-%files ui-spice
-    %{_libdir}/qemu-kvm/hw-usb-smartcard.so
-    %{_libdir}/qemu-kvm/audio-spice.so
-    %{_libdir}/qemu-kvm/ui-spice-core.so
-    %{_libdir}/qemu-kvm/chardev-spice.so
-%ifarch x86_64
-    %{_libdir}/qemu-kvm/hw-display-qxl.so
-%endif
-%endif
 
 %if 0%{have_opengl}
 %files ui-opengl
