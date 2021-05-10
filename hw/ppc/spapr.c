@@ -5084,19 +5084,31 @@ static void spapr_machine_rhel_default_class_options(MachineClass *mc)
 }
 
 /*
+ * pseries-rhel8.5.0
+ * like pseries-6.0
+ */
+
+static void spapr_machine_rhel850_class_options(MachineClass *mc)
+{
+    /* The default machine type must apply the RHEL specific defaults */
+    spapr_machine_rhel_default_class_options(mc);
+}
+
+DEFINE_SPAPR_MACHINE(rhel850, "rhel8.5.0", true);
+
+/*
  * pseries-rhel8.4.0
  * like pseries-5.2
  */
 
 static void spapr_machine_rhel840_class_options(MachineClass *mc)
 {
-    /* The default machine type must apply the RHEL specific defaults */
-    spapr_machine_rhel_default_class_options(mc);
+    spapr_machine_rhel850_class_options(mc);
     compat_props_add(mc->compat_props, hw_compat_rhel_8_4,
                      hw_compat_rhel_8_4_len);
 }
 
-DEFINE_SPAPR_MACHINE(rhel840, "rhel8.4.0", true);
+DEFINE_SPAPR_MACHINE(rhel840, "rhel8.4.0", false);
 
 /*
  * pseries-rhel8.3.0
