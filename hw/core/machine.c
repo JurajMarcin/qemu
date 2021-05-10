@@ -44,6 +44,10 @@ GlobalProperty hw_compat_rhel_8_4[] = {
     { "ICH9-LPC", "smm-compat", "on"},
     /* hw_compat_rhel_8_4 from hw_compat_5_2 */
     { "PIIX4_PM", "smm-compat", "on"},
+    /* hw_compat_rhel_8_4 from hw_compat_5_2 */
+    { "virtio-blk-device", "report-discard-granularity", "off" },
+    /* hw_compat_rhel_8_4 from hw_compat_5_2 */
+    { "virtio-net-pci", "vectors", "3"},
 };
 const size_t hw_compat_rhel_8_4_len = G_N_ELEMENTS(hw_compat_rhel_8_4);
 
