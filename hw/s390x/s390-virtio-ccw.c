@@ -1074,15 +1074,26 @@ static void ccw_machine_2_4_class_options(MachineClass *mc)
 DEFINE_CCW_MACHINE(2_4, "2.4", false);
 #endif
 
+static void ccw_machine_rhel850_instance_options(MachineState *machine)
+{
+}
+
+static void ccw_machine_rhel850_class_options(MachineClass *mc)
+{
+}
+DEFINE_CCW_MACHINE(rhel850, "rhel8.5.0", true);
+
 static void ccw_machine_rhel840_instance_options(MachineState *machine)
 {
+    ccw_machine_rhel850_instance_options(machine);
 }
 
 static void ccw_machine_rhel840_class_options(MachineClass *mc)
 {
+    ccw_machine_rhel850_class_options(mc);
     compat_props_add(mc->compat_props, hw_compat_rhel_8_4, hw_compat_rhel_8_4_len);
 }
-DEFINE_CCW_MACHINE(rhel840, "rhel8.4.0", true);
+DEFINE_CCW_MACHINE(rhel840, "rhel8.4.0", false);
 
 static void ccw_machine_rhel820_instance_options(MachineState *machine)
 {
