@@ -9,10 +9,8 @@ RELEASE_SEPARATOR:=-
 BUILD_TARGET=module-virt-8.2-8020120210406132234-863bb0db
 
 TARFILE:=qemu-$(VERSION).tar.xz
-#TARFILE:=qemu-$(VERSION)-rc4.tar.xz
-TARURL:=https://download.qemu.org/$(TARFILE)
-#TARURL:=http://batcave.lab.eng.brq.redhat.com/www/qemu/weekly/20191024/$(TARFILE)
-TARSHA256:=d3481d4108ce211a053ef15be69af1bdd9dde1510fda80d92be0f6c3e98768f0
+TARSHA512:=2a79973c2b07c53e8c57a808ea8add7b6b2cbca96488ed5d4b669ead8c9318907dec2b6109f180fc8ca8f04c0f73a56e82b3a527b5626b799d7e849f2474ec56
+TARURL:=https://pkgs.devel.redhat.com/repo/rpms/qemu-kvm/$(TARFILE)/sha512/$(TARSHA512)/$(TARFILE)
 MARKER:=b0ca999a43a22b38158a222233d3f5881648bb4f
 
 
