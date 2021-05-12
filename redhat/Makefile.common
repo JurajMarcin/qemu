@@ -15,9 +15,8 @@ ifneq ($(RC),)
 else
   TARFILE:=qemu-$(VERSION).tar.xz
 endif
-TARURL:=https://download.qemu.org/$(TARFILE)
-#TARURL:=http://batcave.lab.eng.brq.redhat.com/www/qemu/weekly/$(WEEKLY_DATE)/$(TARFILE)
-TARSHA256:=87bc1a471ca24b97e7005711066007d443423d19aacda3d442558ae032fa30b9
+TARSHA512:=ee3ff00aebec4d8891d2ff6dabe4e667e510b2a4fe3f6190aa34673a91ea32dcd2db2e9bf94c2f1bf05aa79788f17cfbbedc6027c0988ea08a92587b79ee05e4
+TARURL:=https://pkgs.devel.redhat.com/repo/rpms/qemu-kvm/$(TARFILE)/sha512/$(TARSHA512)/$(TARFILE)
 MARKER:=609d7596524ab204ccd71ef42c9eee4c7c338ea4
 
 SPECFILE:=$(NAME).spec
