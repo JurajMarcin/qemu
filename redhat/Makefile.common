@@ -11,9 +11,8 @@ RC:=
 BUILD_TARGET=rhel-8.4.0-candidate
 
 TARFILE:=qemu-$(VERSION)$(RC).tar.xz
-TARURL:=https://download.qemu.org/$(TARFILE)
-#TARURL:=http://batcave.lab.eng.brq.redhat.com/www/qemu/weekly/$(WEEKLY_DATE)/$(TARFILE)
-TARSHA256:=cb18d889b628fbe637672b0326789d9b0e3b8027e0445b936537c78549df17bc
+TARSHA512:=bddd633ce111471ebc651e03080251515178808556b49a308a724909e55dac0be0cc0c79c536ac12d239678ae94c60100dc124be9b9d9538340c03a2f27177f3
+TARURL:=https://pkgs.devel.redhat.com/repo/rpms/qemu-kvm/$(TARFILE)/sha512/$(TARSHA512)/$(TARFILE)
 MARKER:=553032db17440f8de011390e5a1cfddd13751b0b
 
 
