@@ -43,8 +43,10 @@ else
   LOCALVERSION:=
 endif
 
-.PHONY: rh-brew rh-brew-module rh-srpm rh-prep rh-help rh-clean-sources
+.PHONY: rh-brew rh-brew-module rh-srpm rh-prep rh-help rh-clean-sources rh-rhel-koji
 all: rh-help
+
+rh-rhel-koji: rh-brew
 
 rh-clean-sources:
 	$(DS)for i in $(RPMBUILD)/SOURCES/*; do \

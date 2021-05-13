@@ -1207,6 +1207,16 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 %endif
 
 %changelog
+* Thu May 13 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-2
+- kvm-Remove-message-with-running-VM-count.patch [bz#1914461]
+- kvm-Remove-SPICE-and-QXL-from-x86_64-rh-devices.mak.patch [bz#1906168]
+- kvm-spec-file-build-qemu-kvm-without-SPICE-and-QXL.patch [bz#1906168]
+- kvm-spec-file-Obsolete-qemu-kvm-ui-spice.patch [bz#1906168]
+- Resolves: bz#1914461
+  (Remove KVM guest count and limit info message)
+- Resolves: bz#1906168
+  ([RHEL-9] qemu-kvm spec-file: Do not BuildRequire spice)
+
 * Fri Apr 30 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-1
 - Rebase to QEMU 6.0
 - Resolves: bz#1872569

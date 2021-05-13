@@ -3,7 +3,7 @@ NAME:=qemu-kvm
 VERSION:=6.0.0
 DATE:=
 COMMIT:=
-RELEASE:=1
+RELEASE:=2
 ZRELEASE:=
 RELEASE_SEPARATOR:=-
 WEEKLY_DATE:=
@@ -44,4 +44,5 @@ SOURCES_FILELIST:=                     \
        95-kvm-memlock.conf             \
        qemu-pr-helper.service          \
        qemu-pr-helper.socket           \
-       README.tests
+       README.tests                    \
+       rpminspect.yaml

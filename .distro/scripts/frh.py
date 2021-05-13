@@ -3,7 +3,7 @@ import sys
 
 def filter_file(inf):
     ts_chunkstart = re.compile("diff --git ")
-    ts_redhat = re.compile(".*\/redhat\/")
+    ts_redhat = re.compile(".*\/.distro\/")
     ts_gitfile = re.compile(".*\/\.git")
     skip = False
     f = open(inf,"r")
