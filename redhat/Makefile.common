@@ -6,10 +6,11 @@ COMMIT:=
 RELEASE:=88
 ZRELEASE:=6
 RELEASE_SEPARATOR:=-
+BUILD_TARGET:=rhel-8.1.0-z-candidate
 
 TARFILE:=qemu-$(VERSION).tar.xz
-TARURL:=http://download.qemu-project.org/$(TARFILE)
-TARSHA256:=e69301f361ff65bf5dabd8a19196aeaa5613c1b5ae1678f0823bdf50e7d5c6fc
+TARSHA512:=dda057c52cf5fe460b029448049266ace061d21fb5f1cf71a6a37f67b3b7fc3350f6712bf22803fc38fa91f0bd438896ba01b5817b3b94ba9b6925aeaae053b7
+TARURL:=https://pkgs.devel.redhat.com/repo/rpms/qemu-kvm/$(TARFILE)/sha512/$(TARSHA512)/$(TARFILE)
 MARKER:=4743c23509a51bd4ee85cc272287a41917d1be35
 
 

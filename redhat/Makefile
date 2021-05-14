@@ -1,7 +1,6 @@
 include Makefile.common
 
 rh-brew rh-env-prep: SRPM_NAME=$(NAME)-$(VERSION)$(RELEASE_SEPARATOR)$(RELEASE)$(DIST).$(ZRELEASE)
-rh-brew: BUILD_TARGET=rhel-8.1.0-z-candidate
 
 REDHAT:=$(shell pwd)
 SCRIPTS:=$(REDHAT)/scripts
@@ -54,8 +53,8 @@ rh-prep: rh-clean-sources
 		cp $(SOURCES_FILELIST) $(RPMBUILD)/SOURCES; \
 	fi
 	$(DS)$(SCRIPTS)/process-patches.sh "$(SCRIPTS)" "$(NAME)" "$(VERSION)" "$(RELEASE)" "$(DATE)" "$(COMMIT)" "$(TARFILE)" "$(TARURL)" "$(SPECFILE)" "$(BUILD_DIR)" "$(MARKER)" "$(LOCALVERSION)" "$(ZRELEASE)"
-	$(DS)if [ -n "$(TARSHA256)" -a -e $(REDHAT)/$(TARFILE) -a "`$(SCRIPTS)/tarball_checksum.sh $(TARFILE)`" != "$(TARSHA256)" ]; then \
-        echo "$(TARFILE) sha256sum does not match (expected: $(TARSHA256))"; \
+	$(DS)if [ -n "$(TARSHA512)" -a -e $(REDHAT)/$(TARFILE) -a "`$(SCRIPTS)/tarball_checksum.sh $(TARFILE)`" != "$(TARSHA512)" ]; then \
+        echo "$(TARFILE) sha512sum does not match (expected: $(TARSHA512))"; \
 		exit 1; \
     fi
 
