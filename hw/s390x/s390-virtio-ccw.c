@@ -1125,38 +1125,6 @@ static void ccw_machine_rhel760_class_options(MachineClass *mc)
 }
 DEFINE_CCW_MACHINE(rhel760, "rhel7.6.0", false);
 
-static void ccw_machine_rhel750_instance_options(MachineState *machine)
-{
-    static const S390FeatInit qemu_cpu_feat = { S390_FEAT_LIST_QEMU_V2_11 };
-    ccw_machine_rhel760_instance_options(machine);
-
-    /* before 2.12 we emulated the very first z900, and RHEL 7.5 is
-       based on 2.10 */
-    s390_set_qemu_cpu_model(0x2064, 7, 1, qemu_cpu_feat);
-
-    /* bpb and ppa15 were only in the full model in RHEL 7.5 */
-    s390_cpudef_featoff_greater(11, 1, S390_FEAT_PPA15);
-    s390_cpudef_featoff_greater(11, 1, S390_FEAT_BPB);
-}
-
-GlobalProperty ccw_compat_rhel_7_5[] = {
-        {
-            .driver   = TYPE_SCLP_EVENT_FACILITY,
-            .property = "allow_all_mask_sizes",
-            .value    = "off",
-        },
-};
-const size_t ccw_compat_rhel_7_5_len = G_N_ELEMENTS(ccw_compat_rhel_7_5);
-
-static void ccw_machine_rhel750_class_options(MachineClass *mc)
-{
-    ccw_machine_rhel760_class_options(mc);
-    compat_props_add(mc->compat_props, hw_compat_rhel_7_5, hw_compat_rhel_7_5_len);
-    compat_props_add(mc->compat_props, ccw_compat_rhel_7_5, ccw_compat_rhel_7_5_len);
-    S390_CCW_MACHINE_CLASS(mc)->hpage_1m_allowed = false;
-}
-DEFINE_CCW_MACHINE(rhel750, "rhel7.5.0", false);
-
 static void ccw_machine_register_types(void)
 {
     type_register_static(&ccw_machine_info);
