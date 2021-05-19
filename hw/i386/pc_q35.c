@@ -607,6 +607,24 @@ static void pc_q35_machine_rhel_options(MachineClass *m)
     compat_props_add(m->compat_props, pc_rhel_compat, pc_rhel_compat_len);
 }
 
+static void pc_q35_init_rhel850(MachineState *machine)
+{
+    pc_q35_init(machine);
+}
+
+static void pc_q35_machine_rhel850_options(MachineClass *m)
+{
+    PCMachineClass *pcmc = PC_MACHINE_CLASS(m);
+    pc_q35_machine_rhel_options(m);
+    m->desc = "RHEL-8.5.0 PC (Q35 + ICH9, 2009)";
+    pcmc->smbios_stream_product = "RHEL-AV";
+    pcmc->smbios_stream_version = "8.5.0";
+}
+
+DEFINE_PC_MACHINE(q35_rhel850, "pc-q35-rhel8.5.0", pc_q35_init_rhel850,
+                  pc_q35_machine_rhel850_options);
+
+
 static void pc_q35_init_rhel840(MachineState *machine)
 {
     pc_q35_init(machine);
@@ -615,12 +633,15 @@ static void pc_q35_init_rhel840(MachineState *machine)
 static void pc_q35_machine_rhel840_options(MachineClass *m)
 {
     PCMachineClass *pcmc = PC_MACHINE_CLASS(m);
-    pc_q35_machine_rhel_options(m);
+    pc_q35_machine_rhel850_options(m);
     m->desc = "RHEL-8.4.0 PC (Q35 + ICH9, 2009)";
+    m->alias = NULL;
     pcmc->smbios_stream_product = "RHEL-AV";
     pcmc->smbios_stream_version = "8.4.0";
     compat_props_add(m->compat_props, hw_compat_rhel_8_4,
                      hw_compat_rhel_8_4_len);
+    compat_props_add(m->compat_props, pc_rhel_8_4_compat,
+                     pc_rhel_8_4_compat_len);
 }
 
 DEFINE_PC_MACHINE(q35_rhel840, "pc-q35-rhel8.4.0", pc_q35_init_rhel840,
@@ -637,7 +658,6 @@ static void pc_q35_machine_rhel830_options(MachineClass *m)
     PCMachineClass *pcmc = PC_MACHINE_CLASS(m);
     pc_q35_machine_rhel840_options(m);
     m->desc = "RHEL-8.3.0 PC (Q35 + ICH9, 2009)";
-    m->alias = NULL;
     pcmc->smbios_stream_product = "RHEL-AV";
     pcmc->smbios_stream_version = "8.3.0";
     compat_props_add(m->compat_props, hw_compat_rhel_8_3,
