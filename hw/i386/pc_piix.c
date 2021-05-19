@@ -971,6 +971,8 @@ static void pc_machine_rhel760_options(MachineClass *m)
     pcmc->pci_root_uid = 1;
     compat_props_add(m->compat_props, hw_compat_rhel_8_4,
                      hw_compat_rhel_8_4_len);
+    compat_props_add(m->compat_props, pc_rhel_8_4_compat,
+                     pc_rhel_8_4_compat_len);
     compat_props_add(m->compat_props, hw_compat_rhel_8_3,
                      hw_compat_rhel_8_3_len);
     compat_props_add(m->compat_props, pc_rhel_8_3_compat,

@@ -369,6 +369,12 @@ GlobalProperty pc_rhel_compat[] = {
 };
 const size_t pc_rhel_compat_len = G_N_ELEMENTS(pc_rhel_compat);
 
+GlobalProperty pc_rhel_8_4_compat[] = {
+    /* pc_rhel_8_4_compat from pc_compat_5_2 */
+    { "ICH9-LPC", "x-smi-cpu-hotunplug", "off" },
+};
+const size_t pc_rhel_8_4_compat_len = G_N_ELEMENTS(pc_rhel_8_4_compat);
+
 GlobalProperty pc_rhel_8_3_compat[] = {
     /* pc_rhel_8_3_compat from pc_compat_5_1 */
     { "ICH9-LPC", "x-smi-cpu-hotplug", "off" },
