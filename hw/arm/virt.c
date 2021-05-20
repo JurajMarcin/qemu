@@ -3094,12 +3094,18 @@ static void rhel_machine_init(void)
 }
 type_init(rhel_machine_init);
 
-static void rhel840_virt_options(MachineClass *mc)
+static void rhel850_virt_options(MachineClass *mc)
 {
     compat_props_add(mc->compat_props, arm_rhel_compat, arm_rhel_compat_len);
+}
+DEFINE_RHEL_MACHINE_AS_LATEST(8, 5, 0)
+
+static void rhel840_virt_options(MachineClass *mc)
+{
+    rhel850_virt_options(mc);
     compat_props_add(mc->compat_props, hw_compat_rhel_8_4, hw_compat_rhel_8_4_len);
 }
-DEFINE_RHEL_MACHINE_AS_LATEST(8, 4, 0)
+DEFINE_RHEL_MACHINE(8, 4, 0)
 
 static void rhel830_virt_options(MachineClass *mc)
 {
