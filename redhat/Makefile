@@ -1,7 +1,7 @@
 include Makefile.common
 
 rh-brew rh-env-prep rh-brew-module: SRPM_NAME=$(NAME)-$(VERSION)$(RELEASE_SEPARATOR)$(RELEASE)$(DIST)
-BUILD_TARGET=module-virt-rhel-8040020201117024359-9f9e2e7e
+BUILD_TARGET=module-virt-rhel-8040020210426081745-522a0ee4
 
 REDHAT:=$(shell pwd)
 SCRIPTS:=$(REDHAT)/scripts
