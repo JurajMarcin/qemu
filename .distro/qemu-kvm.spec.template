@@ -1207,6 +1207,11 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 %endif
 
 %changelog
+* Tue May 25 2021 Miroslav Reznaina <mrezanin@redhat.com> - 6.0.0-3
+- kvm-hw-s390x-Remove-the-RHEL7-only-machine-type.patch [bz#1944730]
+- Resolves: bz#1944730
+  (Remove RHEL7 machine type (s390-ccw-virtio-rhel7.5.0))
+
 * Thu May 13 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-2
 - kvm-Remove-message-with-running-VM-count.patch [bz#1914461]
 - kvm-Remove-SPICE-and-QXL-from-x86_64-rh-devices.mak.patch [bz#1906168]
