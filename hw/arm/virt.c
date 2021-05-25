@@ -3095,28 +3095,14 @@ static void rhel_machine_init(void)
 }
 type_init(rhel_machine_init);
 
-static void rhel840_virt_options(MachineClass *mc)
+static void rhel900_virt_options(MachineClass *mc)
 {
     compat_props_add(mc->compat_props, arm_rhel_compat, arm_rhel_compat_len);
-    compat_props_add(mc->compat_props, hw_compat_rhel_8_4, hw_compat_rhel_8_4_len);
 }
-DEFINE_RHEL_MACHINE_AS_LATEST(8, 4, 0)
+DEFINE_RHEL_MACHINE_AS_LATEST(9, 0, 0)
 
-static void rhel830_virt_options(MachineClass *mc)
+static void rhel850_virt_options(MachineClass *mc)
 {
-    VirtMachineClass *vmc = VIRT_MACHINE_CLASS(OBJECT_CLASS(mc));
-
-    rhel840_virt_options(mc);
-    compat_props_add(mc->compat_props, hw_compat_rhel_8_3, hw_compat_rhel_8_3_len);
-    vmc->no_kvm_steal_time = true;
+    rhel900_virt_options(mc);
 }
-DEFINE_RHEL_MACHINE(8, 3, 0)
-
-static void rhel820_virt_options(MachineClass *mc)
-{
-    rhel830_virt_options(mc);
-    compat_props_add(mc->compat_props, hw_compat_rhel_8_2, hw_compat_rhel_8_2_len);
-    mc->numa_mem_supported = true;
-    mc->auto_enable_numa_with_memdev = false;
-}
-DEFINE_RHEL_MACHINE(8, 2, 0)
+DEFINE_RHEL_MACHINE(8, 5, 0)
