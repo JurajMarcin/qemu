@@ -1,0 +1,40 @@
+UNAME:=qemu
+NAME:=qemu-kvm
+VERSION:=7.0.0
+DATE:=
+COMMIT:=
+RELEASE:=0
+ZRELEASE:=
+RELEASE_SEPARATOR:=-
+WEEKLY_DATE:=
+RC:=
+CLANG:=1
+BUILD_TARGET=rhel-9.1.0-candidate
+
+ifneq ($(RC),)
+  TARFILE:=qemu-$(VERSION)-$(RC).tar.xz
+else
+  TARFILE:=qemu-$(VERSION).tar.xz
+endif
+TARSHA512:=44ecd10c018a3763e1bc87d1d35b98890d0d5636acd69fe9b5cadf5024d5af6a31684d60cbe1c3370e02986434c1fb0ad99224e0e6f6fe7eda169992508157b1
+MARKER:=823a3f11fb8f04c3c3cc0f95f968fef1bfc6534f
+TARURL:=https://pkgs.devel.redhat.com/repo/rpms/qemu-kvm/$(TARFILE)/sha512/$(TARSHA512)/$(TARFILE)
+#TARURL:=http://batcave.lab.eng.brq.redhat.com/www/qemu/weekly/${WEEKLY_DATE}/$(TARFILE)
+#TARURL=https://download.qemu.org/$(TARFILE)
+
+SPECFILE:=$(NAME).spec
+DIST:=.el9
+SRPM_NAME=$(shell rpmspec --query --srpm --target="" --define "dist $(DIST)" rpmbuild/SPECS/$(SPECFILE))src.rpm
+
+SOURCES_FILELIST:=                     \
+       99-qemu-guest-agent.rules       \
+       qemu-guest-agent.service        \
+       qemu-ga.sysconfig               \
+       modules-load.conf               \
+       vhost.conf                      \
+       bridge.conf                     \
+       kvm.conf                        \
+       kvm-x86.conf                    \
+       kvm-s390x.conf                  \
+       95-kvm-memlock.conf             \
+       README.tests
