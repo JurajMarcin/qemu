@@ -45,6 +45,10 @@ if [ -z "$LOCAL_PYTHON" ]; then
 fi
 echo "Using $LOCAL_PYTHON"
 
+if [ -n "$LOCALVERSION" ]; then
+  LOCALVERSION=.${LOCALVERSION}
+fi
+
 # Pre-cleaning
 rm -rf .tmp psection patchlist
 
