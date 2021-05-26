@@ -69,6 +69,8 @@ else
     fi
 fi
 
+exit 0
+
 cd tests/qemu-iotests
 
 # QEMU_CHECK_BLOCK_AUTO is used to disable some unstable sub-tests
