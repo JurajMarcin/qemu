@@ -1357,5 +1357,14 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Tue May 25 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 6.0.0-17.el8
+- kvm-redhat-s390x-add-rhel-8.5.0-compat-machine.patch [bz#1951476]
+- kvm-redhat-add-missing-entries-in-hw_compat_rhel_8_4.patch [bz#1957834]
+- kvm-redhat-Define-pseries-rhel8.5.0-machine-type.patch [bz#1957834]
+- Resolves: bz#1951476
+  ([s390x] RHEL AV 8.5 new machine type for s390x)
+- Resolves: bz#1957834
+  ([ppc64le] RHEL AV 8.5 new machine type for ppc64le)
+
 * Mon May 03 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 6.0.0-16.el8
 - Rebase to qemu-kvm 6.0.0
