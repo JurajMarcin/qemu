@@ -146,6 +146,7 @@ _filter_img_create()
         -e "s# refcount_bits=[0-9]\\+##g" \
         -e "s# key-secret=[a-zA-Z0-9]\\+##g" \
         -e "s# iter-time=[0-9]\\+##g" \
+        -e "s# extent_size_hint=[0-9]\\+##g" \
         -e "s# force_size=\\(on\\|off\\)##g"
 }
 

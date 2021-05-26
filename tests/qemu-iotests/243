@@ -47,7 +47,7 @@ for mode in off metadata falloc full; do
     echo "=== preallocation=$mode ==="
     echo
 
-    IMGOPTS="preallocation=$mode" _make_test_img 64M
+    IMGOPTS="preallocation=$mode,extent_size_hint=0" _make_test_img 64M
 
     printf "File size: "
     du -b $TEST_IMG | cut -f1
@@ -64,7 +64,7 @@ for mode in off metadata falloc full; do
     echo "=== External data file: preallocation=$mode ==="
     echo
 
-    IMGOPTS="data_file=$TEST_IMG.data,preallocation=$mode" _make_test_img 64M
+    IMGOPTS="data_file=$TEST_IMG.data,preallocation=$mode,extent_size_hint=0" _make_test_img 64M
 
     echo -n "qcow2 file size: "
     du -b $TEST_IMG | cut -f1
@@ -75,7 +75,7 @@ for mode in off metadata falloc full; do
     echo -n "qcow2 disk usage: "
     [ $(du -B1 $TEST_IMG | cut -f1) -lt 1048576 ] && echo "low" || echo "high"
     echo -n "data disk usage:  "
-    [ $(du -B1 $TEST_IMG.data | cut -f1) -lt 1048576 ] && echo "low" || echo "high"
+    [ $(du -B1 $TEST_IMG.data | cut -f1) -lt 2097152 ] && echo "low" || echo "high"
 
 done
 
