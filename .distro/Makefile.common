@@ -1,0 +1,42 @@
+UNAME:=qemu
+NAME:=qemu-kvm
+VERSION:=9.0.0
+DATE:=
+COMMIT:=
+RELEASE:=0
+ZRELEASE:=
+RELEASE_SEPARATOR:=-
+WEEKLY_DATE:=20240418
+RC:=
+CLANG:=1
+BUILD_TARGET=rhel-9.5.0-candidate
+
+ifneq ($(RC),)
+  TARFILE:=qemu-$(VERSION)-$(RC).tar.xz
+else
+  TARFILE:=qemu-$(VERSION).tar.xz
+endif
+TARSHA512:=1603517cd4c93632ba60ad7261eb67374f12a744bf58f10b0e8686e46d3a02d8b6bf58a0c617f23a1868084aaba6386c24341894f75539e0b816091718721427
+MARKER:=v9.0.0
+#TARURL:=https://pkgs.devel.redhat.com/repo/rpms/qemu-kvm/$(TARFILE)/sha512/$(TARSHA512)/$(TARFILE)
+#TARURL:=http://batcave.lab.eng.brq2.redhat.com/www/qemu/weekly/${WEEKLY_DATE}/$(TARFILE)
+#TARURL:=http://batcave.lab.eng.brq2.redhat.com/www/qemu/weekly/$(TARFILE)
+#TARURL=https://download.qemu.org/$(TARFILE)
+TARURL=https://sources.stream.centos.org/sources/rpms/qemu-kvm/$(TARFILE)/sha512/$(TARSHA512)/$(TARFILE)
+
+SPECFILE:=$(NAME).spec
+DIST:=.el9
+SRPM_NAME=$(shell rpmspec --query --srpm --target="src" --define "dist $(DIST)" $(RPMBUILD)/SPECS/$(SPECFILE) | sed -e 's/\(.*\)\..*/\1/').src.rpm
+
+SOURCES_FILELIST:=                     \
+       99-qemu-guest-agent.rules       \
+       qemu-guest-agent.service        \
+       qemu-ga.sysconfig               \
+       modules-load.conf               \
+       vhost.conf                      \
+       bridge.conf                     \
+       kvm.conf                        \
+       kvm-x86.conf                    \
+       kvm-s390x.conf                  \
+       95-kvm-memlock.conf             \
+       README.tests
