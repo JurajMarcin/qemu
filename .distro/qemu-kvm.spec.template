@@ -1207,6 +1207,11 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 %endif
 
 %changelog
+* Mon May 31 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-4
+- kvm-s390x-redhat-disable-experimental-3270-device.patch
+- Resolves: bz#1962479
+  (Disable the 'x-terminal3270' device in qemu-kvm on s390x)
+
 * Tue May 25 2021 Miroslav Reznaina <mrezanin@redhat.com> - 6.0.0-3
 - kvm-hw-s390x-Remove-the-RHEL7-only-machine-type.patch [bz#1944730]
 - Resolves: bz#1944730
