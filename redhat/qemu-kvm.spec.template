@@ -804,6 +804,12 @@ make V=1 %{?_smp_mflags} $buildldflags
   trace/trace-events-all qemu-kiwi-simpletrace.stp
 
 cp -a %{kvm_target}-softmmu/qemu-system-%{kvm_target} qemu-kiwi
+
+%ifarch s390x
+    # Copy the built new images into place for "make check":
+    cp pc-bios/s390-ccw/s390-ccw.img pc-bios/s390-ccw/s390-netboot.img pc-bios/
+%endif
+
 popd
 
 %install
@@ -971,6 +977,7 @@ rm -rf ${RPM_BUILD_ROOT}%{_datadir}/%{name}/skiboot.lid
 rm -rf ${RPM_BUILD_ROOT}%{_datadir}/%{name}/qboot.rom
 
 rm -rf ${RPM_BUILD_ROOT}%{_datadir}/%{name}/s390-ccw.img
+rm -rf ${RPM_BUILD_ROOT}%{_datadir}/%{name}/s390-netboot.img
 rm -rf ${RPM_BUILD_ROOT}%{_datadir}/%{name}/hppa-firmware.img
 rm -rf ${RPM_BUILD_ROOT}%{_datadir}/%{name}/canyonlands.dtb
 rm -rf ${RPM_BUILD_ROOT}%{_datadir}/%{name}/u-boot-sam460-20100605.bin
@@ -995,10 +1002,10 @@ rm -rf ${RPM_BUILD_ROOT}%{_libexecdir}/virtfs-proxy-helper
 rm -rf ${RPM_BUILD_ROOT}%{_mandir}/man1/virtfs-proxy-helper*
 
 %ifarch s390x
-    # Use the s390-ccw.img that we've just built, not the pre-built one
+    # Use the s390-*.imgs that we've just built, not the pre-built ones
     install -m 0644 pc-bios/s390-ccw/s390-ccw.img $RPM_BUILD_ROOT%{_datadir}/%{name}/
+    install -m 0644 pc-bios/s390-ccw/s390-netboot.img $RPM_BUILD_ROOT%{_datadir}/%{name}/
 %else
-    rm -rf ${RPM_BUILD_ROOT}%{_datadir}/%{name}/s390-netboot.img
     rm -rf ${RPM_BUILD_ROOT}%{_libdir}/qemu-kvm/hw-s390x-virtio-gpu-ccw.so
 %endif
 
