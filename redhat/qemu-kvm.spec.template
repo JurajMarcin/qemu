@@ -1357,6 +1357,25 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Tue Jun 01 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 6.0.0-18.el8
+- kvm-virtio-net-failover-add-missing-remove_migration_sta.patch [bz#1953045]
+- kvm-hw-arm-virt-Add-8.5-machine-type.patch [bz#1957667]
+- kvm-hw-arm-virt-Disable-PL011-clock-migration-through-hw.patch [bz#1957667]
+- kvm-arm-virt-Register-highmem-and-gic-version-as-class-p.patch [bz#1957667]
+- kvm-virtio-blk-Fix-rollback-path-in-virtio_blk_data_plan.patch [bz#1927108]
+- kvm-virtio-blk-Configure-all-host-notifiers-in-a-single-.patch [bz#1927108]
+- kvm-virtio-scsi-Set-host-notifiers-and-callbacks-separat.patch [bz#1927108]
+- kvm-virtio-scsi-Configure-all-host-notifiers-in-a-single.patch [bz#1927108]
+- kvm-hw-arm-smmuv3-Another-range-invalidation-fix.patch [bz#1929720]
+- Resolves: bz#1953045
+  (qemu-kvm NULL pointer de-reference  during migration at migrate_fd_connect ->...-> notifier_list_notify)
+- Resolves: bz#1957667
+  ([aarch64] Add 8.5 machine type)
+- Resolves: bz#1927108
+  (It's too slow to load scsi  disk when use 384 vcpus)
+- Resolves: bz#1929720
+  ([aarch64] Handle vsmmuv3 IOTLB invalidation with non power of 2 size)
+
 * Tue May 25 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 6.0.0-17.el8
 - kvm-redhat-s390x-add-rhel-8.5.0-compat-machine.patch [bz#1951476]
 - kvm-redhat-add-missing-entries-in-hw_compat_rhel_8_4.patch [bz#1957834]
