@@ -1038,6 +1038,19 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Thu Jun 03 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-29.el8_2.8
+- kvm-hw-intc-arm_gic-Fix-interrupt-ID-in-GICD_SGIR-regist.patch [bz#1926168]
+- kvm-libqos-usb-hcd-ehci-use-32-bit-write-for-config-regi.patch [bz#1842479]
+- kvm-libqos-pci-pc-use-32-bit-write-for-EJ-register.patch [bz#1842479]
+- kvm-memory-Revert-memory-accept-mismatching-sizes-in-mem.patch [bz#1842479]
+- kvm-acpi-accept-byte-and-word-access-to-core-ACPI-regist.patch [bz#1842479]
+- kvm-xhci-fix-valid.max_access_size-to-access-address-reg.patch [bz#1842479]
+- kvm-softmmu-memory-Log-invalid-memory-accesses.patch [bz#1842479]
+- Resolves: bz#1926168
+  (CVE-2021-20221 virt:8.2/qemu-kvm: qemu: out-of-bound heap buffer access via an interrupt ID field [rhel-av-8.2.1.z])
+- Resolves: bz#1842479
+  (CVE-2020-13754 virt:8.2/qemu-kvm: QEMU: msix: OOB access during mmio operations may lead to DoS [rhel-av-8])
+
 * Thu Feb 11 2021 Eduardo Lima (Etrunko) <elima@redhat.com> - 4.2.0-29.el8_2.7
 - kvm-virtiofsd-extract-lo_do_open-from-lo_open.patch [bz#1922046]
 - kvm-virtiofsd-optionally-return-inode-pointer-from-lo_do.patch [bz#1922046]
