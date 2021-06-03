@@ -1056,6 +1056,22 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Thu Jun 03 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-48.el8_4.1
+- kvm-net-remove-an-assert-call-in-eth_get_gso_type.patch [bz#1939494]
+- kvm-libqos-usb-hcd-ehci-use-32-bit-write-for-config-regi.patch [bz#1944621]
+- kvm-libqos-pci-pc-use-32-bit-write-for-EJ-register.patch [bz#1944621]
+- kvm-memory-Revert-memory-accept-mismatching-sizes-in-mem.patch [bz#1944621]
+- kvm-acpi-accept-byte-and-word-access-to-core-ACPI-regist.patch [bz#1944621]
+- kvm-xhci-fix-valid.max_access_size-to-access-address-reg.patch [bz#1944621]
+- kvm-softmmu-memory-Log-invalid-memory-accesses.patch [bz#1944621]
+- kvm-hw-intc-arm_gic-Fix-interrupt-ID-in-GICD_SGIR-regist.patch [bz#1952986]
+- Resolves: bz#1939494
+  (CVE-2020-27617 virt:rhel/qemu-kvm: QEMU: net: an assert failure via eth_get_gso_type [rhel-8.4.0.z])
+- Resolves: bz#1944621
+  (CVE-2020-13754 virt:rhel/qemu-kvm: QEMU: msix: OOB access during mmio operations may lead to DoS [rhel-8.4.0.z])
+- Resolves: bz#1952986
+  (CVE-2021-20221 virt:rhel/qemu-kvm: qemu: out-of-bound heap buffer access via an interrupt ID field [rhel-8.4.0.z])
+
 * Tue Mar 16 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-48.el8
 - kvm-ide-atapi-check-logical-block-address-and-read-size-.patch [bz#1917451]
 - Resolves: bz#1917451
