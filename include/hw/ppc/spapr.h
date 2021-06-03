@@ -227,6 +227,9 @@ struct SpaprMachineState {
     /* Secure Guest support via x-svm-allowed */
     bool svm_allowed;
 
+    /* Set by -boot */
+    char *boot_device;
+
     /*< public >*/
     char *kvm_type;
     char *host_model;
