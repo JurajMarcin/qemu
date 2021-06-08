@@ -4,7 +4,6 @@
 %global have_usbredir 1
 %global have_opengl   1
 %global have_fdt      0
-%global have_gluster  1
 %global have_kvm_setup 0
 %global have_memlock_limits 0
 %%RCVERSION%%
@@ -27,7 +26,6 @@
     %global kvm_target    x86_64
 %else
     %global have_opengl  0
-    %global have_gluster 0
 %endif
 %ifarch %{power64}
     %global kvm_target    ppc64
@@ -55,9 +53,6 @@
 Requires: %{name}-ui-opengl = %{epoch}:%{version}-%{release}     \
 %endif                                                           \
 Requires: %{name}-block-curl = %{epoch}:%{version}-%{release}    \
-%if %{have_gluster}                                              \
-Requires: %{name}-block-gluster = %{epoch}:%{version}-%{release} \
-%endif                                                           \
 Requires: %{name}-block-iscsi = %{epoch}:%{version}-%{release}   \
 Requires: %{name}-block-rbd = %{epoch}:%{version}-%{release}     \
 Requires: %{name}-block-ssh = %{epoch}:%{version}-%{release}
@@ -131,11 +126,6 @@ BuildRequires: libcurl-devel
 BuildRequires: libssh-devel
 BuildRequires: librados-devel
 BuildRequires: librbd-devel
-%if %{have_gluster}
-# For gluster block driver
-BuildRequires: glusterfs-api-devel
-BuildRequires: glusterfs-devel
-%endif
 # We need both because the 'stap' binary is probed for by configure
 BuildRequires: systemtap
 BuildRequires: systemtap-sdt-devel
@@ -249,6 +239,7 @@ Requires: libfdt >= 1.6.0
 # The "<= {version}" assumes RHEL-9 version >= RHEL-8 version (in
 # other words RHEL-9 rebases are done together/before RHEL-8 ones)
 Obsoletes: qemu-kvm-ui-spice <= %{version}
+Obsoletes: qemu-kvm-block-gluster <= %{version}
 
 %description -n qemu-kvm-core
 qemu-kvm is an open source virtualizer that provides hardware
@@ -333,17 +324,6 @@ Install this package if you want to access remote disks over
 http, https, ftp and other transports provided by the CURL library.
 
 
-%if %{have_gluster}
-%package  block-gluster
-Summary: QEMU Gluster block driver
-Requires: %{name}-common%{?_isa} = %{epoch}:%{version}-%{release}
-%description block-gluster
-This package provides the additional Gluster block driver for QEMU.
-
-Install this package if you want to access remote Gluster storage.
-%endif
-
-
 %package  block-iscsi
 Summary: QEMU iSCSI block driver
 Requires: %{name}-common%{?_isa} = %{epoch}:%{version}-%{release}
@@ -408,11 +388,6 @@ mkdir -p %{qemu_kvm_build}
 buildldflags="VL_LDFLAGS=-Wl,--build-id"
 
 %global block_drivers_list qcow2,raw,file,host_device,nbd,iscsi,rbd,blkdebug,luks,null-co,nvme,copy-on-read,throttle
-
-%if 0%{have_gluster}
-    %global block_drivers_list %{block_drivers_list},gluster
-%endif
-
 
 %define disable_everything         \\\
   --disable-attr                   \\\
@@ -574,9 +549,6 @@ pushd %{qemu_kvm_build}
   --enable-fdt \
 %endif
   --enable-gcrypt \
-%if 0%{have_gluster}
-  --enable-glusterfs \
-%endif
   --enable-gnutls \
   --enable-guest-agent \
   --enable-iconv \
@@ -1184,11 +1156,6 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 %files block-curl
 %{_libdir}/qemu-kvm/block-curl.so
-
-%if %{have_gluster}
-%files block-gluster
-%{_libdir}/qemu-kvm/block-gluster.so
-%endif
 
 %files block-iscsi
 %{_libdir}/qemu-kvm/block-iscsi.so
