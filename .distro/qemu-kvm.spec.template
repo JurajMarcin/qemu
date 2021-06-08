@@ -889,8 +889,6 @@ pxe_link() {
 
 %ifnarch aarch64 s390x
 pxe_link e1000 8086100e
-pxe_link ne2k_pci 10ec8029
-pxe_link pcnet 10222000
 pxe_link rtl8139 10ec8139
 pxe_link virtio 1af41000
 pxe_link e1000e 808610d3
@@ -1086,9 +1084,7 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
     %{_datadir}/%{name}/efi-e1000.rom
     %{_datadir}/%{name}/efi-e1000e.rom
     %{_datadir}/%{name}/efi-virtio.rom
-    %{_datadir}/%{name}/efi-pcnet.rom
     %{_datadir}/%{name}/efi-rtl8139.rom
-    %{_datadir}/%{name}/efi-ne2k_pci.rom
     %{_libdir}/qemu-kvm/hw-display-virtio-vga.so
 %endif
 %{_datadir}/icons/*
