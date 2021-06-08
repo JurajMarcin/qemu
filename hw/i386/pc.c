@@ -366,12 +366,15 @@ GlobalProperty pc_rhel_compat[] = {
     { TYPE_X86_CPU, "vmx-exit-load-perf-global-ctrl", "off" },
     /* bz 1508330 */ 
     { "vfio-pci", "x-no-geforce-quirks", "on" },
+    /* bz 1941397 */
+    { TYPE_X86_CPU, "kvm-asyncpf-int", "on" },
 };
 const size_t pc_rhel_compat_len = G_N_ELEMENTS(pc_rhel_compat);
 
 GlobalProperty pc_rhel_8_4_compat[] = {
     /* pc_rhel_8_4_compat from pc_compat_5_2 */
     { "ICH9-LPC", "x-smi-cpu-hotunplug", "off" },
+    { TYPE_X86_CPU, "kvm-asyncpf-int", "off" },
 };
 const size_t pc_rhel_8_4_compat_len = G_N_ELEMENTS(pc_rhel_8_4_compat);
 
