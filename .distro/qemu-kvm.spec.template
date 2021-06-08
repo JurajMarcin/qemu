@@ -62,7 +62,9 @@ Name: qemu-kvm
 Version: %%VERSION%%
 Release: %%RELEASE%%%{?rcversion}%{?dist}%%ZRELEASE%%%%LOCALVERSION%%
 # Epoch because we pushed a qemu-1.0 package. AIUI this can't ever be dropped
-Epoch: 15
+# Epoch 15 used for RHEL 8
+# Epoch 17 used for RHEL 9 (due to release versioning offset in RHEL 8.5)
+Epoch: 17
 License: GPLv2 and GPLv2+ and CC-BY
 Group: Development/Tools
 URL: http://www.qemu.org/
@@ -1170,6 +1172,33 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 %endif
 
 %changelog
+* Tue Jun 08 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-5
+- kvm-arm-virt-Register-highmem-and-gic-version-as-class-p.patch [bz#1952449]
+- kvm-hw-arm-virt-Add-8.5-and-9.0-machine-types-and-remove.patch [bz#1952449]
+- kvm-aarch64-rh-devices-add-CONFIG_PVPANIC_PCI.patch [bz#1747467]
+- kvm-spec-Do-not-build-qemu-kvm-block-gluster.patch [bz#1964795]
+- kvm-spec-Do-not-link-pcnet-and-ne2k_pci-roms.patch [bz#1965961]
+- kvm-redhat-s390x-add-rhel-8.5.0-compat-machine.patch [bz#1957194]
+- kvm-redhat-add-missing-entries-in-hw_compat_rhel_8_4.patch [bz#1957194]
+- kvm-redhat-Define-pseries-rhel8.5.0-machine-type.patch [bz#1957194]
+- kvm-virtio-net-failover-add-missing-remove_migration_sta.patch [bz#1957194]
+- kvm-hw-arm-virt-Disable-PL011-clock-migration-through-hw.patch [bz#1957194]
+- kvm-virtio-blk-Fix-rollback-path-in-virtio_blk_data_plan.patch [bz#1957194]
+- kvm-virtio-blk-Configure-all-host-notifiers-in-a-single-.patch [bz#1957194]
+- kvm-virtio-scsi-Set-host-notifiers-and-callbacks-separat.patch [bz#1957194]
+- kvm-virtio-scsi-Configure-all-host-notifiers-in-a-single.patch [bz#1957194]
+- kvm-hw-arm-smmuv3-Another-range-invalidation-fix.patch [bz#1957194]
+- Resolves: bz#1952449
+  ([aarch64] define RHEL9 machine types)
+- Resolves: bz#1747467
+  ([aarch64] [qemu] PVPANIC support)
+- Resolves: bz#1964795
+  (Remove qemu-kvm-block-gluster package)
+- Resolves: bz#1965961
+  (Remove links to not build roms)
+- Resolves: bz#1957194
+  (Synchronize RHEL-AV 8.5.0 changes to RHEL 9.0.0 Beta)
+
 * Mon May 31 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-4
 - kvm-s390x-redhat-disable-experimental-3270-device.patch
 - Resolves: bz#1962479
