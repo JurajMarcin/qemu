@@ -1336,6 +1336,11 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Wed Jun 09 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.2.0-16.el8_4.1
+- kvm-virtio-net-failover-add-missing-remove_migration_sta.patch [bz#1955666]
+- Resolves: bz#1955666
+  (qemu-kvm NULL pointer de-reference  during migration at migrate_fd_connect ->...-> notifier_list_notify [rhel-8.4.0.z])
+
 * Wed Apr 28 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.2.0-16.el8_4
 - kvm-virtio-pci-compat-page-aligned-ATS.patch [bz#1942362]
 - Resolves: bz#1942362
