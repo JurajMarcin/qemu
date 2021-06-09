@@ -1008,7 +1008,6 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 # Deliberately empty
 
 %files -n qemu-kvm-docs
-%defattr(-,root,root)
 %dir %{qemudocdir}
 %doc %{qemudocdir}/genindex.html
 %doc %{qemudocdir}/search.html
@@ -1029,7 +1028,6 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 %doc %{qemudocdir}/_static/*
 
 %files -n qemu-kvm-common
-%defattr(-,root,root)
 %{_mandir}/man7/qemu-qmp-ref.7*
 %{_mandir}/man7/qemu-cpu-models.7*
 %{_bindir}/qemu-keymap
@@ -1109,7 +1107,6 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 %{_datadir}/%{name}/vhost-user/50-qemu-virtiofsd.json
 
 %files -n qemu-kvm-core
-%defattr(-,root,root)
 %{_libexecdir}/qemu-kvm
 %{_datadir}/systemtap/tapset/qemu-kvm.stp
 %{_datadir}/systemtap/tapset/qemu-kvm-log.stp
@@ -1129,7 +1126,6 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 %endif
 
 %files -n qemu-img
-%defattr(-,root,root)
 %{_bindir}/qemu-img
 %{_bindir}/qemu-io
 %{_bindir}/qemu-nbd
@@ -1140,7 +1136,6 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 %{_mandir}/man7/qemu-storage-daemon-qmp-ref.7*
 
 %files -n qemu-guest-agent
-%defattr(-,root,root,-)
 %doc COPYING README.rst
 %{_bindir}/qemu-ga
 %{_mandir}/man8/qemu-ga.8*
