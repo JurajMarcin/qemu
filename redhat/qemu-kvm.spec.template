@@ -1056,6 +1056,18 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Fri Jun 11 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-52.el8
+- kvm-file-posix-Mitigate-file-fragmentation-with-extent-s.patch [bz#1877163]
+- kvm-block-file-posix-Fix-problem-with-fallocate-PUNCH_HO.patch [bz#1944861]
+- kvm-spapr-Remove-stale-comment-about-power-saving-LPCR-b.patch [bz#1969768]
+- kvm-spapr-Set-LPCR-to-current-AIL-mode-when-starting-a-n.patch [bz#1969768]
+- Resolves: bz#1877163
+  ([FJ 8.3 Bug] The progress bar of the "virt-clone --nonsparse" command shows the progress rate exceeding 100%.)
+- Resolves: bz#1944861
+  (Qemu-img convert fails when source image is on gpfs)
+- Resolves: bz#1969768
+  ([ppc64le] Hotplug vcpu device hit call trace:[qemu output] KVM: unknown exit, hardware reason 7fff9ce87ed8)
+
 * Tue May 25 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-51.el8
 - kvm-linux-headers-Add-VFIO_CCW_REQ_IRQ_INDEX.patch [bz#1940450]
 - kvm-vfio-ccw-Connect-the-device-request-notifier.patch [bz#1940450]
