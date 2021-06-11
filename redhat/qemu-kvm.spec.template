@@ -1364,6 +1364,30 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Fri Jun 11 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 6.0.0-19.el8
+- kvm-pc-bios-s390-ccw-don-t-try-to-read-the-next-block-if.patch [bz#1965626]
+- kvm-redhat-Install-the-s390-netboot.img-that-we-ve-built.patch [bz#1966463]
+- kvm-sockets-update-SOCKET_ADDRESS_TYPE_FD-listen-2-backl.patch [bz#1967177]
+- kvm-target-i386-sev-add-support-to-query-the-attestation.patch [bz#1957022]
+- kvm-spapr-Don-t-hijack-current_machine-boot_order.patch [bz#1960119]
+- kvm-target-i386-Add-CPU-model-versions-supporting-xsaves.patch [bz#1942914]
+- kvm-spapr-Remove-stale-comment-about-power-saving-LPCR-b.patch [bz#1940731]
+- kvm-spapr-Set-LPCR-to-current-AIL-mode-when-starting-a-n.patch [bz#1940731]
+- Resolves: bz#1965626
+  (RHEL8.2 - QEMU BIOS fails to read stage2 loader (kvm))
+- Resolves: bz#1966463
+  (Rebuild the s390-netboot.img for downstream instead of shipping the upstream image)
+- Resolves: bz#1967177
+  (QEMU 6.0.0 socket_get_fd() fails with the error "socket_get_fd: too many connections")
+- Resolves: bz#1957022
+  (SEV: Add support to query the attestation report)
+- Resolves: bz#1960119
+  ([regression]Failed to reset guest)
+- Resolves: bz#1942914
+  ([Hyper-V][RHEL8.4]Nested Hyper-V on KVM: On Intel CPU L1 2016 can not start with cpu model Skylake-Server-noTSX-IBRS or Skylake-Client-noTSX-IBRS)
+- Resolves: bz#1940731
+  ([ppc64le] Hotplug vcpu device hit call trace:[qemu output] KVM: unknown exit, hardware reason 7fff9ce87ed8)
+
 * Tue Jun 01 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 6.0.0-18.el8
 - kvm-virtio-net-failover-add-missing-remove_migration_sta.patch [bz#1953045]
 - kvm-hw-arm-virt-Add-8.5-machine-type.patch [bz#1957667]
