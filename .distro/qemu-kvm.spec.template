@@ -160,10 +160,6 @@ Requires: libpmem
 %endif
 # qemu-keymap
 BuildRequires: pkgconfig(xkbcommon)
-# For s390-pgste flag
-%ifarch s390x
-BuildRequires: binutils >= 2.27-16
-%endif
 %if %{have_opengl}
 BuildRequires: pkgconfig(epoxy)
 BuildRequires: pkgconfig(libdrm)
