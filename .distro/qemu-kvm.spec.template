@@ -8,6 +8,15 @@
 %global have_memlock_limits 0
 %%RCVERSION%%
 
+%global have_pmem 1
+%ifnarch x86_64
+    %global have_pmem 0
+%endif
+
+%global have_numactl 1
+%ifarch s390x
+    %global have_numactl 0
+%endif
 
 %ifnarch %{ix86} x86_64
     %global have_usbredir 0
@@ -137,7 +146,7 @@ BuildRequires: libfdt-devel >= 1.6.0
 # For compressed guest memory dumps
 BuildRequires: lzo-devel snappy-devel
 # For NUMA memory binding
-%ifnarch s390x
+%if %{have_numactl}
 BuildRequires: numactl-devel
 %endif
 BuildRequires: libgcrypt-devel
@@ -145,7 +154,7 @@ BuildRequires: libgcrypt-devel
 BuildRequires: device-mapper-multipath-devel
 BuildRequires: systemd-devel
 BuildRequires: diffutils
-%ifarch x86_64
+%if %{have_pmem}
 BuildRequires: libpmem-devel
 Requires: libpmem
 %endif
@@ -521,7 +530,7 @@ pushd %{qemu_kvm_build}
   --enable-iconv \
   --enable-kvm \
   --enable-libiscsi \
-%ifarch x86_64
+%if %{have_pmem}
   --enable-libpmem \
 %endif
   --enable-libssh \
@@ -532,7 +541,7 @@ pushd %{qemu_kvm_build}
   --enable-malloc-trim \
   --enable-modules \
   --enable-mpath \
-%ifnarch s390x
+%if %{have_numactl}
   --enable-numa \
 %endif
 %if %{have_opengl}
