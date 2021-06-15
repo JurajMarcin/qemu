@@ -155,7 +155,6 @@ BuildRequires: device-mapper-multipath-devel
 BuildRequires: systemd-devel
 %if %{have_pmem}
 BuildRequires: libpmem-devel
-Requires: libpmem
 %endif
 # qemu-keymap
 BuildRequires: pkgconfig(xkbcommon)
@@ -193,8 +192,6 @@ Requires: edk2-aarch64
 %endif
 
 Requires: libseccomp >= 2.4.0
-# For compressed guest memory dumps
-Requires: lzo snappy
 %if %{have_kvm_setup}
 Requires(post): systemd-units
 Requires(preun): systemd-units
