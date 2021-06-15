@@ -128,7 +128,7 @@ BuildRequires: libcap-ng-devel
 # Hard requirement for version >= 1.3
 BuildRequires: pixman-devel
 # For rdma
-%if 0%{?have_librdma}
+%if %{have_librdma}
 BuildRequires: rdma-core-devel
 %endif
 %if %{have_fdt}
@@ -512,7 +512,7 @@ pushd %{qemu_kvm_build}
   --enable-curl \
   --enable-debug-info \
   --enable-docs \
-%if 0%{have_fdt}
+%if %{have_fdt}
   --enable-fdt \
 %endif
   --enable-gcrypt \
@@ -535,12 +535,12 @@ pushd %{qemu_kvm_build}
 %ifnarch s390x
   --enable-numa \
 %endif
-%if 0%{have_opengl}
+%if %{have_opengl}
   --enable-opengl \
 %endif
   --enable-pie \
   --enable-rbd \
-%if 0%{have_librdma}
+%if %{have_librdma}
   --enable-rdma \
 %endif
   --enable-seccomp \
@@ -551,7 +551,7 @@ pushd %{qemu_kvm_build}
   --enable-tools \
   --enable-tpm \
   --enable-trace-backend=dtrace \
-%if 0%{have_usbredir}
+%if %{have_usbredir}
   --enable-usb-redir \
 %endif
   --enable-virtiofsd \
@@ -888,13 +888,13 @@ rom_link() {
   rom_link ../sgabios/sgabios.bin sgabios.bin
 %endif
 
-%if 0%{have_kvm_setup}
+%if %{have_kvm_setup}
     install -D -p -m 755 %{SOURCE21} $RPM_BUILD_ROOT%{_prefix}/lib/systemd/kvm-setup
     install -D -p -m 644 %{SOURCE22} $RPM_BUILD_ROOT%{_unitdir}/kvm-setup.service
     install -D -p -m 644 %{SOURCE23} $RPM_BUILD_ROOT%{_presetdir}/85-kvm.preset
 %endif
 
-%if 0%{have_memlock_limits}
+%if %{have_memlock_limits}
     install -D -p -m 644 %{SOURCE28} $RPM_BUILD_ROOT%{_sysconfdir}/security/limits.d/95-kvm-memlock.conf
 %endif
 
@@ -1063,12 +1063,12 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 %{_datadir}/%{name}/linuxboot_dma.bin
 %{_datadir}/%{name}/dump-guest-memory.py*
 %{_datadir}/%{name}/trace-events-all
-%if 0%{have_kvm_setup}
+%if %{have_kvm_setup}
     %{_prefix}/lib/systemd/kvm-setup
     %{_unitdir}/kvm-setup.service
     %{_presetdir}/85-kvm.preset
 %endif
-%if 0%{have_memlock_limits}
+%if %{have_memlock_limits}
     %{_sysconfdir}/security/limits.d/95-kvm-memlock.conf
 %endif
 %{_libexecdir}/virtiofsd
@@ -1131,7 +1131,7 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 %files block-ssh
 %{_libdir}/qemu-kvm/block-ssh.so
 
-%if 0%{have_opengl}
+%if %{have_opengl}
 %files ui-opengl
     %{_libdir}/qemu-kvm/ui-egl-headless.so
     %{_libdir}/qemu-kvm/ui-opengl.so
