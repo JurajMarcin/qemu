@@ -134,12 +134,6 @@ BuildRequires: rdma-core-devel
 %if %{have_fdt}
 BuildRequires: libfdt-devel >= 1.6.0
 %endif
-# iasl and cpp for acpi generation (not a hard requirement as we can use
-# pre-compiled files, but it's better to use this)
-%ifarch %{ix86} x86_64
-BuildRequires: iasl
-BuildRequires: cpp
-%endif
 # For compressed guest memory dumps
 BuildRequires: lzo-devel snappy-devel
 # For NUMA memory binding
