@@ -1,5 +1,8 @@
-%global SLOF_gittagdate 20191022
-%global SLOF_gittagcommit 899d9883
+%global libfdt_version 1.6.0
+%global libseccomp_version 2.4.0
+%global libusbx_version 1.0.23
+%global meson_version 0.55.3-3
+%global usbredir_version 0.7.1
 
 %global have_usbredir 1
 %global have_opengl   1
@@ -107,7 +110,7 @@ Source36: README.tests
 
 %%PATCHLIST%%
 
-BuildRequires: meson >= 0.55.3-3
+BuildRequires: meson >= %{meson_version}
 BuildRequires: zlib-devel
 BuildRequires: glib2-devel
 BuildRequires: gnutls-devel
@@ -116,13 +119,13 @@ BuildRequires: libaio-devel
 BuildRequires: python3-devel
 BuildRequires: libiscsi-devel
 BuildRequires: libattr-devel
-BuildRequires: libusbx-devel >= 1.0.23
+BuildRequires: libusbx-devel >= %{libusbx_version}
 %if %{have_usbredir}
-BuildRequires: usbredir-devel >= 0.7.1
+BuildRequires: usbredir-devel >= %{usbredir_version}
 %endif
 BuildRequires: texinfo
 BuildRequires: python3-sphinx
-BuildRequires: libseccomp-devel >= 2.4.0
+BuildRequires: libseccomp-devel >= %{libseccomp_version}
 # For network block driver
 BuildRequires: libcurl-devel
 BuildRequires: libssh-devel
@@ -141,7 +144,7 @@ BuildRequires: pixman-devel
 BuildRequires: rdma-core-devel
 %endif
 %if %{have_fdt}
-BuildRequires: libfdt-devel >= 1.6.0
+BuildRequires: libfdt-devel >= %{libfdt_version}
 %endif
 # For compressed guest memory dumps
 BuildRequires: lzo-devel snappy-devel
@@ -191,17 +194,17 @@ Requires: edk2-ovmf
 Requires: edk2-aarch64
 %endif
 
-Requires: libseccomp >= 2.4.0
+Requires: libseccomp >= %{libseccomp_version}
 %if %{have_kvm_setup}
 Requires(post): systemd-units
 Requires(preun): systemd-units
 %endif
-Requires: libusbx >= 1.0.23
+Requires: libusbx >= %{libusbx_version}
 %if %{have_usbredir}
-Requires: usbredir >= 0.7.1
+Requires: usbredir >= %{usbredir_version}
 %endif
 %if %{have_fdt}
-Requires: libfdt >= 1.6.0
+Requires: libfdt >= %{libfdt_version}
 %endif
 
 # Since SPICE is removed from RHEL-9, the following Obsoletes:
