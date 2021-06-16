@@ -153,7 +153,6 @@ BuildRequires: libgcrypt-devel
 # qemu-pr-helper multipath support (requires libudev too)
 BuildRequires: device-mapper-multipath-devel
 BuildRequires: systemd-devel
-BuildRequires: diffutils
 %if %{have_pmem}
 BuildRequires: libpmem-devel
 Requires: libpmem
@@ -931,7 +930,7 @@ popd
 %check
 pushd %{qemu_kvm_build}
 echo "Testing qemu-kvm-build"
-export DIFF=diff; make check V=1
+make check V=1
 popd
 
 %post -n qemu-kvm-common
