@@ -25,6 +25,11 @@
     %global have_numactl 0
 %endif
 
+%global tools_only 0
+%ifarch %{power64}
+    %global tools_only 1
+%endif
+
 %ifnarch %{ix86} x86_64
     %global have_usbredir 0
 %endif
@@ -589,7 +594,7 @@ echo "==="
 cat config-host.mak
 echo "==="
 
-%ifarch %{power64}
+%if %{tools_only}
 make V=1 %{?_smp_mflags} $buildldflags qemu-img
 make V=1 %{?_smp_mflags} $buildldflags qemu-io
 make V=1 %{?_smp_mflags} $buildldflags qemu-nbd
@@ -636,7 +641,7 @@ pushd %{qemu_kvm_build}
 %define _udevdir %(pkg-config --variable=udevdir udev)
 %define _udevrulesdir %{_udevdir}/rules.d
 
-%ifarch %{power64}
+%if %{tools_only}
 install -D -p -m 0755 qemu-img %{buildroot}%{_bindir}/qemu-img
 install -D -p -m 0755 qemu-io %{buildroot}%{_bindir}/qemu-io
 install -D -p -m 0755 qemu-nbd %{buildroot}%{_bindir}/qemu-nbd
@@ -745,7 +750,7 @@ mkdir -p -v %{buildroot}%{_localstatedir}/log/qemu-ga/
 mkdir -p %{buildroot}%{_bindir}
 install -c -m 0755  qga/qemu-ga %{buildroot}%{_bindir}/qemu-ga
 
-%ifnarch %{power64}
+%if !%{tools_only}
 mkdir -p %{buildroot}%{_mandir}/man8
 
 install -m 0755 %{kvm_target}-softmmu/qemu-system-%{kvm_target} %{buildroot}%{_libexecdir}/qemu-kvm
@@ -973,6 +978,7 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %postun common
 %systemd_postun_with_restart ksm.service
 %systemd_postun_with_restart ksmtuned.service
+# endif !tools_only
 %endif
 
 %post -n qemu-guest-agent
@@ -982,7 +988,7 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %postun -n qemu-guest-agent
 %systemd_postun_with_restart qemu-guest-agent.service
 
-%ifnarch %{power64}
+%if !%{tools_only}
 %files
 # Deliberately empty
 
@@ -1104,6 +1110,7 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %else
     %{_libdir}/%{name}/hw-display-virtio-gpu-pci.so
 %endif
+# endif !tools_only
 %endif
 
 %files -n qemu-img
@@ -1128,7 +1135,7 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %{_datadir}/%{name}/qemu-ga
 %dir %{_localstatedir}/log/qemu-ga
 
-%ifnarch %{power64}
+%if !%{tools_only}
 %files tests
 %{testsdir}
 
@@ -1151,6 +1158,8 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %files hw-usbredir
     %{_libdir}/%{name}/hw-usb-redirect.so
 %endif
+
+# endif !tools_only
 %endif
 
 %changelog
