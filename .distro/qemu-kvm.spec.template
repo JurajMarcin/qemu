@@ -375,6 +375,7 @@ buildldflags="VL_LDFLAGS=-Wl,--build-id"
 %global block_drivers_list qcow2,raw,file,host_device,nbd,iscsi,rbd,blkdebug,luks,null-co,nvme,copy-on-read,throttle
 
 %define disable_everything         \\\
+  --audio-drv-list=                \\\
   --disable-attr                   \\\
   --disable-auth-pam               \\\
   --disable-avx2                   \\\
@@ -494,7 +495,8 @@ buildldflags="VL_LDFLAGS=-Wl,--build-id"
   --disable-xfsctl                 \\\
   --disable-xkbcommon              \\\
   --disable-zstd                   \\\
-  --with-git-submodules=ignore
+  --with-git-submodules=ignore     \\\
+  --without-default-devices
 
 
 run_configure() {
@@ -533,7 +535,6 @@ pushd %{qemu_kvm_build}
 run_configure  \
   --target-list="%{buildarch}" \
   --block-drv-rw-whitelist=%{block_drivers_list} \
-  --audio-drv-list= \
   --block-drv-ro-whitelist=vmdk,vhdx,vpc,https,ssh \
   --enable-block-drv-whitelist-in-tools \
   --enable-attr \
@@ -600,7 +601,6 @@ run_configure  \
   --enable-vnc-sasl \
   --enable-werror \
   --enable-xkbcommon \
-  --without-default-devices
 
 
 %if %{tools_only}
