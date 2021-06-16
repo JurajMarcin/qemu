@@ -10,6 +10,10 @@
 %global have_kvm_setup 0
 %global have_memlock_limits 0
 %%RCVERSION%%
+# have_block_rbd is not relevant for RHEL but makes it
+# easier to sync spec dependency list with Fedora
+%global have_block_rbd 1
+
 
 %global have_pmem 1
 %ifnarch x86_64
@@ -129,7 +133,9 @@ BuildRequires: libseccomp-devel >= %{libseccomp_version}
 # For network block driver
 BuildRequires: libcurl-devel
 BuildRequires: libssh-devel
+%if %{have_block_rbd}
 BuildRequires: librbd-devel
+%endif
 # We need both because the 'stap' binary is probed for by configure
 BuildRequires: systemtap
 BuildRequires: systemtap-sdt-devel
@@ -543,7 +549,9 @@ pushd %{qemu_kvm_build}
   --enable-opengl \
 %endif
   --enable-pie \
+%if %{have_block_rbd}
   --enable-rbd \
+%endif
 %if %{have_librdma}
   --enable-rdma \
 %endif
