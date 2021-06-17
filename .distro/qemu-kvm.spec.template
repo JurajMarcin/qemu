@@ -1007,6 +1007,32 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %postun -n qemu-guest-agent
 %systemd_postun_with_restart qemu-guest-agent.service
 
+
+
+%files -n qemu-img
+%{_bindir}/qemu-img
+%{_bindir}/qemu-io
+%{_bindir}/qemu-nbd
+%{_bindir}/qemu-storage-daemon
+%{_mandir}/man1/qemu-img.1*
+%{_mandir}/man8/qemu-nbd.8*
+%{_mandir}/man1/qemu-storage-daemon.1*
+%{_mandir}/man7/qemu-storage-daemon-qmp-ref.7*
+
+
+%files -n qemu-guest-agent
+%doc COPYING README.rst
+%{_bindir}/qemu-ga
+%{_mandir}/man8/qemu-ga.8*
+%{_unitdir}/qemu-guest-agent.service
+%{_udevrulesdir}/99-qemu-guest-agent.rules
+%config(noreplace) %{_sysconfdir}/sysconfig/qemu-ga
+%{_sysconfdir}/qemu-ga
+%{_sysconfdir}/%{name}/fsfreeze-hook
+%{_datadir}/%{name}/qemu-ga
+%dir %{_localstatedir}/log/qemu-ga
+
+
 %if !%{tools_only}
 %files
 # Deliberately empty
@@ -1129,32 +1155,7 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %else
     %{_libdir}/%{name}/hw-display-virtio-gpu-pci.so
 %endif
-# endif !tools_only
-%endif
 
-%files -n qemu-img
-%{_bindir}/qemu-img
-%{_bindir}/qemu-io
-%{_bindir}/qemu-nbd
-%{_bindir}/qemu-storage-daemon
-%{_mandir}/man1/qemu-img.1*
-%{_mandir}/man8/qemu-nbd.8*
-%{_mandir}/man1/qemu-storage-daemon.1*
-%{_mandir}/man7/qemu-storage-daemon-qmp-ref.7*
-
-%files -n qemu-guest-agent
-%doc COPYING README.rst
-%{_bindir}/qemu-ga
-%{_mandir}/man8/qemu-ga.8*
-%{_unitdir}/qemu-guest-agent.service
-%{_udevrulesdir}/99-qemu-guest-agent.rules
-%config(noreplace) %{_sysconfdir}/sysconfig/qemu-ga
-%{_sysconfdir}/qemu-ga
-%{_sysconfdir}/%{name}/fsfreeze-hook
-%{_datadir}/%{name}/qemu-ga
-%dir %{_localstatedir}/log/qemu-ga
-
-%if !%{tools_only}
 %files tests
 %{testsdir}
 
