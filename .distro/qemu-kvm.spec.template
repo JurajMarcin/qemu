@@ -634,8 +634,11 @@ make V=1 %{?_smp_mflags} $buildldflags docs/qemu-storage-daemon-qmp-ref.7
 
 make V=1 %{?_smp_mflags} $buildldflags qga/qemu-ga
 make V=1 %{?_smp_mflags} $buildldflags docs/qemu-ga.8
-%else
+# endif tools_only
+%endif
 
+
+%if !%{tools_only}
 make V=1 %{?_smp_mflags} $buildldflags
 
 # Setup back compat qemu-kvm binary
@@ -660,6 +663,7 @@ cp -a %{kvm_target}-softmmu/qemu-system-%{kvm_target} qemu-kvm
 
 
 gcc %{_sourcedir}/ksmctl.c $RPM_OPT_FLAGS $RPM_LD_FLAGS -o ksmctl
+# endif !tools_only
 %endif
 popd
 
@@ -921,14 +925,33 @@ chmod +x %{buildroot}%{_libdir}/%{name}/*.so
 # Remove docs we don't care about
 find %{buildroot}%{qemudocdir} -name .buildinfo -delete
 rm -rf %{buildroot}%{qemudocdir}/specs
+
+# endif !tools_only
+%endif
 popd
 
+
+
 %check
+%if !%{tools_only}
 pushd %{qemu_kvm_build}
 echo "Testing %{name}-build"
 make check V=1
 popd
+# endif !tools_only
+%endif
 
+
+
+%post -n qemu-guest-agent
+%systemd_post qemu-guest-agent.service
+%preun -n qemu-guest-agent
+%systemd_preun qemu-guest-agent.service
+%postun -n qemu-guest-agent
+%systemd_postun_with_restart qemu-guest-agent.service
+
+
+%if !%{tools_only}
 %post common
 %systemd_post ksm.service
 %systemd_post ksmtuned.service
@@ -958,13 +981,6 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %systemd_postun_with_restart ksmtuned.service
 # endif !tools_only
 %endif
-
-%post -n qemu-guest-agent
-%systemd_post qemu-guest-agent.service
-%preun -n qemu-guest-agent
-%systemd_preun qemu-guest-agent.service
-%postun -n qemu-guest-agent
-%systemd_postun_with_restart qemu-guest-agent.service
 
 
 
