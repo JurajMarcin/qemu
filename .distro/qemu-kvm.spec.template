@@ -657,8 +657,6 @@ popd
 
 %install
 pushd %{qemu_kvm_build}
-%define _udevdir %(pkg-config --variable=udevdir udev)
-%define _udevrulesdir %{_udevdir}/rules.d
 
 %if %{tools_only}
 install -D -p -m 0755 qemu-img %{buildroot}%{_bindir}/qemu-img
@@ -770,7 +768,6 @@ mkdir -p %{buildroot}%{_bindir}
 install -c -m 0755  qga/qemu-ga %{buildroot}%{_bindir}/qemu-ga
 
 %if !%{tools_only}
-mkdir -p %{buildroot}%{_mandir}/man8
 
 install -m 0755 %{kvm_target}-softmmu/qemu-system-%{kvm_target} %{buildroot}%{_libexecdir}/qemu-kvm
 install -m 0644 qemu-kvm.stp %{buildroot}%{_datadir}/systemtap/tapset/
@@ -808,18 +805,8 @@ for fn in qemu.1*; do
      mv $fn "qemu-kvm${fn#qemu}"
 done
 popd
-chmod -x %{buildroot}%{_mandir}/man1/*
-chmod -x %{buildroot}%{_mandir}/man8/*
 
 install -D -p -m 0644 ../qemu.sasl %{buildroot}%{_sysconfdir}/sasl2/%{name}.conf
-
-# Install keymaps
-pushd pc-bios/keymaps
-for kmp in *; do
-   install $kmp %{buildroot}%{_datadir}/%{name}/keymaps/
-done
-rm -f %{buildroot}%{_datadir}/%{name}/keymaps/*.stamp
-popd
 
 # Provided by package openbios
 rm -rf %{buildroot}%{_datadir}/%{name}/openbios-ppc
@@ -946,21 +933,12 @@ install -D -m 0644 %{_sourcedir}/bridge.conf %{buildroot}%{_sysconfdir}/%{name}/
 install -m 0644 ../contrib/systemd/qemu-pr-helper.service %{buildroot}%{_unitdir}
 install -m 0644 ../contrib/systemd/qemu-pr-helper.socket %{buildroot}%{_unitdir}
 
-find %{buildroot} -name '*.la' -or -name '*.a' | xargs rm -f
-
 # We need to make the block device modules and other qemu SO files executable
 # otherwise RPM won't pick up their dependencies.
 chmod +x %{buildroot}%{_libdir}/%{name}/*.so
 
-# Remove buildinfo
-rm -rf %{buildroot}%{qemudocdir}/interop/.buildinfo
-rm -rf %{buildroot}%{qemudocdir}/system/.buildinfo
-rm -rf %{buildroot}%{qemudocdir}/tools/.buildinfo
-rm -rf %{buildroot}%{qemudocdir}/user/.buildinfo
-rm -rf %{buildroot}%{qemudocdir}/devel/.buildinfo
-rm -rf %{buildroot}%{qemudocdir}/.buildinfo
-
-# Remove spec
+# Remove docs we don't care about
+find %{buildroot}%{qemudocdir} -name .buildinfo -delete
 rm -rf %{buildroot}%{qemudocdir}/specs
 popd
 
