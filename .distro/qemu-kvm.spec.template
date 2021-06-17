@@ -41,6 +41,14 @@
     %global have_librdma 0
 %endif
 
+%global modprobe_kvm_conf %{_sourcedir}/kvm.conf
+%ifarch s390x
+    %global modprobe_kvm_conf %{_sourcedir}/kvm-s390x.conf
+%endif
+%ifarch %{ix86} x86_64
+    %global modprobe_kvm_conf %{_sourcedir}/kvm-x86.conf
+%endif
+
 %ifarch %{ix86}
     %global kvm_target    i386
 %endif
@@ -682,15 +690,7 @@ install -D -p -m 0644 %{_sourcedir}/ksmtuned.service %{buildroot}%{_unitdir}/ksm
 install -D -p -m 0755 %{_sourcedir}/ksmtuned %{buildroot}%{_sbindir}/ksmtuned
 install -D -p -m 0644 %{_sourcedir}/ksmtuned.conf %{buildroot}%{_sysconfdir}/ksmtuned.conf
 install -D -p -m 0644 %{_sourcedir}/vhost.conf %{buildroot}%{_sysconfdir}/modprobe.d/vhost.conf
-%ifarch s390x
-    install -D -p -m 0644 %{_sourcedir}/kvm-s390x.conf %{buildroot}%{_sysconfdir}/modprobe.d/kvm.conf
-%else
-%ifarch %{ix86} x86_64
-    install -D -p -m 0644 %{_sourcedir}/kvm-x86.conf %{buildroot}%{_sysconfdir}/modprobe.d/kvm.conf
-%else
-    install -D -p -m 0644 %{_sourcedir}/kvm.conf %{buildroot}%{_sysconfdir}/modprobe.d/kvm.conf
-%endif
-%endif
+install -D -p -m 0644 %{modprobe_kvm_conf} $RPM_BUILD_ROOT%{_sysconfdir}/modprobe.d/kvm.conf
 
 mkdir -p %{buildroot}%{_bindir}/
 mkdir -p %{buildroot}%{_udevrulesdir}/
