@@ -683,8 +683,8 @@ install -p -m 0644 scripts/qemu-guest-agent/fsfreeze-hook.d/*.sample %{buildroot
 mkdir -p -v %{buildroot}%{_localstatedir}/log/qemu-ga/
 
 
-pushd %{qemu_kvm_build}
 %if %{tools_only}
+pushd %{qemu_kvm_build}
 install -D -p -m 0755 qga/qemu-ga %{buildroot}%{_bindir}/qemu-ga
 install -D -p -m 0755 qemu-img %{buildroot}%{_bindir}/qemu-img
 install -D -p -m 0755 qemu-io %{buildroot}%{_bindir}/qemu-io
@@ -700,13 +700,14 @@ install -D -p -m 644 docs/qemu-nbd.8* %{buildroot}%{_mandir}/man8
 install -D -p -m 644 docs/qemu-storage-daemon.1* %{buildroot}%{_mandir}/man1
 install -D -p -m 644 docs/qemu-storage-daemon-qmp-ref.7* %{buildroot}%{_mandir}/man7
 install -D -p -m 644 docs/qemu-ga.8* %{buildroot}%{_mandir}/man8
+popd
 # endif tools_only
 %endif
 
 %if !%{tools_only}
 install -D -p -m 0644 %{_sourcedir}/ksm.service %{buildroot}%{_unitdir}/ksm.service
 install -D -p -m 0644 %{_sourcedir}/ksm.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/ksm
-install -D -p -m 0755 ksmctl %{buildroot}%{_libexecdir}/ksmctl
+install -D -p -m 0755 %{qemu_kvm_build}/ksmctl %{buildroot}%{_libexecdir}/ksmctl
 
 install -D -p -m 0644 %{_sourcedir}/ksmtuned.service %{buildroot}%{_unitdir}/ksmtuned.service
 install -D -p -m 0755 %{_sourcedir}/ksmtuned %{buildroot}%{_sbindir}/ksmtuned
@@ -726,16 +727,16 @@ install -m 0644 scripts/dump-guest-memory.py \
                 %{buildroot}%{_datadir}/%{name}
 
 # Install avocado_qemu tests
-cp -R tests/acceptance/* %{buildroot}%{testsdir}/tests/acceptance/
+cp -R %{qemu_kvm_build}/tests/acceptance/* %{buildroot}%{testsdir}/tests/acceptance/
 
 # Install qemu.py and qmp/ scripts required to run avocado_qemu tests
-cp -R python/qemu %{buildroot}%{testsdir}/python
-cp -R scripts/qmp/* %{buildroot}%{testsdir}/scripts/qmp
-install -p -m 0755 ../tests/Makefile.include %{buildroot}%{testsdir}/tests/
+cp -R %{qemu_kvm_build}/python/qemu %{buildroot}%{testsdir}/python
+cp -R %{qemu_kvm_build}/scripts/qmp/* %{buildroot}%{testsdir}/scripts/qmp
+install -p -m 0755 tests/Makefile.include %{buildroot}%{testsdir}/tests/
 
 # Install qemu-iotests
-cp -R ../tests/qemu-iotests/* %{buildroot}%{testsdir}/tests/qemu-iotests/
-cp -ur tests/qemu-iotests/* %{buildroot}%{testsdir}/tests/qemu-iotests/
+cp -R tests/qemu-iotests/* %{buildroot}%{testsdir}/tests/qemu-iotests/
+cp -ur %{qemu_kvm_build}/tests/qemu-iotests/* %{buildroot}%{testsdir}/tests/qemu-iotests/
 # Avoid ambiguous 'python' interpreter name
 find %{buildroot}%{testsdir}/tests/qemu-iotests/* -maxdepth 1 -type f -exec sed -i -e '1 s+/usr/bin/env \(python\|python3\)+%{__python3}+' {} \;
 find %{buildroot}%{testsdir}/scripts/qmp/* -maxdepth 1 -type f -exec sed -i -e '1 s+/usr/bin/env \(python\|python3\)+%{__python3}+' {} \;
@@ -743,10 +744,13 @@ find %{buildroot}%{testsdir}/scripts/qmp/* -maxdepth 1 -type f -exec sed -i -e '
 
 install -p -m 0644 %{_sourcedir}/README.tests %{buildroot}%{testsdir}/README
 
+# Do the actual qemu tree install
+pushd %{qemu_kvm_build}
 make DESTDIR=%{buildroot} \
     sharedir="%{_datadir}/%{name}" \
     datadir="%{_datadir}/%{name}" \
     install
+popd
 
 mkdir -p %{buildroot}%{_datadir}/systemtap/tapset
 
@@ -754,14 +758,14 @@ mkdir -p %{buildroot}%{_datadir}/systemtap/tapset
 mkdir -p %{buildroot}%{_datadir}/qemu
 mv %{buildroot}%{_datadir}/%{name}/vhost-user %{buildroot}%{_datadir}/qemu/
 
-install -m 0755 %{kvm_target}-softmmu/qemu-system-%{kvm_target} %{buildroot}%{_libexecdir}/qemu-kvm
-install -m 0644 qemu-kvm.stp %{buildroot}%{_datadir}/systemtap/tapset/
-install -m 0644 qemu-kvm-log.stp %{buildroot}%{_datadir}/systemtap/tapset/
-install -m 0644 qemu-kvm-simpletrace.stp %{buildroot}%{_datadir}/systemtap/tapset/
+install -m 0755 %{qemu_kvm_build}/%{kvm_target}-softmmu/qemu-system-%{kvm_target} %{buildroot}%{_libexecdir}/qemu-kvm
+install -m 0644 %{qemu_kvm_build}/qemu-kvm.stp %{buildroot}%{_datadir}/systemtap/tapset/
+install -m 0644 %{qemu_kvm_build}/qemu-kvm-log.stp %{buildroot}%{_datadir}/systemtap/tapset/
+install -m 0644 %{qemu_kvm_build}/qemu-kvm-simpletrace.stp %{buildroot}%{_datadir}/systemtap/tapset/
 install -d -m 0755 "%{buildroot}%{_datadir}/%{name}/systemtap/script.d"
-install -c -m 0644 scripts/systemtap/script.d/qemu_kvm.stp "%{buildroot}%{_datadir}/%{name}/systemtap/script.d/"
+install -c -m 0644 %{qemu_kvm_build}/scripts/systemtap/script.d/qemu_kvm.stp "%{buildroot}%{_datadir}/%{name}/systemtap/script.d/"
 install -d -m 0755 "%{buildroot}%{_datadir}/%{name}/systemtap/conf.d"
-install -c -m 0644 scripts/systemtap/conf.d/qemu_kvm.conf "%{buildroot}%{_datadir}/%{name}/systemtap/conf.d/"
+install -c -m 0644 %{qemu_kvm_build}/scripts/systemtap/conf.d/qemu_kvm.conf "%{buildroot}%{_datadir}/%{name}/systemtap/conf.d/"
 
 
 rm %{buildroot}/%{_datadir}/applications/qemu.desktop
@@ -782,7 +786,7 @@ mkdir -p %{buildroot}%{_datadir}/%{name}/tracetool/format
 install -m 0644 -t %{buildroot}%{_datadir}/%{name}/tracetool/format scripts/tracetool/format/*.py
 
 mkdir -p %{buildroot}%{qemudocdir}
-install -p -m 0644 -t %{buildroot}%{qemudocdir} ../README.rst ../README.systemtap ../COPYING ../COPYING.LIB ../LICENSE ../docs/interop/qmp-spec.txt
+install -p -m 0644 -t %{buildroot}%{qemudocdir} README.rst README.systemtap COPYING COPYING.LIB LICENSE docs/interop/qmp-spec.txt
 
 # Rename man page
 pushd %{buildroot}%{_mandir}/man1/
@@ -791,7 +795,7 @@ for fn in qemu.1*; do
 done
 popd
 
-install -D -p -m 0644 ../qemu.sasl %{buildroot}%{_sysconfdir}/sasl2/%{name}.conf
+install -D -p -m 0644 qemu.sasl %{buildroot}%{_sysconfdir}/sasl2/%{name}.conf
 
 # Provided by package openbios
 rm -rf %{buildroot}%{_datadir}/%{name}/openbios-ppc
@@ -836,8 +840,8 @@ rm -rf %{buildroot}%{_mandir}/man1/virtfs-proxy-helper*
 
 %ifarch s390x
     # Use the s390-*.img that we've just built, not the pre-built ones
-    install -m 0644 pc-bios/s390-ccw/s390-ccw.img %{buildroot}%{_datadir}/%{name}/
-    install -m 0644 pc-bios/s390-ccw/s390-netboot.img %{buildroot}%{_datadir}/%{name}/
+    install -m 0644 %{qemu_kvm_build}/pc-bios/s390-ccw/s390-ccw.img %{buildroot}%{_datadir}/%{name}/
+    install -m 0644 %{qemu_kvm_build}/pc-bios/s390-ccw/s390-netboot.img %{buildroot}%{_datadir}/%{name}/
 %else
     rm -rf %{buildroot}%{_libdir}/%{name}/hw-s390x-virtio-gpu-ccw.so
 %endif
@@ -915,8 +919,8 @@ rom_link() {
 install -D -m 0644 %{_sourcedir}/bridge.conf %{buildroot}%{_sysconfdir}/%{name}/bridge.conf
 
 # Install qemu-pr-helper service
-install -m 0644 ../contrib/systemd/qemu-pr-helper.service %{buildroot}%{_unitdir}
-install -m 0644 ../contrib/systemd/qemu-pr-helper.socket %{buildroot}%{_unitdir}
+install -m 0644 contrib/systemd/qemu-pr-helper.service %{buildroot}%{_unitdir}
+install -m 0644 contrib/systemd/qemu-pr-helper.socket %{buildroot}%{_unitdir}
 
 # We need to make the block device modules and other qemu SO files executable
 # otherwise RPM won't pick up their dependencies.
@@ -928,7 +932,6 @@ rm -rf %{buildroot}%{qemudocdir}/specs
 
 # endif !tools_only
 %endif
-popd
 
 
 
