@@ -663,10 +663,25 @@ gcc %{_sourcedir}/ksmctl.c $RPM_OPT_FLAGS $RPM_LD_FLAGS -o ksmctl
 %endif
 popd
 
-%install
-pushd %{qemu_kvm_build}
 
+%install
+# Install qemu-guest-agent service and udev rules
+install -D -m 0644 %{_sourcedir}/qemu-guest-agent.service %{buildroot}%{_unitdir}/qemu-guest-agent.service
+install -D -m 0644 %{_sourcedir}/qemu-ga.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/qemu-ga
+install -D -m 0644 %{_sourcedir}/99-qemu-guest-agent.rules %{buildroot}%{_udevrulesdir}/99-qemu-guest-agent.rules
+
+
+# Install qemu-ga fsfreeze bits
+mkdir -p %{buildroot}%{_sysconfdir}/qemu-ga/fsfreeze-hook.d
+install -p scripts/qemu-guest-agent/fsfreeze-hook %{buildroot}%{_sysconfdir}/qemu-ga/fsfreeze-hook
+mkdir -p %{buildroot}%{_datadir}/%{name}/qemu-ga/fsfreeze-hook.d/
+install -p -m 0644 scripts/qemu-guest-agent/fsfreeze-hook.d/*.sample %{buildroot}%{_datadir}/%{name}/qemu-ga/fsfreeze-hook.d/
+mkdir -p -v %{buildroot}%{_localstatedir}/log/qemu-ga/
+
+
+pushd %{qemu_kvm_build}
 %if %{tools_only}
+install -D -p -m 0755 qga/qemu-ga %{buildroot}%{_bindir}/qemu-ga
 install -D -p -m 0755 qemu-img %{buildroot}%{_bindir}/qemu-img
 install -D -p -m 0755 qemu-io %{buildroot}%{_bindir}/qemu-io
 install -D -p -m 0755 qemu-nbd %{buildroot}%{_bindir}/qemu-nbd
@@ -678,10 +693,13 @@ mkdir -p %{buildroot}%{_mandir}/man8/
 
 install -D -p -m 644 docs/qemu-img.1* %{buildroot}%{_mandir}/man1
 install -D -p -m 644 docs/qemu-nbd.8* %{buildroot}%{_mandir}/man8
-install -D -p -p -m 644 docs/qemu-storage-daemon.1* %{buildroot}%{_mandir}/man1
-install -D -p -p -m 644 docs/qemu-storage-daemon-qmp-ref.7* %{buildroot}%{_mandir}/man7
+install -D -p -m 644 docs/qemu-storage-daemon.1* %{buildroot}%{_mandir}/man1
+install -D -p -m 644 docs/qemu-storage-daemon-qmp-ref.7* %{buildroot}%{_mandir}/man7
 install -D -p -m 644 docs/qemu-ga.8* %{buildroot}%{_mandir}/man8
-%else
+# endif tools_only
+%endif
+
+%if !%{tools_only}
 install -D -p -m 0644 %{_sourcedir}/ksm.service %{buildroot}%{_unitdir}/ksm.service
 install -D -p -m 0644 %{_sourcedir}/ksm.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/ksm
 install -D -p -m 0755 ksmctl %{buildroot}%{_libexecdir}/ksmctl
@@ -691,10 +709,6 @@ install -D -p -m 0755 %{_sourcedir}/ksmtuned %{buildroot}%{_sbindir}/ksmtuned
 install -D -p -m 0644 %{_sourcedir}/ksmtuned.conf %{buildroot}%{_sysconfdir}/ksmtuned.conf
 install -D -p -m 0644 %{_sourcedir}/vhost.conf %{buildroot}%{_sysconfdir}/modprobe.d/vhost.conf
 install -D -p -m 0644 %{modprobe_kvm_conf} $RPM_BUILD_ROOT%{_sysconfdir}/modprobe.d/kvm.conf
-
-mkdir -p %{buildroot}%{_bindir}/
-mkdir -p %{buildroot}%{_udevrulesdir}/
-mkdir -p %{buildroot}%{_datadir}/%{name}
 
 # Create new directories and put them all under tests-src
 mkdir -p %{buildroot}%{testsdir}/python
@@ -735,24 +749,6 @@ mkdir -p %{buildroot}%{_datadir}/systemtap/tapset
 # Move vhost-user JSON files to the standard "qemu" directory
 mkdir -p %{buildroot}%{_datadir}/qemu
 mv %{buildroot}%{_datadir}/%{name}/vhost-user %{buildroot}%{_datadir}/qemu/
-%endif
-
-# Install qemu-guest-agent service and udev rules
-install -D -m 0644 %{_sourcedir}/qemu-guest-agent.service %{buildroot}%{_unitdir}/qemu-guest-agent.service
-install -D -m 0644 %{_sourcedir}/qemu-ga.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/qemu-ga
-install -D -m 0644 %{_sourcedir}/99-qemu-guest-agent.rules %{buildroot}%{_udevrulesdir}/99-qemu-guest-agent.rules
-
-# Install qemu-ga fsfreeze bits
-mkdir -p %{buildroot}%{_sysconfdir}/qemu-ga/fsfreeze-hook.d
-install -p scripts/qemu-guest-agent/fsfreeze-hook %{buildroot}%{_sysconfdir}/qemu-ga/fsfreeze-hook
-mkdir -p %{buildroot}%{_datadir}/%{name}/qemu-ga/fsfreeze-hook.d/
-install -p -m 0644 scripts/qemu-guest-agent/fsfreeze-hook.d/*.sample %{buildroot}%{_datadir}/%{name}/qemu-ga/fsfreeze-hook.d/
-mkdir -p -v %{buildroot}%{_localstatedir}/log/qemu-ga/
-
-mkdir -p %{buildroot}%{_bindir}
-install -c -m 0755 qga/qemu-ga %{buildroot}%{_bindir}/qemu-ga
-
-%if !%{tools_only}
 
 install -m 0755 %{kvm_target}-softmmu/qemu-system-%{kvm_target} %{buildroot}%{_libexecdir}/qemu-kvm
 install -m 0644 qemu-kvm.stp %{buildroot}%{_datadir}/systemtap/tapset/
