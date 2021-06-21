@@ -1151,6 +1151,24 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 %endif
 
 %changelog
+* Mon Jun 21 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-6
+- kvm-yank-Unregister-function-when-using-TLS-migration.patch [bz#1972462]
+- kvm-pc-bios-s390-ccw-don-t-try-to-read-the-next-block-if.patch [bz#1957194]
+- kvm-redhat-Install-the-s390-netboot.img-that-we-ve-built.patch [bz#1957194]
+- kvm-sockets-update-SOCKET_ADDRESS_TYPE_FD-listen-2-backl.patch [bz#1957194]
+- kvm-target-i386-sev-add-support-to-query-the-attestation.patch [bz#1957194]
+- kvm-spapr-Don-t-hijack-current_machine-boot_order.patch [bz#1957194]
+- kvm-target-i386-Add-CPU-model-versions-supporting-xsaves.patch [bz#1957194]
+- kvm-spapr-Remove-stale-comment-about-power-saving-LPCR-b.patch [bz#1957194]
+- kvm-spapr-Set-LPCR-to-current-AIL-mode-when-starting-a-n.patch [bz#1957194]
+- Specfile cleanup [bz#1973029]
+- Resolves: bz#1972462
+  (QEMU core dump when doing TLS migration via TCP)
+- Resolves: bz#1957194
+  (Synchronize RHEL-AV 8.5.0 changes to RHEL 9.0.0 Beta)
+- Resolves: bz#1973029
+  (Spec file cleanups)
+
 * Tue Jun 08 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-5
 - kvm-arm-virt-Register-highmem-and-gic-version-as-class-p.patch [bz#1952449]
 - kvm-hw-arm-virt-Add-8.5-and-9.0-machine-types-and-remove.patch [bz#1952449]
