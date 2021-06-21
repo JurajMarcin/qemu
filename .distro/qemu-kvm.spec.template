@@ -173,7 +173,7 @@ BuildRequires: pkgconfig(gbm)
 BuildRequires: perl-Test-Harness
 BuildRequires: libslirp-devel
 
-Requires: qemu-kvm-core = %{epoch}:%{version}-%{release}
+Requires: %{name}-core = %{epoch}:%{version}-%{release}
 Requires: %{name}-docs = %{epoch}:%{version}-%{release}
 Requires: %{name}-tools = %{epoch}:%{version}-%{release}
 Requires: qemu-pr-helper = %{epoch}:%{version}-%{release}
@@ -182,14 +182,14 @@ Requires: qemu-pr-helper = %{epoch}:%{version}-%{release}
 %define qemudocdir %{_docdir}/%{name}
 
 %description
-qemu-kvm is an open source virtualizer that provides hardware
-emulation for the KVM hypervisor. qemu-kvm acts as a virtual
+%{name} is an open source virtualizer that provides hardware
+emulation for the KVM hypervisor. %{name} acts as a virtual
 machine monitor together with the KVM kernel modules, and emulates the
 hardware for a full system such as a PC and its associated peripherals.
 
 
-%package -n qemu-kvm-core
-Summary: qemu-kvm core components
+%package core
+Summary: %{name} core components
 Requires: %{name}-common = %{epoch}:%{version}-%{release}
 Requires: qemu-img = %{epoch}:%{version}-%{release}
 %ifarch %{ix86} x86_64
@@ -206,16 +206,16 @@ Requires: libfdt >= %{libfdt_version}
 %endif
 
 # Since SPICE is removed from RHEL-9, the following Obsoletes:
-# removes qemu-kvm-ui-spice for upgrades from RHEL-8
+# removes {name}-ui-spice for upgrades from RHEL-8
 # The "<= {version}" assumes RHEL-9 version >= RHEL-8 version (in
 # other words RHEL-9 rebases are done together/before RHEL-8 ones)
-Obsoletes: qemu-kvm-ui-spice <= %{version}
-Obsoletes: qemu-kvm-block-gluster <= %{version}
+Obsoletes: %{name}-ui-spice <= %{version}
+Obsoletes: %{name}-block-gluster <= %{version}
 Obsoletes: %{name}-block-iscsi <= %{version}
 
-%description -n qemu-kvm-core
-qemu-kvm is an open source virtualizer that provides hardware
-emulation for the KVM hypervisor. qemu-kvm acts as a virtual
+%description core
+%{name} is an open source virtualizer that provides hardware
+emulation for the KVM hypervisor. %{name} acts as a virtual
 machine monitor together with the KVM kernel modules, and emulates the
 hardware for a full system such as a PC and its associated peripherals.
 
@@ -225,11 +225,11 @@ Summary: %{name} support tools
 %description tools
 %{name}-tools provides various tools related to %{name} usage.
 
-%package -n qemu-kvm-docs
-Summary: qemu-kvm documentation
+%package docs
+Summary: %{name} documentation
 
-%description -n qemu-kvm-docs
-qemu-kvm-docs provides documentation files regarding qemu-kvm.
+%description docs
+%{name}-docs provides documentation files regarding %{name}.
 
 %package -n qemu-img
 Summary: QEMU command line tool for manipulating disk images
@@ -244,7 +244,7 @@ Summary: qemu-pr-helper utility for %{name}
 This package provides the qemu-pr-helper utility that is required for certain 
 SCSI features. 
 
-%package -n qemu-kvm-common
+%package common
 Summary: QEMU common files needed by all QEMU targets
 Requires(post): /usr/bin/getent
 Requires(post): /usr/sbin/groupadd
@@ -261,11 +261,11 @@ Requires: seavgabios-bin >= 1.12.0-3
 Requires: ipxe-roms-qemu >= 20170123-1
 %endif
 
-%description -n qemu-kvm-common
-qemu-kvm is an open source virtualizer that provides hardware emulation for
+%description common
+%{name} is an open source virtualizer that provides hardware emulation for
 the KVM hypervisor.
 
-This package provides documentation and auxiliary programs used with qemu-kvm.
+This package provides documentation and auxiliary programs used with %{name}.
 
 
 %package -n qemu-guest-agent
@@ -275,7 +275,7 @@ Requires(preun): systemd-units
 Requires(postun): systemd-units
 
 %description -n qemu-guest-agent
-qemu-kvm is an open source virtualizer that provides hardware emulation for
+%{name} is an open source virtualizer that provides hardware emulation for
 the KVM hypervisor.
 
 This package provides an agent to run inside guests, which communicates
@@ -284,14 +284,14 @@ with the host over a virtio-serial channel named "org.qemu.guest_agent.0"
 This package does not need to be installed on the host OS.
 
 %package tests
-Summary: tests for the qemu-kvm package
+Summary: tests for the %{name} package
 Requires: %{name} = %{epoch}:%{version}-%{release}
 
 %define testsdir %{_libdir}/%{name}/tests-src
 
 %description tests
-The qemu-kvm-tests rpm contains tests that can be used to verify
-the functionality of the installed qemu-kvm package
+The %{name}-tests rpm contains tests that can be used to verify
+the functionality of the installed %{name} package
 
 Install this package if you want access to the avocado_qemu
 tests, or qemu-iotests.
@@ -586,7 +586,7 @@ pushd %{qemu_kvm_build}
   --without-default-devices
 
 
-echo "qemu-kvm config-host.mak contents:"
+echo "config-host.mak contents:"
 echo "==="
 cat config-host.mak
 echo "==="
@@ -726,11 +726,11 @@ install -D -m 0644 %{_sourcedir}/99-qemu-guest-agent.rules %{buildroot}%{_udevru
 install -D --preserve-timestamps \
             scripts/qemu-guest-agent/fsfreeze-hook \
             %{buildroot}%{_sysconfdir}/qemu-ga/fsfreeze-hook
-# Workaround for the missing /etc/qemu-kvm/fsfreeze-hook
+# Workaround for the missing /etc/%{name}/fsfreeze-hook
 # Please, do not carry this over to RHEL-9
-mkdir -p %{buildroot}%{_sysconfdir}/qemu-kvm/
+mkdir -p %{buildroot}%{_sysconfdir}/%{name}/
 ln -s %{_sysconfdir}/qemu-ga/fsfreeze-hook \
-      %{buildroot}%{_sysconfdir}/qemu-kvm/fsfreeze-hook
+      %{buildroot}%{_sysconfdir}/%{name}/fsfreeze-hook
 
 # - the directory for user scripts:
 mkdir %{buildroot}%{_sysconfdir}/qemu-ga/fsfreeze-hook.d
@@ -845,7 +845,7 @@ rm -rf %{buildroot}%{_mandir}/man1/virtfs-proxy-helper*
     install -m 0644 pc-bios/s390-ccw/s390-ccw.img %{buildroot}%{_datadir}/%{name}/
     install -m 0644 pc-bios/s390-ccw/s390-netboot.img %{buildroot}%{_datadir}/%{name}/
 %else
-    rm -rf %{buildroot}%{_libdir}/qemu-kvm/hw-s390x-virtio-gpu-ccw.so
+    rm -rf %{buildroot}%{_libdir}/%{name}/hw-s390x-virtio-gpu-ccw.so
 %endif
 
 %ifnarch x86_64
@@ -928,7 +928,7 @@ find %{buildroot} -name '*.la' -or -name '*.a' | xargs rm -f
 
 # We need to make the block device modules and other qemu SO files executable
 # otherwise RPM won't pick up their dependencies.
-chmod +x %{buildroot}%{_libdir}/qemu-kvm/*.so
+chmod +x %{buildroot}%{_libdir}/%{name}/*.so
 
 # Remove buildinfo
 rm -rf %{buildroot}%{qemudocdir}/interop/.buildinfo
@@ -944,11 +944,11 @@ popd
 
 %check
 pushd %{qemu_kvm_build}
-echo "Testing qemu-kvm-build"
+echo "Testing %{name}-build"
 make check V=1
 popd
 
-%post -n qemu-kvm-common
+%post common
 %systemd_post ksm.service
 %systemd_post ksmtuned.service
 
@@ -968,11 +968,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
     fi
 %endif
 
-%preun -n qemu-kvm-common
+%preun common
 %systemd_preun ksm.service
 %systemd_preun ksmtuned.service
 
-%postun -n qemu-kvm-common
+%postun common
 %systemd_postun_with_restart ksm.service
 %systemd_postun_with_restart ksmtuned.service
 %endif
@@ -1006,7 +1006,7 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %{_unitdir}/qemu-pr-helper.socket
 %{_mandir}/man8/qemu-pr-helper.8*
 
-%files -n qemu-kvm-docs
+%files docs
 %dir %{qemudocdir}
 %doc %{qemudocdir}/genindex.html
 %doc %{qemudocdir}/search.html
@@ -1026,7 +1026,7 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %doc %{qemudocdir}/devel/*
 %doc %{qemudocdir}/_static/*
 
-%files -n qemu-kvm-common
+%files common
 %{_mandir}/man7/qemu-qmp-ref.7*
 %{_mandir}/man7/qemu-cpu-models.7*
 %{_mandir}/man7/qemu-ga-ref.7*
@@ -1076,7 +1076,7 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
     %{_datadir}/%{name}/efi-e1000e.rom
     %{_datadir}/%{name}/efi-virtio.rom
     %{_datadir}/%{name}/efi-rtl8139.rom
-    %{_libdir}/qemu-kvm/hw-display-virtio-vga.so
+    %{_libdir}/%{name}/hw-display-virtio-vga.so
 %endif
 %{_datadir}/icons/*
 %{_datadir}/%{name}/linuxboot_dma.bin
@@ -1092,7 +1092,7 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 # most other paths we use it's "qemu" instead of "qemu-kvm".
 %{_datadir}/qemu/vhost-user/50-qemu-virtiofsd.json
 
-%files -n qemu-kvm-core
+%files core
 %{_libexecdir}/qemu-kvm
 %{_datadir}/systemtap/tapset/qemu-kvm.stp
 %{_datadir}/systemtap/tapset/qemu-kvm-log.stp
@@ -1100,11 +1100,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %{_datadir}/%{name}/systemtap/script.d/qemu_kvm.stp
 %{_datadir}/%{name}/systemtap/conf.d/qemu_kvm.conf
 
-%{_libdir}/qemu-kvm/hw-display-virtio-gpu.so
+%{_libdir}/%{name}/hw-display-virtio-gpu.so
 %ifarch s390x
-    %{_libdir}/qemu-kvm/hw-s390x-virtio-gpu-ccw.so
+    %{_libdir}/%{name}/hw-s390x-virtio-gpu-ccw.so
 %else
-    %{_libdir}/qemu-kvm/hw-display-virtio-gpu-pci.so
+    %{_libdir}/%{name}/hw-display-virtio-gpu-pci.so
 %endif
 %endif
 
@@ -1126,7 +1126,7 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %{_udevrulesdir}/99-qemu-guest-agent.rules
 %config(noreplace) %{_sysconfdir}/sysconfig/qemu-ga
 %{_sysconfdir}/qemu-ga
-%{_sysconfdir}/qemu-kvm/fsfreeze-hook
+%{_sysconfdir}/%{name}/fsfreeze-hook
 %{_datadir}/%{name}/qemu-ga
 %dir %{_localstatedir}/log/qemu-ga
 
@@ -1135,23 +1135,23 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %{testsdir}
 
 %files block-curl
-%{_libdir}/qemu-kvm/block-curl.so
+%{_libdir}/%{name}/block-curl.so
 
 %files block-rbd
-%{_libdir}/qemu-kvm/block-rbd.so
+%{_libdir}/%{name}/block-rbd.so
 
 %files block-ssh
-%{_libdir}/qemu-kvm/block-ssh.so
+%{_libdir}/%{name}/block-ssh.so
 
 %if %{have_opengl}
 %files ui-opengl
-    %{_libdir}/qemu-kvm/ui-egl-headless.so
-    %{_libdir}/qemu-kvm/ui-opengl.so
+    %{_libdir}/%{name}/ui-egl-headless.so
+    %{_libdir}/%{name}/ui-opengl.so
 %endif
 
 %if %{have_usbredir}
 %files hw-usbredir
-    %{_libdir}/qemu-kvm/hw-usb-redirect.so
+    %{_libdir}/%{name}/hw-usb-redirect.so
 %endif
 %endif
 
