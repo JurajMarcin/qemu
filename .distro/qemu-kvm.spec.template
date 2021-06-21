@@ -1042,24 +1042,7 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %{_mandir}/man8/qemu-pr-helper.8*
 
 %files docs
-%dir %{qemudocdir}
-%doc %{qemudocdir}/genindex.html
-%doc %{qemudocdir}/search.html
-%doc %{qemudocdir}/objects.inv
-%doc %{qemudocdir}/searchindex.js
-%doc %{qemudocdir}/README.rst
-%doc %{qemudocdir}/COPYING
-%doc %{qemudocdir}/COPYING.LIB
-%doc %{qemudocdir}/LICENSE
-%doc %{qemudocdir}/README.systemtap
-%doc %{qemudocdir}/qmp-spec.txt
-%doc %{qemudocdir}/interop/*
-%doc %{qemudocdir}/index.html
-%doc %{qemudocdir}/system/*
-%doc %{qemudocdir}/tools/*
-%doc %{qemudocdir}/user/*
-%doc %{qemudocdir}/devel/*
-%doc %{qemudocdir}/_static/*
+%doc %{qemudocdir}
 
 %files common
 %{_mandir}/man7/qemu-qmp-ref.7*
