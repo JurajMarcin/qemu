@@ -742,25 +742,15 @@ install -D -m 0644 %{_sourcedir}/qemu-guest-agent.service %{buildroot}%{_unitdir
 install -D -m 0644 %{_sourcedir}/qemu-ga.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/qemu-ga
 install -D -m 0644 %{_sourcedir}/99-qemu-guest-agent.rules %{buildroot}%{_udevrulesdir}/99-qemu-guest-agent.rules
 
-# - the fsfreeze hook script:
-install -D --preserve-timestamps \
-            scripts/qemu-guest-agent/fsfreeze-hook \
-            %{buildroot}%{_sysconfdir}/qemu-ga/fsfreeze-hook
-
-# - the directory for user scripts:
-mkdir %{buildroot}%{_sysconfdir}/qemu-ga/fsfreeze-hook.d
-
-# - and the fsfreeze script samples:
-mkdir --parents %{buildroot}%{_datadir}/%{name}/qemu-ga/fsfreeze-hook.d/
-install --preserve-timestamps --mode=0644 \
-             scripts/qemu-guest-agent/fsfreeze-hook.d/*.sample \
-             %{buildroot}%{_datadir}/%{name}/qemu-ga/fsfreeze-hook.d/
-
-# - Install dedicated log directory:
+# Install qemu-ga fsfreeze bits
+mkdir -p %{buildroot}%{_sysconfdir}/qemu-ga/fsfreeze-hook.d
+install -p scripts/qemu-guest-agent/fsfreeze-hook %{buildroot}%{_sysconfdir}/qemu-ga/fsfreeze-hook
+mkdir -p %{buildroot}%{_datadir}/%{name}/qemu-ga/fsfreeze-hook.d/
+install -p -m 0644 scripts/qemu-guest-agent/fsfreeze-hook.d/*.sample %{buildroot}%{_datadir}/%{name}/qemu-ga/fsfreeze-hook.d/
 mkdir -p -v %{buildroot}%{_localstatedir}/log/qemu-ga/
 
 mkdir -p %{buildroot}%{_bindir}
-install -c -m 0755  qga/qemu-ga %{buildroot}%{_bindir}/qemu-ga
+install -c -m 0755 qga/qemu-ga %{buildroot}%{_bindir}/qemu-ga
 
 %if !%{tools_only}
 
