@@ -1364,6 +1364,17 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Mon Jun 21 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 6.0.0-20.el8
+- kvm-x86-Add-x86-rhel8.5-machine-types.patch [bz#1957838]
+- kvm-redhat-x86-Enable-kvm-asyncpf-int-by-default.patch [bz#1967603]
+- kvm-yank-Unregister-function-when-using-TLS-migration.patch [bz#1964326]
+- Resolves: bz#1957838
+  (8.5 machine types for x86)
+- Resolves: bz#1967603
+  (Enable interrupt based asynchronous page fault mechanism by default)
+- Resolves: bz#1964326
+  (Qemu core dump when do tls migration via tcp protocol)
+
 * Fri Jun 11 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 6.0.0-19.el8
 - kvm-pc-bios-s390-ccw-don-t-try-to-read-the-next-block-if.patch [bz#1965626]
 - kvm-redhat-Install-the-s390-netboot.img-that-we-ve-built.patch [bz#1966463]
