@@ -1336,6 +1336,11 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Tue Jun 22 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.2.0-16.el8_4.2
+- kvm-blockjob-Fix-crash-with-IOthread-when-block-commit-a.patch [bz#1973828]
+- Resolves: bz#1973828
+  (VM with IO threads enabled crashes randomly during snapshot operations [rhel-8.4.0.z])
+
 * Wed Jun 09 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.2.0-16.el8_4.1
 - kvm-virtio-net-failover-add-missing-remove_migration_sta.patch [bz#1955666]
 - Resolves: bz#1955666
