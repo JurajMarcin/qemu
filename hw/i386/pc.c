@@ -621,6 +621,18 @@ GlobalProperty pc_rhel_7_0_compat[] = {
 };
 const size_t pc_rhel_7_0_compat_len = G_N_ELEMENTS(pc_rhel_7_0_compat);
 
+/*
+ * RHEL: These properties only apply to the RHEL exported machine type pc-4.2
+ * for the purpose to have a limited upstream machines support which can be
+ * migrated to RHEL.  Let's avoid touching hw_compat_4_2 directly so that we
+ * can have some isolation against the upstream code.
+ */
+GlobalProperty hw_compat_4_2_extra[] = {
+    /* By default enlarge the default virtio-net-pci ROM to 512KB. */
+    { "virtio-net-pci", "romsize", "0x80000" },
+};
+const size_t hw_compat_4_2_extra_len = G_N_ELEMENTS(hw_compat_4_2_extra);
+
 GSIState *pc_gsi_create(qemu_irq **irqs, bool pci_enabled)
 {
     GSIState *s;
