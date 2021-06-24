@@ -1364,6 +1364,20 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Wed Jun 23 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 6.0.0-21.el8
+- kvm-block-backend-add-drained_poll.patch [bz#1960137]
+- kvm-nbd-server-Use-drained-block-ops-to-quiesce-the-serv.patch [bz#1960137]
+- kvm-disable-CONFIG_USB_STORAGE_BOT.patch [bz#1866133]
+- kvm-doc-Fix-some-mistakes-in-the-SEV-documentation.patch [bz#1954750]
+- kvm-docs-Add-SEV-ES-documentation-to-amd-memory-encrypti.patch [bz#1954750]
+- kvm-docs-interop-firmware.json-Add-SEV-ES-support.patch [bz#1954750]
+- Resolves: bz#1960137
+  ([incremental backup] qemu-kvm hangs when Rebooting the VM during full backup)
+- Resolves: bz#1866133
+  (Disable usb-bot device in QEMU (unsupported))
+- Resolves: bz#1954750
+  (firmware scheme for sev-es)
+
 * Mon Jun 21 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 6.0.0-20.el8
 - kvm-x86-Add-x86-rhel8.5-machine-types.patch [bz#1957838]
 - kvm-redhat-x86-Enable-kvm-asyncpf-int-by-default.patch [bz#1967603]
