@@ -69,7 +69,6 @@
 Requires: %{name}-ui-opengl = %{epoch}:%{version}-%{release}     \
 %endif                                                           \
 Requires: %{name}-block-curl = %{epoch}:%{version}-%{release}    \
-Requires: %{name}-block-iscsi = %{epoch}:%{version}-%{release}   \
 Requires: %{name}-block-rbd = %{epoch}:%{version}-%{release}     \
 Requires: %{name}-block-ssh = %{epoch}:%{version}-%{release}
 
@@ -121,7 +120,6 @@ BuildRequires: gnutls-devel
 BuildRequires: cyrus-sasl-devel
 BuildRequires: libaio-devel
 BuildRequires: python3-devel
-BuildRequires: libiscsi-devel
 BuildRequires: libattr-devel
 BuildRequires: libusbx-devel >= %{libusbx_version}
 %if %{have_usbredir}
@@ -219,6 +217,7 @@ Requires: libfdt >= %{libfdt_version}
 # other words RHEL-9 rebases are done together/before RHEL-8 ones)
 Obsoletes: qemu-kvm-ui-spice <= %{version}
 Obsoletes: qemu-kvm-block-gluster <= %{version}
+Obsoletes: %{name}-block-iscsi <= %{version}
 
 %description -n qemu-kvm-core
 qemu-kvm is an open source virtualizer that provides hardware
@@ -299,16 +298,6 @@ This package provides the additional CURL block driver for QEMU.
 
 Install this package if you want to access remote disks over
 http, https, ftp and other transports provided by the CURL library.
-
-
-%package  block-iscsi
-Summary: QEMU iSCSI block driver
-Requires: %{name}-common%{?_isa} = %{epoch}:%{version}-%{release}
-
-%description block-iscsi
-This package provides the additional iSCSI block driver for QEMU.
-
-Install this package if you want to access iSCSI volumes.
 
 
 %package  block-rbd
@@ -530,7 +519,6 @@ pushd %{qemu_kvm_build}
   --enable-guest-agent \
   --enable-iconv \
   --enable-kvm \
-  --enable-libiscsi \
 %if %{have_pmem}
   --enable-libpmem \
 %endif
@@ -1133,9 +1121,6 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 %files block-curl
 %{_libdir}/qemu-kvm/block-curl.so
-
-%files block-iscsi
-%{_libdir}/qemu-kvm/block-iscsi.so
 
 %files block-rbd
 %{_libdir}/qemu-kvm/block-rbd.so
