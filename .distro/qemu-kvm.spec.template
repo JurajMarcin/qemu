@@ -1136,6 +1136,30 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 %endif
 
 %changelog
+* Mon Jun 28 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-7
+- kvm-aarch64-rh-devices-add-CONFIG_PXB.patch [bz#1967502]
+- kvm-virtio-gpu-handle-partial-maps-properly.patch [bz#1974795]
+- kvm-x86-Add-x86-rhel8.5-machine-types.patch [bz#1957194]
+- kvm-redhat-x86-Enable-kvm-asyncpf-int-by-default.patch [bz#1957194]
+- kvm-block-backend-add-drained_poll.patch [bz#1957194]
+- kvm-nbd-server-Use-drained-block-ops-to-quiesce-the-serv.patch [bz#1957194]
+- kvm-disable-CONFIG_USB_STORAGE_BOT.patch [bz#1957194]
+- kvm-doc-Fix-some-mistakes-in-the-SEV-documentation.patch [bz#1957194]
+- kvm-docs-Add-SEV-ES-documentation-to-amd-memory-encrypti.patch [bz#1957194]
+- kvm-docs-interop-firmware.json-Add-SEV-ES-support.patch [bz#1957194]
+- kvm-qga-drop-StandardError-syslog.patch [bz#1947977]
+- kvm-Remove-iscsi-support.patch [bz#1967133]
+- Resolves: bz#1967502
+  ([aarch64] [qemu] Compile the PCIe expander bridge)
+- Resolves: bz#1974795
+  ([RHEL9-beta] [aarch64] Launch guest with virtio-gpu-pci and virtual smmu causes "virtio_gpu_dequeue_ctrl_func" ERROR)
+- Resolves: bz#1957194
+  (Synchronize RHEL-AV 8.5.0 changes to RHEL 9.0.0 Beta)
+- Resolves: bz#1947977
+  (remove StandardError=syslog from qemu-guest-agent.service)
+- Resolves: bz#1967133
+  (QEMU: disable libiscsi in RHEL-9)
+
 * Mon Jun 21 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-6
 - kvm-yank-Unregister-function-when-using-TLS-migration.patch [bz#1972462]
 - kvm-pc-bios-s390-ccw-don-t-try-to-read-the-next-block-if.patch [bz#1957194]
