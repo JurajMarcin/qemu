@@ -62,6 +62,9 @@ Requires: %{name}-block-curl = %{epoch}:%{version}-%{release}    \
 %if %{have_gluster}                                              \
 Requires: %{name}-block-gluster = %{epoch}:%{version}-%{release} \
 %endif                                                           \
+%if %{have_usbredir}                                             \
+Requires: %{name}-hw-usbredir = %{epoch}:%{version}-%{release}   \
+%endif                                                           \
 Requires: %{name}-block-iscsi = %{epoch}:%{version}-%{release}   \
 Requires: %{name}-block-rbd = %{epoch}:%{version}-%{release}     \
 Requires: %{name}-block-ssh = %{epoch}:%{version}-%{release}
@@ -261,9 +264,6 @@ Requires: powerpc-utils
     %endif
 %endif
 Requires: libusbx >= 1.0.23
-%if %{have_usbredir}
-Requires: usbredir >= 0.7.1
-%endif
 %if %{have_fdt}
 Requires: libfdt >= 1.6.0
 %endif
@@ -432,6 +432,16 @@ Requires: mesa-dri-drivers
 
 %description ui-opengl
 This package provides opengl support.
+%endif
+
+%if %{have_usbredir}
+%package  hw-usbredir
+Summary: QEMU usbredir support
+Requires: %{name}-common%{?_isa} = %{epoch}:%{version}-%{release}
+Requires: usbredir >= 0.7.1
+
+%description hw-usbredir
+This package provides usbredir support.
 %endif
 
 
@@ -1284,9 +1294,6 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 %{_datadir}/%{name}/systemtap/script.d/qemu_kvm.stp
 %{_datadir}/%{name}/systemtap/conf.d/qemu_kvm.conf
 
-%if %{have_usbredir}
-    %{_libdir}/qemu-kvm/hw-usb-redirect.so
-%endif
 %{_libdir}/qemu-kvm/hw-display-virtio-gpu.so
 %ifarch s390x
     %{_libdir}/qemu-kvm/hw-s390x-virtio-gpu-ccw.so
@@ -1360,6 +1367,11 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 %files ui-opengl
     %{_libdir}/qemu-kvm/ui-egl-headless.so
     %{_libdir}/qemu-kvm/ui-opengl.so
+%endif
+
+%if %{have_usbredir}
+%files hw-usbredir
+    %{_libdir}/qemu-kvm/hw-usb-redirect.so
 %endif
 
 
