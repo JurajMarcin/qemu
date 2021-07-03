@@ -1056,6 +1056,18 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Fri Jul 02 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-53.el8
+- kvm-virtiofsd-Whitelist-fchmod.patch [bz#1967914]
+- kvm-spapr-Fix-EEH-capability-issue-on-KVM-guest-for-PCI-.patch [bz#1957866]
+- kvm-Compress-lines-for-immediate-return.patch [bz#1970912]
+- kvm-file-posix-Handle-EINVAL-fallocate-return-value.patch [bz#1970912]
+- Resolves: bz#1967914
+  ([virtio-fs] virtiofsd quit when coping file to a folder in virtio-fs mounted volume(windows guest))
+- Resolves: bz#1957866
+  (RHEL8.4 - EEH capability disabled on KVM guest and recovery of PCI passthru device fails(CX5 / mlx5_core) (qemu-kvm))
+- Resolves: bz#1970912
+  (Deployment fails with "Invalid or missing agent token received")
+
 * Fri Jun 11 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-52.el8
 - kvm-file-posix-Mitigate-file-fragmentation-with-extent-s.patch [bz#1877163]
 - kvm-block-file-posix-Fix-problem-with-fallocate-PUNCH_HO.patch [bz#1944861]
