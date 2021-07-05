@@ -33,9 +33,7 @@ SOURCES_FILELIST:=                     \
        ksmctl.c                        \
        ksm.service                     \
        qemu-ga.sysconfig               \
-       kvm-setup                       \
-       kvm-setup.service               \
-       85-kvm.preset                   \
+       modules-load.conf               \
        vhost.conf                      \
        bridge.conf                     \
        kvm.conf                        \
