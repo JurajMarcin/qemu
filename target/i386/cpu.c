@@ -1504,48 +1504,37 @@ static const X86RegisterInfo32 x86_reg_info_32[CPU_NB_REGS32] = {
 };
 #undef REGISTER
 
-const ExtSaveArea x86_ext_save_areas[XSAVE_STATE_AREA_COUNT] = {
+ExtSaveArea x86_ext_save_areas[XSAVE_STATE_AREA_COUNT] = {
     [XSTATE_FP_BIT] = {
         /* x87 FP state component is always enabled if XSAVE is supported */
         .feature = FEAT_1_ECX, .bits = CPUID_EXT_XSAVE,
-        /* x87 state is in the legacy region of the XSAVE area */
-        .offset = 0,
         .size = sizeof(X86LegacyXSaveArea) + sizeof(X86XSaveHeader),
     },
     [XSTATE_SSE_BIT] = {
         /* SSE state component is always enabled if XSAVE is supported */
         .feature = FEAT_1_ECX, .bits = CPUID_EXT_XSAVE,
-        /* SSE state is in the legacy region of the XSAVE area */
-        .offset = 0,
         .size = sizeof(X86LegacyXSaveArea) + sizeof(X86XSaveHeader),
     },
     [XSTATE_YMM_BIT] =
           { .feature = FEAT_1_ECX, .bits = CPUID_EXT_AVX,
-            .offset = offsetof(X86XSaveArea, avx_state),
             .size = sizeof(XSaveAVX) },
     [XSTATE_BNDREGS_BIT] =
           { .feature = FEAT_7_0_EBX, .bits = CPUID_7_0_EBX_MPX,
-            .offset = offsetof(X86XSaveArea, bndreg_state),
             .size = sizeof(XSaveBNDREG)  },
     [XSTATE_BNDCSR_BIT] =
           { .feature = FEAT_7_0_EBX, .bits = CPUID_7_0_EBX_MPX,
-            .offset = offsetof(X86XSaveArea, bndcsr_state),
             .size = sizeof(XSaveBNDCSR)  },
     [XSTATE_OPMASK_BIT] =
           { .feature = FEAT_7_0_EBX, .bits = CPUID_7_0_EBX_AVX512F,
-            .offset = offsetof(X86XSaveArea, opmask_state),
             .size = sizeof(XSaveOpmask) },
     [XSTATE_ZMM_Hi256_BIT] =
           { .feature = FEAT_7_0_EBX, .bits = CPUID_7_0_EBX_AVX512F,
-            .offset = offsetof(X86XSaveArea, zmm_hi256_state),
             .size = sizeof(XSaveZMM_Hi256) },
     [XSTATE_Hi16_ZMM_BIT] =
           { .feature = FEAT_7_0_EBX, .bits = CPUID_7_0_EBX_AVX512F,
-            .offset = offsetof(X86XSaveArea, hi16_zmm_state),
             .size = sizeof(XSaveHi16_ZMM) },
     [XSTATE_PKRU_BIT] =
           { .feature = FEAT_7_0_ECX, .bits = CPUID_7_0_ECX_PKU,
-            .offset = offsetof(X86XSaveArea, pkru_state),
             .size = sizeof(XSavePKRU) },
 };
 
@@ -5237,6 +5226,52 @@ static void x86_cpu_apply_version_props(X86CPU *cpu, X86CPUModel *model)
     assert(vdef->version == version);
 }
 
+static void kvm_cpu_xsave_init(void)
+{
+    static bool first = true;
+    KVMState *s = kvm_state;
+    int i;
+
+    if (!first) {
+        return;
+    }
+    first = false;
+
+    /* x87 and SSE states are in the legacy region of the XSAVE area. */
+    x86_ext_save_areas[XSTATE_FP_BIT].offset = 0;
+    x86_ext_save_areas[XSTATE_SSE_BIT].offset = 0;
+
+    for (i = XSTATE_SSE_BIT + 1; i < XSAVE_STATE_AREA_COUNT; i++) {
+        ExtSaveArea *esa = &x86_ext_save_areas[i];
+
+        if (esa->size) {
+            int sz = kvm_arch_get_supported_cpuid(s, 0xd, i, R_EAX);
+            if (sz != 0) {
+                assert(esa->size == sz);
+                esa->offset = kvm_arch_get_supported_cpuid(s, 0xd, i, R_EBX);
+            }
+        }
+    }
+}
+
+static void tcg_cpu_xsave_init(void)
+{
+#define XO(bit, field) \
+    x86_ext_save_areas[bit].offset = offsetof(X86XSaveArea, field);
+
+    XO(XSTATE_FP_BIT, legacy);
+    XO(XSTATE_SSE_BIT, legacy);
+    XO(XSTATE_YMM_BIT, avx_state);
+    XO(XSTATE_BNDREGS_BIT, bndreg_state);
+    XO(XSTATE_BNDCSR_BIT, bndcsr_state);
+    XO(XSTATE_OPMASK_BIT, opmask_state);
+    XO(XSTATE_ZMM_Hi256_BIT, zmm_hi256_state);
+    XO(XSTATE_Hi16_ZMM_BIT, hi16_zmm_state);
+    XO(XSTATE_PKRU_BIT, pkru_state);
+
+#undef XO
+}
+
 /* Load data from X86CPUDefinition into a X86CPU object
  */
 static void x86_cpu_load_model(X86CPU *cpu, X86CPUModel *model, Error **errp)
@@ -7146,6 +7181,12 @@ static void x86_cpu_initfn(Object *obj)
 
     if (xcc->model) {
         x86_cpu_load_model(cpu, xcc->model, &error_abort);
+    }
+
+    if (kvm_enabled()) {
+        kvm_cpu_xsave_init();
+    } else if (tcg_enabled()) {
+        tcg_cpu_xsave_init();
     }
 }
 
