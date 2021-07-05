@@ -528,18 +528,11 @@ int hvf_init_vcpu(CPUState *cpu)
     x86cpu->env.xsave_buf_len = 4096;
     x86cpu->env.xsave_buf = qemu_memalign(4096, x86cpu->env.xsave_buf_len);
 
-    hv_vcpu_enable_native_msr(cpu->hvf_fd, MSR_STAR, 1);
-    hv_vcpu_enable_native_msr(cpu->hvf_fd, MSR_LSTAR, 1);
-    hv_vcpu_enable_native_msr(cpu->hvf_fd, MSR_CSTAR, 1);
-    hv_vcpu_enable_native_msr(cpu->hvf_fd, MSR_FMASK, 1);
-    hv_vcpu_enable_native_msr(cpu->hvf_fd, MSR_FSBASE, 1);
-    hv_vcpu_enable_native_msr(cpu->hvf_fd, MSR_GSBASE, 1);
-    hv_vcpu_enable_native_msr(cpu->hvf_fd, MSR_KERNELGSBASE, 1);
-    hv_vcpu_enable_native_msr(cpu->hvf_fd, MSR_TSC_AUX, 1);
-    hv_vcpu_enable_native_msr(cpu->hvf_fd, MSR_IA32_TSC, 1);
-    hv_vcpu_enable_native_msr(cpu->hvf_fd, MSR_IA32_SYSENTER_CS, 1);
-    hv_vcpu_enable_native_msr(cpu->hvf_fd, MSR_IA32_SYSENTER_EIP, 1);
-    hv_vcpu_enable_native_msr(cpu->hvf_fd, MSR_IA32_SYSENTER_ESP, 1);
+    /*
+     * The allocated storage must be large enough for all of the
+     * possible XSAVE state components.
+     */
+    assert(hvf_get_supported_cpuid(0xd, 0, R_ECX) <= x86cpu->env.xsave_buf_len);
 
     return 0;
 }
