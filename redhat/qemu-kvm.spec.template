@@ -1056,6 +1056,13 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Tue Jul 06 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-48.el8_4.2
+- kvm-pc-bios-s390-ccw-fix-off-by-one-error.patch [bz#1975679]
+- kvm-pc-bios-s390-ccw-break-loop-if-a-null-block-number-i.patch [bz#1975679]
+- kvm-pc-bios-s390-ccw-don-t-try-to-read-the-next-block-if.patch [bz#1975679]
+- Resolves: bz#1975679
+  (RHEL8.4 Nightly[0322] - KVM guest fails to find zipl boot menu index (qemu-kvm) [rhel-8.4.0.z])
+
 * Thu Jun 03 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-48.el8_4.1
 - kvm-net-remove-an-assert-call-in-eth_get_gso_type.patch [bz#1939494]
 - kvm-libqos-usb-hcd-ehci-use-32-bit-write-for-config-regi.patch [bz#1944621]
