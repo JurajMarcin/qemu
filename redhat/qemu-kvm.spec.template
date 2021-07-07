@@ -1376,6 +1376,29 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Fri Jul 02 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 6.0.0-22.el8
+- kvm-redhat-Expose-upstream-machines-pc-4.2-and-pc-2.11.patch [bz#1897923]
+- kvm-redhat-Enable-FDC-device-for-upstream-machines-too.patch [bz#1897923]
+- kvm-redhat-Add-hw_compat_4_2_extra-and-apply-to-upstream.patch [bz#1897923]
+- kvm-ppc-pef.c-initialize-cgs-ready-in-kvmppc_svm_init.patch [bz#1789757]
+- kvm-virtio-gpu-handle-partial-maps-properly.patch [bz#1932279]
+- kvm-redhat-Fix-unversioned-Obsoletes-warning.patch [bz#1950405 bz#1967330]
+- kvm-redhat-Move-qemu-kvm-docs-dependency-to-qemu-kvm.patch [bz#1950405 bz#1967330]
+- kvm-redhat-introducting-qemu-kvm-hw-usbredir.patch [bz#1950405 bz#1967330]
+- kvm-spapr-Fix-EEH-capability-issue-on-KVM-guest-for-PCI-.patch [bz#1976015]
+- Resolves: bz#1897923
+  (support Live Migration from Ubuntu 18.04 i440fx to RHEL)
+- Resolves: bz#1789757
+  ([IBM 8.5 FEAT] Add machine option to enable secure VM support)
+- Resolves: bz#1932279
+  ([aarch64] qemu core dumped when using smmuv3 and iommu_platform enabling at virtio-gpu-pci)
+- Resolves: bz#1950405
+  (review qemu-kvm-core dependencies)
+- Resolves: bz#1967330
+  (Make qemu-kvm use versioned obsoletes for qemu-kvm-ma and qemu-kvm-rhev)
+- Resolves: bz#1976015
+  (spapr: Fix EEH capability issue on KVM guest for PCI passthru)
+
 * Wed Jun 23 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 6.0.0-21.el8
 - kvm-block-backend-add-drained_poll.patch [bz#1960137]
 - kvm-nbd-server-Use-drained-block-ops-to-quiesce-the-serv.patch [bz#1960137]
