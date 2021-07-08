@@ -1384,6 +1384,27 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Thu Jul 08 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 6.0.0-23.el8
+- kvm-Add-mtod_check.patch [bz#1970823 bz#1970842 bz#1970850 bz#1970858]
+- kvm-bootp-limit-vendor-specific-area-to-input-packet-mem.patch [bz#1970823 bz#1970842 bz#1970850 bz#1970858]
+- kvm-bootp-check-bootp_input-buffer-size.patch [bz#1970823]
+- kvm-upd6-check-udp6_input-buffer-size.patch [bz#1970842]
+- kvm-tftp-check-tftp_input-buffer-size.patch [bz#1970850]
+- kvm-tftp-introduce-a-header-structure.patch [bz#1970823 bz#1970842 bz#1970850 bz#1970858]
+- kvm-udp-check-upd_input-buffer-size.patch [bz#1970858]
+- kvm-Fix-DHCP-broken-in-libslirp-v4.6.0.patch [bz#1970823 bz#1970842 bz#1970850 bz#1970858]
+- kvm-redhat-use-the-standard-vhost-user-JSON-path.patch [bz#1804196]
+- Resolves: bz#1970823
+  (CVE-2021-3592 virt:av/qemu-kvm: QEMU: slirp: invalid pointer initialization may lead to information disclosure (bootp) [rhel-av-8])
+- Resolves: bz#1970842
+  (CVE-2021-3593 virt:av/qemu-kvm: QEMU: slirp: invalid pointer initialization may lead to information disclosure (udp6) [rhel-av-8])
+- Resolves: bz#1970850
+  (CVE-2021-3595 virt:av/qemu-kvm: QEMU: slirp: invalid pointer initialization may lead to information disclosure (tftp) [rhel-av-8])
+- Resolves: bz#1970858
+  (CVE-2021-3594 virt:av/qemu-kvm: QEMU: slirp: invalid pointer initialization may lead to information disclosure (udp) [rhel-av-8])
+- Resolves: bz#1804196
+  (inconsistent paths for interop json files)
+
 * Fri Jul 02 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 6.0.0-22.el8
 - kvm-redhat-Expose-upstream-machines-pc-4.2-and-pc-2.11.patch [bz#1897923]
 - kvm-redhat-Enable-FDC-device-for-upstream-machines-too.patch [bz#1897923]
