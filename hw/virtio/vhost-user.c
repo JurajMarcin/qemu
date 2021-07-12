@@ -1908,7 +1908,10 @@ static int vhost_user_backend_init(struct vhost_dev *dev, void *opaque)
             if (err < 0) {
                 return err;
             }
+        } else {
+            dev->max_queues = 1;
         }
+
         if (dev->num_queues && dev->max_queues < dev->num_queues) {
             error_report("The maximum number of queues supported by the "
                          "backend is %" PRIu64, dev->max_queues);
