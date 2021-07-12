@@ -1119,6 +1119,14 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Jul 12 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-8
+- kvm-Disable-TPM-passthrough.patch [bz#1978911]
+- kvm-redhat-Replace-the-kvm-setup.service-with-a-etc-modu.patch [bz#1978837]
+- Resolves: bz#1978911
+  (Remove TPM Passthrough option from RHEL 9)
+- Resolves: bz#1978837
+  (Remove/replace kvm-setup.service)
+
 * Mon Jun 28 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-7
 - kvm-aarch64-rh-devices-add-CONFIG_PXB.patch [bz#1967502]
 - kvm-virtio-gpu-handle-partial-maps-properly.patch [bz#1974795]
