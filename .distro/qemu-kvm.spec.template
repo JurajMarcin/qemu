@@ -175,6 +175,7 @@ BuildRequires: libslirp-devel
 
 Requires: qemu-kvm-core = %{epoch}:%{version}-%{release}
 Requires: %{name}-docs = %{epoch}:%{version}-%{release}
+Requires: %{name}-tools = %{epoch}:%{version}-%{release}
 %{requires_all_modules}
 
 %define qemudocdir %{_docdir}/%{name}
@@ -216,6 +217,12 @@ qemu-kvm is an open source virtualizer that provides hardware
 emulation for the KVM hypervisor. qemu-kvm acts as a virtual
 machine monitor together with the KVM kernel modules, and emulates the
 hardware for a full system such as a PC and its associated peripherals.
+
+%package tools
+Summary: %{name} support tools
+
+%description tools
+%{name}-tools provides various tools related to %{name} usage.
 
 %package -n qemu-kvm-docs
 Summary: qemu-kvm documentation
@@ -973,6 +980,18 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %files
 # Deliberately empty
 
+%files tools
+%{_bindir}/qemu-keymap
+%{_bindir}/qemu-edid
+%{_bindir}/qemu-trace-stap
+%{_datadir}/%{name}/simpletrace.py*
+%{_datadir}/%{name}/tracetool/*.py*
+%{_datadir}/%{name}/tracetool/backend/*.py*
+%{_datadir}/%{name}/tracetool/format/*.py*
+%{_datadir}/%{name}/dump-guest-memory.py*
+%{_datadir}/%{name}/trace-events-all
+%{_mandir}/man1/qemu-trace-stap.1*
+
 %files -n qemu-kvm-docs
 %dir %{qemudocdir}
 %doc %{qemudocdir}/genindex.html
@@ -996,10 +1015,7 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %files -n qemu-kvm-common
 %{_mandir}/man7/qemu-qmp-ref.7*
 %{_mandir}/man7/qemu-cpu-models.7*
-%{_bindir}/qemu-keymap
 %{_bindir}/qemu-pr-helper
-%{_bindir}/qemu-edid
-%{_bindir}/qemu-trace-stap
 %{_unitdir}/qemu-pr-helper.service
 %{_unitdir}/qemu-pr-helper.socket
 %{_mandir}/man7/qemu-ga-ref.7*
@@ -1009,7 +1025,6 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %dir %{_datadir}/%{name}/
 %{_datadir}/%{name}/keymaps/
 %{_mandir}/man1/%{name}.1*
-%{_mandir}/man1/qemu-trace-stap.1*
 %{_mandir}/man7/qemu-block-drivers.7*
 %attr(4755, -, -) %{_libexecdir}/qemu-bridge-helper
 %config(noreplace) %{_sysconfdir}/sasl2/%{name}.conf
@@ -1024,10 +1039,6 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %config(noreplace) %{_sysconfdir}/%{name}/bridge.conf
 %config(noreplace) %{_sysconfdir}/modprobe.d/vhost.conf
 %config(noreplace) %{_sysconfdir}/modprobe.d/kvm.conf
-%{_datadir}/%{name}/simpletrace.py*
-%{_datadir}/%{name}/tracetool/*.py*
-%{_datadir}/%{name}/tracetool/backend/*.py*
-%{_datadir}/%{name}/tracetool/format/*.py*
 
 %ifarch x86_64
     %{_datadir}/%{name}/bios.bin
@@ -1059,8 +1070,6 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 %{_datadir}/icons/*
 %{_datadir}/%{name}/linuxboot_dma.bin
-%{_datadir}/%{name}/dump-guest-memory.py*
-%{_datadir}/%{name}/trace-events-all
 %if %{have_modules_load}
     %{_sysconfdir}/modules-load.d/kvm.conf
 %endif
