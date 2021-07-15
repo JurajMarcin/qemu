@@ -2945,7 +2945,10 @@ static void pci_cirrus_vga_realize(PCIDevice *dev, Error **errp)
     PCIDeviceClass *pc = PCI_DEVICE_GET_CLASS(dev);
     int16_t device_id = pc->device_id;
 
-    /*
+     warn_report("'cirrus-vga' is deprecated, "
+                 "please use a different VGA card instead");
+
+     /*
      * Follow real hardware, cirrus card emulated has 4 MB video memory.
      * Also accept 8 MB/16 MB for backward compatibility.
      */
