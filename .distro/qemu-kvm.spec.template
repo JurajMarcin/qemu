@@ -695,6 +695,10 @@ make DESTDIR=$RPM_BUILD_ROOT \
     install
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/systemtap/tapset
+
+# Move vhost-user JSON files to the standard "qemu" directory
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/qemu
+mv $RPM_BUILD_ROOT%{_datadir}/%{name}/vhost-user $RPM_BUILD_ROOT%{_datadir}/qemu/
 %endif
 
 # Install qemu-guest-agent service and udev rules
@@ -1063,7 +1067,10 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
     %{_sysconfdir}/security/limits.d/95-kvm-memlock.conf
 %endif
 %{_libexecdir}/virtiofsd
-%{_datadir}/%{name}/vhost-user/50-qemu-virtiofsd.json
+# This is the standard location for vhost-user JSON files defined in the
+# vhost-user specification for interoperability with other software. Unlike
+# most other paths we use it's "qemu" instead of "qemu-kvm".
+%{_datadir}/qemu/vhost-user/50-qemu-virtiofsd.json
 
 %files -n qemu-kvm-core
 %{_libexecdir}/qemu-kvm
