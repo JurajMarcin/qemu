@@ -29,6 +29,7 @@
 #include "chardev/char-parallel.h"
 #include "chardev/char-fe.h"
 #include "hw/acpi/aml-build.h"
+#include "hw/boards.h"
 #include "hw/irq.h"
 #include "hw/isa/isa.h"
 #include "hw/qdev-properties.h"
@@ -533,6 +534,14 @@ static void parallel_isa_realizefn(DeviceState *dev, Error **errp)
     ParallelState *s = &isa->state;
     int base;
     uint8_t dummy;
+
+    /* Restricted for Red Hat Enterprise Linux */
+    MachineClass *mc = MACHINE_GET_CLASS(qdev_get_machine());
+    if (strstr(mc->name, "rhel")) {
+        error_setg(errp, "Device %s is not supported with machine type %s",
+                   object_get_typename(OBJECT(dev)), mc->name);
+        return;
+    }
 
     if (!qemu_chr_fe_backend_connected(&s->chr)) {
         error_setg(errp, "Can't create parallel device, empty char device");

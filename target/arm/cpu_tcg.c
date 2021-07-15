@@ -22,6 +22,7 @@
 /* CPU models. These are not needed for the AArch64 linux-user build. */
 #if !defined(CONFIG_USER_ONLY) || !defined(TARGET_AARCH64)
 
+#if 0 /* Disabled for Red Hat Enterprise Linux */
 #if !defined(CONFIG_USER_ONLY) && defined(CONFIG_TCG)
 static bool arm_v7m_cpu_exec_interrupt(CPUState *cs, int interrupt_request)
 {
@@ -375,6 +376,7 @@ static void cortex_a9_initfn(Object *obj)
     cpu->ccsidr[1] = 0x200fe019; /* 16k L1 icache. */
     define_arm_cp_regs(cpu, cortexa9_cp_reginfo);
 }
+#endif /* disabled for RHEL */
 
 #ifndef CONFIG_USER_ONLY
 static uint64_t a15_l2ctlr_read(CPUARMState *env, const ARMCPRegInfo *ri)
@@ -400,6 +402,7 @@ static const ARMCPRegInfo cortexa15_cp_reginfo[] = {
     REGINFO_SENTINEL
 };
 
+#if 0 /* Disabled for Red Hat Enterprise Linux */
 static void cortex_a7_initfn(Object *obj)
 {
     ARMCPU *cpu = ARM_CPU(obj);
@@ -445,6 +448,7 @@ static void cortex_a7_initfn(Object *obj)
     cpu->ccsidr[2] = 0x711fe07a; /* 4096K L2 unified cache */
     define_arm_cp_regs(cpu, cortexa15_cp_reginfo); /* Same as A15 */
 }
+#endif /* disabled for RHEL */
 
 static void cortex_a15_initfn(Object *obj)
 {
@@ -488,6 +492,7 @@ static void cortex_a15_initfn(Object *obj)
     define_arm_cp_regs(cpu, cortexa15_cp_reginfo);
 }
 
+#if 0 /* Disabled for Red Hat Enterprise Linux */
 static void cortex_m0_initfn(Object *obj)
 {
     ARMCPU *cpu = ARM_CPU(obj);
@@ -928,6 +933,7 @@ static void arm_v7m_class_init(ObjectClass *oc, void *data)
 
     cc->gdb_core_xml_file = "arm-m-profile.xml";
 }
+#endif /* disabled for RHEL */
 
 #ifndef TARGET_AARCH64
 /*
@@ -1007,6 +1013,7 @@ static void arm_max_initfn(Object *obj)
 #endif /* !TARGET_AARCH64 */
 
 static const ARMCPUInfo arm_tcg_cpus[] = {
+#if 0 /* Disabled for Red Hat Enterprise Linux */
     { .name = "arm926",      .initfn = arm926_initfn },
     { .name = "arm946",      .initfn = arm946_initfn },
     { .name = "arm1026",     .initfn = arm1026_initfn },
@@ -1022,7 +1029,9 @@ static const ARMCPUInfo arm_tcg_cpus[] = {
     { .name = "cortex-a7",   .initfn = cortex_a7_initfn },
     { .name = "cortex-a8",   .initfn = cortex_a8_initfn },
     { .name = "cortex-a9",   .initfn = cortex_a9_initfn },
+#endif /* disabled for RHEL */
     { .name = "cortex-a15",  .initfn = cortex_a15_initfn },
+#if 0 /* Disabled for Red Hat Enterprise Linux */
     { .name = "cortex-m0",   .initfn = cortex_m0_initfn,
                              .class_init = arm_v7m_class_init },
     { .name = "cortex-m3",   .initfn = cortex_m3_initfn,
@@ -1053,6 +1062,7 @@ static const ARMCPUInfo arm_tcg_cpus[] = {
     { .name = "pxa270-b1",   .initfn = pxa270b1_initfn },
     { .name = "pxa270-c0",   .initfn = pxa270c0_initfn },
     { .name = "pxa270-c5",   .initfn = pxa270c5_initfn },
+#endif /* disabled for RHEL */
 #ifndef TARGET_AARCH64
     { .name = "max",         .initfn = arm_max_initfn },
 #endif
