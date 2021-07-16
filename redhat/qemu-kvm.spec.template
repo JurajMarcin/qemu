@@ -1384,6 +1384,30 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Fri Jul 16 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 6.0.0-24.el8
+- kvm-s390x-css-Introduce-an-ESW-struct.patch [bz#1968326]
+- kvm-s390x-css-Split-out-the-IRB-sense-data.patch [bz#1968326]
+- kvm-s390x-css-Refactor-IRB-construction.patch [bz#1968326]
+- kvm-s390x-css-Add-passthrough-IRB.patch [bz#1968326]
+- kvm-vhost-user-blk-Fail-gracefully-on-too-large-queue-si.patch [bz#1935014 bz#1935019 bz#1935020 bz#1935031]
+- kvm-vhost-user-blk-Make-sure-to-set-Error-on-realize-fai.patch [bz#1935014 bz#1935019 bz#1935020 bz#1935031]
+- kvm-vhost-user-blk-Don-t-reconnect-during-initialisation.patch [bz#1935014 bz#1935019 bz#1935020 bz#1935031]
+- kvm-vhost-user-blk-Improve-error-reporting-in-realize.patch [bz#1935014 bz#1935019 bz#1935020 bz#1935031]
+- kvm-vhost-user-blk-Get-more-feature-flags-from-vhost-dev.patch [bz#1935014 bz#1935019 bz#1935020 bz#1935031]
+- kvm-virtio-Fail-if-iommu_platform-is-requested-but-unsup.patch [bz#1935014 bz#1935019 bz#1935020 bz#1935031]
+- kvm-vhost-user-blk-Check-that-num-queues-is-supported-by.patch [bz#1935014 bz#1935019 bz#1935020 bz#1935031]
+- kvm-vhost-user-Fix-backends-without-multiqueue-support.patch [bz#1935014 bz#1935019 bz#1935020 bz#1935031]
+- Resolves: bz#1968326
+  ([vfio_ccw] I/O error when checking format - dasdfmt requires --force in quick mode when passed through)
+- Resolves: bz#1935014
+  (qemu crash when attach vhost-user-blk-pci with option queue-size=4096)
+- Resolves: bz#1935019
+  (qemu guest failed boot when attach vhost-user-blk-pci with option iommu_platform=on)
+- Resolves: bz#1935020
+  (qemu guest failed boot when attach vhost-user-blk-pci with option packed=on)
+- Resolves: bz#1935031
+  (qemu guest failed boot when attach vhost-user-blk-pci with unmatched num-queues with qsd)
+
 * Thu Jul 08 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 6.0.0-23.el8
 - kvm-Add-mtod_check.patch [bz#1970823 bz#1970842 bz#1970850 bz#1970858]
 - kvm-bootp-limit-vendor-specific-area-to-input-packet-mem.patch [bz#1970823 bz#1970842 bz#1970850 bz#1970858]
