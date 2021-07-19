@@ -1136,6 +1136,18 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Jul 19 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-9
+- kvm-s390x-cpumodel-add-3931-and-3932.patch [bz#1932191]
+- kvm-spapr-Fix-EEH-capability-issue-on-KVM-guest-for-PCI-.patch [bz#1957194]
+- kvm-ppc-pef.c-initialize-cgs-ready-in-kvmppc_svm_init.patch [bz#1957194]
+- kvm-redhat-Move-qemu-kvm-docs-dependency-to-qemu-kvm.patch [bz#1957194]
+- kvm-redhat-introducting-qemu-kvm-hw-usbredir.patch [bz#1957194]
+- kvm-redhat-use-the-standard-vhost-user-JSON-path.patch [bz#1957194]
+- Resolves: bz#1932191
+  ([IBM 9.0 FEAT] CPU Model for new IBM Z Hardware - qemu part (kvm))
+- Resolves: bz#1957194
+  (Synchronize RHEL-AV 8.5.0 changes to RHEL 9.0.0 Beta)
+
 * Mon Jul 12 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-8
 - kvm-Disable-TPM-passthrough.patch [bz#1978911]
 - kvm-redhat-Replace-the-kvm-setup.service-with-a-etc-modu.patch [bz#1978837]
