@@ -1384,6 +1384,19 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Tue Jul 20 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 6.0.0-25.el8
+- kvm-s390x-cpumodel-add-3931-and-3932.patch [bz#1976171]
+- kvm-file-posix-fix-max_iov-for-dev-sg-devices.patch [bz#1943653]
+- kvm-scsi-generic-pass-max_segments-via-max_iov-field-in-.patch [bz#1943653]
+- kvm-osdep-provide-ROUND_DOWN-macro.patch [bz#1943653]
+- kvm-block-backend-align-max_transfer-to-request-alignmen.patch [bz#1943653]
+- kvm-block-add-max_hw_transfer-to-BlockLimits.patch [bz#1943653]
+- kvm-file-posix-try-BLKSECTGET-on-block-devices-too-do-no.patch [bz#1943653]
+- Resolves: bz#1976171
+  ([IBM 8.5 FEAT] CPU Model for new IBM Z Hardware - qemu part)
+- Resolves: bz#1943653
+  (RHV VM pauses due to 'qemu-kvm' getting EINVAL on i/o to a direct lun with scsi passthrough enabled)
+
 * Fri Jul 16 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 6.0.0-24.el8
 - kvm-s390x-css-Introduce-an-ESW-struct.patch [bz#1968326]
 - kvm-s390x-css-Split-out-the-IRB-sense-data.patch [bz#1968326]
