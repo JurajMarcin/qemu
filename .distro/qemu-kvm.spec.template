@@ -498,6 +498,7 @@ pushd %{qemu_kvm_build}
   --block-drv-rw-whitelist=%{block_drivers_list} \
   --audio-drv-list= \
   --block-drv-ro-whitelist=vmdk,vhdx,vpc,https,ssh \
+  --enable-block-drv-whitelist-in-tools \
   --with-coroutine=ucontext \
   --with-git=git \
   --tls-priority=@QEMU,SYSTEM \
