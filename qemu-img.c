@@ -83,6 +83,7 @@ enum {
     OPTION_MERGE = 274,
     OPTION_BITMAPS = 275,
     OPTION_FORCE = 276,
+    OPTION_SKIP_BROKEN = 277,
 };
 
 typedef enum OutputFormat {
@@ -2153,7 +2154,7 @@ static int convert_do_copy(ImgConvertState *s)
 }
 
 /* Check that bitmaps can be copied, or output an error */
-static int convert_check_bitmaps(BlockDriverState *src)
+static int convert_check_bitmaps(BlockDriverState *src, bool skip_broken)
 {
     BdrvDirtyBitmap *bm;
 
@@ -2165,17 +2166,19 @@ static int convert_check_bitmaps(BlockDriverState *src)
         if (!bdrv_dirty_bitmap_get_persistence(bm)) {
             continue;
         }
-        if (bdrv_dirty_bitmap_inconsistent(bm)) {
+        if (!skip_broken && bdrv_dirty_bitmap_inconsistent(bm)) {
             error_report("Cannot copy inconsistent bitmap '%s'",
                          bdrv_dirty_bitmap_name(bm));
-            error_printf("Try 'qemu-img bitmap --remove' to delete it\n");
+            error_printf("Try --skip-broken-bitmaps, or "
+                         "use 'qemu-img bitmap --remove' to delete it\n");
             return -1;
         }
     }
     return 0;
 }
 
-static int convert_copy_bitmaps(BlockDriverState *src, BlockDriverState *dst)
+static int convert_copy_bitmaps(BlockDriverState *src, BlockDriverState *dst,
+                                bool skip_broken)
 {
     BdrvDirtyBitmap *bm;
     Error *err = NULL;
@@ -2187,6 +2190,10 @@ static int convert_copy_bitmaps(BlockDriverState *src, BlockDriverState *dst)
             continue;
         }
         name = bdrv_dirty_bitmap_name(bm);
+        if (skip_broken && bdrv_dirty_bitmap_inconsistent(bm)) {
+            warn_report("Skipping inconsistent bitmap '%s'", name);
+            continue;
+        }
         qmp_block_dirty_bitmap_add(dst->node_name, name,
                                    true, bdrv_dirty_bitmap_granularity(bm),
                                    true, true,
@@ -2242,6 +2249,7 @@ static int img_convert(int argc, char **argv)
     bool force_share = false;
     bool explict_min_sparse = false;
     bool bitmaps = false;
+    bool skip_broken = false;
     int64_t rate_limit = 0;
 
     ImgConvertState s = (ImgConvertState) {
@@ -2263,6 +2271,7 @@ static int img_convert(int argc, char **argv)
             {"salvage", no_argument, 0, OPTION_SALVAGE},
             {"target-is-zero", no_argument, 0, OPTION_TARGET_IS_ZERO},
             {"bitmaps", no_argument, 0, OPTION_BITMAPS},
+            {"skip-broken-bitmaps", no_argument, 0, OPTION_SKIP_BROKEN},
             {0, 0, 0, 0}
         };
         c = getopt_long(argc, argv, ":hf:O:B:Cco:l:S:pt:T:qnm:WUr:",
@@ -2397,6 +2406,9 @@ static int img_convert(int argc, char **argv)
         case OPTION_BITMAPS:
             bitmaps = true;
             break;
+        case OPTION_SKIP_BROKEN:
+            skip_broken = true;
+            break;
         }
     }
 
@@ -2407,6 +2419,11 @@ static int img_convert(int argc, char **argv)
     if (qemu_opts_foreach(&qemu_object_opts,
                           user_creatable_add_opts_foreach,
                           qemu_img_object_print_help, &error_fatal)) {
+        goto fail_getopt;
+    }
+
+    if (skip_broken && !bitmaps) {
+        error_report("Use of --skip-broken-bitmaps requires --bitmaps");
         goto fail_getopt;
     }
 
@@ -2639,7 +2656,7 @@ static int img_convert(int argc, char **argv)
             ret = -1;
             goto out;
         }
-        ret = convert_check_bitmaps(blk_bs(s.src[0]));
+        ret = convert_check_bitmaps(blk_bs(s.src[0]), skip_broken);
         if (ret < 0) {
             goto out;
         }
@@ -2764,7 +2781,7 @@ static int img_convert(int argc, char **argv)
 
     /* Now copy the bitmaps */
     if (bitmaps && ret == 0) {
-        ret = convert_copy_bitmaps(blk_bs(s.src[0]), out_bs);
+        ret = convert_copy_bitmaps(blk_bs(s.src[0]), out_bs, skip_broken);
     }
 
 out:
