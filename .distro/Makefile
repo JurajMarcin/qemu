@@ -75,9 +75,10 @@ rh-brew: rh-srpm
 rh-brew-module: rh-brew
 
 rh-env-prep: rh-prep
+	$(DS)sudo dnf install wget rpm-build
 	$(DS)sudo dnf builddep $(RPMBUILD)/SPECS/$(SPECFILE) || echo "Build dependency installation FAILED."
 	$(DS)mkdir -p ../build
-	$(DS)cd ../build; $(shell rpmspec -P $(RPMBUILD)/SPECS/$(SPECFILE) | ../redhat/scripts/extract_build_cmd.py | \
+	$(DS)cd ../build; $(shell rpmspec -P $(RPMBUILD)/SPECS/$(SPECFILE) | ../.distro/scripts/extract_build_cmd.py | \
 	              sed "s/--with-git-submodules=ignore/--with-git-submodules=update/g")
 
 rh-local: rh-env-prep
