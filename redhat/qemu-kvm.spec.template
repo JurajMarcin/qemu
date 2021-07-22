@@ -1336,6 +1336,18 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Thu Jul 22 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.2.0-16.el8_4.4
+- kvm-job-call-job_enter-from-job_pause.patch [bz#1976256]
+- kvm-mirror-Move-open_backing_file-to-exit_common.patch [bz#1976256]
+- kvm-mirror-Do-not-enter-a-paused-job-on-completion.patch [bz#1976256]
+- kvm-job-Allow-complete-for-jobs-on-standby.patch [bz#1976256]
+- kvm-test-blockjob-Test-job_wait_unpaused.patch [bz#1976256]
+- kvm-sockets-update-SOCKET_ADDRESS_TYPE_FD-listen-2-backl.patch [bz#1983113]
+- Resolves: bz#1976256
+  (Pivot failed: Job ... in state 'standby' cannot accept command verb 'complete' [rhel-8.4.0.z])
+- Resolves: bz#1983113
+  (QEMU 6.0.0 socket_get_fd() fails with the error "socket_get_fd: too many connections" [rhel-8.4.0.z])
+
 * Wed Jul 07 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.2.0-16.el8_4.3
 - kvm-block-backend-add-drained_poll.patch [bz#1973829]
 - kvm-nbd-server-Use-drained-block-ops-to-quiesce-the-serv.patch [bz#1973829]
