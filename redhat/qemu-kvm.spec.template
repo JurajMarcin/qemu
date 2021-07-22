@@ -1056,6 +1056,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Thu Jul 22 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-54.el8
+- kvm-redhat-Fix-unversioned-Obsoletes-warning.patch [bz#1967329]
+- Resolves: bz#1967329
+  (Make qemu-kvm use versioned obsoletes for qemu-kvm-ma and qemu-kvm-rhev)
+
 * Fri Jul 02 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-53.el8
 - kvm-virtiofsd-Whitelist-fchmod.patch [bz#1967914]
 - kvm-spapr-Fix-EEH-capability-issue-on-KVM-guest-for-PCI-.patch [bz#1957866]
