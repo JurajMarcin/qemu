@@ -525,7 +525,7 @@ run_configure() {
         --localstatedir="%{_localstatedir}" \
         --docdir="%{_docdir}" \
         --libexecdir="%{_libexecdir}" \
-        --extra-ldflags="-Wl,--build-id -Wl,-z,relro -Wl,-z,now" \
+        --extra-ldflags="-Wl,-z,relro -Wl,-z,now" \
         --extra-cflags="%{optflags}" \
         --with-pkgversion="%{name}-%{version}-%{release}" \
         --with-suffix="%{name}" \
