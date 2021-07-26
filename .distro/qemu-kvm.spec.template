@@ -78,6 +78,7 @@
 %global target_list %{kvm_target}-softmmu
 %global block_drivers_rw_list qcow2,raw,file,host_device,nbd,iscsi,rbd,blkdebug,luks,null-co,nvme,copy-on-read,throttle
 %global block_drivers_ro_list vmdk,vhdx,vpc,https,ssh
+%define qemudocdir %{_docdir}/%{name}
 
 
 #Versions of various parts:
@@ -92,6 +93,16 @@ Requires: %{name}-hw-usbredir = %{epoch}:%{version}-%{release}   \
 Requires: %{name}-block-curl = %{epoch}:%{version}-%{release}    \
 Requires: %{name}-block-rbd = %{epoch}:%{version}-%{release}     \
 Requires: %{name}-block-ssh = %{epoch}:%{version}-%{release}
+
+# Since SPICE is removed from RHEL-9, the following Obsoletes:
+# removes {name}-ui-spice for upgrades from RHEL-8
+# The "<= {version}" assumes RHEL-9 version >= RHEL-8 version (in
+# other words RHEL-9 rebases are done together/before RHEL-8 ones)
+%global obsoletes_some_modules                                  \
+Obsoletes: %{name}-ui-spice <= %{version}                       \
+Obsoletes: %{name}-block-gluster <= %{version}                  \
+Obsoletes: %{name}-block-iscsi <= %{version}                    \
+
 
 Summary: QEMU is a machine emulator and virtualizer
 Name: qemu-kvm
@@ -190,13 +201,13 @@ BuildRequires: pkgconfig(gbm)
 BuildRequires: perl-Test-Harness
 BuildRequires: libslirp-devel
 
+
+# Requires for qemu-kvm package
 Requires: %{name}-core = %{epoch}:%{version}-%{release}
 Requires: %{name}-docs = %{epoch}:%{version}-%{release}
 Requires: %{name}-tools = %{epoch}:%{version}-%{release}
 Requires: qemu-pr-helper = %{epoch}:%{version}-%{release}
 %{requires_all_modules}
-
-%define qemudocdir %{_docdir}/%{name}
 
 %description
 %{name} is an open source virtualizer that provides hardware
@@ -207,6 +218,7 @@ hardware for a full system such as a PC and its associated peripherals.
 
 %package core
 Summary: %{name} core components
+%{obsoletes_some_modules}
 Requires: %{name}-common = %{epoch}:%{version}-%{release}
 Requires: qemu-img = %{epoch}:%{version}-%{release}
 %ifarch %{ix86} x86_64
@@ -222,44 +234,12 @@ Requires: libusbx >= %{libusbx_version}
 Requires: libfdt >= %{libfdt_version}
 %endif
 
-# Since SPICE is removed from RHEL-9, the following Obsoletes:
-# removes {name}-ui-spice for upgrades from RHEL-8
-# The "<= {version}" assumes RHEL-9 version >= RHEL-8 version (in
-# other words RHEL-9 rebases are done together/before RHEL-8 ones)
-Obsoletes: %{name}-ui-spice <= %{version}
-Obsoletes: %{name}-block-gluster <= %{version}
-Obsoletes: %{name}-block-iscsi <= %{version}
-
 %description core
 %{name} is an open source virtualizer that provides hardware
 emulation for the KVM hypervisor. %{name} acts as a virtual
 machine monitor together with the KVM kernel modules, and emulates the
 hardware for a full system such as a PC and its associated peripherals.
 
-%package tools
-Summary: %{name} support tools
-
-%description tools
-%{name}-tools provides various tools related to %{name} usage.
-
-%package docs
-Summary: %{name} documentation
-
-%description docs
-%{name}-docs provides documentation files regarding %{name}.
-
-%package -n qemu-img
-Summary: QEMU command line tool for manipulating disk images
-
-%description -n qemu-img
-This package provides a command line tool for manipulating disk images.
-
-%package -n qemu-pr-helper
-Summary: qemu-pr-helper utility for %{name}
-
-%description -n qemu-pr-helper
-This package provides the qemu-pr-helper utility that is required for certain 
-SCSI features. 
 
 %package common
 Summary: QEMU common files needed by all QEMU targets
@@ -285,12 +265,36 @@ the KVM hypervisor.
 This package provides documentation and auxiliary programs used with %{name}.
 
 
+%package tools
+Summary: %{name} support tools
+%description tools
+%{name}-tools provides various tools related to %{name} usage.
+
+
+%package docs
+Summary: %{name} documentation
+%description docs
+%{name}-docs provides documentation files regarding %{name}.
+
+
+%package -n qemu-pr-helper
+Summary: qemu-pr-helper utility for %{name}
+%description -n qemu-pr-helper
+This package provides the qemu-pr-helper utility that is required for certain 
+SCSI features. 
+
+
+%package -n qemu-img
+Summary: QEMU command line tool for manipulating disk images
+%description -n qemu-img
+This package provides a command line tool for manipulating disk images.
+
+
 %package -n qemu-guest-agent
 Summary: QEMU guest agent
 Requires(post): systemd-units
 Requires(preun): systemd-units
 Requires(postun): systemd-units
-
 %description -n qemu-guest-agent
 %{name} is an open source virtualizer that provides hardware emulation for
 the KVM hypervisor.
@@ -299,6 +303,7 @@ This package provides an agent to run inside guests, which communicates
 with the host over a virtio-serial channel named "org.qemu.guest_agent.0"
 
 This package does not need to be installed on the host OS.
+
 
 %package tests
 Summary: tests for the %{name} package
@@ -313,10 +318,10 @@ the functionality of the installed %{name} package
 Install this package if you want access to the avocado_qemu
 tests, or qemu-iotests.
 
+
 %package  block-curl
 Summary: QEMU CURL block driver
 Requires: %{name}-common%{?_isa} = %{epoch}:%{version}-%{release}
-
 %description block-curl
 This package provides the additional CURL block driver for QEMU.
 
@@ -324,21 +329,21 @@ Install this package if you want to access remote disks over
 http, https, ftp and other transports provided by the CURL library.
 
 
+%if %{have_block_rbd}
 %package  block-rbd
 Summary: QEMU Ceph/RBD block driver
 Requires: %{name}-common%{?_isa} = %{epoch}:%{version}-%{release}
-
 %description block-rbd
 This package provides the additional Ceph/RBD block driver for QEMU.
 
 Install this package if you want to access remote Ceph volumes
 using the rbd protocol.
+%endif
 
 
 %package  block-ssh
 Summary: QEMU SSH block driver
 Requires: %{name}-common%{?_isa} = %{epoch}:%{version}-%{release}
-
 %description block-ssh
 This package provides the additional SSH block driver for QEMU.
 
@@ -353,7 +358,6 @@ Requires: %{name}-common%{?_isa} = %{epoch}:%{version}-%{release}
 Requires: mesa-libGL
 Requires: mesa-libEGL
 Requires: mesa-dri-drivers
-
 %description ui-opengl
 This package provides opengl support.
 %endif
@@ -661,11 +665,11 @@ cp -a %{kvm_target}-softmmu/qemu-system-%{kvm_target} qemu-kvm
     cp pc-bios/s390-ccw/s390-ccw.img pc-bios/s390-ccw/s390-netboot.img pc-bios/
 %endif
 
-
 gcc %{_sourcedir}/ksmctl.c $RPM_OPT_FLAGS $RPM_LD_FLAGS -o ksmctl
+popd
 # endif !tools_only
 %endif
-popd
+
 
 
 %install
@@ -937,10 +941,12 @@ rm -rf %{buildroot}%{qemudocdir}/specs
 
 %check
 %if !%{tools_only}
+
 pushd %{qemu_kvm_build}
 echo "Testing %{name}-build"
 make check V=1
 popd
+
 # endif !tools_only
 %endif
 
@@ -956,9 +962,6 @@ popd
 
 %if !%{tools_only}
 %post common
-%systemd_post ksm.service
-%systemd_post ksmtuned.service
-
 getent group kvm >/dev/null || groupadd -g 36 -r kvm
 getent group qemu >/dev/null || groupadd -g 107 -r qemu
 getent passwd qemu >/dev/null || \
@@ -974,6 +977,9 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
         modprobe -b kvm  &> /dev/null || :
     fi
 %endif
+
+%systemd_post ksm.service
+%systemd_post ksmtuned.service
 
 %preun common
 %systemd_preun ksm.service
@@ -1138,17 +1144,17 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 %files block-curl
 %{_libdir}/%{name}/block-curl.so
-
+%if %{have_block_rbd}
 %files block-rbd
 %{_libdir}/%{name}/block-rbd.so
-
+%endif
 %files block-ssh
 %{_libdir}/%{name}/block-ssh.so
 
 %if %{have_opengl}
 %files ui-opengl
-    %{_libdir}/%{name}/ui-egl-headless.so
-    %{_libdir}/%{name}/ui-opengl.so
+%{_libdir}/%{name}/ui-egl-headless.so
+%{_libdir}/%{name}/ui-opengl.so
 %endif
 
 %if %{have_usbredir}
