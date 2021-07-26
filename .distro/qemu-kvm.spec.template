@@ -103,11 +103,18 @@ Obsoletes: %{name}-ui-spice <= %{version}                       \
 Obsoletes: %{name}-block-gluster <= %{version}                  \
 Obsoletes: %{name}-block-iscsi <= %{version}                    \
 
+# Release candidate version tracking
+# global rcver rc4
+%if 0%{?rcver:1}
+%global rcrel .%{rcver}
+%global rcstr -%{rcver}
+%endif
+
 
 Summary: QEMU is a machine emulator and virtualizer
 Name: qemu-kvm
 Version: %%VERSION%%
-Release: %%RELEASE%%%{?rcversion}%{?dist}%%ZRELEASE%%%%LOCALVERSION%%
+Release: %%RELEASE%%%{?rcrel}%{?dist}%%ZRELEASE%%%%LOCALVERSION%%
 # Epoch because we pushed a qemu-1.0 package. AIUI this can't ever be dropped
 # Epoch 15 used for RHEL 8
 # Epoch 17 used for RHEL 9 (due to release versioning offset in RHEL 8.5)
@@ -117,7 +124,7 @@ URL: http://www.qemu.org/
 ExclusiveArch: x86_64 %{power64} aarch64 s390x
 
 
-Source0: http://wiki.qemu.org/download/%%TARBALL%%
+Source0: http://wiki.qemu.org/download/qemu-%{version}%{?rcstr}.tar.xz
 
 # KSM control scripts
 Source4: ksm.service
@@ -373,11 +380,7 @@ This package provides usbredir support.
 %endif
 
 %prep
-%if 0%{?rcversion}
-%setup -n qemu-%{version}-%{?rcversion}
-%else
-%setup -n qemu-%{version}
-%endif
+%setup -q -n qemu-%{version}%{?rcstr}
 %autopatch -p1
 
 %global qemu_kvm_build qemu_kvm_build

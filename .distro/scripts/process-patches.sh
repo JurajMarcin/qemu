@@ -56,7 +56,7 @@ if [ -n "${ZRELEASE}" ]; then
 fi
 
 if [ -n "${RCVERSION}" ]; then
-   RCVERSION="%global rcversion ${RCVERSION}"
+   RCVERSION="%global rcver ${RCVERSION}"
 fi
 
 # Handle patches
