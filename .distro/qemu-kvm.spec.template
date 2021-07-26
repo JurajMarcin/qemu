@@ -10,9 +10,10 @@
 %global have_modules_load 0
 %global have_memlock_limits 0
 %%RCVERSION%%
-# have_block_rbd is not relevant for RHEL but makes it
-# easier to sync spec dependency list with Fedora
+# Some of these are not relevant for RHEL, but defining them
+# makes it easier to sync the dependency list with Fedora
 %global have_block_rbd 1
+%global enable_werror 1
 
 
 %global have_pmem 1
@@ -65,6 +66,11 @@
     %global kvm_target    aarch64
     %global have_fdt     1
 %endif
+
+%global target_list %{kvm_target}-softmmu
+%global block_drivers_rw_list qcow2,raw,file,host_device,nbd,iscsi,rbd,blkdebug,luks,null-co,nvme,copy-on-read,throttle
+%global block_drivers_ro_list vmdk,vhdx,vpc,https,ssh
+
 
 #Versions of various parts:
 
@@ -367,12 +373,8 @@ mkdir -p %{qemu_kvm_build}
 
 
 %build
-%global buildarch %{kvm_target}-softmmu
-
 # --build-id option is used for giving info to the debug packages.
 buildldflags="VL_LDFLAGS=-Wl,--build-id"
-
-%global block_drivers_list qcow2,raw,file,host_device,nbd,iscsi,rbd,blkdebug,luks,null-co,nvme,copy-on-read,throttle
 
 %define disable_everything         \\\
   --audio-drv-list=                \\\
@@ -532,10 +534,16 @@ run_configure() {
 
 
 pushd %{qemu_kvm_build}
-run_configure  \
-  --target-list="%{buildarch}" \
-  --block-drv-rw-whitelist=%{block_drivers_list} \
-  --block-drv-ro-whitelist=vmdk,vhdx,vpc,https,ssh \
+run_configure \
+%if %{defined target_list}
+  --target-list="%{target_list}" \
+%endif
+%if %{defined block_drivers_rw_list}
+  --block-drv-rw-whitelist=%{block_drivers_rw_list} \
+%endif
+%if %{defined block_drivers_ro_list}
+  --block-drv-ro-whitelist=%{block_drivers_ro_list} \
+%endif
   --enable-block-drv-whitelist-in-tools \
   --enable-attr \
 %ifarch %{ix86} x86_64
@@ -599,7 +607,9 @@ run_configure  \
   --enable-vnc \
   --enable-vnc-png \
   --enable-vnc-sasl \
+%if %{enable_werror}
   --enable-werror \
+%endif
   --enable-xkbcommon \
 
 
