@@ -106,8 +106,6 @@ Source27: kvm.conf
 Source28: 95-kvm-memlock.conf
 Source30: kvm-s390x.conf
 Source31: kvm-x86.conf
-Source32: qemu-pr-helper.service
-Source33: qemu-pr-helper.socket
 Source36: README.tests
 
 
@@ -921,8 +919,8 @@ rom_link() {
 install -D -m 0644 %{SOURCE12} %{buildroot}%{_sysconfdir}/%{name}/bridge.conf
 
 # Install qemu-pr-helper service
-install -m 0644 %{_sourcedir}/qemu-pr-helper.service %{buildroot}%{_unitdir}
-install -m 0644 %{_sourcedir}/qemu-pr-helper.socket %{buildroot}%{_unitdir}
+install -m 0644 ../contrib/systemd/qemu-pr-helper.service %{buildroot}%{_unitdir}
+install -m 0644 ../contrib/systemd/qemu-pr-helper.socket %{buildroot}%{_unitdir}
 
 find %{buildroot} -name '*.la' -or -name '*.a' | xargs rm -f
 
