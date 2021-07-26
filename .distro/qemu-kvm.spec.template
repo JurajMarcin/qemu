@@ -1149,6 +1149,61 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Sun Jul 25 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-10
+- kvm-s390x-css-Introduce-an-ESW-struct.patch [bz#1957194]
+- kvm-s390x-css-Split-out-the-IRB-sense-data.patch [bz#1957194]
+- kvm-s390x-css-Refactor-IRB-construction.patch [bz#1957194]
+- kvm-s390x-css-Add-passthrough-IRB.patch [bz#1957194]
+- kvm-vhost-user-blk-Fail-gracefully-on-too-large-queue-si.patch [bz#1957194]
+- kvm-vhost-user-blk-Make-sure-to-set-Error-on-realize-fai.patch [bz#1957194]
+- kvm-vhost-user-blk-Don-t-reconnect-during-initialisation.patch [bz#1957194]
+- kvm-vhost-user-blk-Improve-error-reporting-in-realize.patch [bz#1957194]
+- kvm-vhost-user-blk-Get-more-feature-flags-from-vhost-dev.patch [bz#1957194]
+- kvm-virtio-Fail-if-iommu_platform-is-requested-but-unsup.patch [bz#1957194]
+- kvm-vhost-user-blk-Check-that-num-queues-is-supported-by.patch [bz#1957194]
+- kvm-vhost-user-Fix-backends-without-multiqueue-support.patch [bz#1957194]
+- kvm-file-posix-fix-max_iov-for-dev-sg-devices.patch [bz#1957194]
+- kvm-scsi-generic-pass-max_segments-via-max_iov-field-in-.patch [bz#1957194]
+- kvm-osdep-provide-ROUND_DOWN-macro.patch [bz#1957194]
+- kvm-block-backend-align-max_transfer-to-request-alignmen.patch [bz#1957194]
+- kvm-block-add-max_hw_transfer-to-BlockLimits.patch [bz#1957194]
+- kvm-file-posix-try-BLKSECTGET-on-block-devices-too-do-no.patch [bz#1957194]
+- kvm-block-Add-option-to-use-driver-whitelist-even-in-too.patch [bz#1957782]
+- kvm-spec-Restrict-block-drivers-in-tools.patch [bz#1957782]
+- kvm-Move-tools-to-separate-package.patch [bz#1972285]
+- kvm-Split-qemu-pr-helper-to-separate-package.patch [bz#1972300]
+- kvm-spec-RPM_BUILD_ROOT-buildroot.patch [bz#1973029]
+- kvm-spec-More-use-of-name-instead-of-qemu-kvm.patch [bz#1973029]
+- kvm-spec-Use-qemu-pr-helper.service-from-qemu.git.patch [bz#1973029]
+- kvm-spec-Use-_sourcedir-for-referencing-sources.patch [bz#1973029]
+- kvm-spec-Add-tools_only.patch [bz#1973029]
+- kvm-spec-build-Add-run_configure-helper.patch [bz#1973029]
+- kvm-spec-build-Disable-more-bits-with-disable_everything.patch [bz#1973029]
+- kvm-spec-build-Add-macros-for-some-configure-parameters.patch [bz#1973029]
+- kvm-spec-files-Move-qemu-guest-agent-and-qemu-img-earlie.patch [bz#1973029]
+- kvm-spec-install-Remove-redundant-bits.patch [bz#1973029]
+- kvm-spec-install-Add-modprobe_kvm_conf-macro.patch [bz#1973029]
+- kvm-spec-install-Remove-qemu-guest-agent-etc-qemu-kvm-us.patch [bz#1973029]
+- kvm-spec-install-clean-up-qemu-ga-section.patch [bz#1973029]
+- kvm-spec-install-Use-a-single-tools_only-section.patch [bz#1973029]
+- kvm-spec-Make-tools_only-not-cross-spec-sections.patch [bz#1973029]
+- kvm-spec-install-Limit-time-spent-in-qemu_kvm_build.patch [bz#1973029]
+- kvm-spec-misc-syntactic-merges-with-Fedora.patch [bz#1973029]
+- kvm-spec-Use-Fedora-s-pattern-for-specifying-rc-version.patch [bz#1973029]
+- kvm-spec-files-don-t-use-fine-grained-docs-file-list.patch [bz#1973029]
+- kvm-spec-files-Add-licenses-to-qemu-common-too.patch [bz#1973029]
+- kvm-spec-install-Drop-python3-shebang-fixup.patch [bz#1973029]
+- Resolves: bz#1957194
+  (Synchronize RHEL-AV 8.5.0 changes to RHEL 9.0.0 Beta)
+- Resolves: bz#1957782
+  (VMDK support should be read-only)
+- Resolves: bz#1972285
+  (Split out a qemu-kvm-tools subpackage)
+- Resolves: bz#1972300
+  (Split out a qemu-pr-helper subpackage)
+- Resolves: bz#1973029
+  (Spec file cleanups)
+
 * Mon Jul 19 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-9
 - kvm-s390x-cpumodel-add-3931-and-3932.patch [bz#1932191]
 - kvm-spapr-Fix-EEH-capability-issue-on-KVM-guest-for-PCI-.patch [bz#1957194]
