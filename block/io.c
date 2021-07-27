@@ -1811,7 +1811,7 @@ int coroutine_fn bdrv_co_preadv_part(BdrvChild *child,
     ret = bdrv_pad_request(bs, &qiov, &qiov_offset, &offset, &bytes, &pad,
                            NULL);
     if (ret < 0) {
-        return ret;
+        goto fail;
     }
 
     tracked_request_begin(&req, bs, offset, bytes, BDRV_TRACKED_READ);
@@ -1819,9 +1819,10 @@ int coroutine_fn bdrv_co_preadv_part(BdrvChild *child,
                               bs->bl.request_alignment,
                               qiov, qiov_offset, flags);
     tracked_request_end(&req);
-    bdrv_dec_in_flight(bs);
-
     bdrv_padding_destroy(&pad);
+
+fail:
+    bdrv_dec_in_flight(bs);
 
     return ret;
 }
