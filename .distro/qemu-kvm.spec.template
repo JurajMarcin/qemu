@@ -214,6 +214,7 @@ Requires: %{name}-core = %{epoch}:%{version}-%{release}
 Requires: %{name}-docs = %{epoch}:%{version}-%{release}
 Requires: %{name}-tools = %{epoch}:%{version}-%{release}
 Requires: qemu-pr-helper = %{epoch}:%{version}-%{release}
+Requires: virtiofsd = %{epoch}:%{version}-%{release}
 %{requires_all_modules}
 
 %description
@@ -289,6 +290,15 @@ Summary: qemu-pr-helper utility for %{name}
 %description -n qemu-pr-helper
 This package provides the qemu-pr-helper utility that is required for certain 
 SCSI features. 
+
+
+%package -n qemu-virtiofsd
+Summary: QEMU virtio-fs shared file system daemon
+Provides: virtiofsd
+%description -n qemu-virtiofsd
+This package provides virtiofsd daemon. This program is a vhost-user backend
+that implements the virtio-fs device that is used for sharing a host directory
+tree with a guest.
 
 
 %package -n qemu-img
@@ -1031,6 +1041,14 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %{_unitdir}/qemu-pr-helper.socket
 %{_mandir}/man8/qemu-pr-helper.8*
 
+%files -n qemu-virtiofsd
+%{_mandir}/man1/virtiofsd.1*
+%{_libexecdir}/virtiofsd
+# This is the standard location for vhost-user JSON files defined in the
+# vhost-user specification for interoperability with other software. Unlike
+# most other paths we use it's "qemu" instead of "qemu-kvm".
+%{_datadir}/qemu/vhost-user/50-qemu-virtiofsd.json
+
 %files docs
 %doc %{qemudocdir}
 
@@ -1039,7 +1057,6 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %{_mandir}/man7/qemu-qmp-ref.7*
 %{_mandir}/man7/qemu-cpu-models.7*
 %{_mandir}/man7/qemu-ga-ref.7*
-%{_mandir}/man1/virtiofsd.1*
 
 %dir %{_datadir}/%{name}/
 %{_datadir}/%{name}/keymaps/
@@ -1095,11 +1112,6 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %if %{have_memlock_limits}
     %{_sysconfdir}/security/limits.d/95-kvm-memlock.conf
 %endif
-%{_libexecdir}/virtiofsd
-# This is the standard location for vhost-user JSON files defined in the
-# vhost-user specification for interoperability with other software. Unlike
-# most other paths we use it's "qemu" instead of "qemu-kvm".
-%{_datadir}/qemu/vhost-user/50-qemu-virtiofsd.json
 
 %files core
 %{_libexecdir}/qemu-kvm
