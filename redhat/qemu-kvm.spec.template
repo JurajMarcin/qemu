@@ -1384,6 +1384,36 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Thu Jul 29 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-26
+- kvm-acpi-pc-revert-back-to-v5.2-PCI-slot-enumeration.patch [bz#1977798]
+- kvm-migration-failover-reset-partially_hotplugged.patch [bz#1787194]
+- kvm-hmp-Fix-loadvm-to-resume-the-VM-on-success-instead-o.patch [bz#1959676]
+- kvm-migration-Move-bitmap_mutex-out-of-migration_bitmap_.patch [bz#1959729]
+- kvm-i386-cpu-Expose-AVX_VNNI-instruction-to-guest.patch [bz#1924822]
+- kvm-ratelimit-protect-with-a-mutex.patch [bz#1838221]
+- kvm-Update-Linux-headers-to-5.13-rc4.patch [bz#1838221]
+- kvm-i386-Add-ratelimit-for-bus-locks-acquired-in-guest.patch [bz#1838221]
+- kvm-iothread-generalize-iothread_set_param-iothread_get_.patch [bz#1930286]
+- kvm-iothread-add-aio-max-batch-parameter.patch [bz#1930286]
+- kvm-linux-aio-limit-the-batch-size-using-aio-max-batch-p.patch [bz#1930286]
+- kvm-block-nvme-Fix-VFIO_MAP_DMA-failed-No-space-left-on-.patch [bz#1848881]
+- Resolves: bz#1977798
+  (RHEL8.5 guest network interface name changed after upgrade to qemu-6.0)
+- Resolves: bz#1787194
+  (After canceling the migration of a vm with VF which enables failover, using "migrate -d tcp:invalid uri" to re-migrating the vm will cause the VF in vm to be hot-unplug.)
+- Resolves: bz#1959676
+  (guest status is paused after loadvm on rhel8.5.0)
+- Resolves: bz#1959729
+  (SAP/3TB VM migration slowness [idle db])
+- Resolves: bz#1924822
+  ([Intel 8.5 FEAT] qemu-kvm AVX2 VNNI - Fast Train)
+- Resolves: bz#1838221
+  ([Intel 8.5 FEAT]  qemu-kvm Bus Lock VM Exit - Fast Train)
+- Resolves: bz#1930286
+  (randread and randrw regression with virtio-blk multi-queue)
+- Resolves: bz#1848881
+  (nvme:// block driver can exhaust IOMMU DMAs, hanging the VM, possible data loss)
+
 * Tue Jul 20 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 6.0.0-25.el8
 - kvm-s390x-cpumodel-add-3931-and-3932.patch [bz#1976171]
 - kvm-file-posix-fix-max_iov-for-dev-sg-devices.patch [bz#1943653]
