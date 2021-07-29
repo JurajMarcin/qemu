@@ -1056,6 +1056,34 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Thu Jul 29 2021 Miroslav Rezanina <mrezanin@redhat.com> - 4.2.0-56
+- kvm-glib-compat-add-g_unix_get_passwd_entry_qemu.patch [bz#1967716]
+- kvm-qga-add-ssh-add-remove-authorized-keys.patch [bz#1967716]
+- kvm-qga-add-reset-argument-to-ssh-add-authorized-keys.patch [bz#1967716]
+- kvm-qga-add-ssh-get-authorized-keys.patch [bz#1967716]
+- kvm-Add-mtod_check.patch [bz#1970819 bz#1970835 bz#1970843 bz#1970853]
+- kvm-bootp-limit-vendor-specific-area-to-input-packet-mem.patch [bz#1970819 bz#1970835 bz#1970843 bz#1970853]
+- kvm-bootp-check-bootp_input-buffer-size.patch [bz#1970819]
+- kvm-upd6-check-udp6_input-buffer-size.patch [bz#1970835]
+- kvm-tftp-check-tftp_input-buffer-size.patch [bz#1970843]
+- kvm-tftp-introduce-a-header-structure.patch [bz#1970819 bz#1970835 bz#1970843 bz#1970853]
+- kvm-udp-check-upd_input-buffer-size.patch [bz#1970853]
+- kvm-Fix-DHCP-broken-in-libslirp-v4.6.0.patch [bz#1970819 bz#1970835 bz#1970843 bz#1970853]
+- kvm-net-check-if-the-file-descriptor-is-valid-before-usi.patch [bz#1982134]
+- kvm-net-detect-errors-from-probing-vnet-hdr-flag-for-TAP.patch [bz#1982134]
+- Resolves: bz#1967716
+  (RFE: rebuild guest agent to include public ssh injection api support)
+- Resolves: bz#1970819
+  (CVE-2021-3592 virt:rhel/qemu-kvm: QEMU: slirp: invalid pointer initialization may lead to information disclosure (bootp) [rhel-8])
+- Resolves: bz#1970835
+  (CVE-2021-3593 virt:rhel/qemu-kvm: QEMU: slirp: invalid pointer initialization may lead to information disclosure (udp6) [rhel-8])
+- Resolves: bz#1970843
+  (CVE-2021-3595 virt:rhel/qemu-kvm: QEMU: slirp: invalid pointer initialization may lead to information disclosure (tftp) [rhel-8])
+- Resolves: bz#1970853
+  (CVE-2021-3594 virt:rhel/qemu-kvm: QEMU: slirp: invalid pointer initialization may lead to information disclosure (udp) [rhel-8])
+- Resolves: bz#1982134
+  (QEMU core dump while booting guest with a non-exist fd on tap)
+
 * Fri Jul 23 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-55.el8
 - kvm-net-introduce-qemu_receive_packet.patch [bz#1932917]
 - kvm-e1000-switch-to-use-qemu_receive_packet-for-loopback.patch [bz#1932917]
