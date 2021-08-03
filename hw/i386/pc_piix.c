@@ -991,23 +991,3 @@ static void pc_machine_rhel760_options(MachineClass *m)
 
 DEFINE_PC_MACHINE(rhel760, "pc-i440fx-rhel7.6.0", pc_init_rhel760,
                   pc_machine_rhel760_options);
-
-static void pc_init_rhel750(MachineState *machine)
-{
-    pc_init1(machine, TYPE_I440FX_PCI_HOST_BRIDGE, \
-             TYPE_I440FX_PCI_DEVICE);
-}
-
-static void pc_machine_rhel750_options(MachineClass *m)
-{
-    pc_machine_rhel760_options(m);
-    m->alias = NULL;
-    m->is_default = 0;
-    m->desc = "RHEL 7.5.0 PC (i440FX + PIIX, 1996)";
-    m->auto_enable_numa_with_memhp = false;
-    compat_props_add(m->compat_props, hw_compat_rhel_7_5, hw_compat_rhel_7_5_len);
-    compat_props_add(m->compat_props, pc_rhel_7_5_compat, pc_rhel_7_5_compat_len);
-}
-
-DEFINE_PC_MACHINE(rhel750, "pc-i440fx-rhel7.5.0", pc_init_rhel750,
-                  pc_machine_rhel750_options);

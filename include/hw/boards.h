@@ -433,7 +433,4 @@ extern const size_t hw_compat_rhel_8_0_len;
 extern GlobalProperty hw_compat_rhel_7_6[];
 extern const size_t hw_compat_rhel_7_6_len;
 
-extern GlobalProperty hw_compat_rhel_7_5[];
-extern const size_t hw_compat_rhel_7_5_len;
-
 #endif

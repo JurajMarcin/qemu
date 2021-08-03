@@ -5282,35 +5282,4 @@ static void spapr_machine_rhel760sxxm_class_options(MachineClass *mc)
 
 DEFINE_SPAPR_MACHINE(rhel760sxxm, "rhel7.6.0-sxxm", false);
 
-static void spapr_machine_rhel750_class_options(MachineClass *mc)
-{
-    spapr_machine_rhel760_class_options(mc);
-    compat_props_add(mc->compat_props, hw_compat_rhel_7_5, hw_compat_rhel_7_5_len);
-
-}
-
-DEFINE_SPAPR_MACHINE(rhel750, "rhel7.5.0", false);
-
-/*
- * pseries-rhel7.5.0-sxxm
- *
- * pseries-rhel7.5.0 with speculative execution exploit mitigations enabled by default
- */
-
-static void spapr_machine_rhel750sxxm_class_options(MachineClass *mc)
-{
-    SpaprMachineClass *smc = SPAPR_MACHINE_CLASS(mc);
-
-    spapr_machine_rhel750_class_options(mc);
-    smc->default_caps.caps[SPAPR_CAP_CFPC] = SPAPR_CAP_WORKAROUND;
-    smc->default_caps.caps[SPAPR_CAP_SBBC] = SPAPR_CAP_WORKAROUND;
-    smc->default_caps.caps[SPAPR_CAP_IBS] = SPAPR_CAP_FIXED_CCD;
-}
-
-DEFINE_SPAPR_MACHINE(rhel750sxxm, "rhel7.5.0-sxxm", false);
-static void spapr_machine_register_types(void)
-{
-    type_register_static(&spapr_machine_info);
-}
-
 type_init(spapr_machine_register_types)

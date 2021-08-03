@@ -195,26 +195,6 @@ GlobalProperty hw_compat_rhel_7_6[] = {
 };
 const size_t hw_compat_rhel_7_6_len = G_N_ELEMENTS(hw_compat_rhel_7_6);
 
-/* The same as hw_compat_2_11 + hw_compat_2_10 */
-GlobalProperty hw_compat_rhel_7_5[] = {
-    /* hw_compat_rhel_7_5 from hw_compat_2_11 */
-    { "hpet", "hpet-offset-saved", "false" },
-    /* hw_compat_rhel_7_5 from hw_compat_2_11 */
-    { "virtio-blk-pci", "vectors", "2" },
-    /* hw_compat_rhel_7_5 from hw_compat_2_11 */
-    { "vhost-user-blk-pci", "vectors", "2" },
-    /* hw_compat_rhel_7_5 from hw_compat_2_11
-       bz 1608778 modified for our naming */
-    { "e1000-82540em", "migrate_tso_props", "off" },
-    /* hw_compat_rhel_7_5 from hw_compat_2_10 */
-    { "virtio-mouse-device", "wheel-axis", "false" },
-    /* hw_compat_rhel_7_5 from hw_compat_2_10 */
-    { "virtio-tablet-device", "wheel-axis", "false" },
-    { "cirrus-vga", "vgamem_mb", "16" },
-    { "migration", "decompress-error-check", "off" },
-};
-const size_t hw_compat_rhel_7_5_len = G_N_ELEMENTS(hw_compat_rhel_7_5);
-
 GlobalProperty hw_compat_5_2[] = {
     { "ICH9-LPC", "smm-compat", "on"},
     { "PIIX4_PM", "smm-compat", "on"},

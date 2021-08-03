@@ -459,24 +459,6 @@ GlobalProperty pc_rhel_7_6_compat[] = {
 };
 const size_t pc_rhel_7_6_compat_len = G_N_ELEMENTS(pc_rhel_7_6_compat);
 
-/* Similar to PC_COMPAT_2_11 + PC_COMPAT_2_10, but:
- * - x-hv-max-vps was backported to 7.5
- * - x-pci-hole64-fix was backported to 7.5
- */
-GlobalProperty pc_rhel_7_5_compat[] = {
-    /* pc_rhel_7_5_compat from pc_compat_2_11 */  
-    { "Skylake-Server" "-" TYPE_X86_CPU, "clflushopt", "off" },
-    /* pc_rhel_7_5_compat from pc_compat_2_12 */  
-    { TYPE_X86_CPU, "legacy-cache", "on" },
-    /* pc_rhel_7_5_compat from pc_compat_2_12 */  
-    { TYPE_X86_CPU, "topoext", "off" },
-    /* pc_rhel_7_5_compat from pc_compat_2_12 */  
-    { "EPYC-" TYPE_X86_CPU, "xlevel", stringify(0x8000000a) },
-    /* pc_rhel_7_5_compat from pc_compat_2_12 */  
-    { "EPYC-IBPB-" TYPE_X86_CPU, "xlevel", stringify(0x8000000a) },
-};
-const size_t pc_rhel_7_5_compat_len = G_N_ELEMENTS(pc_rhel_7_5_compat);
-
 /*
  * The PC_RHEL_*_COMPAT serve the same purpose for RHEL-7 machine
  * types as the PC_COMPAT_* do for upstream types.
