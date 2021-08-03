@@ -519,28 +519,6 @@ GlobalProperty pc_rhel_7_3_compat[] = {
 };
 const size_t pc_rhel_7_3_compat_len = G_N_ELEMENTS(pc_rhel_7_3_compat);
 
-GlobalProperty pc_rhel_7_2_compat[] = {
-    { "phenom" "-" TYPE_X86_CPU, "rdtscp", "off"},
-    { "qemu64" "-" TYPE_X86_CPU, "sse4a", "on" },
-    { "qemu64" "-" TYPE_X86_CPU, "abm", "on" },
-    { "Haswell-" TYPE_X86_CPU, "abm", "off" },
-    { "Haswell-IBRS" "-" TYPE_X86_CPU, "abm", "off" },
-    { "Haswell-noTSX-" TYPE_X86_CPU, "abm", "off" },
-    { "Haswell-noTSX-IBRS" "-" TYPE_X86_CPU, "abm", "off" },
-    { "Broadwell-" TYPE_X86_CPU, "abm", "off" },
-    { "Broadwell-IBRS" "-" TYPE_X86_CPU, "abm", "off" },
-    { "Broadwell-noTSX-" TYPE_X86_CPU, "abm", "off" },
-    { "Broadwell-noTSX-IBRS" "-" TYPE_X86_CPU, "abm", "off" },
-    { "host" "-" TYPE_X86_CPU, "host-cache-info", "on" },
-    { TYPE_X86_CPU, "check", "off" },
-    { "qemu32" "-" TYPE_X86_CPU, "popcnt", "on" },
-    { TYPE_X86_CPU, "arat", "off" },
-    { "usb-redir", "streams", "off" },
-    { TYPE_X86_CPU, "fill-mtrr-mask", "off" },
-    { "apic-common", "legacy-instance-id", "on" },
-};
-const size_t pc_rhel_7_2_compat_len = G_N_ELEMENTS(pc_rhel_7_2_compat);
-
 /*
  * The PC_RHEL_*_COMPAT serve the same purpose for RHEL-7 machine
  * types as the PC_COMPAT_* do for upstream types.

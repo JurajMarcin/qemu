@@ -1049,29 +1049,3 @@ static void pc_machine_rhel730_options(MachineClass *m)
 
 DEFINE_PC_MACHINE(rhel730, "pc-i440fx-rhel7.3.0", pc_init_rhel730,
                   pc_machine_rhel730_options);
-
-
-static void pc_init_rhel720(MachineState *machine)
-{
-    pc_init1(machine, TYPE_I440FX_PCI_HOST_BRIDGE, \
-             TYPE_I440FX_PCI_DEVICE);
-}
-
-static void pc_machine_rhel720_options(MachineClass *m)
-{
-    PCMachineClass *pcmc = PC_MACHINE_CLASS(m);
-    X86MachineClass *x86mc = X86_MACHINE_CLASS(m);
-    pc_machine_rhel730_options(m);
-    m->desc = "RHEL 7.2.0 PC (i440FX + PIIX, 1996)";
-    /* From pc_i440fx_2_5_machine_options */
-    x86mc->save_tsc_khz = false;
-    m->legacy_fw_cfg_order = 1;
-    /* Note: broken_reserved_end was already in 7.2 */
-    /* From pc_i440fx_2_6_machine_options */
-    pcmc->legacy_cpu_hotplug = true;
-    compat_props_add(m->compat_props, hw_compat_rhel_7_2, hw_compat_rhel_7_2_len);
-    compat_props_add(m->compat_props, pc_rhel_7_2_compat, pc_rhel_7_2_compat_len);
-}
-
-DEFINE_PC_MACHINE(rhel720, "pc-i440fx-rhel7.2.0", pc_init_rhel720,
-                  pc_machine_rhel720_options);

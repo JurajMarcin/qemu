@@ -246,30 +246,6 @@ GlobalProperty hw_compat_rhel_7_3[] = {
 };
 const size_t hw_compat_rhel_7_3_len = G_N_ELEMENTS(hw_compat_rhel_7_3);
 
-/* Mostly like hw_compat_2_4 + 2_3 but:
- *  we don't need "any_layout" as it has been backported to 7.2
- */
-GlobalProperty hw_compat_rhel_7_2[] = {
-        { "virtio-blk-device", "scsi", "true" },
-        { "e1000-82540em", "extra_mac_registers", "off" },
-        { "virtio-pci", "x-disable-pcie", "on" },
-        { "virtio-pci", "migrate-extra", "off" },
-        { "fw_cfg_mem", "dma_enabled", "off" },
-        { "fw_cfg_io", "dma_enabled", "off" },
-        { "isa-fdc", "fallback", "144" },
-        /* Optional because not all virtio-pci devices support legacy mode */
-        { "virtio-pci", "disable-modern", "on", .optional = true },
-        { "virtio-pci", "disable-legacy", "off", .optional = true },
-        { TYPE_PCI_DEVICE, "x-pcie-lnksta-dllla", "off" },
-        { "virtio-pci", "page-per-vq", "on" },
-        /* hw_compat_rhel_7_2 - introduced with 2.10.0 */
-        { "migration", "send-section-footer", "off" },
-        /* hw_compat_rhel_7_2 - introduced with 2.10.0 */
-        { "migration", "store-global-state", "off",
-        },
-};
-const size_t hw_compat_rhel_7_2_len = G_N_ELEMENTS(hw_compat_rhel_7_2);
-
 GlobalProperty hw_compat_5_2[] = {
     { "ICH9-LPC", "smm-compat", "on"},
     { "PIIX4_PM", "smm-compat", "on"},

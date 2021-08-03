@@ -5397,32 +5397,6 @@ static void spapr_machine_rhel730sxxm_class_options(MachineClass *mc)
 
 DEFINE_SPAPR_MACHINE(rhel730sxxm, "rhel7.3.0-sxxm", false);
 
-/*
- * pseries-rhel7.2.0
- */
-/* Should be like spapr_compat_2_5 + 2_4 + 2_3, but "dynamic-reconfiguration"
- * has been backported to RHEL7_2 so we don't need it here.
- */
-
-GlobalProperty spapr_compat_rhel7_2[] = {
-    { "spapr-vlan", "use-rx-buffer-pools", "off" },
-    { TYPE_SPAPR_PCI_HOST_BRIDGE, "ddw", "off" },
-};
-const size_t spapr_compat_rhel7_2_len = G_N_ELEMENTS(spapr_compat_rhel7_2);
-
-static void spapr_machine_rhel720_class_options(MachineClass *mc)
-{
-    SpaprMachineClass *smc = SPAPR_MACHINE_CLASS(mc);
-
-    spapr_machine_rhel730_class_options(mc);
-    smc->use_ohci_by_default = true;
-    mc->has_hotpluggable_cpus = NULL;
-    compat_props_add(mc->compat_props, hw_compat_rhel_7_2, hw_compat_rhel_7_2_len);
-    compat_props_add(mc->compat_props, spapr_compat_rhel7_2, spapr_compat_rhel7_2_len);
-}
-
-DEFINE_SPAPR_MACHINE(rhel720, "rhel7.2.0", false);
-
 static void spapr_machine_register_types(void)
 {
     type_register_static(&spapr_machine_info);
