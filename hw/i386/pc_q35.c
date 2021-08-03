@@ -792,22 +792,3 @@ static void pc_q35_machine_rhel740_options(MachineClass *m)
 
 DEFINE_PC_MACHINE(q35_rhel740, "pc-q35-rhel7.4.0", pc_q35_init_rhel740,
                   pc_q35_machine_rhel740_options);
-
-static void pc_q35_init_rhel730(MachineState *machine)
-{
-    pc_q35_init(machine);
-}
-
-static void pc_q35_machine_rhel730_options(MachineClass *m)
-{
-    PCMachineClass *pcmc = PC_MACHINE_CLASS(m);
-    pc_q35_machine_rhel740_options(m);
-    m->desc = "RHEL-7.3.0 PC (Q35 + ICH9, 2009)";
-    m->max_cpus = 255;
-    pcmc->linuxboot_dma_enabled = false;
-    compat_props_add(m->compat_props, hw_compat_rhel_7_3, hw_compat_rhel_7_3_len);
-    compat_props_add(m->compat_props, pc_rhel_7_3_compat, pc_rhel_7_3_compat_len);
-}
-
-DEFINE_PC_MACHINE(q35_rhel730, "pc-q35-rhel7.3.0", pc_q35_init_rhel730,
-                  pc_q35_machine_rhel730_options);

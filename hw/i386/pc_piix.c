@@ -1030,22 +1030,3 @@ static void pc_machine_rhel740_options(MachineClass *m)
 
 DEFINE_PC_MACHINE(rhel740, "pc-i440fx-rhel7.4.0", pc_init_rhel740,
                   pc_machine_rhel740_options);
-
-static void pc_init_rhel730(MachineState *machine)
-{
-    pc_init1(machine, TYPE_I440FX_PCI_HOST_BRIDGE, \
-             TYPE_I440FX_PCI_DEVICE);
-}
-
-static void pc_machine_rhel730_options(MachineClass *m)
-{
-    PCMachineClass *pcmc = PC_MACHINE_CLASS(m);
-    pc_machine_rhel740_options(m);
-    m->desc = "RHEL 7.3.0 PC (i440FX + PIIX, 1996)";
-    pcmc->linuxboot_dma_enabled = false;
-    compat_props_add(m->compat_props, hw_compat_rhel_7_3, hw_compat_rhel_7_3_len);
-    compat_props_add(m->compat_props, pc_rhel_7_3_compat, pc_rhel_7_3_compat_len);
-}
-
-DEFINE_PC_MACHINE(rhel730, "pc-i440fx-rhel7.3.0", pc_init_rhel730,
-                  pc_machine_rhel730_options);

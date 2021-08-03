@@ -491,34 +491,6 @@ GlobalProperty pc_rhel_7_4_compat[] = {
 };
 const size_t pc_rhel_7_4_compat_len = G_N_ELEMENTS(pc_rhel_7_4_compat);
 
-GlobalProperty pc_rhel_7_3_compat[] = {
-    /* pc_rhel_7_3_compat from pc_compat_2_8 */ 
-    { "kvmclock", "x-mach-use-reliable-get-clock", "off" },
-    /* pc_rhel_7_3_compat from pc_compat_2_7 */ 
-    { TYPE_X86_CPU, "l3-cache", "off" },
-    /* pc_rhel_7_3_compat from pc_compat_2_7 */ 
-    { TYPE_X86_CPU, "full-cpuid-auto-level", "off" },
-    /* pc_rhel_7_3_compat from pc_compat_2_7 */ 
-    { "Opteron_G3" "-" TYPE_X86_CPU, "family", "15" },
-    /* pc_rhel_7_3_compat from pc_compat_2_7 */ 
-    { "Opteron_G3" "-" TYPE_X86_CPU, "model", "6" },
-    /* pc_rhel_7_3_compat from pc_compat_2_7 */ 
-    { "Opteron_G3" "-" TYPE_X86_CPU, "stepping", "1" },
-    /* pc_rhel_7_3_compat from pc_compat_2_7 */ 
-    { "isa-pcspk", "migrate", "off" },
-    /* pc_rhel_7_3_compat from pc_compat_2_6 */ 
-    { TYPE_X86_CPU, "cpuid-0xb", "off" },
-    /* pc_rhel_7_3_compat from pc_compat_2_8 */ 
-    { "ICH9-LPC", "x-smi-broadcast", "off" },
-    /* pc_rhel_7_3_compat from pc_compat_2_8 */ 
-    { TYPE_X86_CPU, "vmware-cpuid-freq", "off" },
-    /* pc_rhel_7_3_compat from pc_compat_2_8 */ 
-    { "Haswell-" TYPE_X86_CPU, "stepping", "1" },
-    /* pc_rhel_7_3_compat from pc_compat_2_3 added in 2.9*/ 
-    { TYPE_X86_CPU, "kvm-no-smi-migration", "on" },
-};
-const size_t pc_rhel_7_3_compat_len = G_N_ELEMENTS(pc_rhel_7_3_compat);
-
 /*
  * The PC_RHEL_*_COMPAT serve the same purpose for RHEL-7 machine
  * types as the PC_COMPAT_* do for upstream types.

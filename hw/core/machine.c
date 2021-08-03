@@ -224,28 +224,6 @@ GlobalProperty hw_compat_rhel_7_4[] = {
 };
 
 const size_t hw_compat_rhel_7_4_len = G_N_ELEMENTS(hw_compat_rhel_7_4);
-/* Mostly like HW_COMPAT_2_6 + HW_COMPAT_2_7 + HW_COMPAT_2_8 except
- * disable-modern, disable-legacy, page-per-vq have already been
- * backported to RHEL7.3
- */
-GlobalProperty hw_compat_rhel_7_3[] = {
-    { "virtio-mmio", "format_transport_address", "off" },
-    { "virtio-serial-device", "emergency-write", "off" },
-    { "ioapic", "version", "0x11" },
-    { "intel-iommu", "x-buggy-eim", "true" },
-    { "virtio-pci", "x-ignore-backend-features", "on" },
-    { "fw_cfg_mem", "x-file-slots", stringify(0x10) },
-    { "fw_cfg_io", "x-file-slots", stringify(0x10) },
-    { "pflash_cfi01", "old-multiple-chip-handling", "on" },
-    { TYPE_PCI_DEVICE, "x-pcie-extcap-init", "off" },
-    { "virtio-pci", "x-pcie-deverr-init", "off" },
-    { "virtio-pci", "x-pcie-lnkctl-init", "off" },
-    { "virtio-pci", "x-pcie-pm-init", "off" },
-    { "virtio-net-device", "x-mtu-bypass-backend", "off" },
-    { "e1000e", "__redhat_e1000e_7_3_intr_state", "on" },
-};
-const size_t hw_compat_rhel_7_3_len = G_N_ELEMENTS(hw_compat_rhel_7_3);
-
 GlobalProperty hw_compat_5_2[] = {
     { "ICH9-LPC", "smm-compat", "on"},
     { "PIIX4_PM", "smm-compat", "on"},
