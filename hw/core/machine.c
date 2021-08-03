@@ -215,15 +215,6 @@ GlobalProperty hw_compat_rhel_7_5[] = {
 };
 const size_t hw_compat_rhel_7_5_len = G_N_ELEMENTS(hw_compat_rhel_7_5);
 
-/* Mostly like hw_compat_2_9 except
- * x-mtu-bypass-backend, x-migrate-msix has already been
- * backported to RHEL7.4. shpc was already on in 7.4.
- */
-GlobalProperty hw_compat_rhel_7_4[] = {
-    { "intel-iommu", "pt", "off" },
-};
-
-const size_t hw_compat_rhel_7_4_len = G_N_ELEMENTS(hw_compat_rhel_7_4);
 GlobalProperty hw_compat_5_2[] = {
     { "ICH9-LPC", "smm-compat", "on"},
     { "PIIX4_PM", "smm-compat", "on"},

@@ -128,9 +128,6 @@ struct PCMachineClass {
 
     /* create kvmclock device even when KVM PV features are not exposed */
     bool kvmclock_create_always;
-
-    /* RH only, see bz 1489800 */
-    bool pc_rom_ro;
 };
 
 #define TYPE_PC_MACHINE "generic-pc-machine"
@@ -301,9 +298,6 @@ extern const size_t pc_rhel_7_6_compat_len;
 
 extern GlobalProperty pc_rhel_7_5_compat[];
 extern const size_t pc_rhel_7_5_compat_len;
-
-extern GlobalProperty pc_rhel_7_4_compat[];
-extern const size_t pc_rhel_7_4_compat_len;
 
 /* Helper for setting model-id for CPU models that changed model-id
  * depending on QEMU versions up to QEMU 2.4.

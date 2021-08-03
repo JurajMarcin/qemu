@@ -5308,49 +5308,6 @@ static void spapr_machine_rhel750sxxm_class_options(MachineClass *mc)
 }
 
 DEFINE_SPAPR_MACHINE(rhel750sxxm, "rhel7.5.0-sxxm", false);
-
-/*
- * pseries-rhel7.4.0
- * like spapr_compat_2_9
- */
-GlobalProperty spapr_compat_rhel7_4[] = {
-    { TYPE_POWERPC_CPU, "pre-2.10-migration", "on" },
-};
-const size_t spapr_compat_rhel7_4_len = G_N_ELEMENTS(spapr_compat_rhel7_4);
-
-static void spapr_machine_rhel740_class_options(MachineClass *mc)
-{
-    SpaprMachineClass *smc = SPAPR_MACHINE_CLASS(mc);
-
-    spapr_machine_rhel750_class_options(mc);
-    compat_props_add(mc->compat_props, hw_compat_rhel_7_4, hw_compat_rhel_7_4_len);
-    compat_props_add(mc->compat_props, spapr_compat_rhel7_4, spapr_compat_rhel7_4_len);
-    smc->has_power9_support = false;
-    smc->pre_2_10_has_unused_icps = true;
-    smc->resize_hpt_default = SPAPR_RESIZE_HPT_DISABLED;
-    smc->default_caps.caps[SPAPR_CAP_HTM] = SPAPR_CAP_ON;
-}
-
-DEFINE_SPAPR_MACHINE(rhel740, "rhel7.4.0", false);
-
-/*
- * pseries-rhel7.4.0-sxxm
- *
- * pseries-rhel7.4.0 with speculative execution exploit mitigations enabled by default
- */
-
-static void spapr_machine_rhel740sxxm_class_options(MachineClass *mc)
-{
-    SpaprMachineClass *smc = SPAPR_MACHINE_CLASS(mc);
-
-    spapr_machine_rhel740_class_options(mc);
-    smc->default_caps.caps[SPAPR_CAP_CFPC] = SPAPR_CAP_WORKAROUND;
-    smc->default_caps.caps[SPAPR_CAP_SBBC] = SPAPR_CAP_WORKAROUND;
-    smc->default_caps.caps[SPAPR_CAP_IBS] = SPAPR_CAP_FIXED_CCD;
-}
-
-DEFINE_SPAPR_MACHINE(rhel740sxxm, "rhel7.4.0-sxxm", false);
-
 static void spapr_machine_register_types(void)
 {
     type_register_static(&spapr_machine_info);

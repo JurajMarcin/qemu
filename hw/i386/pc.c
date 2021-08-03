@@ -477,20 +477,6 @@ GlobalProperty pc_rhel_7_5_compat[] = {
 };
 const size_t pc_rhel_7_5_compat_len = G_N_ELEMENTS(pc_rhel_7_5_compat);
 
-GlobalProperty pc_rhel_7_4_compat[] = {
-    /* pc_rhel_7_4_compat from pc_compat_2_9 */ 
-    { "mch", "extended-tseg-mbytes", stringify(0) },
-    /* bz 1489800 */ 
-    { "ICH9-LPC", "__com.redhat_force-rev1-fadt", "on" },
-    /* pc_rhel_7_4_compat from pc_compat_2_10 */ 
-    { "i440FX-pcihost", "x-pci-hole64-fix", "off" },
-    /* pc_rhel_7_4_compat from pc_compat_2_10 */ 
-    { "q35-pcihost", "x-pci-hole64-fix", "off" },
-    /* pc_rhel_7_4_compat from pc_compat_2_10 */ 
-    { TYPE_X86_CPU, "x-hv-max-vps", "0x40" },
-};
-const size_t pc_rhel_7_4_compat_len = G_N_ELEMENTS(pc_rhel_7_4_compat);
-
 /*
  * The PC_RHEL_*_COMPAT serve the same purpose for RHEL-7 machine
  * types as the PC_COMPAT_* do for upstream types.
@@ -1094,8 +1080,7 @@ void pc_memory_init(PCMachineState *pcms,
     option_rom_mr = g_malloc(sizeof(*option_rom_mr));
     memory_region_init_ram(option_rom_mr, NULL, "pc.rom", PC_ROM_SIZE,
                            &error_fatal);
-    /* RH difference: See bz 1489800, explicitly make ROM ro */
-    if (pcmc->pc_rom_ro) {
+    if (pcmc->pci_enabled) {
         memory_region_set_readonly(option_rom_mr, true);
     }
     memory_region_add_subregion_overlap(rom_memory,
@@ -1845,7 +1830,6 @@ static void pc_machine_class_init(ObjectClass *oc, void *data)
     pcmc->pvh_enabled = true;
     pcmc->kvmclock_create_always = true;
     assert(!mc->get_hotplug_handler);
-    pcmc->pc_rom_ro = true;
     mc->async_pf_vmexit_disable = false;
     mc->get_hotplug_handler = pc_get_hotplug_handler;
     mc->hotplug_allowed = pc_hotplug_allowed;

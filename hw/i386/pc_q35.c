@@ -774,21 +774,3 @@ static void pc_q35_machine_rhel750_options(MachineClass *m)
 
 DEFINE_PC_MACHINE(q35_rhel750, "pc-q35-rhel7.5.0", pc_q35_init_rhel750,
                   pc_q35_machine_rhel750_options);
-
-static void pc_q35_init_rhel740(MachineState *machine)
-{
-    pc_q35_init(machine);
-}
-
-static void pc_q35_machine_rhel740_options(MachineClass *m)
-{
-    PCMachineClass *pcmc = PC_MACHINE_CLASS(m);
-    pc_q35_machine_rhel750_options(m);
-    m->desc = "RHEL-7.4.0 PC (Q35 + ICH9, 2009)";
-    pcmc->pc_rom_ro = false;
-    compat_props_add(m->compat_props, hw_compat_rhel_7_4, hw_compat_rhel_7_4_len);
-    compat_props_add(m->compat_props, pc_rhel_7_4_compat, pc_rhel_7_4_compat_len);
-}
-
-DEFINE_PC_MACHINE(q35_rhel740, "pc-q35-rhel7.4.0", pc_q35_init_rhel740,
-                  pc_q35_machine_rhel740_options);
