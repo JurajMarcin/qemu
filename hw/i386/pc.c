@@ -598,41 +598,6 @@ const size_t pc_rhel_7_1_compat_len = G_N_ELEMENTS(pc_rhel_7_1_compat);
  * PC_RHEL_7_*_COMPAT apply both to i440fx and q35 types.
  */
 
-/*
- * RHEL-7 is based on QEMU 1.5.3, so this needs the PC_COMPAT_*
- * between our base and 1.5, less stuff backported to RHEL-7.0
- * (usb-device.msos-desc), less stuff for devices we changed
- * (qemu64-x86_64-cpu) or don't support (hpet, pci-serial-2x,
- * pci-serial-4x) in 7.0.
- */
-GlobalProperty pc_rhel_7_0_compat[] = {
-    { "virtio-scsi-pci", "any_layout", "off" },
-    { "PIIX4_PM", "memory-hotplug-support", "off" },
-    { "apic", "version", stringify(0x11) },
-    { "nec-usb-xhci", "superspeed-ports-first", "off" },
-    { "nec-usb-xhci", "force-pcie-endcap", "on" },
-    { "pci-serial", "prog_if", stringify(0) },
-    { "virtio-net-pci", "guest_announce", "off" },
-    { "ICH9-LPC", "memory-hotplug-support", "off" },
-    { "xio3130-downstream", COMPAT_PROP_PCP, "off" },
-    { "ioh3420", COMPAT_PROP_PCP, "off" },
-    { "PIIX4_PM", "acpi-pci-hotplug-with-bridge-support", "off" },
-    { "e1000", "mitigation", "off" },
-    { "virtio-net-pci", "ctrl_guest_offloads", "off" },
-    { "Conroe" "-" TYPE_X86_CPU, "x2apic", "on" },
-    { "Penryn" "-" TYPE_X86_CPU, "x2apic", "on" },
-    { "Nehalem" "-" TYPE_X86_CPU, "x2apic", "on" },
-    { "Nehalem-IBRS" "-" TYPE_X86_CPU, "x2apic", "on" },
-    { "Westmere" "-" TYPE_X86_CPU, "x2apic", "on" },
-    { "Westmere-IBRS" "-" TYPE_X86_CPU, "x2apic", "on" },
-    { "Opteron_G1" "-" TYPE_X86_CPU, "x2apic", "on" },
-    { "Opteron_G2" "-" TYPE_X86_CPU, "x2apic", "on" },
-    { "Opteron_G3" "-" TYPE_X86_CPU, "x2apic", "on" },
-    { "Opteron_G4" "-" TYPE_X86_CPU, "x2apic", "on" },
-    { "Opteron_G5" "-" TYPE_X86_CPU, "x2apic", "on" },
-};
-const size_t pc_rhel_7_0_compat_len = G_N_ELEMENTS(pc_rhel_7_0_compat);
-
 GSIState *pc_gsi_create(qemu_irq **irqs, bool pci_enabled)
 {
     GSIState *s;
