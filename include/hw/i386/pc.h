@@ -311,9 +311,6 @@ extern const size_t pc_rhel_7_3_compat_len;
 extern GlobalProperty pc_rhel_7_2_compat[];
 extern const size_t pc_rhel_7_2_compat_len;
 
-extern GlobalProperty pc_rhel_7_1_compat[];
-extern const size_t pc_rhel_7_1_compat_len;
-
 /* Helper for setting model-id for CPU models that changed model-id
  * depending on QEMU versions up to QEMU 2.4.
  */

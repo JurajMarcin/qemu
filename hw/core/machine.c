@@ -270,29 +270,6 @@ GlobalProperty hw_compat_rhel_7_2[] = {
 };
 const size_t hw_compat_rhel_7_2_len = G_N_ELEMENTS(hw_compat_rhel_7_2);
 
-/* Mostly like hw_compat_2_1 but:
- *    we don't need virtio-scsi-pci since 7.0 already had that on
- *
- * RH: Note, qemu-extended-regs should have been enabled in the 7.1
- * machine type, but was accidentally turned off in 7.2 onwards.
- */
-GlobalProperty hw_compat_rhel_7_1[] = {
-    { "intel-hda-generic", "old_msi_addr", "on" },
-    { "VGA", "qemu-extended-regs", "off" },
-    { "secondary-vga", "qemu-extended-regs", "off" },
-    { "usb-mouse", "usb_version", stringify(1) },
-    { "usb-kbd", "usb_version", stringify(1) },
-    { "virtio-pci",  "virtio-pci-bus-master-bug-migration", "on" },
-    { "virtio-blk-pci", "any_layout", "off" },
-    { "virtio-balloon-pci", "any_layout", "off" },
-    { "virtio-serial-pci", "any_layout", "off" },
-    { "virtio-9p-pci", "any_layout", "off" },
-    { "virtio-rng-pci", "any_layout", "off" },
-    /* HW_COMPAT_RHEL7_1 - introduced with 2.10.0 */
-    { "migration", "send-configuration", "off" },
-};
-const size_t hw_compat_rhel_7_1_len = G_N_ELEMENTS(hw_compat_rhel_7_1);
-
 GlobalProperty hw_compat_5_2[] = {
     { "ICH9-LPC", "smm-compat", "on"},
     { "PIIX4_PM", "smm-compat", "on"},

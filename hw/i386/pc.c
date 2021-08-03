@@ -541,57 +541,6 @@ GlobalProperty pc_rhel_7_2_compat[] = {
 };
 const size_t pc_rhel_7_2_compat_len = G_N_ELEMENTS(pc_rhel_7_2_compat);
 
-GlobalProperty pc_rhel_7_1_compat[] = {
-    { "kvm64" "-" TYPE_X86_CPU, "vme", "off" },
-    { "kvm32" "-" TYPE_X86_CPU, "vme", "off" },
-    { "Conroe" "-" TYPE_X86_CPU, "vme", "off" },
-    { "Penryn" "-" TYPE_X86_CPU, "vme", "off" },
-    { "Nehalem" "-" TYPE_X86_CPU, "vme", "off" },
-    { "Nehalem-IBRS" "-" TYPE_X86_CPU, "vme", "off" },
-    { "Westmere" "-" TYPE_X86_CPU, "vme", "off" },
-    { "Westmere-IBRS" "-" TYPE_X86_CPU, "vme", "off" },
-    { "SandyBridge" "-" TYPE_X86_CPU, "vme", "off" },
-    { "SandyBridge-IBRS" "-" TYPE_X86_CPU, "vme", "off" },
-    { "Haswell" "-" TYPE_X86_CPU, "vme", "off" },
-    { "Haswell-IBRS" "-" TYPE_X86_CPU, "vme", "off" },
-    { "Broadwell" "-" TYPE_X86_CPU, "vme", "off" },
-    { "Broadwell-IBRS" "-" TYPE_X86_CPU, "vme", "off" },
-    { "Opteron_G1" "-" TYPE_X86_CPU, "vme", "off" },
-    { "Opteron_G2" "-" TYPE_X86_CPU, "vme", "off" },
-    { "Opteron_G3" "-" TYPE_X86_CPU, "vme", "off" },
-    { "Opteron_G4" "-" TYPE_X86_CPU, "vme", "off" },
-    { "Opteron_G5" "-" TYPE_X86_CPU, "vme", "off" },
-    { "Haswell" "-" TYPE_X86_CPU,  "f16c", "off" },
-    { "Haswell-IBRS" "-" TYPE_X86_CPU, "f16c", "off" },
-    { "Haswell" "-" TYPE_X86_CPU, "rdrand", "off" },
-    { "Haswell-IBRS" "-" TYPE_X86_CPU, "rdrand", "off" },
-    { "Broadwell" "-" TYPE_X86_CPU, "f16c", "off" },
-    { "Broadwell-IBRS" "-" TYPE_X86_CPU, "f16c", "off" },
-    { "Broadwell" "-" TYPE_X86_CPU, "rdrand", "off" },
-    { "Broadwell-IBRS" "-" TYPE_X86_CPU, "rdrand", "off" },
-    { "coreduo" "-" TYPE_X86_CPU, "vmx", "on" },
-    { "core2duo" "-" TYPE_X86_CPU, "vmx", "on" },
-    { "qemu64" "-" TYPE_X86_CPU, "min-level", stringify(4) },
-    { "kvm64" "-" TYPE_X86_CPU, "min-level", stringify(5) },
-    { "pentium3" "-" TYPE_X86_CPU, "min-level", stringify(2) },
-    { "n270" "-" TYPE_X86_CPU, "min-level", stringify(5) },
-    { "Conroe" "-" TYPE_X86_CPU, "min-level", stringify(4) },
-    { "Penryn" "-" TYPE_X86_CPU, "min-level", stringify(4) },
-    { "Nehalem" "-" TYPE_X86_CPU, "min-level", stringify(4) },
-    { "n270" "-" TYPE_X86_CPU, "min-xlevel", stringify(0x8000000a) },
-    { "Penryn" "-" TYPE_X86_CPU, "min-xlevel", stringify(0x8000000a) },
-    { "Conroe" "-" TYPE_X86_CPU, "min-xlevel", stringify(0x8000000a) },
-    { "Nehalem" "-" TYPE_X86_CPU, "min-xlevel", stringify(0x8000000a) },
-    { "Westmere" "-" TYPE_X86_CPU, "min-xlevel", stringify(0x8000000a) },
-    { "SandyBridge" "-" TYPE_X86_CPU, "min-xlevel", stringify(0x8000000a) },
-    { "IvyBridge" "-" TYPE_X86_CPU, "min-xlevel", stringify(0x8000000a) },
-    { "Haswell" "-" TYPE_X86_CPU, "min-xlevel", stringify(0x8000000a) },
-    { "Haswell-noTSX" "-" TYPE_X86_CPU, "min-xlevel", stringify(0x8000000a) },
-    { "Broadwell" "-" TYPE_X86_CPU, "min-xlevel", stringify(0x8000000a) },
-    { "Broadwell-noTSX" "-" TYPE_X86_CPU, "min-xlevel", stringify(0x8000000a) },
-};
-const size_t pc_rhel_7_1_compat_len = G_N_ELEMENTS(pc_rhel_7_1_compat);
-
 /*
  * The PC_RHEL_*_COMPAT serve the same purpose for RHEL-7 machine
  * types as the PC_COMPAT_* do for upstream types.

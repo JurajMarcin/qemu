@@ -824,10 +824,6 @@ static bool rtc_irq_reinject_on_ack_count_needed(void *opaque)
 {
     RTCState *s = (RTCState *)opaque;
 
-    if (migrate_pre_2_2) {
-        return false;
-    }
-
     return s->irq_reinject_on_ack_count != 0;
 }
 
