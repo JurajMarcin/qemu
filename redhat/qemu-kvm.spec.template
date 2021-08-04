@@ -1056,6 +1056,12 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Wed Aug 04 2021 Miroslav Rezanina <mrezanin@redhat.com> - 4.2.0-57
+- kvm-aio-wait-delegate-polling-of-main-AioContext-if-BQL-.patch [bz#1969848]
+- kvm-async-use-explicit-memory-barriers.patch [bz#1969848]
+- Resolves: bz#1969848
+  (qemu-img convert hangs on aarch64)
+
 * Thu Jul 29 2021 Miroslav Rezanina <mrezanin@redhat.com> - 4.2.0-56
 - kvm-glib-compat-add-g_unix_get_passwd_entry_qemu.patch [bz#1967716]
 - kvm-qga-add-ssh-add-remove-authorized-keys.patch [bz#1967716]
