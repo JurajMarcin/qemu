@@ -1384,6 +1384,15 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Wed Aug 04 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-27
+- kvm-migration-move-wait-unplug-loop-to-its-own-function.patch [bz#1976852]
+- kvm-migration-failover-continue-to-wait-card-unplug-on-e.patch [bz#1976852]
+- kvm-aarch64-Add-USB-storage-devices.patch [bz#1974579]
+- Resolves: bz#1976852
+  ([failover vf migration]  The failover vf will be unregistered  if canceling the migration whose status is "wait-unplug")
+- Resolves: bz#1974579
+  (It's not possible to start installation from a virtual USB device on aarch64)
+
 * Thu Jul 29 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-26
 - kvm-acpi-pc-revert-back-to-v5.2-PCI-slot-enumeration.patch [bz#1977798]
 - kvm-migration-failover-reset-partially_hotplugged.patch [bz#1787194]
