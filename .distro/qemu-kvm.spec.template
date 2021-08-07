@@ -1108,6 +1108,31 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Sat Aug 07 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-11
+- kvm-arm-virt-Register-iommu-as-a-class-property.patch [bz#1838608]
+- kvm-arm-virt-Register-its-as-a-class-property.patch [bz#1838608]
+- kvm-arm-virt-Enable-ARM-RAS-support.patch [bz#1838608]
+- kvm-block-Fix-in_flight-leak-in-request-padding-error-pa.patch [bz#1972079]
+- kvm-spec-Remove-buildldflags.patch [bz#1973029]
+- kvm-spec-Use-make_build-macro.patch [bz#1973029]
+- kvm-spec-Drop-make-install-sharedir-and-datadir-usage.patch [bz#1973029]
+- kvm-spec-use-make_install-macro.patch [bz#1973029]
+- kvm-spec-parallelize-make-check.patch [bz#1973029]
+- kvm-spec-Drop-explicit-build-id.patch [bz#1973029]
+- kvm-spec-use-build_ldflags.patch [bz#1973029]
+- kvm-Move-virtiofsd-to-separate-package.patch [bz#1979728]
+- kvm-Utilize-firmware-configure-option.patch [bz#1980139]
+- Resolves: bz#1838608
+  (aarch64: Enable ARMv8 RAS virtualization support)
+- Resolves: bz#1972079
+  (Windows Installation blocked on 4k disk when using blk+raw+iothread)
+- Resolves: bz#1973029
+  (Spec file cleanups)
+- Resolves: bz#1979728
+  (Split out virtiofsd subpackage)
+- Resolves: bz#1980139
+  (Use configure --firmwarepath more)
+
 * Sun Jul 25 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-10
 - kvm-s390x-css-Introduce-an-ESW-struct.patch [bz#1957194]
 - kvm-s390x-css-Split-out-the-IRB-sense-data.patch [bz#1957194]
