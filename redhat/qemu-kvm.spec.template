@@ -1336,6 +1336,20 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Tue Aug 10 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.2.0-16.el8_4.5
+- kvm-migration-Replaced-qemu_mutex_lock-calls-with-QEMU_L.patch [bz#1984458]
+- kvm-migration-Move-bitmap_mutex-out-of-migration_bitmap_.patch [bz#1984458]
+- kvm-file-posix-fix-max_iov-for-dev-sg-devices.patch [bz#1955187]
+- kvm-scsi-generic-pass-max_segments-via-max_iov-field-in-.patch [bz#1955187]
+- kvm-osdep-provide-ROUND_DOWN-macro.patch [bz#1955187]
+- kvm-block-backend-align-max_transfer-to-request-alignmen.patch [bz#1955187]
+- kvm-block-add-max_hw_transfer-to-BlockLimits.patch [bz#1955187]
+- kvm-file-posix-try-BLKSECTGET-on-block-devices-too-do-no.patch [bz#1955187]
+- Resolves: bz#1984458
+  (SAP/3TB VM migration slowness [idle db] [rhel-8.4.0.z])
+- Resolves: bz#1955187
+  (RHV VM pauses due to 'qemu-kvm' getting EINVAL on i/o to a direct lun with scsi passthrough enabled [rhel-8.4.0.z])
+
 * Thu Jul 22 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.2.0-16.el8_4.4
 - kvm-job-call-job_enter-from-job_pause.patch [bz#1976256]
 - kvm-mirror-Move-open_backing_file-to-exit_common.patch [bz#1976256]
