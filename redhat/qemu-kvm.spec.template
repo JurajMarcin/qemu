@@ -1336,6 +1336,9 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Thu Aug 12 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.2.0-16.el8_4.6
+- Reverting fixes for BZ#1984458 as they were not approved by QE
+
 * Tue Aug 10 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.2.0-16.el8_4.5
 - kvm-migration-Replaced-qemu_mutex_lock-calls-with-QEMU_L.patch [bz#1984458]
 - kvm-migration-Move-bitmap_mutex-out-of-migration_bitmap_.patch [bz#1984458]
