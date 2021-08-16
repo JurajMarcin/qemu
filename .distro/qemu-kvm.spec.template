@@ -425,6 +425,7 @@ mkdir -p %{qemu_kvm_build}
   --disable-auth-pam               \\\
   --disable-avx2                   \\\
   --disable-avx512f                \\\
+  --disable-block-drv-whitelist-in-tools \\\
   --disable-bochs                  \\\
   --disable-brlapi                 \\\
   --disable-bsd-user               \\\
@@ -587,7 +588,6 @@ run_configure \
 %if %{defined block_drivers_ro_list}
   --block-drv-ro-whitelist=%{block_drivers_ro_list} \
 %endif
-  --enable-block-drv-whitelist-in-tools \
   --enable-attr \
 %ifarch %{ix86} x86_64
   --enable-avx2 \
