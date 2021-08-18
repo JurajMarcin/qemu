@@ -1384,6 +1384,16 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Wed Aug 18 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 6.0.0-28.el8
+- kvm-iotests-Improve-and-rename-test-291-to-qemu-img-bitm.patch [bz#1946084]
+- kvm-qemu-img-Fail-fast-on-convert-bitmaps-with-inconsist.patch [bz#1946084]
+- kvm-qemu-img-Add-skip-broken-bitmaps-for-convert-bitmaps.patch [bz#1946084]
+- kvm-audio-Never-send-migration-section.patch [bz#1991671]
+- Resolves: bz#1946084
+  (qemu-img convert --bitmaps fail if a bitmap is inconsistent)
+- Resolves: bz#1991671
+  (vmstate differs between -audiodev and QEMU_AUDIO_DRV when no sound frontends devs present.)
+
 * Wed Aug 04 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-27
 - kvm-migration-move-wait-unplug-loop-to-its-own-function.patch [bz#1976852]
 - kvm-migration-failover-continue-to-wait-card-unplug-on-e.patch [bz#1976852]
