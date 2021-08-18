@@ -1056,6 +1056,12 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Wed Aug 18 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-58.el8
+- kvm-virtiofsd-Disable-remote-posix-locks-by-default.patch [bz#1967496]
+- kvm-virtiofsd-Fix-the-help-message-of-posix-lock.patch [bz#1967496]
+- Resolves: bz#1967496
+  ([virtio-fs] nfs/xfstest generic/089 generic/478 generic/632 failed)
+
 * Wed Aug 04 2021 Miroslav Rezanina <mrezanin@redhat.com> - 4.2.0-57
 - kvm-aio-wait-delegate-polling-of-main-AioContext-if-BQL-.patch [bz#1969848]
 - kvm-async-use-explicit-memory-barriers.patch [bz#1969848]
