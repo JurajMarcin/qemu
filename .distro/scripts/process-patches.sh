@@ -23,6 +23,9 @@ shift
 ZRELEASE=$1
 shift
 RCVERSION=$1
+shift
+CLANG=$1
+shift
 
 SOURCES=rpmbuild/SOURCES
 SRPMDIR=rpmbuild/SRPM
@@ -75,6 +78,7 @@ cp ${SPECNAME}.template ${SPEC}
 
 sed -i -e "/%%PATCHLIST%%/r psection
            /%%PATCHLIST%%/d
+           s/%%CLANG%%/${CLANG}/
            s/%%VERSION%%/${VERSION}/
            s/%%RELEASE%%/${RELEASE}/
            s/%%ZRELEASE%%/${ZRELEASE}/

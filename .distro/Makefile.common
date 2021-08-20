@@ -8,6 +8,7 @@ ZRELEASE:=
 RELEASE_SEPARATOR:=-
 WEEKLY_DATE:=
 RC:=
+CLANG:=1
 BUILD_TARGET=rhel-9.0.0-beta-candidate
 
 ifneq ($(RC),)
@@ -21,6 +22,8 @@ MARKER:=609d7596524ab204ccd71ef42c9eee4c7c338ea4
 
 SPECFILE:=$(NAME).spec
 DIST:=.el9
+SRPM_NAME=$(shell echo `rpmspec --query --srpm --target="" --define "dist $(DIST)" $(RPMBUILD)/SPECS/qemu-kvm.spec`)src.rpm
+
 
 SOURCES_FILELIST:=                     \
        ksmtuned.conf                   \
