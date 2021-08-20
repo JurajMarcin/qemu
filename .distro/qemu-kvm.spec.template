@@ -16,9 +16,14 @@
 %global have_block_rbd 1
 %global enable_werror 1
 %global have_clang %%CLANG%%
+%global have_safe_stack 0
+
 
 %if %{have_clang}
 %global toolchain clang
+%ifarch x86_64
+%global have_safe_stack 1
+%endif
 %else
 %global toolchain gcc
 %global cc_suffix .gcc
@@ -158,6 +163,9 @@ Source36: README.tests
 
 %if %{have_clang}
 BuildRequires: clang
+%if %{have_safe_stack}
+BuildRequires: compiler-rt
+%endif
 %else
 BuildRequires: gcc
 %endif
@@ -646,6 +654,9 @@ run_configure \
   --enable-werror \
 %endif
   --enable-xkbcommon \
+%if %{have_safe_stack}
+  --enable-safe-stack \
+%endif
 
 
 %if %{tools_only}
