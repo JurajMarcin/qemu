@@ -1131,6 +1131,63 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Fri Aug 20 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-12.el9
+- kvm-migration-Move-yank-outside-qemu_start_incoming_migr.patch [bz#1974683]
+- kvm-migration-Allow-reset-of-postcopy_recover_triggered-.patch [bz#1974683]
+- kvm-Remove-RHEL-7.0.0-machine-type.patch [bz#1968519]
+- kvm-Remove-RHEL-7.1.0-machine-type.patch [bz#1968519]
+- kvm-Remove-RHEL-7.2.0-machine-type.patch [bz#1968519]
+- kvm-Remove-RHEL-7.3.0-machine-types.patch [bz#1968519]
+- kvm-Remove-RHEL-7.4.0-machine-types.patch [bz#1968519]
+- kvm-Remove-RHEL-7.5.0-machine-types.patch [bz#1968519]
+- kvm-acpi-pc-revert-back-to-v5.2-PCI-slot-enumeration.patch [bz#1957194]
+- kvm-migration-failover-reset-partially_hotplugged.patch [bz#1957194]
+- kvm-hmp-Fix-loadvm-to-resume-the-VM-on-success-instead-o.patch [bz#1957194]
+- kvm-migration-Move-bitmap_mutex-out-of-migration_bitmap_.patch [bz#1957194]
+- kvm-i386-cpu-Expose-AVX_VNNI-instruction-to-guest.patch [bz#1957194]
+- kvm-ratelimit-protect-with-a-mutex.patch [bz#1957194]
+- kvm-Update-Linux-headers-to-5.13-rc4.patch [bz#1957194]
+- kvm-i386-Add-ratelimit-for-bus-locks-acquired-in-guest.patch [bz#1957194]
+- kvm-iothread-generalize-iothread_set_param-iothread_get_.patch [bz#1957194]
+- kvm-iothread-add-aio-max-batch-parameter.patch [bz#1957194]
+- kvm-linux-aio-limit-the-batch-size-using-aio-max-batch-p.patch [bz#1957194]
+- kvm-block-nvme-Fix-VFIO_MAP_DMA-failed-No-space-left-on-.patch [bz#1957194]
+- kvm-migration-move-wait-unplug-loop-to-its-own-function.patch [bz#1957194]
+- kvm-migration-failover-continue-to-wait-card-unplug-on-e.patch [bz#1957194]
+- kvm-aarch64-Add-USB-storage-devices.patch [bz#1957194]
+- kvm-iotests-Improve-and-rename-test-291-to-qemu-img-bitm.patch [bz#1957194]
+- kvm-qemu-img-Fail-fast-on-convert-bitmaps-with-inconsist.patch [bz#1957194]
+- kvm-qemu-img-Add-skip-broken-bitmaps-for-convert-bitmaps.patch [bz#1957194]
+- kvm-audio-Never-send-migration-section.patch [bz#1957194]
+- kvm-pc-bios-s390-ccw-bootmap-Silence-compiler-warning-fr.patch [bz#1939509 bz#1940132]
+- kvm-pc-bios-s390-ccw-Use-reset_psw-pointer-instead-of-ha.patch [bz#1939509 bz#1940132]
+- kvm-pc-bios-s390-ccw-netboot-Use-Wl-prefix-to-pass-param.patch [bz#1939509 bz#1940132]
+- kvm-pc-bios-s390-ccw-Silence-warning-from-Clang-by-marki.patch [bz#1939509 bz#1940132]
+- kvm-pc-bios-s390-ccw-Fix-the-cc-option-macro-in-the-Make.patch [bz#1939509 bz#1940132]
+- kvm-pc-bios-s390-ccw-Silence-GCC-11-stringop-overflow-wa.patch [bz#1939509 bz#1940132]
+- kvm-pc-bios-s390-ccw-Allow-building-with-Clang-too.patch [bz#1939509 bz#1940132]
+- kvm-pc-bios-s390-ccw-Fix-inline-assembly-for-older-versi.patch [bz#1939509 bz#1940132]
+- kvm-configure-Fix-endianess-test-with-LTO.patch [bz#1939509 bz#1940132]
+- kvm-spec-Switch-toolchain-to-Clang-LLVM.patch [bz#1939509 bz#1940132]
+- kvm-spec-Use-safe-stack-for-x86_64.patch [bz#1939509 bz#1940132]
+- kvm-spec-Reenable-write-support-for-VMDK-etc.-in-tools.patch [bz#1989841]
+- Resolves: bz#1974683
+  (Fail to set migrate incoming for 2nd time after the first time failed)
+- Resolves: bz#1968519
+  (Remove all the old 7.0-7.5 machine types)
+- Resolves: bz#1957194
+  (Synchronize RHEL-AV 8.5.0 changes to RHEL 9.0.0 Beta)
+- Resolves: bz#1939509
+  (QEMU: enable SafeStack)
+- Resolves: bz#1940132
+  (QEMU: switch build toolchain to Clang/LLVM)
+- Resolves: bz#1989841
+  (RFE: qemu-img cannot convert images into vmdk and vpc formats)
+
+* Tue Aug 10 2021 Mohan Boddu <mboddu@redhat.com> - 17:6.0.0-11.1
+- Rebuilt for IMA sigs, glibc 2.34, aarch64 flags
+  Related: rhbz#1991688
+
 * Sat Aug 07 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-11
 - kvm-arm-virt-Register-iommu-as-a-class-property.patch [bz#1838608]
 - kvm-arm-virt-Register-its-as-a-class-property.patch [bz#1838608]
