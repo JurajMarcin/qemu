@@ -1,6 +1,5 @@
 include rh-virtio.mak
 
-CONFIG_AC97=y
 CONFIG_ACPI=y
 CONFIG_ACPI_PCI=y
 CONFIG_ACPI_CPU_HOTPLUG=y
