@@ -1336,6 +1336,15 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Tue Aug 24 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.2.0-16.el8_4.7
+- kvm-migration-Replaced-qemu_mutex_lock-calls-with-QEMU_L.patch [bz#1984458]
+- kvm-migration-Move-bitmap_mutex-out-of-migration_bitmap_.patch [bz#1984458]
+- kvm-file-posix-Cap-max_iov-at-IOV_MAX.patch [bz#1996131]
+- Resolves: bz#1984458
+  (SAP/3TB VM migration slowness [idle db] [rhel-8.4.0.z])
+- Resolves: bz#1996131
+  (VM remains in paused state when trying to write on a resized disk resides on iscsi [rhel-8.4.0.z])
+
 * Thu Aug 12 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.2.0-16.el8_4.6
 - Reverting fixes for BZ#1984458 as they were not approved by QE
 
