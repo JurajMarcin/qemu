@@ -1384,6 +1384,14 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Wed Aug 25 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 6.0.0-29.el8
+- kvm-file-posix-Cap-max_iov-at-IOV_MAX.patch [bz#1994494]
+- kvm-migration-Move-yank-outside-qemu_start_incoming_migr.patch [bz#1974366]
+- Resolves: bz#1994494
+  (VM remains in paused state when trying to write on a resized disk resides on iscsi)
+- Resolves: bz#1974366
+  (Fail to set migrate incoming for 2nd time after the first time failed)
+
 * Wed Aug 18 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 6.0.0-28.el8
 - kvm-iotests-Improve-and-rename-test-291-to-qemu-img-bitm.patch [bz#1946084]
 - kvm-qemu-img-Fail-fast-on-convert-bitmaps-with-inconsist.patch [bz#1946084]
