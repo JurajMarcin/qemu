@@ -119,7 +119,8 @@ Requires: %{name}-hw-usbredir = %{epoch}:%{version}-%{release}   \
 %endif                                                           \
 Requires: %{name}-block-curl = %{epoch}:%{version}-%{release}    \
 Requires: %{name}-block-rbd = %{epoch}:%{version}-%{release}     \
-Requires: %{name}-block-ssh = %{epoch}:%{version}-%{release}
+Requires: %{name}-block-ssh = %{epoch}:%{version}-%{release}     \
+Requires: %{name}-audio-pa = %{epoch}:%{version}-%{release}
 
 # Since SPICE is removed from RHEL-9, the following Obsoletes:
 # removes {name}-ui-spice for upgrades from RHEL-8
@@ -236,6 +237,7 @@ BuildRequires: pkgconfig(gbm)
 %endif
 BuildRequires: perl-Test-Harness
 BuildRequires: libslirp-devel
+BuildRequires: pulseaudio-libs-devel
 
 
 # Requires for qemu-kvm package
@@ -394,6 +396,13 @@ This package provides the additional SSH block driver for QEMU.
 
 Install this package if you want to access remote disks using
 the Secure Shell (SSH) protocol.
+
+
+%package  audio-pa
+Summary: QEMU PulseAudio audio driver
+Requires: %{name}-common%{?_isa} = %{epoch}:%{version}-%{release}
+%description audio-pa
+This package provides the additional PulseAudio audio driver for QEMU.
 
 
 %if %{have_opengl}
@@ -598,6 +607,7 @@ run_configure \
 %if %{defined block_drivers_ro_list}
   --block-drv-ro-whitelist=%{block_drivers_ro_list} \
 %endif
+  --audio-drv-list=pa \
   --enable-attr \
 %ifarch %{ix86} x86_64
   --enable-avx2 \
@@ -1131,6 +1141,8 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 %files block-ssh
 %{_libdir}/%{name}/block-ssh.so
+%files audio-pa
+%{_libdir}/%{name}/audio-pa.so
 
 %if %{have_opengl}
 %files ui-opengl
