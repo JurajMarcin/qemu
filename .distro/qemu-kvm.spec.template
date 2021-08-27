@@ -1137,6 +1137,18 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Fri Aug 27 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-13
+- kvm-qcow2-Deprecation-warning-when-opening-v2-images-rw.patch [bz#1951814]
+- kvm-disable-ac97-audio.patch [bz#1995819]
+- kvm-redhat-Disable-LTO-on-non-x86-architectures.patch [bz#1950192]
+- kvm-redhat-Enable-the-test-block-iothread-test-again.patch [bz#1950192]
+- Resolves: bz#1951814
+  (RFE: Warning when using qcow2-v2 (compat=0.10))
+- Resolves: bz#1995819
+  (RFE: Remove ac97 audio support from QEMU)
+- Resolves: bz#1950192
+  (RHEL9: when ioeventfd=off and 8.4guest, (qemu) qemu-kvm: ../util/qemu-coroutine-lock.c:57: qemu_co_queue_wait_impl: Assertion `qemu_in_coroutine()' failed.)
+
 * Fri Aug 20 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-12.el9
 - kvm-migration-Move-yank-outside-qemu_start_incoming_migr.patch [bz#1974683]
 - kvm-migration-Allow-reset-of-postcopy_recover_triggered-.patch [bz#1974683]

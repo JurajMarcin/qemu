@@ -42,7 +42,7 @@ endif
 
 all: rh-help
 
-rh-rhel-koji: rh-brew
+rh-brew: rh-rhel-koji
 rh-rhel-koji-gcc: CLANG=0
 rh-rhel-koji-gcc: rh-brew
 
@@ -69,7 +69,7 @@ rh-srpm-gcc: CLANG=0
 rh-srpm-gcc: rh-srpm
 
 
-rh-brew: rh-srpm
+rh-rhel-koji: rh-srpm
 	@echo "Build $(SRPM_NAME) as $(BUILD_TARGET)"
 	$(DS)brew build $(BREW_OPTIONS) $(BUILD_TARGET) $(RPMBUILD)/SRPMS/$(SRPM_NAME)
 
