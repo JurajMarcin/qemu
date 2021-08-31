@@ -221,7 +221,6 @@ BuildRequires: lzo-devel snappy-devel
 %if %{have_numactl}
 BuildRequires: numactl-devel
 %endif
-BuildRequires: libgcrypt-devel
 # qemu-pr-helper multipath support (requires libudev too)
 BuildRequires: device-mapper-multipath-devel
 BuildRequires: systemd-devel
@@ -621,7 +620,6 @@ run_configure \
 %if %{have_fdt}
   --enable-fdt \
 %endif
-  --enable-gcrypt \
   --enable-gnutls \
   --enable-guest-agent \
   --enable-iconv \
