@@ -1149,6 +1149,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Thu Sep 02 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.1.0-1
+- Rebase to QEMU 6.1.0 [bz#1997408]
+- Resolves: #bz#1997408
+  (Rebase to QEMU 6.1.0)
+
 * Fri Aug 27 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-13
 - kvm-qcow2-Deprecation-warning-when-opening-v2-images-rw.patch [bz#1951814]
 - kvm-disable-ac97-audio.patch [bz#1995819]
