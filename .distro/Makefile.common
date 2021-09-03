@@ -4,7 +4,7 @@ VERSION:=6.0.0
 DATE:=
 COMMIT:=
 RELEASE:=13
-ZRELEASE:=
+ZRELEASE:=1
 RELEASE_SEPARATOR:=-
 WEEKLY_DATE:=
 RC:=
@@ -21,7 +21,7 @@ TARURL:=https://pkgs.devel.redhat.com/repo/rpms/qemu-kvm/$(TARFILE)/sha512/$(TAR
 MARKER:=609d7596524ab204ccd71ef42c9eee4c7c338ea4
 
 SPECFILE:=$(NAME).spec
-DIST:=.el9
+DIST:=.el9_b
 SRPM_NAME=$(shell echo `rpmspec --query --srpm --target="" --define "dist $(DIST)" $(RPMBUILD)/SPECS/qemu-kvm.spec`)src.rpm
 
 

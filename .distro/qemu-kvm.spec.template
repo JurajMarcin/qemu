@@ -704,7 +704,7 @@ cp -a %{kvm_target}-softmmu/qemu-system-%{kvm_target} qemu-kvm
     cp pc-bios/s390-ccw/s390-ccw.img pc-bios/s390-ccw/s390-netboot.img pc-bios/
 %endif
 
-%{__cc} %{_sourcedir}/ksmctl.c %{optflags} %{?build_ldflags} -o ksmctl
+%{__cc} %{_sourcedir}/ksmctl.c %{optflags} -pie %{?build_ldflags} -o ksmctl
 popd
 # endif !tools_only
 %endif
@@ -906,7 +906,8 @@ rm -rf %{buildroot}%{_datadir}/%{name}/pxe*rom
 rm -rf %{buildroot}%{_datadir}/%{name}/vgabios*bin
 # Provided by package seabios
 rm -rf %{buildroot}%{_datadir}/%{name}/bios*.bin
-# Provided by package sgabios
+
+# Remove sgabios rom
 rm -rf %{buildroot}%{_datadir}/%{name}/sgabios.bin
 
 
@@ -1136,6 +1137,12 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Fri Sep 03 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-13.el9_b.1
+- kvm-disable-sga-device.patch [bz#1995807]
+- kvm-remove-sgabios-dependency.patch [bz#1995807]
+- Resolves: bz#1995807
+  (RFE: Remove SGA, deprecate cirrus, and set defaults for QEMU machine-types in RHEL9)
+
 * Fri Aug 27 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-13
 - kvm-qcow2-Deprecation-warning-when-opening-v2-images-rw.patch [bz#1951814]
 - kvm-disable-ac97-audio.patch [bz#1995819]
