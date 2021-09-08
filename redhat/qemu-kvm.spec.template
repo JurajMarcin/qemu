@@ -1336,6 +1336,24 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Wed Sep 08 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.2.0-16.el8_4.9
+- kvm-net-introduce-qemu_receive_packet.patch [bz#1985460]
+- kvm-e1000-switch-to-use-qemu_receive_packet-for-loopback.patch [bz#1985460]
+- kvm-dp8393x-switch-to-use-qemu_receive_packet-for-loopba.patch [bz#1985460]
+- kvm-msf2-mac-switch-to-use-qemu_receive_packet-for-loopb.patch [bz#1985460]
+- kvm-sungem-switch-to-use-qemu_receive_packet-for-loopbac.patch [bz#1985460]
+- kvm-tx_pkt-switch-to-use-qemu_receive_packet_iov-for-loo.patch [bz#1985460]
+- kvm-rtl8139-switch-to-use-qemu_receive_packet-for-loopba.patch [bz#1985460]
+- kvm-pcnet-switch-to-use-qemu_receive_packet-for-loopback.patch [bz#1985460]
+- kvm-cadence_gem-switch-to-use-qemu_receive_packet-for-lo.patch [bz#1985460]
+- kvm-lan9118-switch-to-use-qemu_receive_packet-for-loopba.patch [bz#1985460]
+- kvm-migration-Replaced-qemu_mutex_lock-calls-with-QEMU_L.patch [bz#1984458]
+- kvm-migration-Move-bitmap_mutex-out-of-migration_bitmap_.patch [bz#1984458]
+- Resolves: bz#1985460
+  (CVE-2021-3416 virt:av/qemu-kvm: QEMU: net: infinite loop in loopback mode may lead to stack overflow [rhel-av-8.4.0.z])
+- Resolves: bz#1984458
+  (SAP/3TB VM migration slowness [idle db] [rhel-8.4.0.z])
+
 * Tue Aug 24 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.2.0-16.el8_4.7
 - kvm-migration-Replaced-qemu_mutex_lock-calls-with-QEMU_L.patch [bz#1984458]
 - kvm-migration-Move-bitmap_mutex-out-of-migration_bitmap_.patch [bz#1984458]
