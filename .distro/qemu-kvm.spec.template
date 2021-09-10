@@ -1137,6 +1137,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Fri Sep 10 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-13.el9_b.2
+- kvm-hw-arm-virt-Remove-9.0-machine-type.patch [bz#1981462]
+- Resolves: bz#1981462
+  ([qemu][aarch64] Remove 9.0 machine types in arm virt for 9-Beta)
+
 * Fri Sep 03 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-13.el9_b.1
 - kvm-disable-sga-device.patch [bz#1995807]
 - kvm-remove-sgabios-dependency.patch [bz#1995807]
