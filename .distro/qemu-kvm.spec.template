@@ -1157,6 +1157,20 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Fri Sep 10 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.1.0-2
+- kvm-hw-arm-virt-Remove-9.0-machine-type.patch [bz#2002937]
+- kvm-remove-sgabios-dependency.patch [bz#2000845]
+- kvm-enable-pulseaudio.patch [bz#1997725]
+- kvm-spec-disable-use-of-gcrypt-for-crypto-backends-in-fa.patch [bz#1990068]
+- Resolves: bz#2002937
+  ([qemu][aarch64] Remove 9.0 machine types in arm virt for 9-Beta)
+- Resolves: bz#2000845
+  (RFE: Remove SGA, deprecate cirrus, and set defaults for QEMU machine-types in RHEL9)
+- Resolves: bz#1997725
+  (RFE: enable pulseaudio backend on QEMU)
+- Resolves: bz#1990068
+  (Disable use of gcrypt for crypto backends in favour of gnutls)
+
 * Thu Sep 02 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.1.0-1
 - Rebase to QEMU 6.1.0 [bz#1997408]
 - Resolves: #bz#1997408
