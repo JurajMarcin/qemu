@@ -1384,6 +1384,14 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Mon Sep 13 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 6.0.0-30
+- kvm-usbredir-fix-free-call.patch [bz#1989928]
+- kvm-block-Fix-in_flight-leak-in-request-padding-error-pa.patch [bz#2002631]
+- Resolves: bz#1989928
+  (CVE-2021-3682 virt:av/qemu-kvm: QEMU: usbredir: free call on invalid pointer in bufp_alloc() [rhel-av-8.5.0])
+- Resolves: bz#2002631
+  (Windows Installation blocked on 4k disk when using blk+raw+iothread)
+
 * Wed Aug 25 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 6.0.0-29.el8
 - kvm-file-posix-Cap-max_iov-at-IOV_MAX.patch [bz#1994494]
 - kvm-migration-Move-yank-outside-qemu_start_incoming_migr.patch [bz#1974366]
