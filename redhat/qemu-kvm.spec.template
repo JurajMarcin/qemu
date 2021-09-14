@@ -1336,6 +1336,11 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Tue Sep 14 2021 Jon Maloy <jmaloy@redhat.com> - 5.2.0-16.el8_4.10
+- kvm-usbredir-fix-free-call.patch [bz#1996133]
+- Resolves: bz#1996133
+  (CVE-2021-3682 virt:av/qemu-kvm: QEMU: usbredir: free call on invalid pointer in bufp_alloc() [rhel-av-8.4.0.z])
+
 * Wed Sep 08 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 5.2.0-16.el8_4.9
 - kvm-net-introduce-qemu_receive_packet.patch [bz#1985460]
 - kvm-e1000-switch-to-use-qemu_receive_packet-for-loopback.patch [bz#1985460]
