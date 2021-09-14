@@ -1038,6 +1038,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Tue Sep 14 2021 Jon Maloy <jmaloy@redhat.com> - 4.2.0-29.el8_2.9
+- kvm-usbredir-fix-free-call.patch [bz#1989926]
+- Resolves: bz#1989926
+  (CVE-2021-3682 virt:8.2/qemu-kvm: QEMU: usbredir: free call on invalid pointer in bufp_alloc() [rhel-av-8.2.1.z])
+
 * Thu Jun 03 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-29.el8_2.8
 - kvm-hw-intc-arm_gic-Fix-interrupt-ID-in-GICD_SGIR-regist.patch [bz#1926168]
 - kvm-libqos-usb-hcd-ehci-use-32-bit-write-for-config-regi.patch [bz#1842479]
