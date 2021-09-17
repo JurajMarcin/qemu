@@ -1137,6 +1137,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Fri Sep 17 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-13.el9_b.3
+- kvm-tools-virtiofsd-Add-fstatfs64-syscall-to-the-seccomp.patch [bz#2001728]
+- Resolves: bz#2001728
+  ([s390][virtio-fs] Umount virtiofs shared folder failure from guest side)
+
 * Fri Sep 10 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-13.el9_b.2
 - kvm-hw-arm-virt-Remove-9.0-machine-type.patch [bz#1981462]
 - Resolves: bz#1981462
