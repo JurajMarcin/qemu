@@ -1157,6 +1157,14 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Fri Sep 24 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.1.0-3
+- kvm-disable-sga-device.patch [bz#2000845]
+- kvm-tools-virtiofsd-Add-fstatfs64-syscall-to-the-seccomp.patch [bz#2005026]
+- Resolves: bz#2000845
+  (RFE: Remove SGA, deprecate cirrus, and set defaults for QEMU machine-types in RHEL9)
+- Resolves: bz#2005026
+  ([s390][virtio-fs] Umount virtiofs shared folder failure from guest side [rhel-9.0.0])
+
 * Fri Sep 10 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.1.0-2
 - kvm-hw-arm-virt-Remove-9.0-machine-type.patch [bz#2002937]
 - kvm-remove-sgabios-dependency.patch [bz#2000845]
