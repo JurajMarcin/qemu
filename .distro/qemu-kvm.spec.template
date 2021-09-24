@@ -1138,6 +1138,12 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Fri Sep 24 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-13.el9_b.4
+- kvm-Revert-disable-sga-device.patch [bz#2002993]
+- kvm-Revert-remove-sgabios-dependency.patch [bz#2002993]
+- Resolves: bz#2002993
+  ([RHEL 9 Beta] Reenable SGA device)
+
 * Fri Sep 17 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-13.el9_b.3
 - kvm-tools-virtiofsd-Add-fstatfs64-syscall-to-the-seccomp.patch [bz#2001728]
 - Resolves: bz#2001728
