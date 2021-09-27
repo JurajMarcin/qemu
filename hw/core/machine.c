@@ -38,6 +38,23 @@
 #include "hw/virtio/virtio-pci.h"
 
 /*
+ * Mostly the same as hw_compat_6_0
+ */
+GlobalProperty hw_compat_rhel_8_5[] = {
+    /* hw_compat_rhel_8_5 from hw_compat_6_0 */
+    { "gpex-pcihost", "allow-unmapped-accesses", "false" },
+    /* hw_compat_rhel_8_5 from hw_compat_6_0 */
+    { "i8042", "extended-state", "false"},
+    /* hw_compat_rhel_8_5 from hw_compat_6_0 */
+    { "nvme-ns", "eui64-default", "off"},
+    /* hw_compat_rhel_8_5 from hw_compat_6_0 */
+    { "e1000", "init-vet", "off" },
+    /* hw_compat_rhel_8_5 from hw_compat_6_0 */
+    { "e1000e", "init-vet", "off" },
+};
+const size_t hw_compat_rhel_8_5_len = G_N_ELEMENTS(hw_compat_rhel_8_5);
+
+/*
  * Mostly the same as hw_compat_5_2
  */
 GlobalProperty hw_compat_rhel_8_4[] = {
