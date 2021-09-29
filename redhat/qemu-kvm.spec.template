@@ -1384,6 +1384,11 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Wed Sep 29 2021 Jon Maloy <jmaloy@redhat.com> - 6.0.0-31
+- kvm-virtiofsd-Fix-fuse-setxattr-API-change-issue.patch [bz#1990697]
+- Resolves: bz#1990697
+  (virtiofsd: xattr remapping does not seem to work as expected)
+
 * Mon Sep 13 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 6.0.0-30
 - kvm-usbredir-fix-free-call.patch [bz#1989928]
 - kvm-block-Fix-in_flight-leak-in-request-padding-error-pa.patch [bz#2002631]
