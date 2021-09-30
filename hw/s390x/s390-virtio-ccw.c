@@ -1091,6 +1091,7 @@ static void ccw_machine_rhel850_instance_options(MachineState *machine)
 
 static void ccw_machine_rhel850_class_options(MachineClass *mc)
 {
+    compat_props_add(mc->compat_props, hw_compat_rhel_8_5, hw_compat_rhel_8_5_len);
 }
 DEFINE_CCW_MACHINE(rhel850, "rhel8.5.0", true);
 
