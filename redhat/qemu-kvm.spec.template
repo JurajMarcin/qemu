@@ -1410,6 +1410,18 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Fri Oct 01 2021 Jon Maloy <jmaloy@redhat.com> - 6.1.0-2
+- kvm-qxl-fix-pre-save-logic.patch [bz#2002907]
+- kvm-redhat-Define-hw_compat_rhel_8_5.patch [bz#1998949]
+- kvm-redhat-Update-pseries-rhel8.5.0.patch [bz#1998949]
+- kvm-redhat-Add-s390x-machine-type-compatibility-update-f.patch [bz#1998950]
+- Resolves: bz#2002907
+  (Unexpectedly failed when managedsave the guest which has qxl video device)
+- Resolves: bz#1998949
+  (Add machine type compatibility update for 6.1 rebase [ppc64le])
+- Resolves: bz#1998950
+  (Add machine type compatibility update for 6.1 rebase [s390x])
+
 * Wed Aug 18 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 6.0.0-28.el8
 - kvm-iotests-Improve-and-rename-test-291-to-qemu-img-bitm.patch [bz#1946084]
 - kvm-qemu-img-Fail-fast-on-convert-bitmaps-with-inconsist.patch [bz#1946084]
