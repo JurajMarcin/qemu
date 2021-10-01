@@ -1056,6 +1056,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Fri Oct 01 2021 Jon Maloy <jmaloy@redhat.com> - 4.2.0-59
+- kvm-scsi-make-io_timeout-configurable.patch [bz#1994041]
+- Resolves: bz#1994041
+  (qemu-kvm scsi: change default passthrough timeout to non-infinite)
+
 * Wed Aug 18 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-58.el8
 - kvm-virtiofsd-Disable-remote-posix-locks-by-default.patch [bz#1967496]
 - kvm-virtiofsd-Fix-the-help-message-of-posix-lock.patch [bz#1967496]
