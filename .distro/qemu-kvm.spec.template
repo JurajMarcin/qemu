@@ -1157,6 +1157,12 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Tue Oct 05 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.1.0-4
+- kvm-redhat-Define-hw_compat_rhel_8_5.patch [bz#1998943]
+- kvm-redhat-Add-s390x-machine-type-compatibility-update-f.patch [bz#1998943]
+- Resolves: bz#1998943
+  (Add machine type compatibility update for 6.1 rebase [s390x])
+
 * Fri Sep 24 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.1.0-3
 - kvm-disable-sga-device.patch [bz#2000845]
 - kvm-tools-virtiofsd-Add-fstatfs64-syscall-to-the-seccomp.patch [bz#2005026]
