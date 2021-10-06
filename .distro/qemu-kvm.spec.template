@@ -1136,6 +1136,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Wed Oct 06 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-13.el9_b.5
+- kvm-spec-Remove-block-curl-and-block-ssh-dependency.patch [bz#2001100]
+- Resolves: bz#2001100
+  (Remove qemu-kvm's dependency on qemu-kvm-block-curl and qemu-kvm-block-ssh)
+
 * Fri Sep 24 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.0.0-13.el9_b.4
 - kvm-Revert-disable-sga-device.patch [bz#2002993]
 - kvm-Revert-remove-sgabios-dependency.patch [bz#2002993]
