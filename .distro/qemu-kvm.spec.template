@@ -117,9 +117,7 @@ Requires: %{name}-ui-opengl = %{epoch}:%{version}-%{release}     \
 %if %{have_usbredir}                                             \
 Requires: %{name}-hw-usbredir = %{epoch}:%{version}-%{release}   \
 %endif                                                           \
-Requires: %{name}-block-curl = %{epoch}:%{version}-%{release}    \
 Requires: %{name}-block-rbd = %{epoch}:%{version}-%{release}     \
-Requires: %{name}-block-ssh = %{epoch}:%{version}-%{release}     \
 Requires: %{name}-audio-pa = %{epoch}:%{version}-%{release}
 
 # Since SPICE is removed from RHEL-9, the following Obsoletes:
