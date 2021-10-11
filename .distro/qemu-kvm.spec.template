@@ -1155,6 +1155,14 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Oct 11 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.1.0-5
+- kvm-virtio-balloon-Fix-page-poison-subsection-name.patch [bz#1984401]
+- kvm-spec-Remove-block-curl-and-block-ssh-dependency.patch [bz#2010985]
+- Resolves: bz#1984401
+  (fails to revert snapshot of a VM [balloon/page-poison])
+- Resolves: bz#2010985
+  (Remove dependency on qemu-kvm-block-curl and qemu-kvm-block-ssh [rhel-9.0.0])
+
 * Tue Oct 05 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.1.0-4
 - kvm-redhat-Define-hw_compat_rhel_8_5.patch [bz#1998943]
 - kvm-redhat-Add-s390x-machine-type-compatibility-update-f.patch [bz#1998943]
