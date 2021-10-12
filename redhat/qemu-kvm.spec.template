@@ -1384,6 +1384,14 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Tue Oct 12 2021 Jon Maloy <jmaloy@redhat.com> - 6.0.0-32
+- kvm-virtio-balloon-Fix-page-poison-subsection-name.patch [bz#2004535]
+- kvm-virtio-net-fix-use-after-unmap-free-for-sg.patch [bz#1999224]
+- Resolves: bz#2004535
+  (fails to revert snapshot of a VM [balloon/page-poison])
+- Resolves: bz#1999224
+  (CVE-2021-3748 virt:av/qemu-kvm: QEMU: virtio-net: heap use-after-free in virtio_net_receive_rcu [rhel-av-8])
+
 * Wed Sep 29 2021 Jon Maloy <jmaloy@redhat.com> - 6.0.0-31
 - kvm-virtiofsd-Fix-fuse-setxattr-API-change-issue.patch [bz#1990697]
 - Resolves: bz#1990697
