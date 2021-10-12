@@ -3148,5 +3148,6 @@ type_init(rhel_machine_init);
 static void rhel850_virt_options(MachineClass *mc)
 {
     compat_props_add(mc->compat_props, arm_rhel_compat, arm_rhel_compat_len);
+    compat_props_add(mc->compat_props, hw_compat_rhel_8_5, hw_compat_rhel_8_5_len);
 }
 DEFINE_RHEL_MACHINE_AS_LATEST(8, 5, 0)
