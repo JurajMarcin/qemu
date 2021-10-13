@@ -285,15 +285,6 @@ emulation for the KVM hypervisor. qemu-kvm acts as a virtual
 machine monitor together with the KVM kernel modules, and emulates the
 hardware for a full system such as a PC and its associated peripherals.
 
-%package -n qemu-kiwi
-Summary: qemu-kiwi components
-Requires: qemu-kvm-common = %{epoch}:%{version}-%{release}
-
-%description -n qemu-kiwi
-qemu-kiwi is a version of qemu-kvm with a restricted set of features
-intended for use by specific applications.
-It's experimental and unsupported.
-
 %package -n qemu-kvm-docs
 Summary: qemu-kvm documentation
 
@@ -462,18 +453,6 @@ mkdir slirp
 %autopatch -p1
 
 %global qemu_kvm_build qemu_kvm_build
-%global qemu_kiwi_build qemu_kiwi_src/build
-
-# XXX: ugly hack to copy source tree into a new folder.
-# it allows to build qemu-kiwi without touching the original source tree.
-# This is required as the build isolation is not 100% as we also have to
-# change the source tree when building qemu-kiwi. And, when we do that,
-# calling "make check" on qemu-kvm see that change and behaves baddly.
-# Newer version of qemu allow us to create a better sollution, and this
-# hack can be dropped.
-cp -fpr . ../qemu_kiwi_src
-mv  ../qemu_kiwi_src ./qemu_kiwi_src
-mkdir -p %{qemu_kiwi_build}
 mkdir -p %{qemu_kvm_build}
 
 
@@ -735,98 +714,6 @@ cp -a %{kvm_target}-softmmu/qemu-system-%{kvm_target} qemu-kvm
 
 gcc %{SOURCE6} $RPM_OPT_FLAGS $RPM_LD_FLAGS -o ksmctl
 gcc %{SOURCE35} $RPM_OPT_FLAGS $RPM_LD_FLAGS -o udev-kvm-check
-
-popd
-echo "Starting qemu-kiwi build"
-
-pushd %{qemu_kiwi_build}
-# XXX: removing QXL and CONFIG_TPM.* mak configuration,
-# which causes problem with the config options used by qemu-kiwi.
-# Ideally we should be able to do this at configure time.
-find ../configs -name "*-rh-devices.mak" \
-         -exec sed -i '/CONFIG_QXL=/d' {} \;
-find ../configs -name "*-rh-devices.mak" \
-         -exec sed -i '/CONFIG_TPM.*=/d' {} \;
-
-../configure  \
-  --prefix="%{_prefix}" \
-  --libdir="%{_libdir}" \
-  --sysconfdir="%{_sysconfdir}" \
-  --interp-prefix=%{_prefix}/qemu-%M \
-  --localstatedir="%{_localstatedir}" \
-  --libexecdir="%{_libexecdir}" \
-  --extra-ldflags="-Wl,--build-id -Wl,-z,relro -Wl,-z,now" \
-  --extra-cflags="%{optflags}" \
-  --with-pkgversion="%{name}-%{version}-%{release}" \
-  --with-suffix="%{name}" \
-  --firmwarepath=%{_prefix}/share/qemu-firmware \
-  --meson="%{__meson}" \
-  --target-list="%{buildarch}" \
-  --block-drv-rw-whitelist=%{block_drivers_list} \
-  --audio-drv-list= \
-  --block-drv-ro-whitelist=vmdk,vhdx,vpc,https,ssh \
-  --with-coroutine=ucontext \
-  --with-git=git \
-  --tls-priority=@QEMU,SYSTEM \
-  %{disable_everything} \
-  --enable-attr \
-%ifarch %{ix86} x86_64
-  --enable-avx2 \
-%endif
-  --enable-cap-ng \
-  --enable-coroutine-pool \
-  --enable-debug-info \
-%if 0%{have_fdt}
-  --enable-fdt \
-%endif
-  --enable-kvm \
-%ifarch x86_64
-  --enable-libpmem \
-%endif
-  --enable-linux-aio \
-  --enable-libudev \
-  --enable-malloc-trim \
-  --enable-mpath \
-%ifnarch s390x
-  --enable-numa \
-%endif
-  --enable-pie \
-  --enable-seccomp \
-  --enable-system \
-  --enable-tcg \
-  --enable-trace-backend=dtrace \
-  --enable-vhost-kernel \
-  --enable-vhost-net \
-  --enable-vhost-user \
-  --enable-vhost-user-blk-server \
-  --enable-vhost-vdpa \
-  --enable-vhost-vsock \
-  --enable-werror \
-  --enable-xkbcommon \
-  --without-default-devices \
-  --with-devices-%{kvm_target}=%{kvm_target}-rh-devices
-
-
-echo "qemu-kiki config-host.mak contents:"
-echo "==="
-cat config-host.mak
-echo "==="
-
-make V=1 %{?_smp_mflags} $buildldflags
-
-%{__python3} scripts/tracetool.py --backend dtrace --format stap \
-  --group=all --binary %{_libexecdir}/qemu-kiwi --probe-prefix qemu.kvm \
-  trace/trace-events-all qemu-kiwi.stp
-
-%{__python3} scripts/tracetool.py --backends=dtrace --format=log-stap \
-  --group=all --binary %{_libexecdir}/qemu-kiwi --probe-prefix qemu.kvm \
-  trace/trace-events-all qemu-kiwi-log.stp
-
-%{__python3} scripts/tracetool.py --backend dtrace --format simpletrace-stap \
-  --group=all --binary %{_libexecdir}/qemu-kiwi --probe-prefix qemu.kvm \
-  trace/trace-events-all qemu-kiwi-simpletrace.stp
-
-cp -a %{kvm_target}-softmmu/qemu-system-%{kvm_target} qemu-kiwi
 
 %ifarch s390x
     # Copy the built new images into place for "make check":
@@ -1135,21 +1022,9 @@ rm -rf $RPM_BUILD_ROOT%{qemudocdir}/specs
 
 popd
 
-pushd %{qemu_kiwi_build}
-install -m 0755 %{kvm_target}-softmmu/qemu-system-%{kvm_target} $RPM_BUILD_ROOT%{_libexecdir}/qemu-kiwi
-install -m 0644 qemu-kiwi.stp $RPM_BUILD_ROOT%{_datadir}/systemtap/tapset/
-install -m 0644 qemu-kiwi-log.stp $RPM_BUILD_ROOT%{_datadir}/systemtap/tapset/
-install -m 0644 qemu-kiwi-simpletrace.stp $RPM_BUILD_ROOT%{_datadir}/systemtap/tapset/
-popd
-
 %check
 pushd %{qemu_kvm_build}
 echo "Testing qemu-kvm-build"
-export DIFF=diff; make check V=1
-popd
-
-echo "Testing qemu-kiwi"
-pushd %{qemu_kiwi_build}
 export DIFF=diff; make check V=1
 popd
 
@@ -1334,13 +1209,6 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 %else
     %{_libdir}/qemu-kvm/hw-display-virtio-gpu-pci.so
 %endif
-
-%files -n qemu-kiwi
-%defattr(-,root,root)
-%{_libexecdir}/qemu-kiwi
-%{_datadir}/systemtap/tapset/qemu-kiwi.stp
-%{_datadir}/systemtap/tapset/qemu-kiwi-log.stp
-%{_datadir}/systemtap/tapset/qemu-kiwi-simpletrace.stp
 
 %files -n qemu-img
 %defattr(-,root,root)
