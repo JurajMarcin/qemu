@@ -1410,6 +1410,11 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Tue Oct 12 2021 Jon Maloy <jmaloy@redhat.com> - 6.1.0-3
+- kvm-virtio-net-fix-use-after-unmap-free-for-sg.patch [bz#1999221]
+- Resolves: bz#1999221
+  (CVE-2021-3748 virt:rhel/qemu-kvm: QEMU: virtio-net: heap use-after-free in virtio_net_receive_rcu [rhel-8])
+
 * Fri Oct 01 2021 Jon Maloy <jmaloy@redhat.com> - 6.1.0-2
 - kvm-qxl-fix-pre-save-logic.patch [bz#2002907]
 - kvm-redhat-Define-hw_compat_rhel_8_5.patch [bz#1998949]
