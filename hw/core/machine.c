@@ -69,7 +69,11 @@ GlobalProperty hw_compat_rhel_8_4[] = {
     /* hw_compat_rhel_8_4 from hw_compat_5_2 */
     { "virtio-blk-device", "report-discard-granularity", "off" },
     /* hw_compat_rhel_8_4 from hw_compat_5_2 */
-    { "virtio-net-pci", "vectors", "3"},
+    /*
+     * Upstream incorrectly had "virtio-net-pci" instead of "virtio-net-pci-base",
+     * (https://bugzilla.redhat.com/show_bug.cgi?id=1999141)
+     */
+    { "virtio-net-pci-base", "vectors", "3"},
 };
 const size_t hw_compat_rhel_8_4_len = G_N_ELEMENTS(hw_compat_rhel_8_4);
 
