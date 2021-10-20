@@ -1155,6 +1155,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Oct 18 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.1.0-6
+- kvm-hw-arm-virt-Add-hw_compat_rhel_8_5-to-8.5-machine-ty.patch [bz#1998942]
+- Resolves: bz#1998942
+  (Add machine type compatibility update for 6.1 rebase [aarch64])
+
 * Mon Oct 11 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.1.0-5
 - kvm-virtio-balloon-Fix-page-poison-subsection-name.patch [bz#1984401]
 - kvm-spec-Remove-block-curl-and-block-ssh-dependency.patch [bz#2010985]
