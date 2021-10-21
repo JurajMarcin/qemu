@@ -1384,6 +1384,11 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Thu Oct 21 2021 Jon Maloy <jmaloy@redhat.com> - 6.0.0-33.el8_5
+- kvm-Fix-virtio-net-pci-vectors-compat.patch [bz#1999141]
+- Resolves: bz#1999141
+  (migration fails with: "qemu-kvm: get_pci_config_device: Bad config data: i=0x9a read: 3 device: 2 cmask: ff wmask: 0 w1cmask:0")
+
 * Tue Oct 12 2021 Jon Maloy <jmaloy@redhat.com> - 6.0.0-32
 - kvm-virtio-balloon-Fix-page-poison-subsection-name.patch [bz#2004535]
 - kvm-virtio-net-fix-use-after-unmap-free-for-sg.patch [bz#1999224]
