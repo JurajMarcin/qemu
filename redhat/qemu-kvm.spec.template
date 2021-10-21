@@ -1278,6 +1278,14 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Thu Oct 21 2021 Jon Maloy <jmaloy@redhat.com> - 6.1.0-4
+- kvm-spec-Remove-qemu-kiwi-build.patch [bz#2002694]
+- kvm-hw-arm-virt-Add-hw_compat_rhel_8_5-to-8.5-machine-ty.patch [bz#1998947]
+- Resolves: bz#2002694
+  (remove qemu-kiwi rpm from qemu-kvm sources in rhel-8.6)
+- Resolves: bz#1998947
+  (Add machine type compatibility update for 6.1 rebase [aarch64])
+
 * Tue Oct 12 2021 Jon Maloy <jmaloy@redhat.com> - 6.1.0-3
 - kvm-virtio-net-fix-use-after-unmap-free-for-sg.patch [bz#1999221]
 - Resolves: bz#1999221
