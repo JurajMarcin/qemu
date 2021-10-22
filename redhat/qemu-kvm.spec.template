@@ -1336,6 +1336,19 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Thu Oct 21 2021 Jon Maloy <jmaloy@redhat.com> - 5.2.0-16.el8_4.11
+- kvm-iotests-Improve-and-rename-test-291-to-qemu-img-bitm.patch [bz#1993308]
+- kvm-qemu-img-Fail-fast-on-convert-bitmaps-with-inconsist.patch [bz#1993308]
+- kvm-qemu-img-Add-skip-broken-bitmaps-for-convert-bitmaps.patch [bz#1993308]
+- kvm-virtio-net-fix-use-after-unmap-free-for-sg.patch [bz#2014569]
+- kvm-virtio-balloon-Fix-page-poison-subsection-name.patch [bz#2005425]
+- Resolves: bz#1993308
+  (qemu-img convert --bitmaps fail if a bitmap is inconsistent [rhel-8.4.0.z])
+- Resolves: bz#2014569
+  (CVE-2021-3748 virt:av/qemu-kvm: QEMU: virtio-net: heap use-after-free in virtio_net_receive_rcu [rhel-av-8] [rhel-8.4.0.z])
+- Resolves: bz#2005425
+  (fails to revert snapshot of a VM [balloon/page-poison] [rhel-8.4.0.z])
+
 * Tue Sep 14 2021 Jon Maloy <jmaloy@redhat.com> - 5.2.0-16.el8_4.10
 - kvm-usbredir-fix-free-call.patch [bz#1996133]
 - Resolves: bz#1996133
