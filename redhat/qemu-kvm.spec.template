@@ -812,6 +812,11 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 %{_mandir}/man8/qemu-nbd.8*
 
 %changelog
+* Fri Nov 12 2021 Jon Maloy <jmaloy@redhat.com> - 1.5.3-175.el7_9.5
+- kvm-dma-helpers-Initialize-DMAAIOCB-in_cancel-flag.patch [bz#2007036]
+- Resolves: bz#2007036
+  (Memory leak when using dma_read/write with virtio-scsi)
+
 * Fri May 07 2021 Jon Maloy <jmaloy@redhat.com> - 1.5.3-175.el7_9.4
 - kvm-ide-atapi-check-logical-block-address-and-read-size-.patch [bz#1917449]
 - Resolves: bz#1917449
