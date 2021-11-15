@@ -38,7 +38,7 @@
 #include "hw/virtio/virtio-pci.h"
 
 /*
- * Mostly the same as hw_compat_6_0
+ * Mostly the same as hw_compat_6_0 and hw_compat_6_1
  */
 GlobalProperty hw_compat_rhel_8_5[] = {
     /* hw_compat_rhel_8_5 from hw_compat_6_0 */
@@ -51,6 +51,12 @@ GlobalProperty hw_compat_rhel_8_5[] = {
     { "e1000", "init-vet", "off" },
     /* hw_compat_rhel_8_5 from hw_compat_6_0 */
     { "e1000e", "init-vet", "off" },
+    /* hw_compat_rhel_8_5 from hw_compat_6_0 */
+    { "vhost-vsock-device", "seqpacket", "off" },
+    /* hw_compat_rhel_8_5 from hw_compat_6_1 */
+    { "vhost-user-vsock-device", "seqpacket", "off" },
+    /* hw_compat_rhel_8_5 from hw_compat_6_1 */
+    { "nvme-ns", "shared", "off" },
 };
 const size_t hw_compat_rhel_8_5_len = G_N_ELEMENTS(hw_compat_rhel_8_5);
 
