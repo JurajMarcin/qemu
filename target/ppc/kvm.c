@@ -2560,11 +2560,11 @@ int kvmppc_enable_cap_large_decr(PowerPCCPU *cpu, int enable)
     return 0;
 }
 
-<<<<<<< HEAD
 int kvmppc_has_cap_rpt_invalidate(void)
 {
     return cap_rpt_invalidate;
-=======
+}
+
 bool kvmppc_has_cap_secure_guest(void)
 {
     return !!cap_ppc_secure_guest;
@@ -2573,7 +2573,6 @@ bool kvmppc_has_cap_secure_guest(void)
 int kvmppc_enable_cap_secure_guest(void)
 {
     return kvm_vm_enable_cap(kvm_state, KVM_CAP_PPC_SECURE_GUEST, 0, 1);
->>>>>>> 89c02f0e37... Add ppc64 machine types
 }
 
 PowerPCCPUClass *kvm_ppc_get_host_cpu_class(void)

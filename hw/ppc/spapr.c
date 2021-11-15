@@ -4991,7 +4991,6 @@ DEFINE_SPAPR_MACHINE(2_8, "2.8", false);
 /*
  * pseries-2.7
  */
-#endif
 
 static bool phb_placement_2_7(SpaprMachineState *spapr, uint32_t index,
                               uint64_t *buid, hwaddr *pio,
@@ -5047,7 +5046,6 @@ static bool phb_placement_2_7(SpaprMachineState *spapr, uint32_t index,
     return true;
 }
 
-#if 0 /* Disabled for Red Hat Enterprise Linux */
 static void spapr_machine_2_7_class_options(MachineClass *mc)
 {
     SpaprMachineClass *smc = SPAPR_MACHINE_CLASS(mc);
@@ -5371,5 +5369,10 @@ static void spapr_machine_rhel760sxxm_class_options(MachineClass *mc)
 }
 
 DEFINE_SPAPR_MACHINE(rhel760sxxm, "rhel7.6.0-sxxm", false);
+
+static void spapr_machine_register_types(void)
+{
+    type_register_static(&spapr_machine_info);
+}
 
 type_init(spapr_machine_register_types)
