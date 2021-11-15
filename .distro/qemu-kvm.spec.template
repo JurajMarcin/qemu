@@ -104,7 +104,7 @@
 
 %global target_list %{kvm_target}-softmmu
 %global block_drivers_rw_list qcow2,raw,file,host_device,nbd,iscsi,rbd,blkdebug,luks,null-co,nvme,copy-on-read,throttle
-%global block_drivers_ro_list vmdk,vhdx,vpc,https,ssh
+%global block_drivers_ro_list vdi,vmdk,vhdx,vpc,https,ssh
 %define qemudocdir %{_docdir}/%{name}
 %global firmwaredirs "%{_datadir}/qemu-firmware:%{_datadir}/ipxe/qemu:%{_datadir}/seavgabios:%{_datadir}/seabios"
 
@@ -656,6 +656,7 @@ run_configure \
 %if %{have_usbredir}
   --enable-usb-redir \
 %endif
+  --enable-vdi \
   --enable-virtiofsd \
   --enable-vhost-kernel \
   --enable-vhost-net \
