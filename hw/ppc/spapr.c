@@ -5177,10 +5177,14 @@ static void spapr_machine_rhel_default_class_options(MachineClass *mc)
 
 static void spapr_machine_rhel850_class_options(MachineClass *mc)
 {
+    SpaprMachineClass *smc = SPAPR_MACHINE_CLASS(mc);
+
     /* The default machine type must apply the RHEL specific defaults */
     spapr_machine_rhel_default_class_options(mc);
     compat_props_add(mc->compat_props, hw_compat_rhel_8_5,
                      hw_compat_rhel_8_5_len);
+    smc->pre_6_2_numa_affinity = true;
+    mc->smp_props.prefer_sockets = true;
 }
 
 DEFINE_SPAPR_MACHINE(rhel850, "rhel8.5.0", true);
