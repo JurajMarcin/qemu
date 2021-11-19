@@ -1156,6 +1156,19 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Fri Nov 19 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.1.0-7
+- kvm-migration-Make-migration-blocker-work-for-snapshots-.patch [bz#1996609]
+- kvm-migration-Add-migrate_add_blocker_internal.patch [bz#1996609]
+- kvm-dump-guest-memory-Block-live-migration.patch [bz#1996609]
+- kvm-spec-Build-the-VDI-block-driver.patch [bz#2013331]
+- kvm-spec-Explicitly-include-compress-filter.patch [bz#1980035]
+- Resolves: bz#1996609
+  (Qemu hit core dump when dump guest memory during live migration)
+- Resolves: bz#2013331
+  (RFE: qemu-img cannot convert from vdi format)
+- Resolves: bz#1980035
+  (RFE: Enable compress filter so we can create new, compressed qcow2 files via qemu-nbd)
+
 * Mon Oct 18 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.1.0-6
 - kvm-hw-arm-virt-Add-hw_compat_rhel_8_5-to-8.5-machine-ty.patch [bz#1998942]
 - Resolves: bz#1998942
