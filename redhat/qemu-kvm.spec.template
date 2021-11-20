@@ -1038,6 +1038,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Fri Nov 19 2021 Jon Maloy <jmaloy@redhat.com> - 4.2.0-29.el8_2.10
+- kvm-virtio-net-fix-use-after-unmap-free-for-sg.patch [bz#1999223]
+- Resolves: bz#1999223
+  (CVE-2021-3748 virt:8.2/qemu-kvm: QEMU: virtio-net: heap use-after-free in virtio_net_receive_rcu [rhel-av-8.2.1z])
+
 * Tue Sep 14 2021 Jon Maloy <jmaloy@redhat.com> - 4.2.0-29.el8_2.9
 - kvm-usbredir-fix-free-call.patch [bz#1989926]
 - Resolves: bz#1989926
