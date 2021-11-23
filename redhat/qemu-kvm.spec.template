@@ -1336,6 +1336,16 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Tue Nov 23 2021 Jon Maloy <jmaloy@redhat.com> - 5.2.0-16.el8_4.12
+- kvm-redhat-Expose-upstream-machine-pc-4.2.patch [bz#2021859]
+- kvm-redhat-Enable-FDC-device-for-upstream-machines-too.patch [bz#2021859]
+- kvm-redhat-Add-hw_compat_4_2_extra-and-apply-to-upstream.patch [bz#2021859]
+- kvm-hw-scsi-scsi-disk-MODE_PAGE_ALLS-not-allowed-in-MODE.patch [bz#2025607]
+- Resolves: bz#2021859
+  (support Live Migration from Ubuntu 18.04 i440fx to RHEL [rhel-8.4.0.z])
+- Resolves: bz#2025607
+  (CVE-2021-3930 virt:av/qemu-kvm: QEMU: off-by-one error in mode_sense_page() in hw/scsi/scsi-disk.c [rhel-av-8.4.0.z])
+
 * Thu Oct 21 2021 Jon Maloy <jmaloy@redhat.com> - 5.2.0-16.el8_4.11
 - kvm-iotests-Improve-and-rename-test-291-to-qemu-img-bitm.patch [bz#1993308]
 - kvm-qemu-img-Fail-fast-on-convert-bitmaps-with-inconsist.patch [bz#1993308]
