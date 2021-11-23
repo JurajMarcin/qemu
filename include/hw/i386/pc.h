@@ -286,6 +286,9 @@ extern const size_t pc_compat_1_4_len;
 extern GlobalProperty pc_rhel_compat[];
 extern const size_t pc_rhel_compat_len;
 
+extern GlobalProperty pc_rhel_8_5_compat[];
+extern const size_t pc_rhel_8_5_compat_len;
+
 extern GlobalProperty pc_rhel_8_4_compat[];
 extern const size_t pc_rhel_8_4_compat_len;
 

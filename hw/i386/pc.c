@@ -387,6 +387,27 @@ GlobalProperty pc_rhel_compat[] = {
 };
 const size_t pc_rhel_compat_len = G_N_ELEMENTS(pc_rhel_compat);
 
+GlobalProperty pc_rhel_8_5_compat[] = {
+    /* pc_rhel_8_5_compat from pc_compat_6_0 */
+    { "qemu64" "-" TYPE_X86_CPU, "family", "6" },
+    /* pc_rhel_8_5_compat from pc_compat_6_0 */
+    { "qemu64" "-" TYPE_X86_CPU, "model", "6" },
+    /* pc_rhel_8_5_compat from pc_compat_6_0 */
+    { "qemu64" "-" TYPE_X86_CPU, "stepping", "3" },
+    /* pc_rhel_8_5_compat from pc_compat_6_0 */
+    { TYPE_X86_CPU, "x-vendor-cpuid-only", "off" },
+    /* pc_rhel_8_5_compat from pc_compat_6_0 */
+    { "ICH9-LPC", ACPI_PM_PROP_ACPI_PCIHP_BRIDGE, "off" },
+
+    /* pc_rhel_8_5_compat from pc_compat_6_1 */
+    { TYPE_X86_CPU, "hv-version-id-build", "0x1bbc" },
+    /* pc_rhel_8_5_compat from pc_compat_6_1 */
+    { TYPE_X86_CPU, "hv-version-id-major", "0x0006" },
+    /* pc_rhel_8_5_compat from pc_compat_6_1 */
+    { TYPE_X86_CPU, "hv-version-id-minor", "0x0001" },
+};
+const size_t pc_rhel_8_5_compat_len = G_N_ELEMENTS(pc_rhel_8_5_compat);
+
 GlobalProperty pc_rhel_8_4_compat[] = {
     /* pc_rhel_8_4_compat from pc_compat_5_2 */
     { "ICH9-LPC", "x-smi-cpu-hotunplug", "off" },
