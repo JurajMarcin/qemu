@@ -1125,6 +1125,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Wed Nov 24 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.1.0-8
+- kvm-Move-ksmtuned-files-to-separate-package.patch [bz#1971678]
+- Resolves: bz#1971678
+  (Split out ksmtuned package from qemu-kvm)
+
 * Fri Nov 19 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.1.0-7
 - kvm-migration-Make-migration-blocker-work-for-snapshots-.patch [bz#1996609]
 - kvm-migration-Add-migrate_add_blocker_internal.patch [bz#1996609]
