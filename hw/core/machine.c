@@ -55,6 +55,8 @@ GlobalProperty hw_compat_rhel_8_5[] = {
     { "vhost-vsock-device", "seqpacket", "off" },
     /* hw_compat_rhel_8_5 from hw_compat_6_1 */
     { "vhost-user-vsock-device", "seqpacket", "off" },
+    /* hw_compat_rhel_8_5 from hw_compat_6_1 */
+    { "nvme-ns", "shared", "off" },
 };
 const size_t hw_compat_rhel_8_5_len = G_N_ELEMENTS(hw_compat_rhel_8_5);
 
