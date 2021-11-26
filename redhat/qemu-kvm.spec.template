@@ -1336,6 +1336,11 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Fri Nov 26 2021 Jon Maloy <jmaloy@redhat.com> - 5.2.0-16.el8_4.13
+- kvm-migration-Check-that-postcopy-fd-s-are-not-NULL.patch [bz#2021981]
+- Resolves: bz#2021981
+  (qemu segfault after the 2rd postcopy live migration with vhost-user [RHEL-AV-8.4.0.z])
+
 * Tue Nov 23 2021 Jon Maloy <jmaloy@redhat.com> - 5.2.0-16.el8_4.12
 - kvm-redhat-Expose-upstream-machine-pc-4.2.patch [bz#2021859]
 - kvm-redhat-Enable-FDC-device-for-upstream-machines-too.patch [bz#2021859]
