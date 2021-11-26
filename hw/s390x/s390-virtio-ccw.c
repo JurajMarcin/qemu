@@ -1105,11 +1105,21 @@ DEFINE_CCW_MACHINE(2_4, "2.4", false);
 
 static void ccw_machine_rhel850_instance_options(MachineState *machine)
 {
+    static const S390FeatInit qemu_cpu_feat = { S390_FEAT_LIST_QEMU_V6_0 };
+
+    s390_set_qemu_cpu_model(0x2964, 13, 2, qemu_cpu_feat);
+
+    s390_cpudef_featoff_greater(16, 1, S390_FEAT_NNPA);
+    s390_cpudef_featoff_greater(16, 1, S390_FEAT_VECTOR_PACKED_DECIMAL_ENH2);
+    s390_cpudef_featoff_greater(16, 1, S390_FEAT_BEAR_ENH);
+    s390_cpudef_featoff_greater(16, 1, S390_FEAT_RDP);
+    s390_cpudef_featoff_greater(16, 1, S390_FEAT_PAI);
 }
 
 static void ccw_machine_rhel850_class_options(MachineClass *mc)
 {
     compat_props_add(mc->compat_props, hw_compat_rhel_8_5, hw_compat_rhel_8_5_len);
+    mc->smp_props.prefer_sockets = true;
 }
 DEFINE_CCW_MACHINE(rhel850, "rhel8.5.0", true);
 
