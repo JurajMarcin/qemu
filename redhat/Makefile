@@ -1,6 +1,9 @@
 include Makefile.common
 
-rh-brew rh-env-prep rh-brew-module: SRPM_NAME=$(NAME)-$(VERSION)$(RELEASE_SEPARATOR)$(RELEASE)$(DIST)
+SRPM_NAME:=$(NAME)-$(VERSION)$(RELEASE_SEPARATOR)$(RELEASE)${RC}$(DIST)
+ifneq ($(ZRELEASE),)
+        SRPM_NAME:=$(SRPM_NAME).$(ZRELEASE)
+endif
 BUILD_TARGET=module-virt-rhel-8050020211001230723-b4937e53
 
 REDHAT:=$(shell pwd)
@@ -63,8 +66,9 @@ rh-srpm: rh-prep
 	$(DS)rpmbuild --define "_sourcedir $(RPMBUILD)/SOURCES" --define "_builddir $(RPMBUILD)/BUILD" --define "_srcrpmdir $(RPMBUILD)/SRPMS" --define "_rpmdir $(RPMBUILD)/RPMS" --define "_specdir $(RPMBUILD)/SPECS" --define "dist $(DIST)" --nodeps -bs $(RPMBUILD)/SPECS/$(SPECFILE)
 
 rh-brew: rh-srpm
-	@echo "Build $(SRPM_NAME)$(LOCALVERSION).src.rpm as $(BUILD_TARGET)"
-	$(DS)brew build $(BREW_OPTIONS) $(BUILD_TARGET) $(RPMBUILD)/SRPMS/$(SRPM_NAME)$(LOCALVERSION).src.rpm
+	@echo "Build $(shell rpmspec --query --srpm --target="" --define "dist $(DIST)" rpmbuild/SPECS/qemu-kvm.spec)src.rpm as $(BUILD_TARGET)"
+	$(DS)brew build $(BREW_OPTIONS) $(BUILD_TARGET) $(RPMBUILD)/SRPMS/$(shell rpmspec --query --srpm --target="" --define "dist $(DIST)" rpmbuild/SPECS/qemu-kvm.spec)src.rpm
+
 rh-env-prep: rh-prep
 	$(DS)sudo dnf builddep $(RPMBUILD)/SPECS/$(SPECFILE)
 	$(DS)cd ..; $(shell rpmspec -P $(RPMBUILD)/SPECS/$(SPECFILE) | scripts/extract_build_cmd.py | \
