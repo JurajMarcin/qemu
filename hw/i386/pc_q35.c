@@ -662,6 +662,7 @@ static void pc_q35_machine_rhel850_options(MachineClass *m)
                      hw_compat_rhel_8_5_len);
     compat_props_add(m->compat_props, pc_rhel_8_5_compat,
                      pc_rhel_8_5_compat_len);
+    m->smp_props.prefer_sockets = true;
 }
 
 DEFINE_PC_MACHINE(q35_rhel850, "pc-q35-rhel8.5.0", pc_q35_init_rhel850,

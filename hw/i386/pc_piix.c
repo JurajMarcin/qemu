@@ -1020,6 +1020,7 @@ static void pc_machine_rhel7_options(MachineClass *m)
     compat_props_add(m->compat_props, pc_rhel_compat, pc_rhel_compat_len);
     m->alias = "pc";
     m->is_default = 1;
+    m->smp_props.prefer_sockets = true;
 }
 
 static void pc_init_rhel760(MachineState *machine)
