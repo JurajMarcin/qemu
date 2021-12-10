@@ -1103,9 +1103,20 @@ static void ccw_machine_2_4_class_options(MachineClass *mc)
 DEFINE_CCW_MACHINE(2_4, "2.4", false);
 #endif
 
+static void ccw_machine_rhel860_instance_options(MachineState *machine)
+{
+}
+
+static void ccw_machine_rhel860_class_options(MachineClass *mc)
+{
+}
+DEFINE_CCW_MACHINE(rhel860, "rhel8.6.0", true);
+
 static void ccw_machine_rhel850_instance_options(MachineState *machine)
 {
     static const S390FeatInit qemu_cpu_feat = { S390_FEAT_LIST_QEMU_V6_0 };
+
+    ccw_machine_rhel860_instance_options(machine);
 
     s390_set_qemu_cpu_model(0x2964, 13, 2, qemu_cpu_feat);
 
@@ -1118,10 +1129,11 @@ static void ccw_machine_rhel850_instance_options(MachineState *machine)
 
 static void ccw_machine_rhel850_class_options(MachineClass *mc)
 {
+    ccw_machine_rhel860_class_options(mc);
     compat_props_add(mc->compat_props, hw_compat_rhel_8_5, hw_compat_rhel_8_5_len);
     mc->smp_props.prefer_sockets = true;
 }
-DEFINE_CCW_MACHINE(rhel850, "rhel8.5.0", true);
+DEFINE_CCW_MACHINE(rhel850, "rhel8.5.0", false);
 
 static void ccw_machine_rhel840_instance_options(MachineState *machine)
 {
