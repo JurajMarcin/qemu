@@ -1134,6 +1134,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Thu Dec 16 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-1
+- Rebase to QEMU 6.2.0 [bz#2027697]
+- Resolves: bz#2027697
+  (Rebase to QEMU 6.2.0)
+
 * Wed Nov 24 2021 Miroslav Rezanina <mrezanin@redhat.com> - 6.1.0-8
 - kvm-Move-ksmtuned-files-to-separate-package.patch [bz#1971678]
 - Resolves: bz#1971678
