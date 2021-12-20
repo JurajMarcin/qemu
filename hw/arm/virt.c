@@ -3236,14 +3236,8 @@ static void rhel_machine_init(void)
 }
 type_init(rhel_machine_init);
 
-static void rhel850_virt_options(MachineClass *mc)
+static void rhel900_virt_options(MachineClass *mc)
 {
-    VirtMachineClass *vmc = VIRT_MACHINE_CLASS(OBJECT_CLASS(mc));
-
     compat_props_add(mc->compat_props, arm_rhel_compat, arm_rhel_compat_len);
-    compat_props_add(mc->compat_props, hw_compat_rhel_8_5, hw_compat_rhel_8_5_len);
-    mc->smp_props.prefer_sockets = true;
-    vmc->no_cpu_topology = true;
-    vmc->no_tcg_its = true;
 }
-DEFINE_RHEL_MACHINE_AS_LATEST(8, 5, 0)
+DEFINE_RHEL_MACHINE_AS_LATEST(9, 0, 0)
