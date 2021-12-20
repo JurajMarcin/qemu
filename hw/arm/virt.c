@@ -3131,6 +3131,18 @@ static void rhel_machine_class_init(ObjectClass *oc, void *data)
                                           "Set GIC version. "
                                           "Valid values are 2, 3, host and max");
 
+    object_class_property_add_str(oc, "iommu", virt_get_iommu, virt_set_iommu);
+    object_class_property_set_description(oc, "iommu",
+                                          "Set the IOMMU type. "
+                                          "Valid values are none and smmuv3");
+
+    object_class_property_add_bool(oc, "default_bus_bypass_iommu",
+                                   virt_get_default_bus_bypass_iommu,
+                                   virt_set_default_bus_bypass_iommu);
+    object_class_property_set_description(oc, "default_bus_bypass_iommu",
+                                          "Set on/off to enable/disable "
+                                          "bypass_iommu for default root bus");
+
     object_class_property_add_str(oc, "x-oem-id",
                                   virt_get_oem_id,
                                   virt_set_oem_id);
@@ -3146,10 +3158,6 @@ static void rhel_machine_class_init(ObjectClass *oc, void *data)
                                           "Override the default value of field OEM Table ID "
                                           "in ACPI table header."
                                           "The string may be up to 8 bytes in size");
-    object_class_property_add_bool(oc, "default_bus_bypass_iommu",
-                                   virt_get_default_bus_bypass_iommu,
-                                   virt_set_default_bus_bypass_iommu);
-
 }
 
 static void rhel_virt_instance_init(Object *obj)
@@ -3183,10 +3191,6 @@ static void rhel_virt_instance_init(Object *obj)
 
     /* Default disallows iommu instantiation */
     vms->iommu = VIRT_IOMMU_NONE;
-    object_property_add_str(obj, "iommu", virt_get_iommu, virt_set_iommu);
-    object_property_set_description(obj, "iommu",
-                                    "Set the IOMMU type. "
-                                    "Valid values are none and smmuv3");
 
     /* Default disallows RAS instantiation and is non-configurable for RHEL */
     vms->ras = false;
