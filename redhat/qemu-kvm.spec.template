@@ -1286,6 +1286,14 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Mon Jan 03 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-2
+- kvm-redhat-Add-rhel8.6.0-machine-type-for-s390x.patch [bz#2005325]
+- kvm-redhat-Define-pseries-rhel8.6.0-machine-type.patch [bz#2031041]
+- Resolves: bz#2005325
+  (Fix CPU Model for new IBM Z Hardware - qemu part)
+- Resolves: bz#2031041
+  (Add rhel-8.6.0 machine types for RHEL 8.6 [ppc64le])
+
 * Mon Nov 22 2021 Jon Maloy <jmaloy@redhat.com> - 6.1.0-5
 - kvm-e1000-fix-tx-re-entrancy-problem.patch [bz#1930092]
 - kvm-hw-scsi-scsi-disk-MODE_PAGE_ALLS-not-allowed-in-MODE.patch [bz#2020720]
