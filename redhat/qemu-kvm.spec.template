@@ -1384,6 +1384,13 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Mon Jan 03 2022 Jon Maloy <jmaloy@redhat.com> - 6.0.0-33.el8_5.2
+- kvm-hw-block-fdc-Extract-blk_create_empty_drive.patch [bz#2028980]
+- kvm-hw-block-fdc-Kludge-missing-floppy-drive-to-fix-CVE-.patch [bz#2028980]
+- kvm-tests-qtest-fdc-test-Add-a-regression-test-for-CVE-2.patch [bz#2028980]
+- Resolves: bz#2028980
+  (CVE-2021-20196 virt:av/qemu-kvm: QEMU: block: fdc: null pointer dereference may lead to guest crash [rhel-av-8.5.0.z])
+
 * Thu Nov 25 2021 Jon Maloy <jmaloy@redhat.com> - 6.0.0-33.el8_5.1
 - kvm-migration-allow-multifd-for-socket-protocol-only.patch [bz#2025604]
 - kvm-migration-allow-enabling-mutilfd-for-specific-protoc.patch [bz#2025604]
