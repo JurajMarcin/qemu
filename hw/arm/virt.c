@@ -3163,6 +3163,7 @@ static void rhel_machine_class_init(ObjectClass *oc, void *data)
                                           "in ACPI table header."
                                           "The string may be up to 6 bytes in size");
 
+
     object_class_property_add_str(oc, "x-oem-table-id",
                                   virt_get_oem_table_id,
                                   virt_set_oem_table_id);
@@ -3170,6 +3171,7 @@ static void rhel_machine_class_init(ObjectClass *oc, void *data)
                                           "Override the default value of field OEM Table ID "
                                           "in ACPI table header."
                                           "The string may be up to 8 bytes in size");
+
 }
 
 static void rhel_virt_instance_init(Object *obj)
@@ -3194,10 +3196,19 @@ static void rhel_virt_instance_init(Object *obj)
     } else {
         /* Default allows ITS instantiation */
         vms->its = true;
+
+        if (vmc->no_tcg_its) {
+            vms->tcg_its = false;
+        } else {
+            vms->tcg_its = true;
+        }
     }
 
     /* Default disallows iommu instantiation */
     vms->iommu = VIRT_IOMMU_NONE;
+
+    /* The default root bus is attached to iommu by default */
+    vms->default_bus_bypass_iommu = false;
 
     /* Default disallows RAS instantiation and is non-configurable for RHEL */
     vms->ras = false;
@@ -3205,15 +3216,12 @@ static void rhel_virt_instance_init(Object *obj)
     /* MTE is disabled by default and non-configurable for RHEL */
     vms->mte = false;
 
-    /* The default root bus is attached to iommu by default */
-    vms->default_bus_bypass_iommu = false;
-
     vms->irqmap = a15irqmap;
 
     virt_flash_create(vms);
+
     vms->oem_id = g_strndup(ACPI_BUILD_APPNAME6, 6);
     vms->oem_table_id = g_strndup(ACPI_BUILD_APPNAME8, 8);
-
 }
 
 static const TypeInfo rhel_machine_info = {
