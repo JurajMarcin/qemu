@@ -1134,6 +1134,16 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Jan 10 2022 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-3
+- kvm-hw-arm-virt-Register-iommu-as-a-class-property.patch [bz#2031044]
+- kvm-hw-arm-virt-Register-its-as-a-class-property.patch [bz#2031044]
+- kvm-hw-arm-virt-Rename-default_bus_bypass_iommu.patch [bz#2031044]
+- kvm-hw-arm-virt-Expose-the-RAS-option.patch [bz#2031044]
+- kvm-hw-arm-virt-Add-9.0-machine-type-and-remove-8.5-one.patch [bz#2031044]
+- kvm-hw-arm-virt-Check-no_tcg_its-and-minor-style-changes.patch [bz#2031044]
+- Resolves: bz#2031044
+  (Add rhel-9.0.0 machine types for RHEL 9.0 [aarch64])
+
 * Fri Jan 07 2022 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-2
 - kvm-redhat-Add-rhel8.6.0-and-rhel9.0.0-machine-types-for.patch [bz#2008060]
 - kvm-redhat-Enable-virtio-mem-as-tech-preview-on-x86-64.patch [bz#2014484]
