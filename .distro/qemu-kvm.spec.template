@@ -112,7 +112,7 @@
 Requires: %{name}-ui-opengl = %{epoch}:%{version}-%{release}     \
 %endif                                                           \
 %if %{have_usbredir}                                             \
-Requires: %{name}-hw-usbredir = %{epoch}:%{version}-%{release}   \
+Requires: %{name}-device-usb-redirect = %{epoch}:%{version}-%{release}   \
 %endif                                                           \
 Requires: %{name}-block-rbd = %{epoch}:%{version}-%{release}     \
 Requires: %{name}-audio-pa = %{epoch}:%{version}-%{release}
@@ -405,12 +405,13 @@ This package provides opengl support.
 %endif
 
 %if %{have_usbredir}
-%package  hw-usbredir
+%package  device-usb-redirect
 Summary: QEMU usbredir support
 Requires: %{name}-common%{?_isa} = %{epoch}:%{version}-%{release}
 Requires: usbredir >= 0.7.1
+Provides: %{name}-hw-usbredir
 
-%description hw-usbredir
+%description device-usb-redirect
 This package provides usbredir support.
 %endif
 
@@ -1126,7 +1127,7 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %if %{have_usbredir}
-%files hw-usbredir
+%files device-usb-redirect
     %{_libdir}/%{name}/hw-usb-redirect.so
 %endif
 
