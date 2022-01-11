@@ -112,6 +112,14 @@
 Requires: %{name}-ui-opengl = %{epoch}:%{version}-%{release}     \
 Requires: %{name}-ui-egl-headless = %{epoch}:%{version}-%{release}     \
 %endif                                                           \
+Requires: %{name}-device-display-virtio-gpu = %{epoch}:%{version}-%{release}   \
+Requires: %{name}-device-display-virtio-gpu-gl = %{epoch}:%{version}-%{release}   \
+%ifarch s390x                                                    \
+Requires: %{name}-device-display-virtio-gpu-ccw = %{epoch}:%{version}-%{release}   \
+%else                                                            \
+Requires: %{name}-device-display-virtio-gpu-pci = %{epoch}:%{version}-%{release}   \
+Requires: %{name}-device-display-virtio-gpu-pci-gl = %{epoch}:%{version}-%{release}   \
+%endif                                                           \
 %if %{have_usbredir}                                             \
 Requires: %{name}-device-usb-redirect = %{epoch}:%{version}-%{release}   \
 %endif                                                           \
@@ -411,6 +419,40 @@ Requires: %{name}-ui-opengl%{?_isa} = %{epoch}:%{version}-%{release}
 %description ui-egl-headless
 This package provides the additional egl-headless UI for QEMU.
 %endif
+
+
+%package device-display-virtio-gpu
+Summary: QEMU virtio-gpu display device
+Requires: %{name}-common%{?_isa} = %{epoch}:%{version}-%{release}
+%description device-display-virtio-gpu
+This package provides the virtio-gpu display device for QEMU.
+
+%package device-display-virtio-gpu-gl
+Summary: QEMU virtio-gpu-gl display device
+Requires: %{name}-common%{?_isa} = %{epoch}:%{version}-%{release}
+%description device-display-virtio-gpu-gl
+This package provides the virtio-gpu-gl display device for QEMU.
+
+%ifarch s390x
+%package device-display-virtio-gpu-ccw
+Summary: QEMU virtio-gpu-ccw display device
+Requires: %{name}-common%{?_isa} = %{epoch}:%{version}-%{release}
+%description device-display-virtio-gpu-ccw
+This package provides the virtio-gpu-ccw display device for QEMU.
+%else
+%package device-display-virtio-gpu-pci
+Summary: QEMU virtio-gpu-pci display device
+Requires: %{name}-common%{?_isa} = %{epoch}:%{version}-%{release}
+%description device-display-virtio-gpu-pci
+This package provides the virtio-gpu-pci display device for QEMU.
+
+%package device-display-virtio-gpu-pci-gl
+Summary: QEMU virtio-gpu-pci-gl display device
+Requires: %{name}-common%{?_isa} = %{epoch}:%{version}-%{release}
+%description device-display-virtio-gpu-pci-gl
+This package provides the virtio-gpu-pci-gl display device for QEMU.
+%endif
+
 
 %if %{have_usbredir}
 %package  device-usb-redirect
@@ -1097,22 +1139,28 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %{_datadir}/%{name}/systemtap/script.d/qemu_kvm.stp
 %{_datadir}/%{name}/systemtap/conf.d/qemu_kvm.conf
 
-%{_libdir}/%{name}/hw-display-virtio-gpu.so
-%{_libdir}/%{name}/hw-display-virtio-gpu-gl.so
 %ifarch x86_64 %{power64}
     %{_libdir}/%{name}/hw-display-virtio-vga-gl.so
 %endif
-%ifarch s390x
-    %{_libdir}/%{name}/hw-s390x-virtio-gpu-ccw.so
-%else
-    %{_libdir}/%{name}/hw-display-virtio-gpu-pci.so
-    %{_libdir}/%{name}/hw-display-virtio-gpu-pci-gl.so
-%endif
-    %{_libdir}/%{name}/accel-qtest-%{kvm_target}.so
+%{_libdir}/%{name}/accel-qtest-%{kvm_target}.so
 %ifarch x86_64
     %{_libdir}/%{name}/accel-tcg-%{kvm_target}.so
 %endif
 %{_libdir}/%{name}/hw-usb-host.so
+
+%files device-display-virtio-gpu
+%{_libdir}/%{name}/hw-display-virtio-gpu.so
+%files device-display-virtio-gpu-gl
+%{_libdir}/%{name}/hw-display-virtio-gpu-gl.so
+%ifarch s390x
+%files device-display-virtio-gpu-ccw
+    %{_libdir}/%{name}/hw-s390x-virtio-gpu-ccw.so
+%else
+%files device-display-virtio-gpu-pci
+    %{_libdir}/%{name}/hw-display-virtio-gpu-pci.so
+%files device-display-virtio-gpu-pci-gl
+    %{_libdir}/%{name}/hw-display-virtio-gpu-pci-gl.so
+%endif
 
 %files tests
 %{testsdir}
