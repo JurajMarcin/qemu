@@ -1160,7 +1160,6 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %{_datadir}/%{name}/systemtap/script.d/qemu_kvm.stp
 %{_datadir}/%{name}/systemtap/conf.d/qemu_kvm.conf
 
-%{_libdir}/%{name}/accel-qtest-%{kvm_target}.so
 %ifarch x86_64
     %{_libdir}/%{name}/accel-tcg-%{kvm_target}.so
 %endif
@@ -1187,6 +1186,7 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 %files tests
 %{testsdir}
+%{_libdir}/%{name}/accel-qtest-%{kvm_target}.so
 
 %files block-curl
 %{_libdir}/%{name}/block-curl.so
