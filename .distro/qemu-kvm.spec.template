@@ -124,6 +124,7 @@ Requires: %{name}-device-display-virtio-gpu-pci-gl = %{epoch}:%{version}-%{relea
 Requires: %{name}-device-display-virtio-vga = %{epoch}:%{version}-%{release}   \
 Requires: %{name}-device-display-virtio-vga-gl = %{epoch}:%{version}-%{release}   \
 %endif                                                           \
+Requires: %{name}-device-usb-host = %{epoch}:%{version}-%{release}   \
 %if %{have_usbredir}                                             \
 Requires: %{name}-device-usb-redirect = %{epoch}:%{version}-%{release}   \
 %endif                                                           \
@@ -470,6 +471,12 @@ Requires: %{name}-common%{?_isa} = %{epoch}:%{version}-%{release}
 %description device-display-virtio-vga-gl
 This package provides the virtio-vga-gl display device for QEMU.
 %endif
+
+%package device-usb-host
+Summary: QEMU usb host device
+Requires: %{name}-common%{?_isa} = %{epoch}:%{version}-%{release}
+%description device-usb-host
+This package provides the USB pass through driver for QEMU.
 
 %if %{have_usbredir}
 %package  device-usb-redirect
@@ -1157,7 +1164,6 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %ifarch x86_64
     %{_libdir}/%{name}/accel-tcg-%{kvm_target}.so
 %endif
-%{_libdir}/%{name}/hw-usb-host.so
 
 %files device-display-virtio-gpu
 %{_libdir}/%{name}/hw-display-virtio-gpu.so
@@ -1199,6 +1205,9 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %files ui-egl-headless
 %{_libdir}/%{name}/ui-egl-headless.so
 %endif
+
+%files device-usb-host
+%{_libdir}/%{name}/hw-usb-host.so
 
 %if %{have_usbredir}
 %files device-usb-redirect
