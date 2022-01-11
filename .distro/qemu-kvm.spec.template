@@ -110,6 +110,7 @@
 %global requires_all_modules                                     \
 %if %{have_opengl}                                               \
 Requires: %{name}-ui-opengl = %{epoch}:%{version}-%{release}     \
+Requires: %{name}-ui-egl-headless = %{epoch}:%{version}-%{release}     \
 %endif                                                           \
 %if %{have_usbredir}                                             \
 Requires: %{name}-device-usb-redirect = %{epoch}:%{version}-%{release}   \
@@ -402,6 +403,13 @@ Requires: mesa-libEGL
 Requires: mesa-dri-drivers
 %description ui-opengl
 This package provides opengl support.
+
+%package  ui-egl-headless
+Summary: QEMU EGL headless driver
+Requires: %{name}-common%{?_isa} = %{epoch}:%{version}-%{release}
+Requires: %{name}-ui-opengl%{?_isa} = %{epoch}:%{version}-%{release}
+%description ui-egl-headless
+This package provides the additional egl-headless UI for QEMU.
 %endif
 
 %if %{have_usbredir}
@@ -1122,8 +1130,9 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 %if %{have_opengl}
 %files ui-opengl
-%{_libdir}/%{name}/ui-egl-headless.so
 %{_libdir}/%{name}/ui-opengl.so
+%files ui-egl-headless
+%{_libdir}/%{name}/ui-egl-headless.so
 %endif
 
 %if %{have_usbredir}
