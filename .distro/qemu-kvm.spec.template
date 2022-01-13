@@ -280,7 +280,15 @@ Requires: libfdt >= %{libfdt_version}
 emulation for the KVM hypervisor. %{name} acts as a virtual
 machine monitor together with the KVM kernel modules, and emulates the
 hardware for a full system such as a PC and its associated peripherals.
-
+This is a minimalistic installation of %{name}. Functionality provided by
+this package is not ensured and it can change in a future version as some
+functionality can be split out to separate package.
+Before updating this package, it is recommended to check the package
+changelog for information on functionality which might have been moved to
+a separate package to prevent issues due to the moved functionality.
+If apps opt-in to minimalist packaging by depending on %{name}-core, they
+explicitly accept that features may disappear from %{name}-core in future
+updates.
 
 %package common
 Summary: QEMU common files needed by all QEMU targets
