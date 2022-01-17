@@ -1134,6 +1134,14 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Jan 17 2022 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-4
+- kvm-block-nvme-fix-infinite-loop-in-nvme_free_req_queue_.patch [bz#2024544]
+- kvm-rhel-machine-types-x86-set-prefer_sockets.patch [bz#2028623]
+- Resolves: bz#2024544
+  (Fio workers hangs when running fio with 32 jobs iodepth 32 and QEMU's userspace NVMe driver)
+- Resolves: bz#2028623
+  ([9.0] machine types: 6.2: Fix prefer_sockets)
+
 * Mon Jan 10 2022 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-3
 - kvm-hw-arm-virt-Register-iommu-as-a-class-property.patch [bz#2031044]
 - kvm-hw-arm-virt-Register-its-as-a-class-property.patch [bz#2031044]
