@@ -1286,6 +1286,18 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Mon Jan 17 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-4
+- kvm-hw-arm-virt-Register-iommu-as-a-class-property.patch [bz#2031039]
+- kvm-hw-arm-virt-Register-its-as-a-class-property.patch [bz#2031039]
+- kvm-hw-arm-virt-Rename-default_bus_bypass_iommu.patch [bz#2031039]
+- kvm-hw-arm-virt-Add-8.6-machine-type.patch [bz#2031039]
+- kvm-hw-arm-virt-Check-no_tcg_its-and-minor-style-changes.patch [bz#2031039]
+- kvm-rhel-machine-types-x86-set-prefer_sockets.patch [bz#2029582]
+- Resolves: bz#2031039
+  (Add rhel-8.6.0 machine types for RHEL 8.6 [aarch64])
+- Resolves: bz#2029582
+  ([8.6] machine types: 6.2: Fix prefer_sockets)
+
 * Mon Jan 03 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-2
 - kvm-redhat-Add-rhel8.6.0-machine-type-for-s390x.patch [bz#2005325]
 - kvm-redhat-Define-pseries-rhel8.6.0-machine-type.patch [bz#2031041]
