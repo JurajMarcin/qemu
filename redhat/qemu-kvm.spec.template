@@ -1286,6 +1286,14 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Tue Jan 25 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-5
+- kvm-acpi-validate-hotplug-selector-on-access.patch [bz#2036580]
+- kvm-x86-Add-q35-RHEL-8.6.0-machine-type.patch [bz#2031035]
+- Resolves: bz#2036580
+  (CVE-2021-4158 virt:rhel/qemu-kvm: QEMU: NULL pointer dereference in pci_write() in hw/acpi/pcihp.c [rhel-8])
+- Resolves: bz#2031035
+  (Add rhel-8.6.0 machine types for RHEL 8.6 [x86])
+
 * Mon Jan 17 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-4
 - kvm-hw-arm-virt-Register-iommu-as-a-class-property.patch [bz#2031039]
 - kvm-hw-arm-virt-Register-its-as-a-class-property.patch [bz#2031039]
