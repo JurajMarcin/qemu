@@ -1134,6 +1134,15 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Tue Jan 25 2022 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-5
+- kvm-x86-Add-q35-RHEL-8.6.0-machine-type.patch [bz#1945666]
+- kvm-x86-Add-q35-RHEL-9.0.0-machine-type.patch [bz#1945666]
+- kvm-softmmu-fix-device-deletion-events-with-device-JSON-.patch [bz#2036669]
+- Resolves: bz#1945666
+  (9.0: x86 machine types)
+- Resolves: bz#2036669
+  (DEVICE_DELETED event is not delivered for device frontend if -device is configured via JSON)
+
 * Mon Jan 17 2022 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-4
 - kvm-block-nvme-fix-infinite-loop-in-nvme_free_req_queue_.patch [bz#2024544]
 - kvm-rhel-machine-types-x86-set-prefer_sockets.patch [bz#2028623]
