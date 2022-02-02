@@ -1226,6 +1226,20 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Wed Feb 02 2022 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-6
+- Moving feature support out of qemu-kvm-core to separate packages (can
+  cause loss of functionality when using only qemu-kvm-core - qemu-kvm keeps
+  same feature set).
+- kvm-spec-Rename-qemu-kvm-hw-usbredir-to-qemu-kvm-device-.patch [bz#2022847]
+- kvm-spec-Split-qemu-kvm-ui-opengl.patch [bz#2022847]
+- kvm-spec-Introduce-packages-for-virtio-gpu-modules.patch [bz#2022847]
+- kvm-spec-Introduce-device-display-virtio-vga-packages.patch [bz#2022847]
+- kvm-spec-Move-usb-host-module-to-separate-package.patch [bz#2022847]
+- kvm-spec-Move-qtest-accel-module-to-tests-package.patch [bz#2022847]
+- kvm-spec-Extend-qemu-kvm-core-description.patch [bz#2022847]
+- Resolves: bz#2022847
+  (qemu-kvm: Align package split with Fedora)
+
 * Tue Jan 25 2022 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-5
 - kvm-x86-Add-q35-RHEL-8.6.0-machine-type.patch [bz#1945666]
 - kvm-x86-Add-q35-RHEL-9.0.0-machine-type.patch [bz#1945666]
