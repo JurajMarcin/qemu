@@ -44,14 +44,13 @@ void qemu_clipboard_peer_release(QemuClipboardPeer *peer,
 
 void qemu_clipboard_update(QemuClipboardInfo *info)
 {
-    QemuClipboardInfo *old = NULL;
+    g_autoptr(QemuClipboardInfo) old = NULL;
     assert(info->selection < QEMU_CLIPBOARD_SELECTION__COUNT);
 
     notifier_list_notify(&clipboard_notifiers, info);
 
     old = cbinfo[info->selection];
     cbinfo[info->selection] = qemu_clipboard_info_ref(info);
-    g_free(old);
 }
 
 QemuClipboardInfo *qemu_clipboard_info(QemuClipboardSelection selection)
