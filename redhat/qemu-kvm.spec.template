@@ -1286,6 +1286,24 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Tue Feb 08 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-6
+- kvm-virtiofsd-Drop-membership-of-all-supplementary-group.patch [bz#2046198]
+- kvm-softmmu-fix-device-deletion-events-with-device-JSON-.patch [bz#2033279]
+- kvm-block-backend-prevent-dangling-BDS-pointers-across-a.patch [bz#2021778 bz#2036178]
+- kvm-iotests-stream-error-on-reset-New-test.patch [bz#2021778 bz#2036178]
+- kvm-block-rbd-fix-handling-of-holes-in-.bdrv_co_block_st.patch [bz#2037135]
+- kvm-block-rbd-workaround-for-ceph-issue-53784.patch [bz#2037135]
+- Resolves: bz#2046198
+  (CVE-2022-0358 virt:av/qemu-kvm: QEMU: virtiofsd: potential privilege escalation via CVE-2018-13405 [rhel-8.6])
+- Resolves: bz#2033279
+  ([wrb][qemu-kvm 6.2] The hot-unplugged device can not be hot-plugged back)
+- Resolves: bz#2021778
+  (Qemu core dump when do full backup during system reset)
+- Resolves: bz#2036178
+  (Qemu core dumped when do block-stream to a snapshot node on non-enough space storage)
+- Resolves: bz#2037135
+  (Booting from Local Snapshot Core Dumped Whose Backing File Is Based on RBD)
+
 * Tue Jan 25 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-5
 - kvm-acpi-validate-hotplug-selector-on-access.patch [bz#2036580]
 - kvm-x86-Add-q35-RHEL-8.6.0-machine-type.patch [bz#2031035]
