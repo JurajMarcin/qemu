@@ -1056,6 +1056,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Tue Feb 08 2022 Jon Maloy <jmaloy@redhat.com> - 4.2.0-48.el8_4.4
+- kvm-virtiofsd-Drop-membership-of-all-supplementary-group.patch [bz#2048625]
+- Resolves: bz#2048625
+  (CVE-2022-0358 virt:rhel/qemu-kvm: QEMU: virtiofsd: potential privilege escalation via CVE-2018-13405 [rhel-8.4.0.z])
+
 * Wed Jul 21 2021 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 4.2.0-48.el8_4.3
 - kvm-net-introduce-qemu_receive_packet.patch [bz#1932917]
 - kvm-e1000-switch-to-use-qemu_receive_packet-for-loopback.patch [bz#1932917]
