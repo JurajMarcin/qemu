@@ -391,6 +391,12 @@ GlobalProperty pc_rhel_compat[] = {
 };
 const size_t pc_rhel_compat_len = G_N_ELEMENTS(pc_rhel_compat);
 
+GlobalProperty pc_rhel_9_0_compat[] = {
+    /* pc_rhel_9_0_compat from pc_compat_6_2 */
+    { "virtio-mem", "unplugged-inaccessible", "off" },
+};
+const size_t pc_rhel_9_0_compat_len = G_N_ELEMENTS(pc_rhel_9_0_compat);
+
 GlobalProperty pc_rhel_8_5_compat[] = {
     /* pc_rhel_8_5_compat from pc_compat_6_0 */
     { "qemu64" "-" TYPE_X86_CPU, "family", "6" },

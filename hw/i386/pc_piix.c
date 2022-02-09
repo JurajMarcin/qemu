@@ -1014,6 +1014,10 @@ static void pc_machine_rhel760_options(MachineClass *m)
     pcmc->kvmclock_create_always = false;
     /* From pc_i440fx_5_1_machine_options() */
     pcmc->pci_root_uid = 1;
+    compat_props_add(m->compat_props, hw_compat_rhel_9_0,
+                     hw_compat_rhel_9_0_len);
+    compat_props_add(m->compat_props, pc_rhel_9_0_compat,
+                     pc_rhel_9_0_compat_len);
     compat_props_add(m->compat_props, hw_compat_rhel_8_6,
                      hw_compat_rhel_8_6_len);
     compat_props_add(m->compat_props, hw_compat_rhel_8_5,
