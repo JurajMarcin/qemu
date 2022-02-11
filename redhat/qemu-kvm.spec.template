@@ -1336,6 +1336,20 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Thu Feb 10 2022 Jon Maloy <jmaloy@redhat.com> - 5.2.0-16.el8_4.15
+- kvm-target-i386-Declare-constants-for-XSAVE-offsets.patch [bz#2043121]
+- kvm-target-i386-Consolidate-the-X86XSaveArea-offset-chec.patch [bz#2043121]
+- kvm-target-i386-Clarify-the-padding-requirements-of-X86X.patch [bz#2043121]
+- kvm-target-i386-Pass-buffer-and-length-to-XSAVE-helper.patch [bz#2043121]
+- kvm-target-i386-Make-x86_ext_save_areas-visible-outside-.patch [bz#2043121]
+- kvm-target-i386-Observe-XSAVE-state-area-offsets.patch [bz#2043121]
+- kvm-target-i386-Populate-x86_ext_save_areas-offsets-usin.patch [bz#2043121]
+- kvm-virtiofsd-Drop-membership-of-all-supplementary-group.patch [bz#2048618]
+- Resolves: bz#2043121
+  (KVM Fedora 35 guest x86 programs randomly crash in signal handler [rhel-av-8.4z])
+- Resolves: bz#2048618
+  (CVE-2022-0358 virt:av/qemu-kvm: QEMU: virtiofsd: potential privilege escalation via CVE-2018-13405 [rhel-av-8.4.0.z])
+
 * Mon Jan 03 2022 Jon Maloy <jmaloy@redhat.com> - 5.2.0-16.el8_4.14
 - kvm-hw-block-fdc-Extract-blk_create_empty_drive.patch [bz#1944624]
 - kvm-hw-block-fdc-Kludge-missing-floppy-drive-to-fix-CVE-.patch [bz#1944624]
