@@ -1038,6 +1038,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Thu Feb 10 2022 Jon Maloy <jmaloy@redhat.com> - 4.2.0-29.el8_2.11
+- kvm-virtiofsd-Drop-membership-of-all-supplementary-group.patch [bz#2046199]
+- Resolves: bz#2046199
+  (CVE-2022-0358 virt:8.2/qemu-kvm: QEMU: virtiofsd: potential privilege escalation via CVE-2018-13405 [rhel-av-8.2.1.z])
+
 * Fri Nov 19 2021 Jon Maloy <jmaloy@redhat.com> - 4.2.0-29.el8_2.10
 - kvm-virtio-net-fix-use-after-unmap-free-for-sg.patch [bz#1999223]
 - Resolves: bz#1999223
