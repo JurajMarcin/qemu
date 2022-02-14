@@ -48,8 +48,10 @@ void qemu_clipboard_update(QemuClipboardInfo *info)
 
     notifier_list_notify(&clipboard_notifiers, info);
 
-    qemu_clipboard_info_unref(cbinfo[info->selection]);
-    cbinfo[info->selection] = qemu_clipboard_info_ref(info);
+    if (cbinfo[info->selection] != info) {
+        qemu_clipboard_info_unref(cbinfo[info->selection]);
+        cbinfo[info->selection] = qemu_clipboard_info_ref(info);
+    }
 }
 
 QemuClipboardInfo *qemu_clipboard_info(QemuClipboardSelection selection)
