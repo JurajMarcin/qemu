@@ -1286,6 +1286,19 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Tue Feb 15 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-7
+- kvm-numa-Enable-numa-for-SGX-EPC-sections.patch [bz#1518984]
+- kvm-numa-Support-SGX-numa-in-the-monitor-and-Libvirt-int.patch [bz#1518984]
+- kvm-doc-Add-the-SGX-numa-description.patch [bz#1518984]
+- kvm-Enable-SGX-RH-Only.patch [bz#1518984]
+- kvm-qapi-Cleanup-SGX-related-comments-and-restore-sectio.patch [bz#1518984]
+- kvm-block-io-Update-BSC-only-if-want_zero-is-true.patch [bz#2041480]
+- kvm-iotests-block-status-cache-New-test.patch [bz#2041480]
+- Resolves: bz#1518984
+  ([Intel 8.6 Feat] qemu-kvm: SGX 1.5 (SGX1 + Flexible Launch Control) support)
+- Resolves: bz#2041480
+  ([incremental_backup] Inconsistent block status reply in qemu-nbd)
+
 * Tue Feb 08 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-6
 - kvm-virtiofsd-Drop-membership-of-all-supplementary-group.patch [bz#2046198]
 - kvm-softmmu-fix-device-deletion-events-with-device-JSON-.patch [bz#2033279]
