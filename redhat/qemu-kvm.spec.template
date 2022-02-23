@@ -1286,6 +1286,16 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Tue Feb 22 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-8
+- kvm-block-nbd-Delete-reconnect-delay-timer-when-done.patch [bz#2035185]
+- kvm-block-nbd-Assert-there-are-no-timers-when-closed.patch [bz#2035185]
+- kvm-iotests.py-Add-QemuStorageDaemon-class.patch [bz#2035185]
+- kvm-iotests-281-Test-lingering-timers.patch [bz#2035185]
+- kvm-block-nbd-Move-s-ioc-on-AioContext-change.patch [bz#2035185]
+- kvm-iotests-281-Let-NBD-connection-yield-in-iothread.patch [bz#2035185]
+- Resolves: bz#2035185
+  (Qemu core dump when start guest with nbd node or do block jobs to nbd node)
+
 * Tue Feb 15 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-7
 - kvm-numa-Enable-numa-for-SGX-EPC-sections.patch [bz#1518984]
 - kvm-numa-Support-SGX-numa-in-the-monitor-and-Libvirt-int.patch [bz#1518984]
