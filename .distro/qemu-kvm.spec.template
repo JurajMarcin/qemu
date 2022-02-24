@@ -1226,6 +1226,18 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Thu Feb 24 2022 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-10
+- kvm-Revert-ui-clipboard-Don-t-use-g_autoptr-just-to-free.patch [bz#2042820]
+- kvm-ui-avoid-compiler-warnings-from-unused-clipboard-inf.patch [bz#2042820]
+- kvm-ui-clipboard-fix-use-after-free-regression.patch [bz#2042820]
+- kvm-ui-vnc.c-Fixed-a-deadlock-bug.patch [bz#2042820]
+- kvm-memory-Fix-incorrect-calls-of-log_global_start-stop.patch [bz#2044818]
+- kvm-memory-Fix-qemu-crash-on-starting-dirty-log-twice-wi.patch [bz#2044818]
+- Resolves: bz#2042820
+  (qemu crash when try to copy and paste contents from client to VM)
+- Resolves: bz#2044818
+  (Qemu Core Dumped when migrate -> migrate_cancel -> migrate again during guest is paused)
+
 * Thu Feb 17 2022 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-9
 - kvm-block-Lock-AioContext-for-drain_end-in-blockdev-reop.patch [bz#2046659]
 - kvm-iotests-Test-blockdev-reopen-with-iothreads-and-thro.patch [bz#2046659]
