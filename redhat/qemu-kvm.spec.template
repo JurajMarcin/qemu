@@ -812,6 +812,11 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 %{_mandir}/man8/qemu-nbd.8*
 
 %changelog
+* Fri Feb 25 2022 Jon Maloy <jmaloy@redhat.com> - 1.5.3-175.el7_9.6
+- kvm-rbd-avoid-qemu_rbd_snap_list-memory-leaks.patch [bz#2056725]
+- Resolves: bz#2056725
+  (qemu-kvm leaks on qemu_rbd_snap_list)
+
 * Fri Nov 12 2021 Jon Maloy <jmaloy@redhat.com> - 1.5.3-175.el7_9.5
 - kvm-dma-helpers-Initialize-DMAAIOCB-in_cancel-flag.patch [bz#2007036]
 - Resolves: bz#2007036
