@@ -1213,6 +1213,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Tue Mar 01 2022 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-11
+- kvm-spec-Remove-qemu-virtiofsd.patch [bz#2055284]
+- Resolves: bz#2055284
+  (Remove the qemu-virtiofsd subpackage)
+
 * Thu Feb 24 2022 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-10
 - kvm-Revert-ui-clipboard-Don-t-use-g_autoptr-just-to-free.patch [bz#2042820]
 - kvm-ui-avoid-compiler-warnings-from-unused-clipboard-inf.patch [bz#2042820]
