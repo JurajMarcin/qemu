@@ -9,7 +9,7 @@ RELEASE_SEPARATOR:=-
 WEEKLY_DATE:=
 RC:=
 CLANG:=1
-BUILD_TARGET=rhel-9.0.0-candidate
+BUILD_TARGET=rhel-9.1.0-candidate
 
 ifneq ($(RC),)
   TARFILE:=qemu-$(VERSION)-$(RC).tar.xz
