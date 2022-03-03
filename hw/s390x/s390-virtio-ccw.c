@@ -1121,6 +1121,9 @@ static void ccw_machine_rhel860_instance_options(MachineState *machine)
 static void ccw_machine_rhel860_class_options(MachineClass *mc)
 {
     ccw_machine_rhel900_class_options(mc);
+
+    /* All RHEL machines for prior major releases are deprecated */
+    mc->deprecation_reason = rhel_old_machine_deprecation;
 }
 DEFINE_CCW_MACHINE(rhel860, "rhel8.6.0", false);
 
