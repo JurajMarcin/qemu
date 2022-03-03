@@ -989,6 +989,10 @@ static void pc_machine_rhel760_options(MachineClass *m)
     m->desc = "RHEL 7.6.0 PC (i440FX + PIIX, 1996)";
     m->async_pf_vmexit_disable = true;
     m->smbus_no_migration_support = true;
+
+    /* All RHEL machines for prior major releases are deprecated */
+    m->deprecation_reason = rhel_old_machine_deprecation;
+
     pcmc->pvh_enabled = false;
     pcmc->default_cpu_version = CPU_VERSION_LEGACY;
     pcmc->kvmclock_create_always = false;

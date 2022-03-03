@@ -674,6 +674,10 @@ static void pc_q35_machine_rhel860_options(MachineClass *m)
     pc_q35_machine_rhel900_options(m);
     m->desc = "RHEL-8.6.0 PC (Q35 + ICH9, 2009)";
     m->alias = NULL;
+
+    /* All RHEL machines for prior major releases are deprecated */
+    m->deprecation_reason = rhel_old_machine_deprecation;
+
     pcmc->smbios_stream_product = "RHEL-AV";
     pcmc->smbios_stream_version = "8.6.0";
 }
