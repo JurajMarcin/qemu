@@ -1056,6 +1056,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Mon Mar 07 2022 Jon Maloy <jmaloy@redhat.com> - 4.2.0-48.el8_4.5
+- kvm-scsi-make-io_timeout-configurable.patch [bz#2001587]
+- Resolves: bz#2001587
+  (qemu-kvm scsi: change default passthrough timeout to non-infinite [rhel-8.4.0.z])
+
 * Tue Feb 08 2022 Jon Maloy <jmaloy@redhat.com> - 4.2.0-48.el8_4.4
 - kvm-virtiofsd-Drop-membership-of-all-supplementary-group.patch [bz#2048625]
 - Resolves: bz#2048625
