@@ -531,12 +531,6 @@ static void pc_i440fx_4_2_machine_options(MachineClass *m)
      * supported by RHEL, even if exported.
      */
     m->deprecation_reason = "Not supported by RHEL";
-    /*
-     * RHEL: Specific compat properties to have limited support for upstream
-     * machines exported.
-     */
-    compat_props_add(m->compat_props, hw_compat_4_2_extra,
-                     hw_compat_4_2_extra_len);
 }
 
 /* RHEL: Export pc-4.2 */
