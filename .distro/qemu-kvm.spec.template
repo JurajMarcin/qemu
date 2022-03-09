@@ -483,6 +483,7 @@ Summary: QEMU usbredir support
 Requires: %{name}-common%{?_isa} = %{epoch}:%{version}-%{release}
 Requires: usbredir >= 0.7.1
 Provides: %{name}-hw-usbredir
+Obsoletes: %{name}-hw-usbredir <= %{epoch}:%{version} 
 
 %description device-usb-redirect
 This package provides usbredir support.
