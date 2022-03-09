@@ -135,10 +135,17 @@ Requires: %{name}-audio-pa = %{epoch}:%{version}-%{release}
 # removes {name}-ui-spice for upgrades from RHEL-8
 # The "<= {version}" assumes RHEL-9 version >= RHEL-8 version (in
 # other words RHEL-9 rebases are done together/before RHEL-8 ones)
+
+# In addition, we obsolete some block drivers as we are no longer support
+# them in default qemu-kvm installation.
+
+# Note: ssh driver wasn't removed yet just disabled due to late handling
+
 %global obsoletes_some_modules                                  \
 Obsoletes: %{name}-ui-spice <= %{epoch}:%{version}                       \
 Obsoletes: %{name}-block-gluster <= %{epoch}:%{version}                  \
 Obsoletes: %{name}-block-iscsi <= %{epoch}:%{version}                    \
+Obsoletes: %{name}-block-ssh <= %{epoch}:%{version}                    \
 
 
 Summary: QEMU is a machine emulator and virtualizer
