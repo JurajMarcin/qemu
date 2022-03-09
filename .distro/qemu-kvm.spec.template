@@ -136,9 +136,9 @@ Requires: %{name}-audio-pa = %{epoch}:%{version}-%{release}
 # The "<= {version}" assumes RHEL-9 version >= RHEL-8 version (in
 # other words RHEL-9 rebases are done together/before RHEL-8 ones)
 %global obsoletes_some_modules                                  \
-Obsoletes: %{name}-ui-spice <= %{version}                       \
-Obsoletes: %{name}-block-gluster <= %{version}                  \
-Obsoletes: %{name}-block-iscsi <= %{version}                    \
+Obsoletes: %{name}-ui-spice <= %{epoch}:%{version}                       \
+Obsoletes: %{name}-block-gluster <= %{epoch}:%{version}                  \
+Obsoletes: %{name}-block-iscsi <= %{epoch}:%{version}                    \
 
 
 Summary: QEMU is a machine emulator and virtualizer
