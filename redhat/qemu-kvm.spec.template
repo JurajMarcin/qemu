@@ -1286,6 +1286,20 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Sat Mar 12 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-9
+- kvm-Revert-redhat-Add-hw_compat_4_2_extra-and-apply-to-u.patch [bz#2061856]
+- kvm-Revert-redhat-Enable-FDC-device-for-upstream-machine.patch [bz#2061856]
+- kvm-Revert-redhat-Expose-upstream-machines-pc-4.2-and-pc.patch [bz#2061856]
+- kvm-hw-virtio-vdpa-Fix-leak-of-host-notifier-memory-regi.patch [bz#2027208]
+- kvm-pci-expose-TYPE_XIO3130_DOWNSTREAM-name.patch [bz#2054597]
+- kvm-acpi-pcihp-pcie-set-power-on-cap-on-parent-slot.patch [bz#2054597]
+- Resolves: bz#2061856
+  (Revert IBM-specific Ubuntu-compatibility machine type for 8.6-AV GA)
+- Resolves: bz#2027208
+  ([virtual network][vDPA] qemu crash after hot unplug vdpa device)
+- Resolves: bz#2054597
+  (Do operation to disk will hang in the guest of target host after hotplugging and migrating)
+
 * Tue Feb 22 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-8
 - kvm-block-nbd-Delete-reconnect-delay-timer-when-done.patch [bz#2035185]
 - kvm-block-nbd-Assert-there-are-no-timers-when-closed.patch [bz#2035185]
