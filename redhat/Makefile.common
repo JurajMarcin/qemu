@@ -45,4 +45,8 @@ SOURCES_FILELIST:=                     \
        95-kvm-memlock.conf             \
        qemu-pr-helper.service          \
        qemu-pr-helper.socket           \
-       README.tests
+       README.tests                    \
+       tests_data_acpi_pc_SSDT.dimmpxm  \
+       tests_data_acpi_q35_FACP.slic    \
+       tests_data_acpi_q35_SSDT.dimmpxm \
+       tests_data_acpi_virt_SSDT.memhp
