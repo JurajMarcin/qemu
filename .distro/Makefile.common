@@ -35,4 +35,8 @@ SOURCES_FILELIST:=                     \
        kvm-x86.conf                    \
        kvm-s390x.conf                  \
        95-kvm-memlock.conf             \
-       README.tests
+       README.tests                    \
+       tests_data_acpi_pc_SSDT.dimmpxm  \
+       tests_data_acpi_q35_FACP.slic    \
+       tests_data_acpi_q35_SSDT.dimmpxm \
+       tests_data_acpi_virt_SSDT.memhp

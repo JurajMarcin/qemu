@@ -174,6 +174,10 @@ Source28: 95-kvm-memlock.conf
 Source30: kvm-s390x.conf
 Source31: kvm-x86.conf
 Source36: README.tests
+Source37: tests_data_acpi_pc_SSDT.dimmpxm
+Source38: tests_data_acpi_q35_FACP.slic
+Source39: tests_data_acpi_q35_SSDT.dimmpxm
+Source40: tests_data_acpi_virt_SSDT.memhp
 
 
 %%PATCHLIST%%
@@ -503,6 +507,10 @@ This package provides usbredir support.
 %global qemu_kvm_build qemu_kvm_build
 mkdir -p %{qemu_kvm_build}
 
+cp -f %{SOURCE37} tests/data/acpi/pc/SSDT.dimmpxm
+cp -f %{SOURCE38} tests/data/acpi/q35/FACP.slic
+cp -f %{SOURCE39} tests/data/acpi/q35/SSDT.dimmpxm
+cp -f %{SOURCE40} tests/data/acpi/virt/SSDT.memhp
 
 %build
 %define disable_everything         \\\
