@@ -1221,6 +1221,21 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Mar 21 2022 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-12
+- kvm-RHEL-mark-old-machine-types-as-deprecated.patch [bz#2062813]
+- kvm-hw-virtio-vdpa-Fix-leak-of-host-notifier-memory-regi.patch [bz#2062828]
+- kvm-spec-Fix-obsolete-for-spice-subpackages.patch [bz#2062819 bz#2062817]
+- kvm-spec-Obsolete-old-usb-redir-subpackage.patch [bz#2062819]
+- kvm-spec-Obsolete-ssh-driver.patch [bz#2062817]
+- Resolves: bz#2062828
+  ([virtual network][rhel9][vDPA] qemu crash after hot unplug vdpa device [rhel-9.1.0])
+- Resolves: bz#2062819
+  (Broken upgrade path due to qemu-kvm-hw-usbredir  rename [rhel-9.1.0])
+- Resolves: bz#2062817
+  (Missing qemu-kvm-block-ssh obsolete breaks upgrade path [rhel-9.1.0])
+- Resolves: bz#2062813
+  (Mark all RHEL-8 and earlier machine types as deprecated [rhel-9.1.0])
+
 * Tue Mar 01 2022 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-11
 - kvm-spec-Remove-qemu-virtiofsd.patch [bz#2055284]
 - Resolves: bz#2055284
