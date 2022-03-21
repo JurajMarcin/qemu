@@ -975,7 +975,8 @@ static void aarch64_a64fx_initfn(Object *obj)
 #endif /* disabled for RHEL */
 
 static const ARMCPUInfo aarch64_cpus[] = {
-    { .name = "cortex-a57",         .initfn = aarch64_a57_initfn },
+    { .name = "cortex-a57",         .initfn = aarch64_a57_initfn,
+      .deprecation_note = RHEL_CPU_DEPRECATION },
 #if 0 /* Disabled for Red Hat Enterprise Linux */
     { .name = "cortex-a53",         .initfn = aarch64_a53_initfn },
     { .name = "cortex-a72",         .initfn = aarch64_a72_initfn },
@@ -1052,8 +1053,13 @@ static void aarch64_cpu_instance_init(Object *obj)
 static void cpu_register_class_init(ObjectClass *oc, void *data)
 {
     ARMCPUClass *acc = ARM_CPU_CLASS(oc);
+    CPUClass *cc = CPU_CLASS(oc);
 
     acc->info = data;
+
+    if (acc->info->deprecation_note) {
+        cc->deprecation_note = acc->info->deprecation_note;
+    }
 }
 
 void aarch64_cpu_register(const ARMCPUInfo *info)
