@@ -315,14 +315,6 @@ static void pc_init1(MachineState *machine,
  * hw_compat_*, pc_compat_*, or * pc_*_machine_options().
  */
 
-/*
- * NOTE!  Not all the upstream machine types are disabled for RHEL.  For
- * providing a very limited support for upstream machine types, pc machines
- * 2.11 and 4.2 are exposed explicitly.  This will make the below "#if" macros
- * a bit messed up, but please read this comment first so that we can have a
- * rough understanding of what we're going to do.
- */
-
 #if 0 /* Disabled for Red Hat Enterprise Linux */
 static void pc_compat_2_3_fn(MachineState *machine)
 {
@@ -399,8 +391,6 @@ static void pc_xen_hvm_init(MachineState *machine)
 }
 #endif
 
-#endif /* Disabled for Red Hat Enterprise Linux */
-
 #define DEFINE_I440FX_MACHINE(suffix, name, compatfn, optionfn) \
     static void pc_init_##suffix(MachineState *machine) \
     { \
@@ -465,10 +455,8 @@ static void pc_i440fx_6_0_machine_options(MachineClass *m)
     compat_props_add(m->compat_props, pc_compat_6_0, pc_compat_6_0_len);
 }
 
-#if 0 /* Disabled for Red Hat Enterprise Linux */
 DEFINE_I440FX_MACHINE(v6_0, "pc-i440fx-6.0", NULL,
                       pc_i440fx_6_0_machine_options);
-#endif /* Disabled for Red Hat Enterprise Linux */
 
 static void pc_i440fx_5_2_machine_options(MachineClass *m)
 {
@@ -479,10 +467,8 @@ static void pc_i440fx_5_2_machine_options(MachineClass *m)
     compat_props_add(m->compat_props, pc_compat_5_2, pc_compat_5_2_len);
 }
 
-#if 0 /* Disabled for Red Hat Enterprise Linux */
 DEFINE_I440FX_MACHINE(v5_2, "pc-i440fx-5.2", NULL,
                       pc_i440fx_5_2_machine_options);
-#endif /* Disabled for Red Hat Enterprise Linux */
 
 static void pc_i440fx_5_1_machine_options(MachineClass *m)
 {
@@ -497,10 +483,8 @@ static void pc_i440fx_5_1_machine_options(MachineClass *m)
     pcmc->pci_root_uid = 1;
 }
 
-#if 0 /* Disabled for Red Hat Enterprise Linux */
 DEFINE_I440FX_MACHINE(v5_1, "pc-i440fx-5.1", NULL,
                       pc_i440fx_5_1_machine_options);
-#endif /* Disabled for Red Hat Enterprise Linux */
 
 static void pc_i440fx_5_0_machine_options(MachineClass *m)
 {
@@ -513,10 +497,8 @@ static void pc_i440fx_5_0_machine_options(MachineClass *m)
     m->auto_enable_numa_with_memdev = false;
 }
 
-#if 0 /* Disabled for Red Hat Enterprise Linux */
 DEFINE_I440FX_MACHINE(v5_0, "pc-i440fx-5.0", NULL,
                       pc_i440fx_5_0_machine_options);
-#endif /* Disabled for Red Hat Enterprise Linux */
 
 static void pc_i440fx_4_2_machine_options(MachineClass *m)
 {
@@ -525,15 +507,8 @@ static void pc_i440fx_4_2_machine_options(MachineClass *m)
     m->is_default = false;
     compat_props_add(m->compat_props, hw_compat_4_2, hw_compat_4_2_len);
     compat_props_add(m->compat_props, pc_compat_4_2, pc_compat_4_2_len);
-
-    /*
-     * RHEL: Mark all upstream machines as deprecated because they're not
-     * supported by RHEL, even if exported.
-     */
-    m->deprecation_reason = "Not supported by RHEL";
 }
 
-/* RHEL: Export pc-4.2 */
 DEFINE_I440FX_MACHINE(v4_2, "pc-i440fx-4.2", NULL,
                       pc_i440fx_4_2_machine_options);
 
@@ -546,10 +521,8 @@ static void pc_i440fx_4_1_machine_options(MachineClass *m)
     compat_props_add(m->compat_props, pc_compat_4_1, pc_compat_4_1_len);
 }
 
-#if 0 /* Disabled for Red Hat Enterprise Linux */
 DEFINE_I440FX_MACHINE(v4_1, "pc-i440fx-4.1", NULL,
                       pc_i440fx_4_1_machine_options);
-#endif /* Disabled for Red Hat Enterprise Linux */
 
 static void pc_i440fx_4_0_machine_options(MachineClass *m)
 {
@@ -562,10 +535,8 @@ static void pc_i440fx_4_0_machine_options(MachineClass *m)
     compat_props_add(m->compat_props, pc_compat_4_0, pc_compat_4_0_len);
 }
 
-#if 0 /* Disabled for Red Hat Enterprise Linux */
 DEFINE_I440FX_MACHINE(v4_0, "pc-i440fx-4.0", NULL,
                       pc_i440fx_4_0_machine_options);
-#endif /* Disabled for Red Hat Enterprise Linux */
 
 static void pc_i440fx_3_1_machine_options(MachineClass *m)
 {
@@ -581,10 +552,8 @@ static void pc_i440fx_3_1_machine_options(MachineClass *m)
     compat_props_add(m->compat_props, pc_compat_3_1, pc_compat_3_1_len);
 }
 
-#if 0 /* Disabled for Red Hat Enterprise Linux */
 DEFINE_I440FX_MACHINE(v3_1, "pc-i440fx-3.1", NULL,
                       pc_i440fx_3_1_machine_options);
-#endif /* Disabled for Red Hat Enterprise Linux */
 
 static void pc_i440fx_3_0_machine_options(MachineClass *m)
 {
@@ -593,10 +562,8 @@ static void pc_i440fx_3_0_machine_options(MachineClass *m)
     compat_props_add(m->compat_props, pc_compat_3_0, pc_compat_3_0_len);
 }
 
-#if 0 /* Disabled for Red Hat Enterprise Linux */
 DEFINE_I440FX_MACHINE(v3_0, "pc-i440fx-3.0", NULL,
                       pc_i440fx_3_0_machine_options);
-#endif /* Disabled for Red Hat Enterprise Linux */
 
 static void pc_i440fx_2_12_machine_options(MachineClass *m)
 {
@@ -605,10 +572,8 @@ static void pc_i440fx_2_12_machine_options(MachineClass *m)
     compat_props_add(m->compat_props, pc_compat_2_12, pc_compat_2_12_len);
 }
 
-#if 0 /* Disabled for Red Hat Enterprise Linux */
 DEFINE_I440FX_MACHINE(v2_12, "pc-i440fx-2.12", NULL,
                       pc_i440fx_2_12_machine_options);
-#endif /* Disabled for Red Hat Enterprise Linux */
 
 static void pc_i440fx_2_11_machine_options(MachineClass *m)
 {
@@ -617,11 +582,9 @@ static void pc_i440fx_2_11_machine_options(MachineClass *m)
     compat_props_add(m->compat_props, pc_compat_2_11, pc_compat_2_11_len);
 }
 
-/* RHEL: Export pc-2.11 */
 DEFINE_I440FX_MACHINE(v2_11, "pc-i440fx-2.11", NULL,
                       pc_i440fx_2_11_machine_options);
 
-#if 0 /* Disabled for Red Hat Enterprise Linux */
 static void pc_i440fx_2_10_machine_options(MachineClass *m)
 {
     pc_i440fx_2_11_machine_options(m);
