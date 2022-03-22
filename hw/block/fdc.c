@@ -2341,10 +2341,7 @@ void fdctrl_realize_common(DeviceState *dev, FDCtrl *fdctrl, Error **errp)
 
     /* Restricted for Red Hat Enterprise Linux: */
     MachineClass *mc = MACHINE_GET_CLASS(qdev_get_machine());
-    if (!strstr(mc->name, "-rhel7.") &&
-        /* Exported two upstream machine types allows FDC too */
-        strcmp(mc->name, "pc-i440fx-4.2") &&
-        strcmp(mc->name, "pc-i440fx-2.11")) {
+    if (!strstr(mc->name, "-rhel7.")) {
         error_setg(errp, "Device %s is not supported with machine type %s",
                    object_get_typename(OBJECT(dev)), mc->name);
         return;
