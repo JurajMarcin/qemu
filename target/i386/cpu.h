@@ -1510,7 +1510,6 @@ typedef struct CPUX86State {
     target_ulong kernelgsbase;
 #endif
 
-    uint64_t tsc;
     uint64_t tsc_adjust;
     uint64_t tsc_deadline;
     uint64_t tsc_aux;
@@ -1660,6 +1659,7 @@ typedef struct CPUX86State {
     int64_t tsc_khz;
     int64_t user_tsc_khz; /* for sanity check only */
     uint64_t apic_bus_freq;
+    uint64_t tsc;
 #if defined(CONFIG_KVM) || defined(CONFIG_HVF)
     void *xsave_buf;
     uint32_t xsave_buf_len;
