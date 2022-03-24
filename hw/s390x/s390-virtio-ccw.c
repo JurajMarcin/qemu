@@ -1109,6 +1109,7 @@ static void ccw_machine_rhel860_instance_options(MachineState *machine)
 
 static void ccw_machine_rhel860_class_options(MachineClass *mc)
 {
+    compat_props_add(mc->compat_props, hw_compat_rhel_8_6, hw_compat_rhel_8_6_len);
 }
 DEFINE_CCW_MACHINE(rhel860, "rhel8.6.0", true);
 

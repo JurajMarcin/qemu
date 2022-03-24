@@ -658,6 +658,8 @@ static void pc_q35_machine_rhel860_options(MachineClass *m)
     m->desc = "RHEL-8.6.0 PC (Q35 + ICH9, 2009)";
     pcmc->smbios_stream_product = "RHEL-AV";
     pcmc->smbios_stream_version = "8.6.0";
+    compat_props_add(m->compat_props, hw_compat_rhel_8_6,
+                     hw_compat_rhel_8_6_len);
 }
 
 DEFINE_PC_MACHINE(q35_rhel860, "pc-q35-rhel8.6.0", pc_q35_init_rhel860,
