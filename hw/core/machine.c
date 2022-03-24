@@ -43,6 +43,16 @@
 const char *rhel_old_machine_deprecation =
     "machine types for previous major releases are deprecated";
 
+GlobalProperty hw_compat_rhel_8_6[] = {
+    /* hw_compat_rhel_8_6 bz 2065589 */
+    /*
+     * vhost-vsock device in RHEL 8 kernels doesn't support seqpacket, so
+     * we need do disable it downstream on the latest hw_compat_rhel_8.
+     */
+    { "vhost-vsock-device", "seqpacket", "off" },
+};
+const size_t hw_compat_rhel_8_6_len = G_N_ELEMENTS(hw_compat_rhel_8_6);
+
 /*
  * Mostly the same as hw_compat_6_0 and hw_compat_6_1
  */
