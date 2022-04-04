@@ -1121,6 +1121,9 @@ DEFINE_CCW_MACHINE(2_4, "2.4", false);
 
 static void ccw_machine_rhel900_instance_options(MachineState *machine)
 {
+    static const S390FeatInit qemu_cpu_feat = { S390_FEAT_LIST_QEMU_V6_2 };
+
+    s390_set_qemu_cpu_model(0x3906, 14, 2, qemu_cpu_feat);
 }
 
 static void ccw_machine_rhel900_class_options(MachineClass *mc)
