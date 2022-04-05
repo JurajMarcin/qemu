@@ -1294,6 +1294,11 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Tue Apr 05 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-11
+- kvm-target-i386-properly-reset-TSC-on-reset.patch [bz#1975840]
+- Resolves: bz#1975840
+  (Windows guest hangs after updating and restarting from the guest OS)
+
 * Mon Mar 21 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-10
 - kvm-vmxcap-Add-5-level-EPT-bit.patch [bz#2056986]
 - kvm-i386-Add-Icelake-Server-v6-CPU-model-with-5-level-EP.patch [bz#2056986]
