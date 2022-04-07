@@ -1294,6 +1294,36 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Wed Apr 06 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-9
+- kvm-Revert-redhat-Add-hw_compat_4_2_extra-and-apply-to-u.patch [bz#2062613]
+- kvm-Revert-redhat-Enable-FDC-device-for-upstream-machine.patch [bz#2062613]
+- kvm-Revert-redhat-Expose-upstream-machines-pc-4.2-and-pc.patch [bz#2062613]
+- kvm-hw-virtio-vdpa-Fix-leak-of-host-notifier-memory-regi.patch [bz#2060843]
+- kvm-pci-expose-TYPE_XIO3130_DOWNSTREAM-name.patch [bz#2062610]
+- kvm-acpi-pcihp-pcie-set-power-on-cap-on-parent-slot.patch [bz#2062610]
+- kvm-vmxcap-Add-5-level-EPT-bit.patch [bz#2065207]
+- kvm-i386-Add-Icelake-Server-v6-CPU-model-with-5-level-EP.patch [bz#2065207]
+- kvm-acpi-fix-QEMU-crash-when-started-with-SLIC-table.patch [bz#2062611]
+- kvm-tests-acpi-whitelist-expected-blobs-before-changing-.patch [bz#2062611]
+- kvm-tests-acpi-add-SLIC-table-test.patch [bz#2062611]
+- kvm-tests-acpi-SLIC-update-expected-blobs.patch [bz#2062611]
+- kvm-tests-acpi-manually-pad-OEM_ID-OEM_TABLE_ID-for-test.patch [bz#2062611]
+- kvm-tests-acpi-whitelist-nvdimm-s-SSDT-and-FACP.slic-exp.patch [bz#2062611]
+- kvm-acpi-fix-OEM-ID-OEM-Table-ID-padding.patch [bz#2062611]
+- kvm-tests-acpi-update-expected-blobs.patch [bz#2062611]
+- kvm-tests-acpi-test-short-OEM_ID-OEM_TABLE_ID-values-in-.patch [bz#2062611]
+- kvm-rhel-workaround-for-lack-of-binary-patches-in-SRPM.patch [bz#2062611]
+- Resolves: bz#2062613
+  (Revert IBM-specific Ubuntu-compatibility machine type for 8.6-AV GA [rhel-8.7.0])
+- Resolves: bz#2060843
+  ([virtual network][vDPA] qemu crash after hot unplug vdpa device [rhel-8.7.0])
+- Resolves: bz#2062610
+  (Do operation to disk will hang in the guest of target host after hotplugging and migrating [rhel-8.7.0])
+- Resolves: bz#2065207
+  (Win11 (q35+edk2) guest broke after install wsl2 through 'wsl --install -d Ubuntu-20.04' [rhel-8.7.0])
+- Resolves: bz#2062611
+  (Guest can not start with SLIC acpi table [rhel-8.7.0])
+
 * Tue Feb 22 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-8
 - kvm-block-nbd-Delete-reconnect-delay-timer-when-done.patch [bz#2035185]
 - kvm-block-nbd-Assert-there-are-no-timers-when-closed.patch [bz#2035185]
