@@ -782,7 +782,7 @@ cp -R tests/avocado/* $RPM_BUILD_ROOT%{testsdir}/tests/avocado/
 # Install qemu.py and qmp/ scripts required to run avocado_qemu tests
 cp -R python/qemu $RPM_BUILD_ROOT%{testsdir}/python
 cp -R scripts/qmp/* $RPM_BUILD_ROOT%{testsdir}/scripts/qmp
-install -p -m 0755 ../tests/Makefile.include $RPM_BUILD_ROOT%{testsdir}/tests/
+install -p -m 0644 ../tests/Makefile.include $RPM_BUILD_ROOT%{testsdir}/tests/
 
 # Install qemu-iotests
 cp -R ../tests/qemu-iotests/* $RPM_BUILD_ROOT%{testsdir}/tests/qemu-iotests/
@@ -881,7 +881,7 @@ install -D -p -m 0644 ../qemu.sasl $RPM_BUILD_ROOT%{_sysconfdir}/sasl2/%{name}.c
 # Install keymaps
 pushd pc-bios/keymaps
 for kmp in *; do
-   install $kmp ${RPM_BUILD_ROOT}%{_datadir}/%{name}/keymaps/
+   install -m 0644 $kmp ${RPM_BUILD_ROOT}%{_datadir}/%{name}/keymaps/
 done
 rm -f ${RPM_BUILD_ROOT}%{_datadir}/%{name}/keymaps/*.stamp
 popd
