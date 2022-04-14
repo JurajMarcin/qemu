@@ -1221,6 +1221,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Thu Apr 14 2022 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-13
+- kvm-RHEL-disable-seqpacket-for-vhost-vsock-device-in-rhe.patch [bz#2065589]
+- Resolves: bz#2065589
+  (RHEL 9.0 guest with vsock device migration failed from RHEL 9.0 > RHEL 8.6 [rhel-9.1.0])
+
 * Mon Mar 21 2022 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-12
 - kvm-RHEL-mark-old-machine-types-as-deprecated.patch [bz#2062813]
 - kvm-hw-virtio-vdpa-Fix-leak-of-host-notifier-memory-regi.patch [bz#2062828]
