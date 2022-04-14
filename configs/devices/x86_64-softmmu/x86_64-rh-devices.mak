@@ -1,5 +1,4 @@
 include ../rh-virtio.mak
-include x86_64-upstream-devices.mak
 
 CONFIG_AC97=y
 CONFIG_ACPI=y
