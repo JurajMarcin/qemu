@@ -435,8 +435,8 @@ void ich9_pm_add_properties(Object *obj, ICH9LPCPMRegs *pm)
     static const uint32_t gpe0_len = ICH9_PMIO_GPE0_LEN;
     pm->acpi_memory_hotplug.is_enabled = true;
     pm->cpu_hotplug_legacy = true;
-    pm->disable_s3 = 1;
-    pm->disable_s4 = 1;
+    pm->disable_s3 = 0;
+    pm->disable_s4 = 0;
     pm->s4_val = 2;
     pm->use_acpi_hotplug_bridge = true;
     pm->keep_pci_slot_hpc = true;

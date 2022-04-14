@@ -380,6 +380,12 @@ const size_t pc_compat_1_4_len = G_N_ELEMENTS(pc_compat_1_4);
  * machine type.
  */
 GlobalProperty pc_rhel_compat[] = {
+    /* we don't support s3/s4 suspend */
+    { "PIIX4_PM", "disable_s3", "1" },
+    { "PIIX4_PM", "disable_s4", "1" },
+    { "ICH9-LPC", "disable_s3", "1" },
+    { "ICH9-LPC", "disable_s4", "1" },
+
     { TYPE_X86_CPU, "host-phys-bits", "on" },
     { TYPE_X86_CPU, "host-phys-bits-limit", "48" },
     { TYPE_X86_CPU, "vmx-entry-load-perf-global-ctrl", "off" },
