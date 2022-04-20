@@ -1210,6 +1210,22 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Wed Apr 20 2022 Miroslav Rezanina <mrezanin@redhat.com> - 7.0.0-1
+- Rebase to QEMU 7.0.0 [bz#2064757]
+- Do not build ssh block driver anymore [bz#2064500]
+- Removed hpet and parallel port support [bz#2065042]
+- Compatibility support [bz#2064782 bz#2064771]
+- Resolves: bz#2064757
+  (Rebase to QEMU 7.0.0)
+- Resolves: bz#2064500
+  (Install qemu-kvm-6.2.0-11.el9_0.1 failed as conflict with qemu-kvm-block-ssh-6.2.0-11.el9_0.1)
+- Resolves: bz#2065042
+  (Remove upstream-only devices from the qemu-kvm binary)
+- Resolves: bz#2064782
+  (Update machine type compatibility for QEMU 7.0.0 update [s390x])
+- Resolves: bz#2064771
+  (Update machine type compatibility for QEMU 7.0.0 update [x86_64])
+
 * Thu Apr 14 2022 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-13
 - kvm-RHEL-disable-seqpacket-for-vhost-vsock-device-in-rhe.patch [bz#2065589]
 - Resolves: bz#2065589
