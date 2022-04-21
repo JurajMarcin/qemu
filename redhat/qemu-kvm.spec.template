@@ -1294,6 +1294,21 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Thu Apr 21 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-10
+- kvm-RHEL-disable-seqpacket-for-vhost-vsock-device-in-rhe.patch [bz#2068202]
+- kvm-block-Lock-AioContext-for-drain_end-in-blockdev-reop.patch [bz#2067118]
+- kvm-iotests-Test-blockdev-reopen-with-iothreads-and-thro.patch [bz#2067118]
+- kvm-s390x-css-fix-PMCW-invalid-mask.patch [bz#2071070]
+- kvm-Set-permission-on-installing-files.patch [bz#2072377]
+- Resolves: bz#2068202
+  (RHEL 9.0 guest with vsock device migration failed from RHEL 9.0 > RHEL 8.6 [rhel-8.7.0])
+- Resolves: bz#2067118
+  (qemu crash after execute blockdev-reopen with  iothread)
+- Resolves: bz#2071070
+  (s390x/css: fix PMCW invalid mask)
+- Resolves: bz#2072377
+  (Fix build warnings that occur when installing the keymap files)
+
 * Wed Apr 06 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-9
 - kvm-Revert-redhat-Add-hw_compat_4_2_extra-and-apply-to-u.patch [bz#2062613]
 - kvm-Revert-redhat-Enable-FDC-device-for-upstream-machine.patch [bz#2062613]
