@@ -1294,6 +1294,14 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Thu Apr 21 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-12
+- kvm-display-qxl-render-fix-race-condition-in-qxl_cursor-.patch [bz#2040738]
+- kvm-vhost-vsock-detach-the-virqueue-element-in-case-of-e.patch [bz#2063262]
+- Resolves: bz#2040738
+  (CVE-2021-4207 virt:rhel/qemu-kvm: QEMU: QXL: double fetch in qxl_cursor() can lead to heap buffer overflow [rhel-8])
+- Resolves: bz#2063262
+  (CVE-2022-26354 virt:rhel/qemu-kvm: QEMU: vhost-vsock: missing virtqueue detach on error can lead to memory leak [rhel-8])
+
 * Thu Apr 21 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-11
 - kvm-hw-intc-arm_gicv3-Check-for-MEMTX_OK-instead-of-MEMT.patch [bz#1999236]
 - kvm-softmmu-physmem-Simplify-flatview_write-and-address_.patch [bz#1999236]
