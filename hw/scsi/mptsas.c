@@ -1138,7 +1138,7 @@ static QEMUSGList *mptsas_get_sg_list(SCSIRequest *sreq)
 }
 
 static void mptsas_command_complete(SCSIRequest *sreq,
-        uint32_t status, size_t resid)
+        size_t resid)
 {
     MPTSASRequest *req = sreq->hba_private;
     MPTSASState *s = req->dev;
@@ -1148,7 +1148,8 @@ static void mptsas_command_complete(SCSIRequest *sreq,
     hwaddr sense_buffer_addr = req->dev->sense_buffer_high_addr |
             req->scsi_io.SenseBufferLowAddr;
 
-    trace_mptsas_command_complete(s, req->scsi_io.MsgContext, status, resid);
+    trace_mptsas_command_complete(s, req->scsi_io.MsgContext,
+                                  sreq->status, resid);
 
     sense_len = scsi_req_get_sense(sreq, sense_buf, SCSI_SENSE_BUF_SIZE);
     if (sense_len > 0) {
