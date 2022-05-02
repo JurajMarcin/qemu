@@ -1038,6 +1038,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Mon May 02 2022 Jon Maloy <jmaloy@redhat.com> - 4.2.0-30.el8_2.11
+- kvm-vhost-user-save-features-of-multiqueues-if-chardev-i.patch [bz#2077952]
+- Resolves: bz#2077952
+  (QEMU capabilities are missing features available in RHEL 7.6 [AV 8.2.1.z])
+
 * Thu Feb 10 2022 Jon Maloy <jmaloy@redhat.com> - 4.2.0-29.el8_2.11
 - kvm-virtiofsd-Drop-membership-of-all-supplementary-group.patch [bz#2046199]
 - Resolves: bz#2046199
