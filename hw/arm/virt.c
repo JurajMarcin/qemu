@@ -2350,6 +2350,7 @@ static void virt_set_its(Object *obj, bool value, Error **errp)
     vms->its = value;
 }
 
+#if 0 /* Disabled for Red Hat Enterprise Linux */
 static bool virt_get_dtb_kaslr_seed(Object *obj, Error **errp)
 {
     VirtMachineState *vms = VIRT_MACHINE(obj);
@@ -2363,6 +2364,7 @@ static void virt_set_dtb_kaslr_seed(Object *obj, bool value, Error **errp)
 
     vms->dtb_kaslr_seed = value;
 }
+#endif /* disabled for RHEL */
 
 static char *virt_get_oem_id(Object *obj, Error **errp)
 {
@@ -3346,13 +3348,6 @@ static void rhel_machine_class_init(ObjectClass *oc, void *data)
                                           "Override the default value of field OEM Table ID "
                                           "in ACPI table header."
                                           "The string may be up to 8 bytes in size");
-
-    object_class_property_add_bool(oc, "dtb-kaslr-seed",
-                                   virt_get_dtb_kaslr_seed,
-                                   virt_set_dtb_kaslr_seed);
-    object_class_property_set_description(oc, "dtb-kaslr-seed",
-                                          "Set off to disable passing of kaslr-seed "
-                                          "dtb node to guest");
 }
 
 static void rhel_virt_instance_init(Object *obj)
@@ -3397,7 +3392,7 @@ static void rhel_virt_instance_init(Object *obj)
     /* MTE is disabled by default and non-configurable for RHEL */
     vms->mte = false;
 
-    /* Supply a kaslr-seed by default */
+    /* Supply a kaslr-seed by default and non-configurable for RHEL */
     vms->dtb_kaslr_seed = true;
 
     vms->irqmap = a15irqmap;
