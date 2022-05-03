@@ -1336,6 +1336,22 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Mon May 02 2022 Jon Maloy <jmaloy@redhat.com> - 5.2.0-17.el8_4.15
+- kvm-hw-intc-arm_gicv3-Check-for-MEMTX_OK-instead-of-MEMT.patch [bz#1999238]
+- kvm-softmmu-physmem-Simplify-flatview_write-and-address_.patch [bz#1999238]
+- kvm-softmmu-physmem-Introduce-MemTxAttrs-memory-field-an.patch [bz#1999238]
+- kvm-display-qxl-render-fix-race-condition-in-qxl_cursor-.patch [bz#2040737]
+- kvm-virtio-net-fix-map-leaking-on-error-during-receive.patch [bz#2063209]
+- kvm-vhost-vsock-detach-the-virqueue-element-in-case-of-e.patch [bz#2063261]
+- Resolves: bz#1999238
+  (CVE-2021-3750 virt:av/qemu-kvm: QEMU: hcd-ehci: DMA reentrancy issue leads to use-after-free [rhel-av-8.4z])
+- Resolves: bz#2040737
+  (CVE-2021-4207 virt:av/qemu-kvm: QEMU: QXL: double fetch in qxl_cursor() can lead to heap buffer overflow [rhel-av-8.4z])
+- Resolves: bz#2063209
+  (CVE-2022-26353 virt:av/qemu-kvm: QEMU: virtio-net: map leaking on error during receive [rhel-av-8.4z])
+- Resolves: bz#2063261
+  (CVE-2022-26354 virt:av/qemu-kvm: QEMU: vhost-vsock: missing virtqueue detach on error can lead to memory leak [rhel-av-8.4z])
+
 * Thu Feb 10 2022 Jon Maloy <jmaloy@redhat.com> - 5.2.0-16.el8_4.15
 - kvm-target-i386-Declare-constants-for-XSAVE-offsets.patch [bz#2043121]
 - kvm-target-i386-Consolidate-the-X86XSaveArea-offset-chec.patch [bz#2043121]
