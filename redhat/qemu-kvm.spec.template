@@ -1336,7 +1336,7 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
-* Mon May 02 2022 Jon Maloy <jmaloy@redhat.com> - 5.2.0-17.el8_4.15
+* Mon May 02 2022 Jon Maloy <jmaloy@redhat.com> - 5.2.0-16.el8_4.16
 - kvm-hw-intc-arm_gicv3-Check-for-MEMTX_OK-instead-of-MEMT.patch [bz#1999238]
 - kvm-softmmu-physmem-Simplify-flatview_write-and-address_.patch [bz#1999238]
 - kvm-softmmu-physmem-Introduce-MemTxAttrs-memory-field-an.patch [bz#1999238]
