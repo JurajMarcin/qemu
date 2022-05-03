@@ -1294,6 +1294,20 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Tue May 03 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-13
+- kvm-s390x-ipl-support-extended-kernel-command-line-size.patch [bz#2043830]
+- kvm-virtio-net-fix-map-leaking-on-error-during-receive.patch [bz#2063206]
+- kvm-qcow2-Improve-refcount-structure-rebuilding.patch [bz#1519071]
+- kvm-iotests-108-Test-new-refcount-rebuild-algorithm.patch [bz#1519071]
+- kvm-qcow2-Add-errp-to-rebuild_refcount_structure.patch [bz#1519071]
+- kvm-iotests-108-Fix-when-missing-user_allow_other.patch [bz#1519071]
+- Resolves: bz#2043830
+  ([IBM 8.7 FEAT] KVM: Allow long kernel command lines for QEMU)
+- Resolves: bz#2063206
+  (CVE-2022-26353 virt:rhel/qemu-kvm: QEMU: virtio-net: map leaking on error during receive [rhel-8])
+- Resolves: bz#1519071
+  (Fail to rebuild the reference count tables of qcow2 image on host block devices (e.g. LVs))
+
 * Thu Apr 21 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-12
 - kvm-display-qxl-render-fix-race-condition-in-qxl_cursor-.patch [bz#2040738]
 - kvm-vhost-vsock-detach-the-virqueue-element-in-case-of-e.patch [bz#2063262]
