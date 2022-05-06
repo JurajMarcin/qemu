@@ -1210,6 +1210,14 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Fri May 06 2022 Miroslav Rezanina <mrezanin@redhat.com> - 7.0.0-2
+- kvm-configs-devices-aarch64-softmmu-Enable-CONFIG_VIRTIO.patch [bz#2044162]
+- kvm-target-ppc-cpu-models-Fix-ppc_cpu_aliases-list-for-R.patch [bz#2081022]
+- Resolves: bz#2044162
+  ([RHEL9.1] Enable virtio-mem as tech-preview on ARM64 QEMU)
+- Resolves: bz#2081022
+  (Build regression on ppc64le with c9s qemu-kvm 7.0.0-1 changes)
+
 * Wed Apr 20 2022 Miroslav Rezanina <mrezanin@redhat.com> - 7.0.0-1
 - Rebase to QEMU 7.0.0 [bz#2064757]
 - Do not build ssh block driver anymore [bz#2064500]
