@@ -1294,6 +1294,17 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Thu May 19 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-14
+- kvm-Revert-redhat-Add-some-devices-for-exporting-upstrea.patch [bz#2065043]
+- kvm-target-i386-properly-reset-TSC-on-reset.patch [bz#2070417]
+- kvm-ui-cursor-fix-integer-overflow-in-cursor_alloc-CVE-2.patch [bz#2040734]
+- Resolves: bz#2065043
+  (Remove upstream-only devices from the qemu-kvm binary)
+- Resolves: bz#2070417
+  (Windows guest hangs after updating and restarting from the guest OS [rhel-8.7.0])
+- Resolves: bz#2040734
+  (CVE-2021-4206 virt:rhel/qemu-kvm: QEMU: QXL: integer overflow in cursor_alloc() can lead to heap buffer overflow [rhel-8.7])
+
 * Tue May 03 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-13
 - kvm-s390x-ipl-support-extended-kernel-command-line-size.patch [bz#2043830]
 - kvm-virtio-net-fix-map-leaking-on-error-during-receive.patch [bz#2063206]
