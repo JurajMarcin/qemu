@@ -1294,6 +1294,31 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Wed May 25 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-11.el8_6.1
+- kvm-RHEL-disable-seqpacket-for-vhost-vsock-device-in-rhe.patch [bz#2071103]
+- kvm-hw-intc-arm_gicv3-Check-for-MEMTX_OK-instead-of-MEMT.patch [bz#2075686]
+- kvm-softmmu-physmem-Simplify-flatview_write-and-address_.patch [bz#2075686]
+- kvm-softmmu-physmem-Introduce-MemTxAttrs-memory-field-an.patch [bz#2075686]
+- kvm-display-qxl-render-fix-race-condition-in-qxl_cursor-.patch [bz#2075683]
+- kvm-virtio-net-fix-map-leaking-on-error-during-receive.patch [bz#2075637]
+- kvm-vhost-vsock-detach-the-virqueue-element-in-case-of-e.patch [bz#2075639]
+- kvm-qcow2-Improve-refcount-structure-rebuilding.patch [bz#2072242]
+- kvm-iotests-108-Test-new-refcount-rebuild-algorithm.patch [bz#2072242]
+- kvm-qcow2-Add-errp-to-rebuild_refcount_structure.patch [bz#2072242]
+- kvm-iotests-108-Fix-when-missing-user_allow_other.patch [bz#2072242]
+- Resolves: bz#2071103
+  (RHEL 9.0 guest with vsock device migration failed from RHEL 9.0 > RHEL 8.6 [rhel-8.6.0.z])
+- Resolves: bz#2075686
+  (CVE-2021-3750 virt:rhel/qemu-kvm: QEMU: hcd-ehci: DMA reentrancy issue leads to use-after-free [rhel-8] [rhel-8.6.0.z])
+- Resolves: bz#2075683
+  (CVE-2021-4207 virt:rhel/qemu-kvm: QEMU: QXL: double fetch in qxl_cursor() can lead to heap buffer overflow [rhel-8] [rhel-8.6.0.z])
+- Resolves: bz#2075637
+  (CVE-2022-26353 virt:rhel/qemu-kvm: QEMU: virtio-net: map leaking on error during receive [rhel-8] [rhel-8.6.0.z])
+- Resolves: bz#2075639
+  (CVE-2022-26354 virt:rhel/qemu-kvm: QEMU: vhost-vsock: missing virtqueue detach on error can lead to memory leak [rhel-8] [rhel-8.6.0.z])
+- Resolves: bz#2072242
+  (Fail to rebuild the reference count tables of qcow2 image on host block devices (e.g. LVs) [rhel-8.6.0.z])
+
 * Tue Apr 05 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-11
 - kvm-target-i386-properly-reset-TSC-on-reset.patch [bz#1975840]
 - Resolves: bz#1975840
