@@ -4,7 +4,7 @@ VERSION:=6.2.0
 DATE:=
 COMMIT:=
 RELEASE:=11
-ZRELEASE:=
+ZRELEASE:=0
 RELEASE_SEPARATOR:=-
 RC:=
 BUILD_TARGET=rhel-8.6.0-candidate
@@ -19,7 +19,7 @@ TARURL:=https://pkgs.devel.redhat.com/repo/rpms/qemu-kvm/$(TARFILE)/sha512/$(TAR
 MARKER:=44f28df24767cf9dca1ddc9b23157737c4cbb645
 
 SPECFILE:=$(NAME).spec
-DIST:=.el8
+DIST:=.el8_6
 
 SOURCES_FILELIST:=                     \
        ksmtuned.conf                   \
