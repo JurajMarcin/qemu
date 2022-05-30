@@ -1210,6 +1210,12 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon May 30 2022 Miroslav Rezanina <mrezanin@redhat.com> - 7.0.0-5
+- kvm-qemu-nbd-Pass-max-connections-to-blockdev-layer.patch [bz#1708300]
+- kvm-nbd-server-Allow-MULTI_CONN-for-shared-writable-expo.patch [bz#1708300]
+- Resolves: bz#1708300
+  (RFE: qemu-nbd vs NBD_FLAG_CAN_MULTI_CONN)
+
 * Thu May 19 2022 Miroslav Rezanina <mrezanin@redhat.com> - 7.0.0-4
 - kvm-qapi-machine.json-Add-cluster-id.patch [bz#2041823]
 - kvm-qtest-numa-test-Specify-CPU-topology-in-aarch64_numa.patch [bz#2041823]
