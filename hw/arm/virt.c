@@ -3514,6 +3514,7 @@ static void rhel900_virt_options(MachineClass *mc)
     VirtMachineClass *vmc = VIRT_MACHINE_CLASS(OBJECT_CLASS(mc));
 
     compat_props_add(mc->compat_props, arm_rhel_compat, arm_rhel_compat_len);
+    compat_props_add(mc->compat_props, hw_compat_rhel_9_1, hw_compat_rhel_9_1_len);
 
     /* Disable FEAT_LPA2 since old kernels (<= v5.12) don't boot with that feature */
     vmc->no_tcg_lpa2 = true;

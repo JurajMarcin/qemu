@@ -692,6 +692,9 @@ static void pc_q35_machine_rhel900_options(MachineClass *m)
     m->desc = "RHEL-9.0.0 PC (Q35 + ICH9, 2009)";
     pcmc->smbios_stream_product = "RHEL";
     pcmc->smbios_stream_version = "9.0.0";
+    pcmc->legacy_no_rng_seed = true;
+    compat_props_add(m->compat_props, hw_compat_rhel_9_1,
+                     hw_compat_rhel_9_1_len);
     compat_props_add(m->compat_props, hw_compat_rhel_9_0,
                      hw_compat_rhel_9_0_len);
     compat_props_add(m->compat_props, pc_rhel_9_0_compat,

@@ -47,6 +47,17 @@ const char *rhel_old_machine_deprecation =
     "machine types for previous major releases are deprecated";
 
 /*
+ * Mostly the same as hw_compat_7_0
+ */
+GlobalProperty hw_compat_rhel_9_1[] = {
+  /* hw_compat_rhel_9_1 from hw_compat_7_0 */ 
+  { "arm-gicv3-common", "force-8-bit-prio", "on" },
+  /* hw_compat_rhel_9_1 from hw_compat_7_0 */
+  { "nvme-ns", "eui64-default", "on"},
+};
+const size_t hw_compat_rhel_9_1_len = G_N_ELEMENTS(hw_compat_rhel_9_1);
+
+/*
  * Mostly the same as hw_compat_6_2
  */
 GlobalProperty hw_compat_rhel_9_0[] = {
