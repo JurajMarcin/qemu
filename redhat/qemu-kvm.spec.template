@@ -1294,6 +1294,40 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Tue Jun 14 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-15
+- kvm-virtio-gpu-do-not-byteswap-padding.patch [bz#1916415]
+- kvm-linux-headers-update-to-5.16-rc1.patch [bz#1916415]
+- kvm-linux-headers-Update-headers-to-v5.17-rc1.patch [bz#1916415]
+- kvm-linux-headers-include-missing-changes-from-5.17.patch [bz#1916415]
+- kvm-x86-Fix-the-64-byte-boundary-enumeration-for-extende.patch [bz#1916415]
+- kvm-x86-Add-AMX-XTILECFG-and-XTILEDATA-components.patch [bz#1916415]
+- kvm-x86-Grant-AMX-permission-for-guest.patch [bz#1916415]
+- kvm-x86-Add-XFD-faulting-bit-for-state-components.patch [bz#1916415]
+- kvm-x86-Add-AMX-CPUIDs-enumeration.patch [bz#1916415]
+- kvm-x86-add-support-for-KVM_CAP_XSAVE2-and-AMX-state-mig.patch [bz#1916415]
+- kvm-x86-Support-XFD-and-AMX-xsave-data-migration.patch [bz#1916415]
+- kvm-target-i386-kvm-do-not-access-uninitialized-variable.patch [bz#1916415]
+- kvm-KVM-x86-workaround-invalid-CPUID-0xD-9-info-on-some-.patch [bz#1916415]
+- kvm-virtio-net-setup-vhost_dev-and-notifiers-for-cvq-onl.patch [bz#2069946]
+- kvm-virtio-net-align-ctrl_vq-index-for-non-mq-guest-for-.patch [bz#2069946]
+- kvm-vhost-vdpa-fix-improper-cleanup-in-net_init_vhost_vd.patch [bz#2069946]
+- kvm-vhost-net-fix-improper-cleanup-in-vhost_net_start.patch [bz#2069946]
+- kvm-vhost-vdpa-backend-feature-should-set-only-once.patch [bz#2069946]
+- kvm-vhost-vdpa-change-name-and-polarity-for-vhost_vdpa_o.patch [bz#2069946]
+- kvm-virtio-net-don-t-handle-mq-request-in-userspace-hand.patch [bz#2069946]
+- kvm-ide-Increment-BB-in-flight-counter-for-TRIM-BH.patch [bz#2029980]
+- kvm-block-Make-bdrv_refresh_limits-non-recursive.patch [bz#2072932]
+- kvm-iotests-Allow-using-QMP-with-the-QSD.patch [bz#2072932]
+- kvm-iotests-graph-changes-while-io-New-test.patch [bz#2072932]
+- Resolves: bz#1916415
+  ([Intel 8.7 FEAT] qemu-kvm Sapphire Rapids (SPR) AMX Instructions)
+- Resolves: bz#2069946
+  (PXE boot crash qemu when using multiqueue vDPA)
+- Resolves: bz#2029980
+  (Failed assertion in IDE emulation with Ceph backend)
+- Resolves: bz#2072932
+  (Qemu coredump when refreshing block limits on an actively used iothread block device [rhel.8.7])
+
 * Thu May 19 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-14
 - kvm-Revert-redhat-Add-some-devices-for-exporting-upstrea.patch [bz#2065043]
 - kvm-target-i386-properly-reset-TSC-on-reset.patch [bz#2070417]
