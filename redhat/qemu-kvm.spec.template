@@ -1294,6 +1294,14 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Wed Jun 15 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-11.el8_6.2
+- kvm-Revert-redhat-Add-some-devices-for-exporting-upstrea.patch [bz#2077928]
+- kvm-ui-cursor-fix-integer-overflow-in-cursor_alloc-CVE-2.patch [bz#2082622]
+- Resolves: bz#2077928
+  (Remove upstream-only devices from the qemu-kvm binary [rhel-8.6.0.z])
+- Resolves: bz#2082622
+  (CVE-2021-4206 virt:rhel/qemu-kvm: QEMU: QXL: integer overflow in cursor_alloc() can lead to heap buffer overflow [rhel-8.6.0.z])
+
 * Wed May 25 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-11.el8_6.1
 - kvm-RHEL-disable-seqpacket-for-vhost-vsock-device-in-rhe.patch [bz#2071103]
 - kvm-hw-intc-arm_gicv3-Check-for-MEMTX_OK-instead-of-MEMT.patch [bz#2075686]
