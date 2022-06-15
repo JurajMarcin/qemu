@@ -146,6 +146,7 @@ static void aarch64_a57_initfn(Object *obj)
     define_arm_cp_regs(cpu, cortex_a72_a57_a53_cp_reginfo);
 }
 
+#if 0 /* Disabled for Red Hat Enterprise Linux */
 static void aarch64_a53_initfn(Object *obj)
 {
     ARMCPU *cpu = ARM_CPU(obj);
@@ -249,6 +250,7 @@ static void aarch64_a72_initfn(Object *obj)
     cpu->gic_vprebits = 5;
     define_arm_cp_regs(cpu, cortex_a72_a57_a53_cp_reginfo);
 }
+#endif /* disabled for RHEL */
 
 void arm_cpu_sve_finalize(ARMCPU *cpu, Error **errp)
 {
@@ -923,6 +925,7 @@ static void aarch64_max_initfn(Object *obj)
     qdev_property_add_static(DEVICE(obj), &arm_cpu_lpa2_property);
 }
 
+#if 0 /* Disabled for Red Hat Enterprise Linux */
 static void aarch64_a64fx_initfn(Object *obj)
 {
     ARMCPU *cpu = ARM_CPU(obj);
@@ -969,12 +972,15 @@ static void aarch64_a64fx_initfn(Object *obj)
 
     /* TODO:  Add A64FX specific HPC extension registers */
 }
+#endif /* disabled for RHEL */
 
 static const ARMCPUInfo aarch64_cpus[] = {
     { .name = "cortex-a57",         .initfn = aarch64_a57_initfn },
+#if 0 /* Disabled for Red Hat Enterprise Linux */
     { .name = "cortex-a53",         .initfn = aarch64_a53_initfn },
     { .name = "cortex-a72",         .initfn = aarch64_a72_initfn },
     { .name = "a64fx",              .initfn = aarch64_a64fx_initfn },
+#endif /* disabled for RHEL */
     { .name = "max",                .initfn = aarch64_max_initfn },
 #if defined(CONFIG_KVM) || defined(CONFIG_HVF)
     { .name = "host",               .initfn = aarch64_host_initfn },

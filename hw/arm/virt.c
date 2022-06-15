@@ -239,12 +239,16 @@ static const int a15irqmap[] = {
 };
 
 static const char *valid_cpus[] = {
+#if 0 /* Disabled for Red Hat Enterprise Linux */
     ARM_CPU_TYPE_NAME("cortex-a7"),
     ARM_CPU_TYPE_NAME("cortex-a15"),
     ARM_CPU_TYPE_NAME("cortex-a53"),
+#endif /* disabled for RHEL */
     ARM_CPU_TYPE_NAME("cortex-a57"),
+#if 0 /* Disabled for Red Hat Enterprise Linux */
     ARM_CPU_TYPE_NAME("cortex-a72"),
     ARM_CPU_TYPE_NAME("a64fx"),
+#endif /* disabled for RHEL */
     ARM_CPU_TYPE_NAME("host"),
     ARM_CPU_TYPE_NAME("max"),
 };
