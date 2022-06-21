@@ -54,6 +54,8 @@ const char *rhel_old_machine_deprecation =
     "machine types for previous major releases are deprecated";
 
 GlobalProperty hw_compat_rhel_9_2[] = {
+  /* hw_compat_rhel_9_2 from hw_compat_8_0 */
+  { "migration", "multifd-flush-after-each-section", "on"},
   /* hw_compat_rhel_9_2 from hw_compat_7_2 */
   { "e1000e", "migrate-timadj", "off" },
   /* hw_compat_rhel_9_2 from hw_compat_7_2 */
