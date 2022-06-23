@@ -1294,6 +1294,15 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Thu Jun 23 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-16
+- kvm-virtiofsd-Fix-breakage-due-to-fuse_init_in-size-chan.patch [bz#2097209]
+- kvm-hw-block-fdc-Prevent-end-of-track-overrun-CVE-2021-3.patch [bz#1951521]
+- kvm-tests-qtest-fdc-test-Add-a-regression-test-for-CVE-2.patch [bz#1951521]
+- Resolves: bz#2097209
+  ([virtiofs] mount virtiofs failed: SELinux: (dev virtiofs, type virtiofs) getxattr errno 111)
+- Resolves: bz#1951521
+  (CVE-2021-3507 virt:rhel/qemu-kvm: QEMU: fdc: heap buffer overflow in DMA read data transfers [rhel-8])
+
 * Tue Jun 14 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-15
 - kvm-virtio-gpu-do-not-byteswap-padding.patch [bz#1916415]
 - kvm-linux-headers-update-to-5.16-rc1.patch [bz#1916415]
