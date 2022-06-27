@@ -1210,6 +1210,20 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Jun 27 2022 Miroslav Rezanina <mrezanin@redhat.com> - 7.0.0-7
+- kvm-coroutine-ucontext-use-QEMU_DEFINE_STATIC_CO_TLS.patch [bz#1952483]
+- kvm-coroutine-use-QEMU_DEFINE_STATIC_CO_TLS.patch [bz#1952483]
+- kvm-coroutine-win32-use-QEMU_DEFINE_STATIC_CO_TLS.patch [bz#1952483]
+- kvm-Enable-virtio-iommu-pci-on-x86_64.patch [bz#2094252]
+- kvm-linux-aio-fix-unbalanced-plugged-counter-in-laio_io_.patch [bz#2092788]
+- kvm-linux-aio-explain-why-max-batch-is-checked-in-laio_i.patch [bz#2092788]
+- Resolves: bz#1952483
+  (RFE: QEMU's coroutines fail with CFLAGS=-flto on non-x86_64 architectures)
+- Resolves: bz#2094252
+  (Compile the virtio-iommu device on x86_64)
+- Resolves: bz#2092788
+  (Stalled IO Operations in VM)
+
 * Mon Jun 13 2022 Miroslav Rezanina <mrezanin@redhat.com> - 7.0.0-6
 - kvm-Introduce-event-loop-base-abstract-class.patch [bz#2031024]
 - kvm-util-main-loop-Introduce-the-main-loop-into-QOM.patch [bz#2031024]
