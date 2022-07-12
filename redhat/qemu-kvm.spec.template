@@ -1294,6 +1294,51 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Tue Jul 12 2022 Camilla Conte <cconte@redhat.com> - 6.2.0-17
+- kvm-migration-Never-call-twice-qemu_target_page_size.patch [bz#2072049]
+- kvm-multifd-Rename-used-field-to-num.patch [bz#2072049]
+- kvm-multifd-Add-missing-documentation.patch [bz#2072049]
+- kvm-multifd-The-variable-is-only-used-inside-the-loop.patch [bz#2072049]
+- kvm-multifd-remove-used-parameter-from-send_prepare-meth.patch [bz#2072049]
+- kvm-multifd-remove-used-parameter-from-send_recv_pages-m.patch [bz#2072049]
+- kvm-multifd-Fill-offset-and-block-for-reception.patch [bz#2072049]
+- kvm-multifd-Make-zstd-compression-method-not-use-iovs.patch [bz#2072049]
+- kvm-multifd-Make-zlib-compression-method-not-use-iovs.patch [bz#2072049]
+- kvm-migration-All-this-fields-are-unsigned.patch [bz#2072049]
+- kvm-multifd-Move-iov-from-pages-to-params.patch [bz#2072049]
+- kvm-multifd-Make-zlib-use-iov-s.patch [bz#2072049]
+- kvm-multifd-Make-zstd-use-iov-s.patch [bz#2072049]
+- kvm-multifd-Remove-send_write-method.patch [bz#2072049]
+- kvm-multifd-Use-a-single-writev-on-the-send-side.patch [bz#2072049]
+- kvm-multifd-Use-normal-pages-array-on-the-send-side.patch [bz#2072049]
+- kvm-QIOChannel-Add-flags-on-io_writev-and-introduce-io_f.patch [bz#2072049]
+- kvm-QIOChannelSocket-Implement-io_writev-zero-copy-flag-.patch [bz#2072049]
+- kvm-migration-Add-zero-copy-send-parameter-for-QMP-HMP-f.patch [bz#2072049]
+- kvm-migration-Add-migrate_use_tls-helper.patch [bz#2072049]
+- kvm-multifd-multifd_send_sync_main-now-returns-negative-.patch [bz#2072049]
+- kvm-multifd-Send-header-packet-without-flags-if-zero-cop.patch [bz#2072049]
+- kvm-multifd-Implement-zero-copy-write-in-multifd-migrati.patch [bz#2072049]
+- kvm-QIOChannelSocket-Introduce-assert-and-reduce-ifdefs-.patch [bz#2072049]
+- kvm-QIOChannelSocket-Fix-zero-copy-send-so-socket-flush-.patch [bz#2072049]
+- kvm-migration-Change-zero_copy_send-from-migration-param.patch [bz#2072049]
+- kvm-migration-Add-migration_incoming_transport_cleanup.patch [bz#2097652]
+- kvm-migration-Allow-migrate-recover-to-run-multiple-time.patch [bz#2097652]
+- kvm-pc-bios-s390-ccw-virtio-Introduce-a-macro-for-the-DA.patch [bz#2098076]
+- kvm-pc-bios-s390-ccw-bootmap-Improve-the-guessing-logic-.patch [bz#2098076]
+- kvm-pc-bios-s390-ccw-virtio-blkdev-Simplify-fix-virtio_i.patch [bz#2098076]
+- kvm-pc-bios-s390-ccw-virtio-blkdev-Remove-virtio_assume_.patch [bz#2098076]
+- kvm-pc-bios-s390-ccw-virtio-Set-missing-status-bits-whil.patch [bz#2098076]
+- kvm-pc-bios-s390-ccw-virtio-Read-device-config-after-fea.patch [bz#2098076]
+- kvm-pc-bios-s390-ccw-virtio-Beautify-the-code-for-readin.patch [bz#2098076]
+- kvm-pc-bios-s390-ccw-Split-virtio-scsi-code-from-virtio_.patch [bz#2098076]
+- kvm-pc-bios-s390-ccw-virtio-blkdev-Request-the-right-fea.patch [bz#2098076]
+- Resolves: bz#2072049
+  (Pull  MSG_ZEROCOPY on QEMU Live Migration Patches into RHEL 8)
+- Resolves: bz#2097652
+  (The migration port is not released if use it again for recovering postcopy migration)
+- Resolves: bz#2098076
+  (virtio-blk: Can't boot fresh installation from used virtio-blk dasd disk under certain conditions)
+
 * Thu Jun 23 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-16
 - kvm-virtiofsd-Fix-breakage-due-to-fuse_init_in-size-chan.patch [bz#2097209]
 - kvm-hw-block-fdc-Prevent-end-of-track-overrun-CVE-2021-3.patch [bz#1951521]
