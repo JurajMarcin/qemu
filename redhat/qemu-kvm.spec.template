@@ -1294,6 +1294,12 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Tue Jul 19 2022 Camilla Conte <cconte@redhat.com> - 6.2.0-18
+- kvm-linux-aio-fix-unbalanced-plugged-counter-in-laio_io_.patch [bz#2105410]
+- kvm-linux-aio-explain-why-max-batch-is-checked-in-laio_i.patch [bz#2105410]
+- Resolves: bz#2105410
+  (Stalled IO Operations in VM)
+
 * Tue Jul 12 2022 Camilla Conte <cconte@redhat.com> - 6.2.0-17
 - kvm-migration-Never-call-twice-qemu_target_page_size.patch [bz#2072049]
 - kvm-multifd-Rename-used-field-to-num.patch [bz#2072049]
