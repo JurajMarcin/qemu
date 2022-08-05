@@ -1229,6 +1229,17 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Fri Aug 05 2022 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-11.el9_0.4
+- kvm-virtio-net-setup-vhost_dev-and-notifiers-for-cvq-onl.patch [bz#2095795]
+- kvm-virtio-net-align-ctrl_vq-index-for-non-mq-guest-for-.patch [bz#2095795]
+- kvm-vhost-vdpa-fix-improper-cleanup-in-net_init_vhost_vd.patch [bz#2095795]
+- kvm-vhost-net-fix-improper-cleanup-in-vhost_net_start.patch [bz#2095795]
+- kvm-vhost-vdpa-backend-feature-should-set-only-once.patch [bz#2095795]
+- kvm-vhost-vdpa-change-name-and-polarity-for-vhost_vdpa_o.patch [bz#2095795]
+- kvm-virtio-net-don-t-handle-mq-request-in-userspace-hand.patch [bz#2095795]
+- Resolves: bz#2095795
+  (PXE boot crash qemu when using multiqueue vDPA [rhel-9.0.0.z])
+
 * Mon May 09 2022 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-11.el9_0.3
 - kvm-RHEL-disable-seqpacket-for-vhost-vsock-device-in-rhe.patch [bz#2071102]
 - kvm-virtio-net-fix-map-leaking-on-error-during-receive.patch [bz#2075635]
