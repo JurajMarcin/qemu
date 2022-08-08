@@ -1294,6 +1294,17 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Mon Aug 08 2022 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-11.el8_6.3
+- kvm-virtio-net-setup-vhost_dev-and-notifiers-for-cvq-onl.patch [bz#2095794]
+- kvm-virtio-net-align-ctrl_vq-index-for-non-mq-guest-for-.patch [bz#2095794]
+- kvm-vhost-vdpa-fix-improper-cleanup-in-net_init_vhost_vd.patch [bz#2095794]
+- kvm-vhost-net-fix-improper-cleanup-in-vhost_net_start.patch [bz#2095794]
+- kvm-vhost-vdpa-backend-feature-should-set-only-once.patch [bz#2095794]
+- kvm-vhost-vdpa-change-name-and-polarity-for-vhost_vdpa_o.patch [bz#2095794]
+- kvm-virtio-net-don-t-handle-mq-request-in-userspace-hand.patch [bz#2095794]
+- Resolves: bz#2095794
+  (PXE boot crash qemu when using multiqueue vDPA [rhel-8.6.0.z])
+
 * Wed Jun 15 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-11.el8_6.2
 - kvm-Revert-redhat-Add-some-devices-for-exporting-upstrea.patch [bz#2077928]
 - kvm-ui-cursor-fix-integer-overflow-in-cursor_alloc-CVE-2.patch [bz#2082622]
