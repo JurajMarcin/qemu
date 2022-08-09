@@ -1056,6 +1056,12 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Tue Aug 09 2022 Miroslav Rezanina <mrezanin@redhat.com> - 4.2.0-49.el8_4.8
+- kvm-qemu-kvm-updated-to-newer-build-target.patch [bz#2107429]
+- kvm-vhost-user-save-features-of-multiqueues-if-chardev-i.patch [bz#2107429]
+- Resolves: bz#2107429
+  (QEMU capabilities are missing flags available in RHEL 7.6 [RHEL 8.4.z])
+
 * Wed Jun 22 2022 Camilla Conte <cconte@redhat.com> - 4.2.0-49.el8_4.7
 - kvm-file-posix-fix-max_iov-for-dev-sg-devices.patch [bz#2096252]
 - kvm-scsi-generic-pass-max_segments-via-max_iov-field-in-.patch [bz#2096252]
