@@ -1294,6 +1294,21 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Tue Aug 16 2022 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-19
+- kvm-migration-Introduce-ram_transferred_add.patch [bz#2110203]
+- kvm-migration-Tally-pre-copy-downtime-and-post-copy-byte.patch [bz#2110203]
+- kvm-QIOChannelSocket-Fix-zero-copy-flush-returning-code-.patch [bz#2110203]
+- kvm-Add-dirty-sync-missed-zero-copy-migration-stat.patch [bz#2110203]
+- kvm-migration-multifd-Report-to-user-when-zerocopy-not-w.patch [bz#2110203]
+- kvm-migration-Avoid-false-positive-on-non-supported-scen.patch [bz#2110203]
+- kvm-migration-add-remaining-params-has_-true-in-migratio.patch [bz#2110203]
+- kvm-QIOChannelSocket-Add-support-for-MSG_ZEROCOPY-IPV6.patch [bz#2110203]
+- kvm-pc-bios-s390-ccw-Fix-booting-with-logical-block-size.patch [bz#2112296]
+- Resolves: bz#2110203
+  (zerocopy capability can be enabled when set migrate capabilities with multifd and compress/xbzrle together)
+- Resolves: bz#2112296
+  (virtio-blk: Can't boot fresh installation from used 512 cluster_size image under certain conditions)
+
 * Tue Jul 19 2022 Camilla Conte <cconte@redhat.com> - 6.2.0-18
 - kvm-linux-aio-fix-unbalanced-plugged-counter-in-laio_io_.patch [bz#2105410]
 - kvm-linux-aio-explain-why-max-batch-is-checked-in-laio_i.patch [bz#2105410]
