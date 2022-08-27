@@ -1294,6 +1294,11 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Fri Aug 26 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-20
+- kvm-scsi-generic-Fix-emulated-block-limits-VPD-page.patch [bz#2120279]
+- Resolves: bz#2120279
+  (Wrong max_sectors_kb and Maximum transfer length on the pass-through device [rhel-8.7])
+
 * Tue Aug 16 2022 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-19
 - kvm-migration-Introduce-ram_transferred_add.patch [bz#2110203]
 - kvm-migration-Tally-pre-copy-downtime-and-post-copy-byte.patch [bz#2110203]
