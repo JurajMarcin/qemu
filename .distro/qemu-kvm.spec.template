@@ -1229,6 +1229,12 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Tue Aug 30 2022 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-11.el9_0.5
+- kvm-linux-aio-fix-unbalanced-plugged-counter-in-laio_io_.patch [bz#2109569]
+- kvm-linux-aio-explain-why-max-batch-is-checked-in-laio_i.patch [bz#2109569]
+- Resolves: bz#2109569
+  (Stalled IO Operations in VM [rhel-9.0.0.z])
+
 * Fri Aug 05 2022 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-11.el9_0.4
 - kvm-virtio-net-setup-vhost_dev-and-notifiers-for-cvq-onl.patch [bz#2095795]
 - kvm-virtio-net-align-ctrl_vq-index-for-non-mq-guest-for-.patch [bz#2095795]
