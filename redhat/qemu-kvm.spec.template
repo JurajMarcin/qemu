@@ -1294,6 +1294,11 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Thu Sep 01 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-11.el8_6.6
+- kvm-scsi-generic-Fix-emulated-block-limits-VPD-page.patch [bz#2121783]
+- Resolves: bz#2121783
+  (Wrong max_sectors_kb and Maximum transfer length on the pass-through device [rhel-8.7] [rhel-8.6.0.z])
+
 * Mon Aug 29 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-11.el8_6.5
 - kvm-linux-aio-fix-unbalanced-plugged-counter-in-laio_io_.patch [bz#2109570]
 - kvm-linux-aio-explain-why-max-batch-is-checked-in-laio_i.patch [bz#2109570]
