@@ -1210,6 +1210,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Sep 05 2022 Miroslav Rezanina <mrezanin@redhat.com> - 7.1.0-1
+- Rebase to QEMU 7.1.0 [bz#2111769]
+- Resolves: bz#2111769
+  (Rebase to QEMU 7.1.0)
+
 * Mon Aug 15 2022 Miroslav Rezanina <mrezanin@redhat.com> - 7.0.0-11
 - kvm-QIOChannelSocket-Fix-zero-copy-flush-returning-code-.patch [bz#2107466]
 - kvm-Add-dirty-sync-missed-zero-copy-migration-stat.patch [bz#2107466]
