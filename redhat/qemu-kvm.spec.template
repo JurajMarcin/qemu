@@ -1336,6 +1336,11 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Tue Sep 20 2022 Jon Maloy <jmaloy@redhat.com> - 5.2.0-16.el8_4.18
+- kvm-target-i386-properly-reset-TSC-on-reset.patch [bz#2074737]
+- Resolves: bz#2074737
+  (Windows guest hangs after updating and restarting from the guest OS [rhel-av-8.4.z])
+
 * Mon May 09 2022 Jon Maloy <jmaloy@redhat.com> - 5.2.0-17.el8_4.16
 - kvm-ui-cursor-fix-integer-overflow-in-cursor_alloc-CVE-2.patch [bz#2040732]
 - Resolves: bz#2040732
