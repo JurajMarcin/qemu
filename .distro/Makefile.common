@@ -38,5 +38,4 @@ SOURCES_FILELIST:=                     \
        kvm-x86.conf                    \
        kvm-s390x.conf                  \
        95-kvm-memlock.conf             \
-       README.tests                    \
-       capstone.tar.gz
+       README.tests                    

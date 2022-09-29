@@ -175,8 +175,6 @@ Source30: kvm-s390x.conf
 Source31: kvm-x86.conf
 Source36: README.tests
 
-Source37: capstone.tar.gz
-
 
 %%PATCHLIST%%
 
@@ -249,6 +247,7 @@ BuildRequires: perl-Test-Harness
 BuildRequires: libslirp-devel
 BuildRequires: pulseaudio-libs-devel
 BuildRequires: spice-protocol
+BuildRequires: capstone-devel
 
 # Requires for qemu-kvm package
 Requires: %{name}-core = %{epoch}:%{version}-%{release}
@@ -276,6 +275,7 @@ Requires: edk2-ovmf
 %ifarch aarch64
 Requires: edk2-aarch64
 %endif
+Requires: capstone
 
 Requires: libseccomp >= %{libseccomp_version}
 Requires: libusbx >= %{libusbx_version}
@@ -490,7 +490,6 @@ This package provides usbredir support.
 %prep
 %setup -q -n qemu-%{version}%{?rcstr}
 %autopatch -p1
-/usr/bin/gzip -dc %{SOURCE37} | /usr/bin/tar -xof -
 
 %global qemu_kvm_build qemu_kvm_build
 mkdir -p %{qemu_kvm_build}
@@ -677,7 +676,7 @@ run_configure \
 %endif
   --enable-attr \
   --enable-cap-ng \
-  --enable-capstone=internal \
+  --enable-capstone \
   --enable-coroutine-pool \
   --enable-curl \
   --enable-debug-info \
