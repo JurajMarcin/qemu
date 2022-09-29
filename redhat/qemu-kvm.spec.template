@@ -1294,6 +1294,15 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Thu Sep 29 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-21
+- kvm-backends-hostmem-Fix-support-of-memory-backend-memfd.patch [bz#2117149]
+- kvm-i386-reset-KVM-nested-state-upon-CPU-reset.patch [bz#2125271]
+- kvm-i386-do-kvm_put_msr_feature_control-first-thing-when.patch [bz#2125271]
+- Resolves: bz#2117149
+  (Can't run when memory backing with hugepages and backend type memfd)
+- Resolves: bz#2125271
+  ([RHEL8.7] Guests in VMX root operation fail to reboot with QEMU's 'system_reset' command [rhel-8.8.0])
+
 * Fri Aug 26 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-20
 - kvm-scsi-generic-Fix-emulated-block-limits-VPD-page.patch [bz#2120279]
 - Resolves: bz#2120279
