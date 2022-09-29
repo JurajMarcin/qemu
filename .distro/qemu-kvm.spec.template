@@ -1209,6 +1209,43 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Thu Sep 29 2022 Miroslav Rezanina <mrezanin@redhat.com> - 7.1.0-2
+- kvm-vdpa-Skip-the-maps-not-in-the-iova-tree.patch [RHELX-57]
+- kvm-vdpa-do-not-save-failed-dma-maps-in-SVQ-iova-tree.patch [RHELX-57]
+- kvm-util-accept-iova_tree_remove_parameter-by-value.patch [RHELX-57]
+- kvm-vdpa-Remove-SVQ-vring-from-iova_tree-at-shutdown.patch [RHELX-57]
+- kvm-vdpa-Make-SVQ-vring-unmapping-return-void.patch [RHELX-57]
+- kvm-vhost-Always-store-new-kick-fd-on-vhost_svq_set_svq_.patch [RHELX-57]
+- kvm-vdpa-Use-ring-hwaddr-at-vhost_vdpa_svq_unmap_ring.patch [RHELX-57]
+- kvm-vhost-stop-transfer-elem-ownership-in-vhost_handle_g.patch [RHELX-57]
+- kvm-vhost-use-SVQ-element-ndescs-instead-of-opaque-data-.patch [RHELX-57]
+- kvm-vhost-Delete-useless-read-memory-barrier.patch [RHELX-57]
+- kvm-vhost-Do-not-depend-on-NULL-VirtQueueElement-on-vhos.patch [RHELX-57]
+- kvm-vhost_net-Add-NetClientInfo-start-callback.patch [RHELX-57]
+- kvm-vhost_net-Add-NetClientInfo-stop-callback.patch [RHELX-57]
+- kvm-vdpa-add-net_vhost_vdpa_cvq_info-NetClientInfo.patch [RHELX-57]
+- kvm-vdpa-Move-command-buffers-map-to-start-of-net-device.patch [RHELX-57]
+- kvm-vdpa-extract-vhost_vdpa_net_cvq_add-from-vhost_vdpa_.patch [RHELX-57]
+- kvm-vhost_net-add-NetClientState-load-callback.patch [RHELX-57]
+- kvm-vdpa-Add-virtio-net-mac-address-via-CVQ-at-start.patch [RHELX-57]
+- kvm-vdpa-Delete-CVQ-migration-blocker.patch [RHELX-57]
+- kvm-vdpa-Make-VhostVDPAState-cvq_cmd_in_buffer-control-a.patch [RHELX-57]
+- kvm-vdpa-extract-vhost_vdpa_net_load_mac-from-vhost_vdpa.patch [RHELX-57]
+- kvm-vdpa-Add-vhost_vdpa_net_load_mq.patch [RHELX-57]
+- kvm-vdpa-validate-MQ-CVQ-commands.patch [RHELX-57]
+- kvm-virtio-net-Update-virtio-net-curr_queue_pairs-in-vdp.patch [RHELX-57]
+- kvm-vdpa-Allow-MQ-feature-in-SVQ.patch [RHELX-57]
+- kvm-i386-reset-KVM-nested-state-upon-CPU-reset.patch [bz#2125281]
+- kvm-i386-do-kvm_put_msr_feature_control-first-thing-when.patch [bz#2125281]
+- kvm-Revert-Re-enable-capstone-internal-build.patch [bz#2127825]
+- kvm-spec-Use-capstone-package.patch [bz#2127825]
+- Resolves: RHELX-57
+  (vDPA SVQ Multiqueue support )
+- Resolves: bz#2125281
+  ([RHEL9.1] Guests in VMX root operation fail to reboot with QEMU's 'system_reset' command [rhel-9.2.0])
+- Resolves: bz#2127825
+  (Use capstone for qemu-kvm build)
+
 * Mon Sep 05 2022 Miroslav Rezanina <mrezanin@redhat.com> - 7.1.0-1
 - Rebase to QEMU 7.1.0 [bz#2111769]
 - Resolves: bz#2111769
