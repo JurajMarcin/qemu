@@ -1294,6 +1294,15 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Wed Oct 05 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-22
+- kvm-redhat-Update-linux-headers-linux-kvm.h-to-v5.18-rc6.patch [bz#2124757]
+- kvm-target-s390x-kvm-Honor-storage-keys-during-emulation.patch [bz#2124757]
+- kvm-virtiofsd-use-g_date_time_get_microsecond-to-get-sub.patch [bz#2018885]
+- Resolves: bz#2124757
+  (RHEL8: skey test in kvm_unit_test got failed)
+- Resolves: bz#2018885
+  ([virtiofs] virtiofsd debug log's timestamp is NULL)
+
 * Thu Sep 29 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-21
 - kvm-backends-hostmem-Fix-support-of-memory-backend-memfd.patch [bz#2117149]
 - kvm-i386-reset-KVM-nested-state-upon-CPU-reset.patch [bz#2125271]
