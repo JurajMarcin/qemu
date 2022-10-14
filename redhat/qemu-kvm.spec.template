@@ -1294,6 +1294,11 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Wed Oct 12 2022 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-20.el8_7.2
+- kvm-virtiofsd-use-g_date_time_get_microsecond-to-get-sub.patch [bz#2132391]
+- Resolves: bz#2132391
+  ([virtiofs] virtiofsd debug log's timestamp is NULL [rhel-8.7.0.z])
+
 * Wed Sep 14 2022 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-20.el8.1
 - kvm-i386-reset-KVM-nested-state-upon-CPU-reset.patch [bz#2116743]
 - kvm-i386-do-kvm_put_msr_feature_control-first-thing-when.patch [bz#2116743]
