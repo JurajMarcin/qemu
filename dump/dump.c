@@ -584,6 +584,8 @@ static void dump_begin(DumpState *s, Error **errp)
      *   --------------
      *   |  elf header |
      *   --------------
+     *   |  sctn_hdr   |
+     *   --------------
      *   |  PT_NOTE    |
      *   --------------
      *   |  PT_LOAD    |
@@ -591,8 +593,6 @@ static void dump_begin(DumpState *s, Error **errp)
      *   |  ......     |
      *   --------------
      *   |  PT_LOAD    |
-     *   --------------
-     *   |  sec_hdr    |
      *   --------------
      *   |  elf note   |
      *   --------------
@@ -609,6 +609,12 @@ static void dump_begin(DumpState *s, Error **errp)
         return;
     }
 
+    /* write section headers to vmcore */
+    write_elf_section_headers(s, errp);
+    if (*errp) {
+        return;
+    }
+
     /* write PT_NOTE to vmcore */
     write_elf_phdr_note(s, errp);
     if (*errp) {
@@ -617,12 +623,6 @@ static void dump_begin(DumpState *s, Error **errp)
 
     /* write all PT_LOADs to vmcore */
     write_elf_phdr_loads(s, errp);
-    if (*errp) {
-        return;
-    }
-
-    /* write section headers to vmcore */
-    write_elf_section_headers(s, errp);
     if (*errp) {
         return;
     }
@@ -1877,16 +1877,13 @@ static void dump_init(DumpState *s, int fd, bool has_format,
     }
 
     if (dump_is_64bit(s)) {
-        s->phdr_offset = sizeof(Elf64_Ehdr);
-        s->shdr_offset = s->phdr_offset + sizeof(Elf64_Phdr) * s->phdr_num;
-        s->note_offset = s->shdr_offset + sizeof(Elf64_Shdr) * s->shdr_num;
-        s->memory_offset = s->note_offset + s->note_size;
+        s->shdr_offset = sizeof(Elf64_Ehdr);
+        s->phdr_offset = s->shdr_offset + sizeof(Elf64_Shdr) * s->shdr_num;
+        s->note_offset = s->phdr_offset + sizeof(Elf64_Phdr) * s->phdr_num;
     } else {
-
-        s->phdr_offset = sizeof(Elf32_Ehdr);
-        s->shdr_offset = s->phdr_offset + sizeof(Elf32_Phdr) * s->phdr_num;
-        s->note_offset = s->shdr_offset + sizeof(Elf32_Shdr) * s->shdr_num;
-        s->memory_offset = s->note_offset + s->note_size;
+        s->shdr_offset = sizeof(Elf32_Ehdr);
+        s->phdr_offset = s->shdr_offset + sizeof(Elf32_Shdr) * s->shdr_num;
+        s->note_offset = s->phdr_offset + sizeof(Elf32_Phdr) * s->phdr_num;
     }
 
     return;
