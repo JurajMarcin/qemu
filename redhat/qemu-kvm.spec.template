@@ -1294,6 +1294,12 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Wed Oct 26 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-23
+- kvm-virtio-fix-the-condition-for-iommu_platform-not-supp.patch [bz#2116302]
+- kvm-virtio-fix-feature-negotiation-for-ACCESS_PLATFORM.patch [bz#2116302]
+- Resolves: bz#2116302
+  (RHEL8.6 - virtiofs will not mount fs on secure execution guest)
+
 * Wed Oct 05 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-22
 - kvm-redhat-Update-linux-headers-linux-kvm.h-to-v5.18-rc6.patch [bz#2124757]
 - kvm-target-s390x-kvm-Honor-storage-keys-during-emulation.patch [bz#2124757]
