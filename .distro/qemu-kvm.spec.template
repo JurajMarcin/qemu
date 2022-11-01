@@ -1209,6 +1209,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Tue Nov 01 2022 Miroslav Rezanina <mrezanin@redhat.com> - 7.1.0-4
+- kvm-Revert-intel_iommu-Fix-irqchip-X2APIC-configuration-.patch [bz#2126095]
+- Resolves: bz#2126095
+  ([rhel9.2][intel_iommu]Booting guest with "-device intel-iommu,intremap=on,device-iotlb=on,caching-mode=on" causes kernel call trace)
+
 * Thu Oct 13 2022 Jon Maloy <jmaloy@redhat.com> - 7.1.0-3
 - kvm-target-i386-kvm-fix-kvmclock_current_nsec-Assertion-.patch [bz#2108531]
 - Resolves: bz#2108531
