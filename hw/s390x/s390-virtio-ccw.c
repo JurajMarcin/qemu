@@ -1130,8 +1130,14 @@ static void ccw_machine_rhel850_instance_options(MachineState *machine)
 
 static void ccw_machine_rhel850_class_options(MachineClass *mc)
 {
+    static GlobalProperty compat[] = {
+        { TYPE_S390_PCI_DEVICE, "interpret", "off", },
+        { TYPE_S390_PCI_DEVICE, "forwarding-assist", "off", },
+    };
+
     ccw_machine_rhel860_class_options(mc);
     compat_props_add(mc->compat_props, hw_compat_rhel_8_5, hw_compat_rhel_8_5_len);
+    compat_props_add(mc->compat_props, compat, G_N_ELEMENTS(compat));
     mc->smp_props.prefer_sockets = true;
 }
 DEFINE_CCW_MACHINE(rhel850, "rhel8.5.0", false);
