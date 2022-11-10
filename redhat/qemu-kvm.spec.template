@@ -1294,6 +1294,56 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Thu Nov 10 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-24
+- kvm-s390x-pci-use-a-reserved-ID-for-the-default-PCI-grou.patch [bz#1664378 bz#2043909]
+- kvm-s390x-pci-don-t-use-hard-coded-dma-range-in-reg_ioat.patch [bz#1664378 bz#2043909]
+- kvm-s390x-pci-use-the-passthrough-measurement-update-int.patch [bz#1664378 bz#2043909]
+- kvm-s390x-pci-add-supported-DT-information-to-clp-respon.patch [bz#1664378 bz#2043909]
+- kvm-Update-linux-headers-to-v6.0-rc4.patch [bz#1664378 bz#2043909]
+- kvm-s390x-pci-add-routine-to-get-host-function-handle-fr.patch [bz#1664378 bz#2043909]
+- kvm-s390x-pci-enable-for-load-store-interpretation.patch [bz#1664378 bz#2043909]
+- kvm-s390x-pci-don-t-fence-interpreted-devices-without-MS.patch [bz#1664378 bz#2043909]
+- kvm-s390x-pci-enable-adapter-event-notification-for-inte.patch [bz#1664378 bz#2043909]
+- kvm-s390x-pci-let-intercept-devices-have-separate-PCI-gr.patch [bz#1664378 bz#2043909]
+- kvm-s390x-pci-reflect-proper-maxstbl-for-groups-of-inter.patch [bz#1664378 bz#2043909]
+- kvm-s390x-s390-virtio-ccw-Switch-off-zPCI-enhancements-o.patch [bz#1664378 bz#2043909]
+- kvm-dump-Use-ERRP_GUARD.patch [bz#1664378 bz#2043909]
+- kvm-dump-Remove-the-sh_info-variable.patch [bz#1664378 bz#2043909]
+- kvm-dump-Introduce-shdr_num-to-decrease-complexity.patch [bz#1664378 bz#2043909]
+- kvm-dump-Remove-the-section-if-when-calculating-the-memo.patch [bz#1664378 bz#2043909]
+- kvm-dump-Add-more-offset-variables.patch [bz#1664378 bz#2043909]
+- kvm-dump-Introduce-dump_is_64bit-helper-function.patch [bz#1664378 bz#2043909]
+- kvm-dump-Consolidate-phdr-note-writes.patch [bz#1664378 bz#2043909]
+- kvm-dump-Cleanup-dump_begin-write-functions.patch [bz#1664378 bz#2043909]
+- kvm-dump-Consolidate-elf-note-function.patch [bz#1664378 bz#2043909]
+- kvm-dump-Replace-opaque-DumpState-pointer-with-a-typed-o.patch [bz#1664378 bz#2043909]
+- kvm-dump-Rename-write_elf_loads-to-write_elf_phdr_loads.patch [bz#1664378 bz#2043909]
+- kvm-dump-Refactor-dump_iterate-and-introduce-dump_filter.patch [bz#1664378 bz#2043909]
+- kvm-dump-Rework-get_start_block.patch [bz#1664378 bz#2043909]
+- kvm-dump-Rework-filter-area-variables.patch [bz#1664378 bz#2043909]
+- kvm-dump-Rework-dump_calculate_size-function.patch [bz#1664378 bz#2043909]
+- kvm-dump-Split-elf-header-functions-into-prepare-and-wri.patch [bz#1664378 bz#2043909]
+- kvm-dump-Rename-write_elf-_phdr_note-to-prepare_elf-_phd.patch [bz#1664378 bz#2043909]
+- kvm-dump-simplify-a-bit-kdump-get_next_page.patch [bz#1664378 bz#2043909]
+- kvm-dump-fix-kdump-to-work-over-non-aligned-blocks.patch [bz#1664378 bz#2043909]
+- kvm-dump-Use-a-buffer-for-ELF-section-data-and-headers.patch [bz#1664378 bz#2043909]
+- kvm-dump-Write-ELF-section-headers-right-after-ELF-heade.patch [bz#1664378 bz#2043909]
+- kvm-dump-Reorder-struct-DumpState.patch [bz#1664378 bz#2043909]
+- kvm-dump-Reintroduce-memory_offset-and-section_offset.patch [bz#1664378 bz#2043909]
+- kvm-dump-Add-architecture-section-and-section-string-tab.patch [bz#1664378 bz#2043909]
+- kvm-s390x-Add-protected-dump-cap.patch [bz#1664378 bz#2043909]
+- kvm-s390x-Introduce-PV-query-interface.patch [bz#1664378 bz#2043909]
+- kvm-include-elf.h-add-s390x-note-types.patch [bz#1664378 bz#2043909]
+- kvm-s390x-Add-KVM-PV-dump-interface.patch [bz#1664378 bz#2043909]
+- kvm-s390x-pv-Add-dump-support.patch [bz#1664378 bz#2043909]
+- kvm-ui-vnc-clipboard-fix-integer-underflow-in-vnc_client.patch [bz#2129760]
+- Resolves: bz#1664378
+  ([IBM 8.8 FEAT] Enhanced Interpretation for PCI Functions (kvm) - qemu part)
+- Resolves: bz#2043909
+  ([IBM 8.8 FEAT] KVM: Secure Execution guest dump encryption with customer keys - qemu part)
+- Resolves: bz#2129760
+  (CVE-2022-3165 virt:rhel/qemu-kvm: QEMU: VNC: integer underflow in vnc_client_cut_text_ext leads to CPU exhaustion [rhel-8])
+
 * Wed Oct 26 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-23
 - kvm-virtio-fix-the-condition-for-iommu_platform-not-supp.patch [bz#2116302]
 - kvm-virtio-fix-feature-negotiation-for-ACCESS_PLATFORM.patch [bz#2116302]
