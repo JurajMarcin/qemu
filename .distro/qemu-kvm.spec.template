@@ -1209,6 +1209,13 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Nov 14 2022 Miroslav Rezanina <mrezanin@redhat.com> - 7.1.0-5
+- kvm-rtl8139-Remove-unused-variable.patch [bz#2141218]
+- kvm-qemu-img-remove-unused-variable.patch [bz#2141218]
+- kvm-host-libusb-Remove-unused-variable.patch [bz#2141218]
+- Resolves: bz#2141218
+  (qemu-kvm build fails with clang 15.0.1 due to false unused variable error)
+
 * Tue Nov 01 2022 Miroslav Rezanina <mrezanin@redhat.com> - 7.1.0-4
 - kvm-Revert-intel_iommu-Fix-irqchip-X2APIC-configuration-.patch [bz#2126095]
 - Resolves: bz#2126095
