@@ -1294,6 +1294,12 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Wed Nov 16 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-25
+- kvm-hw-acpi-Add-ospm_status-hook-implementation-for-acpi.patch [bz#2132609]
+- kvm-target-arm-kvm-Retry-KVM_CREATE_VM-call-if-it-fails-.patch [bz#2132609]
+- Resolves: bz#2132609
+  (qemu-kvm: backport some aarch64 fixes)
+
 * Thu Nov 10 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-24
 - kvm-s390x-pci-use-a-reserved-ID-for-the-default-PCI-grou.patch [bz#1664378 bz#2043909]
 - kvm-s390x-pci-don-t-use-hard-coded-dma-range-in-reg_ioat.patch [bz#1664378 bz#2043909]
