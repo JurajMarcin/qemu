@@ -692,6 +692,23 @@ static void pc_q35_machine_rhel_options(MachineClass *m)
     compat_props_add(m->compat_props, pc_rhel_compat, pc_rhel_compat_len);
 }
 
+static void pc_q35_init_rhel920(MachineState *machine)
+{
+    pc_q35_init(machine);
+}
+
+static void pc_q35_machine_rhel920_options(MachineClass *m)
+{
+    PCMachineClass *pcmc = PC_MACHINE_CLASS(m);
+    pc_q35_machine_rhel_options(m);
+    m->desc = "RHEL-9.2.0 PC (Q35 + ICH9, 2009)";
+    pcmc->smbios_stream_product = "RHEL";
+    pcmc->smbios_stream_version = "9.2.0";
+}
+
+DEFINE_PC_MACHINE(q35_rhel920, "pc-q35-rhel9.2.0", pc_q35_init_rhel920,
+                  pc_q35_machine_rhel920_options);
+
 static void pc_q35_init_rhel900(MachineState *machine)
 {
     pc_q35_init(machine);
@@ -700,11 +717,13 @@ static void pc_q35_init_rhel900(MachineState *machine)
 static void pc_q35_machine_rhel900_options(MachineClass *m)
 {
     PCMachineClass *pcmc = PC_MACHINE_CLASS(m);
-    pc_q35_machine_rhel_options(m);
+    pc_q35_machine_rhel920_options(m);
     m->desc = "RHEL-9.0.0 PC (Q35 + ICH9, 2009)";
+    m->alias = NULL;
     pcmc->smbios_stream_product = "RHEL";
     pcmc->smbios_stream_version = "9.0.0";
     pcmc->legacy_no_rng_seed = true;
+    pcmc->enforce_amd_1tb_hole = false;
     compat_props_add(m->compat_props, hw_compat_rhel_9_1,
                      hw_compat_rhel_9_1_len);
     compat_props_add(m->compat_props, hw_compat_rhel_9_0,
