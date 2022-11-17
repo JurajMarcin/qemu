@@ -1190,9 +1190,20 @@ DEFINE_CCW_MACHINE(2_4, "2.4", false);
 #endif
 
 
+static void ccw_machine_rhel920_instance_options(MachineState *machine)
+{
+}
+
+static void ccw_machine_rhel920_class_options(MachineClass *mc)
+{
+}
+DEFINE_CCW_MACHINE(rhel920, "rhel9.2.0", true);
+
 static void ccw_machine_rhel900_instance_options(MachineState *machine)
 {
     static const S390FeatInit qemu_cpu_feat = { S390_FEAT_LIST_QEMU_V6_2 };
+
+    ccw_machine_rhel920_instance_options(machine);
 
     s390_set_qemu_cpu_model(0x3906, 14, 2, qemu_cpu_feat);
     s390_cpudef_featoff_greater(16, 1, S390_FEAT_PAIE);
@@ -1206,12 +1217,14 @@ static void ccw_machine_rhel900_class_options(MachineClass *mc)
         { TYPE_S390_PCI_DEVICE, "forwarding-assist", "off", },
     };
 
+    ccw_machine_rhel920_class_options(mc);
+
     compat_props_add(mc->compat_props, compat, G_N_ELEMENTS(compat));
     compat_props_add(mc->compat_props, hw_compat_rhel_9_1, hw_compat_rhel_9_1_len);
     compat_props_add(mc->compat_props, hw_compat_rhel_9_0, hw_compat_rhel_9_0_len);
     s390mc->max_threads = S390_MAX_CPUS;
 }
-DEFINE_CCW_MACHINE(rhel900, "rhel9.0.0", true);
+DEFINE_CCW_MACHINE(rhel900, "rhel9.0.0", false);
 
 static void ccw_machine_rhel860_instance_options(MachineState *machine)
 {
