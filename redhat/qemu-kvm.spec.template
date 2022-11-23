@@ -1294,6 +1294,15 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Wed Nov 23 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-26
+- kvm-docs-system-s390x-Document-the-loadparm-machine-prop.patch [bz#2128225]
+- kvm-s390x-Register-TYPE_S390_CCW_MACHINE-properties-as-c.patch [bz#2128225]
+- kvm-ui-vnc.c-Fixed-a-deadlock-bug.patch [bz#2141896]
+- Resolves: bz#2128225
+  ([s390x] [RHEL8][s390x-ccw bios] lacking document about parameter loadparm in qemu)
+- Resolves: bz#2141896
+  (VMs hung on vnc_clipboard_send)
+
 * Wed Nov 16 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-25
 - kvm-hw-acpi-Add-ospm_status-hook-implementation-for-acpi.patch [bz#2132609]
 - kvm-target-arm-kvm-Retry-KVM_CREATE_VM-call-if-it-fails-.patch [bz#2132609]
