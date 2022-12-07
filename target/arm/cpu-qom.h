@@ -35,6 +35,7 @@ typedef struct ARMCPUInfo {
     const char *name;
     void (*initfn)(Object *obj);
     void (*class_init)(ObjectClass *oc, void *data);
+    const char *deprecation_note;
 } ARMCPUInfo;
 
 void arm_cpu_register(const ARMCPUInfo *info);

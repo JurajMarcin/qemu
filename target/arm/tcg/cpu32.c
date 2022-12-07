@@ -94,6 +94,7 @@ void aa32_max_features(ARMCPU *cpu)
 /* CPU models. These are not needed for the AArch64 linux-user build. */
 #if !defined(CONFIG_USER_ONLY) || !defined(TARGET_AARCH64)
 
+#if 0 /* Disabled for Red Hat Enterprise Linux */
 #if !defined(CONFIG_USER_ONLY)
 static bool arm_v7m_cpu_exec_interrupt(CPUState *cs, int interrupt_request)
 {
@@ -1183,3 +1184,4 @@ static void arm_tcg_cpu_register_types(void)
 type_init(arm_tcg_cpu_register_types)
 
 #endif /* !CONFIG_USER_ONLY || !TARGET_AARCH64 */
+#endif /* disabled for RHEL */

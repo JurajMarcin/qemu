@@ -34,6 +34,8 @@
 #define KVM_HAVE_MCE_INJECTION 1
 #endif
 
+#define RHEL_CPU_DEPRECATION "use 'host' / 'max'"
+
 #define EXCP_UDEF            1   /* undefined instruction */
 #define EXCP_SWI             2   /* software interrupt */
 #define EXCP_PREFETCH_ABORT  3
