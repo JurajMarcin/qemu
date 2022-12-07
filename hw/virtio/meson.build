@@ -17,8 +17,9 @@ if have_vhost
   if have_vhost_user
     # fixme - this really should be generic
     specific_virtio_ss.add(files('vhost-user.c'))
-    system_virtio_ss.add(files('vhost-user-device.c'))
-    system_virtio_ss.add(when: 'CONFIG_VIRTIO_PCI', if_true: files('vhost-user-device-pci.c'))
+# Disabled for 8.2.0 rebase for RHEL 9.4.0
+#    system_virtio_ss.add(files('vhost-user-device.c'))
+#    system_virtio_ss.add(when: 'CONFIG_VIRTIO_PCI', if_true: files('vhost-user-device-pci.c'))
   endif
   if have_vhost_vdpa
     system_virtio_ss.add(files('vhost-vdpa.c'))

@@ -205,6 +205,7 @@ static const int a15irqmap[] = {
 };
 
 static const char *valid_cpus[] = {
+#if 0 /* Disabled for Red Hat Enterprise Linux */
 #ifdef CONFIG_TCG
     ARM_CPU_TYPE_NAME("cortex-a7"),
     ARM_CPU_TYPE_NAME("cortex-a15"),
@@ -219,6 +220,7 @@ static const char *valid_cpus[] = {
     ARM_CPU_TYPE_NAME("neoverse-n2"),
 #endif
     ARM_CPU_TYPE_NAME("cortex-a53"),
+#endif /* disabled for RHEL */
     ARM_CPU_TYPE_NAME("cortex-a57"),
     ARM_CPU_TYPE_NAME("host"),
     ARM_CPU_TYPE_NAME("max"),
