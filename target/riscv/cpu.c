@@ -481,6 +481,7 @@ static void riscv_max_cpu_init(Object *obj)
 #endif
 }
 
+#if 0 /* Disabled for Red Hat Enterprise Linux */
 #if defined(TARGET_RISCV64)
 static void rv64_base_cpu_init(Object *obj)
 {
@@ -831,6 +832,7 @@ static void rv32e_bare_cpu_init(Object *obj)
     riscv_cpu_set_misa_ext(env, RVE);
 }
 #endif
+#endif /* disabled for RHEL */
 
 static ObjectClass *riscv_cpu_class_by_name(const char *cpu_model)
 {
@@ -2970,6 +2972,7 @@ static const Property riscv_cpu_properties[] = {
     DEFINE_PROP_BOOL("x-misa-w", RISCVCPU, cfg.misa_w, false),
 };
 
+#if 0 /* Disabled for Red Hat Enterprise Linux */
 #if defined(TARGET_RISCV64)
 static void rva22u64_profile_cpu_init(Object *obj)
 {
@@ -2999,6 +3002,7 @@ static void rva23s64_profile_cpu_init(Object *obj)
     RVA23S64.enabled = true;
 }
 #endif
+#endif /* disabled for RHEL */
 
 static const gchar *riscv_gdb_arch_name(CPUState *cs)
 {
@@ -3236,6 +3240,7 @@ static const TypeInfo riscv_cpu_type_infos[] = {
     DEFINE_DYNAMIC_CPU(TYPE_RISCV_CPU_MAX,       MXL_RV64,  riscv_max_cpu_init),
 #endif
 
+#if 0 /* Disabled for Red Hat Enterprise Linux */
 #if defined(TARGET_RISCV32) || \
     (defined(TARGET_RISCV64) && !defined(CONFIG_USER_ONLY))
     DEFINE_DYNAMIC_CPU(TYPE_RISCV_CPU_BASE32,    MXL_RV32,  rv32_base_cpu_init),
@@ -3271,6 +3276,7 @@ static const TypeInfo riscv_cpu_type_infos[] = {
     DEFINE_PROFILE_CPU(TYPE_RISCV_CPU_RVA23U64,  MXL_RV64,  rva23u64_profile_cpu_init),
     DEFINE_PROFILE_CPU(TYPE_RISCV_CPU_RVA23S64,  MXL_RV64,  rva23s64_profile_cpu_init),
 #endif /* TARGET_RISCV64 */
+#endif /* disabled for RHEL */
 };
 
 DEFINE_TYPES(riscv_cpu_type_infos)
