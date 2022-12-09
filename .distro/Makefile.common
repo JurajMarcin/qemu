@@ -22,7 +22,7 @@ MARKER:=44f28df24767cf9dca1ddc9b23157737c4cbb645
 
 SPECFILE:=$(NAME).spec
 DIST:=.el9_0
-SRPM_NAME=$(shell rpmspec --query --srpm --target="" --define "dist $(DIST)" rpmbuild/SPECS/$(SPECFILE))src.rpm
+SRPM_NAME=$(shell rpmspec --query --srpm --target="src" --define "dist $(DIST)" $(RPMBUILD)/SPECS/$(SPECFILE) | sed -e 's/\(.*\)\..*/\1/').src.rpm
 
 SOURCES_FILELIST:=                     \
        99-qemu-guest-agent.rules       \
