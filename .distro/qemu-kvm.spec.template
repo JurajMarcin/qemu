@@ -1194,6 +1194,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Thu Dec 15 2022 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-1
+- Rebase to QEMU 7.2.0 [bz#2135806]
+- Resolves: bz#2135806
+  (Rebase to QEMU 7.2 for RHEL 9.2.0)
+
 * Wed Dec 14 2022 Jon Maloy <jmaloy@redhat.com> - 7.1.0-7
 - kvm-hw-acpi-erst.c-Fix-memory-handling-issues.patch [bz#2149108]
 - Resolves: bz#2149108
