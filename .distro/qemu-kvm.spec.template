@@ -1209,6 +1209,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Wed Dec 14 2022 Jon Maloy <jmaloy@redhat.com> - 7.1.0-7
+- kvm-hw-acpi-erst.c-Fix-memory-handling-issues.patch [bz#2149108]
+- Resolves: bz#2149108
+  (CVE-2022-4172 qemu-kvm: QEMU: ACPI ERST: memory corruption issues in read_erst_record and write_erst_record [rhel-9])
+
 * Fri Dec 02 2022 Miroslav Rezanina <mrezanin@redhat.com> - 7.1.0-6
 - kvm-block-move-bdrv_qiov_is_aligned-to-file-posix.patch [bz#2143170]
 - kvm-block-use-the-request-length-for-iov-alignment.patch [bz#2143170]
