@@ -3520,6 +3520,7 @@ type_init(rhel_machine_init);
 
 static void rhel920_virt_options(MachineClass *mc)
 {
+    compat_props_add(mc->compat_props, arm_rhel_compat, arm_rhel_compat_len);
 }
 DEFINE_RHEL_MACHINE_AS_LATEST(9, 2, 0)
 
@@ -3529,7 +3530,6 @@ static void rhel900_virt_options(MachineClass *mc)
 
     rhel920_virt_options(mc);
 
-    compat_props_add(mc->compat_props, arm_rhel_compat, arm_rhel_compat_len);
     compat_props_add(mc->compat_props, hw_compat_rhel_9_1, hw_compat_rhel_9_1_len);
 
     /* Disable FEAT_LPA2 since old kernels (<= v5.12) don't boot with that feature */
