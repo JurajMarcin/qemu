@@ -1202,6 +1202,12 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Tue Dec 20 2022 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-2
+- Fix updating from 7.1.0
+- kvm-redhat-fix-virt-rhel9.2.0-compat-props.patch[bz#2154640]
+- Resolves: bz#2154640
+  ([aarch64] qemu fails to load "efi-virtio.rom" romfile when creating virtio-net-pci)
+
 * Thu Dec 15 2022 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-1
 - Rebase to QEMU 7.2.0 [bz#2135806]
 - Resolves: bz#2135806
