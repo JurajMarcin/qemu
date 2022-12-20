@@ -310,6 +310,10 @@ Requires: seabios-bin >= 1.10.2-1
 Requires: seavgabios-bin >= 1.12.0-3
 Requires: ipxe-roms-qemu >= %{ipxe_version}
 %endif
+# Removal -gl modules as they do not provide any functionality - see bz#2149022
+Obsoletes: %{name}-device-display-virtio-gpu-gl <= %{epoch}:%{version}
+Obsoletes: %{name}-device-display-virtio-gpu-pci-gl <= %{epoch}:%{version}
+Obsoletes: %{name}-device-display-virtio-vga-gl <= %{epoch}:%{version}
 
 %description common
 %{name} is an open source virtualizer that provides hardware emulation for
@@ -477,6 +481,10 @@ mkdir -p %{qemu_kvm_build}
 
 
 %build
+
+# Necessary hack for ZUUL CI
+ulimit -n 10240
+
 %define disable_everything         \\\
   --audio-drv-list=                \\\
   --disable-alsa                   \\\
