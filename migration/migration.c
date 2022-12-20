@@ -32,6 +32,7 @@
 #include "savevm.h"
 #include "qemu-file-channel.h"
 #include "qemu-file.h"
+#include "channel.h"
 #include "migration/vmstate.h"
 #include "block/block.h"
 #include "qapi/error.h"
@@ -637,10 +638,6 @@ static bool migration_incoming_setup(QEMUFile *f, Error **errp)
 {
     MigrationIncomingState *mis = migration_incoming_get_current();
 
-    if (multifd_load_setup(errp) != 0) {
-        return false;
-    }
-
     if (!mis->from_src_file) {
         mis->from_src_file = f;
     }
@@ -701,10 +698,42 @@ void migration_fd_process_incoming(QEMUFile *f, Error **errp)
 void migration_ioc_process_incoming(QIOChannel *ioc, Error **errp)
 {
     MigrationIncomingState *mis = migration_incoming_get_current();
+    bool default_channel = true;
+    uint32_t channel_magic = 0;
     Error *local_err = NULL;
-    bool start_migration;
+    int ret = 0;
 
-    if (!mis->from_src_file) {
+    if (migrate_use_multifd() && !migrate_postcopy_ram() &&
+        qio_channel_has_feature(ioc, QIO_CHANNEL_FEATURE_READ_MSG_PEEK)) {
+        /*
+         * With multiple channels, it is possible that we receive channels
+         * out of order on destination side, causing incorrect mapping of
+         * source channels on destination side. Check channel MAGIC to
+         * decide type of channel. Please note this is best effort, postcopy
+         * preempt channel does not send any magic number so avoid it for
+         * postcopy live migration. Also tls live migration already does
+         * tls handshake while initializing main channel so with tls this
+         * issue is not possible.
+         */
+        ret = migration_channel_read_peek(ioc, (void *)&channel_magic,
+                                          sizeof(channel_magic), &local_err);
+
+        if (ret != 0) {
+            error_propagate(errp, local_err);
+            return;
+        }
+
+        default_channel = (channel_magic == cpu_to_be32(QEMU_VM_FILE_MAGIC));
+    } else {
+        default_channel = !mis->from_src_file;
+    }
+
+    if (multifd_load_setup(errp) != 0) {
+        error_setg(errp, "Failed to setup multifd channels");
+        return;
+    }
+
+    if (default_channel) {
         /* The first connection (multifd may have multiple) */
         QEMUFile *f = qemu_fopen_channel_input(ioc);
 
@@ -716,23 +745,17 @@ void migration_ioc_process_incoming(QIOChannel *ioc, Error **errp)
         if (!migration_incoming_setup(f, errp)) {
             return;
         }
-
-        /*
-         * Common migration only needs one channel, so we can start
-         * right now.  Multifd needs more than one channel, we wait.
-         */
-        start_migration = !migrate_use_multifd();
     } else {
         /* Multiple connections */
         assert(migrate_use_multifd());
-        start_migration = multifd_recv_new_channel(ioc, &local_err);
+        multifd_recv_new_channel(ioc, &local_err);
         if (local_err) {
             error_propagate(errp, local_err);
             return;
         }
     }
 
-    if (start_migration) {
+    if (migration_has_all_channels()) {
         migration_incoming_process();
     }
 }
