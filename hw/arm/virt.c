@@ -3581,6 +3581,7 @@ static void rhel_virt_instance_init(Object *obj)
 
     /* High memory is enabled by default */
     vms->highmem = true;
+    vms->highmem_compact = !vmc->no_highmem_compact;
     vms->gic_version = VIRT_GIC_VERSION_NOSEL;
 
     vms->highmem_ecam = !vmc->no_highmem_ecam;
@@ -3659,5 +3660,7 @@ static void rhel900_virt_options(MachineClass *mc)
 
     /* Disable FEAT_LPA2 since old kernels (<= v5.12) don't boot with that feature */
     vmc->no_tcg_lpa2 = true;
+    /* Compact layout for high memory regions was introduced with 9.2.0 */
+    vmc->no_highmem_compact = true;
 }
 DEFINE_RHEL_MACHINE(9, 0, 0)
