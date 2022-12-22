@@ -66,8 +66,8 @@ rh-srpm: rh-prep
 	$(DS)rpmbuild --define "_sourcedir $(RPMBUILD)/SOURCES" --define "_builddir $(RPMBUILD)/BUILD" --define "_srcrpmdir $(RPMBUILD)/SRPMS" --define "_rpmdir $(RPMBUILD)/RPMS" --define "_specdir $(RPMBUILD)/SPECS" --define "dist $(DIST)" --nodeps -bs $(RPMBUILD)/SPECS/$(SPECFILE)
 
 rh-brew: rh-srpm
-	@echo "Build $(shell rpmspec --query --srpm --target="" --define "dist $(DIST)" rpmbuild/SPECS/qemu-kvm.spec)src.rpm as $(BUILD_TARGET)"
-	$(DS)brew build $(BREW_OPTIONS) $(BUILD_TARGET) $(RPMBUILD)/SRPMS/$(shell rpmspec --query --srpm --target="" --define "dist $(DIST)" rpmbuild/SPECS/qemu-kvm.spec)src.rpm
+	@echo "Build $(shell rpmspec --query --srpm --target="src" --define "dist $(DIST)" $(RPMBUILD)/SPECS/$(SPECFILE) | sed -e 's/\(.*\)\..*/\1/').src.rpm as $(BUILD_TARGET)"
+	$(DS)brew build $(BREW_OPTIONS) $(BUILD_TARGET) $(RPMBUILD)/SRPMS/$(shell rpmspec --query --srpm --target="src" --define "dist $(DIST)" $(RPMBUILD)/SPECS/$(SPECFILE) | sed -e 's/\(.*\)\..*/\1/').src.rpm
 
 # Keep to make nightly happy
 rh-brew-module: rh-brew
