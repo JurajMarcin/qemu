@@ -1202,6 +1202,18 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Wed Jan 04 2023 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-3
+- kvm-hw-arm-virt-Introduce-virt_set_high_memmap-helper.patch [bz#2113840]
+- kvm-hw-arm-virt-Rename-variable-size-to-region_size-in-v.patch [bz#2113840]
+- kvm-hw-arm-virt-Introduce-variable-region_base-in-virt_s.patch [bz#2113840]
+- kvm-hw-arm-virt-Introduce-virt_get_high_memmap_enabled-h.patch [bz#2113840]
+- kvm-hw-arm-virt-Improve-high-memory-region-address-assig.patch [bz#2113840]
+- kvm-hw-arm-virt-Add-compact-highmem-property.patch [bz#2113840]
+- kvm-hw-arm-virt-Add-properties-to-disable-high-memory-re.patch [bz#2113840]
+- kvm-hw-arm-virt-Enable-compat-high-memory-region-address.patch [bz#2113840]
+- Resolves: bz#2113840
+  ([RHEL9.2] Memory mapping optimization for virt machine)
+
 * Tue Dec 20 2022 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-2
 - Fix updating from 7.1.0
 - kvm-redhat-fix-virt-rhel9.2.0-compat-props.patch[bz#2154640]
