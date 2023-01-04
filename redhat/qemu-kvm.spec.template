@@ -1294,6 +1294,11 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Wed Jan 04 2023 Jon Maloy <jmaloy@redhat.com> - 6.2.0-28
+- kvm-s390x-tod-kvm-don-t-save-restore-the-TOD-in-PV-guest.patch [bz#2155448]
+- Resolves: bz#2155448
+  (RHEL8.8 - KVM: s390: pv: don't allow userspace to set the clock under PV - QEMU part)
+
 * Thu Dec 08 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-27
 - kvm-hw-display-qxl-Have-qxl_log_command-Return-early-if-.patch [bz#2148545]
 - kvm-hw-display-qxl-Document-qxl_phys2virt.patch [bz#2148545]
