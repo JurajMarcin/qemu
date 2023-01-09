@@ -56,6 +56,8 @@ GlobalProperty hw_compat_rhel_9_1[] = {
   { "nvme-ns", "eui64-default", "on"},
   /* hw_compat_rhel_9_1 from hw_compat_7_1 */
   { "virtio-device", "queue_reset", "false" },
+  /* hw_compat_rhel_9_1 bz 2155749 */
+  { "virtio-rng-pci", "vectors", "0" },
 };
 const size_t hw_compat_rhel_9_1_len = G_N_ELEMENTS(hw_compat_rhel_9_1);
 
