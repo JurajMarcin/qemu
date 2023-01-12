@@ -1202,6 +1202,14 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Thu Jan 12 2023 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-4
+- kvm-virtio-rng-pci-fix-migration-compat-for-vectors.patch [bz#2155749]
+- kvm-Update-QGA-service-for-new-command-line.patch [bz#2156515]
+- Resolves: bz#2155749
+  ([regression][stable guest abi][qemu-kvm7.2]Migration failed due to virtio-rng device between RHEL8.8 and RHEL9.2/MSI-X)
+- Resolves: bz#2156515
+  ([guest-agent] Replace '-blacklist' to '-block-rpcs' in qemu-ga config file)
+
 * Wed Jan 04 2023 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-3
 - kvm-hw-arm-virt-Introduce-virt_set_high_memmap-helper.patch [bz#2113840]
 - kvm-hw-arm-virt-Rename-variable-size-to-region_size-in-v.patch [bz#2113840]
