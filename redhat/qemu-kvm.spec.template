@@ -1294,6 +1294,27 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Fri Jan 27 2023 Jon Maloy <jmaloy@redhat.com> - 6.2.0-29
+- kvm-block-mirror-Do-not-wait-for-active-writes.patch [bz#2125119]
+- kvm-block-mirror-Drop-mirror_wait_for_any_operation.patch [bz#2125119]
+- kvm-block-mirror-Fix-NULL-s-job-in-active-writes.patch [bz#2125119]
+- kvm-accel-introduce-accelerator-blocker-API.patch [bz#2161188]
+- kvm-KVM-keep-track-of-running-ioctls.patch [bz#2161188]
+- kvm-kvm-Atomic-memslot-updates.patch [bz#2161188]
+- kvm-migration-Read-state-once.patch [bz#2074205]
+- kvm-s390x-pci-RPCIT-second-pass-when-mappings-exhausted.patch [bz#2163713]
+- kvm-s390x-pci-coalesce-unmap-operations.patch [bz#2163713]
+- kvm-s390x-pci-shrink-DMA-aperture-to-be-bound-by-vfio-DM.patch [bz#2163713]
+- kvm-s390x-pci-reset-ISM-passthrough-devices-on-shutdown-.patch [bz#2163713]
+- Resolves: bz#2125119
+  (Mirror job with "copy-mode":"write-blocking" that used for storage migration can't converge under heavy I/O)
+- Resolves: bz#2161188
+  (SVM: non atomic memslot updates cause boot failure with seabios and cpu-pm=on)
+- Resolves: bz#2074205
+  (while live-migrating many instances concurrently, libvirt sometimes return internal error: migration was active, but no RAM info was set)
+- Resolves: bz#2163713
+  ([s390x] VM fails to start with ISM passed through)
+
 * Wed Jan 04 2023 Jon Maloy <jmaloy@redhat.com> - 6.2.0-28
 - kvm-s390x-tod-kvm-don-t-save-restore-the-TOD-in-PV-guest.patch [bz#2155448]
 - Resolves: bz#2155448
