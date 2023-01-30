@@ -1202,6 +1202,25 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Jan 30 2023 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-6
+- kvm-virtio_net-Modify-virtio_net_get_config-to-early-ret.patch [bz#2141088]
+- kvm-virtio_net-copy-VIRTIO_NET_S_ANNOUNCE-if-device-mode.patch [bz#2141088]
+- kvm-vdpa-handle-VIRTIO_NET_CTRL_ANNOUNCE-in-vhost_vdpa_n.patch [bz#2141088]
+- kvm-vdpa-do-not-handle-VIRTIO_NET_F_GUEST_ANNOUNCE-in-vh.patch [bz#2141088]
+- kvm-s390x-pv-Implement-a-CGS-check-helper.patch [bz#2122523]
+- kvm-s390x-pci-coalesce-unmap-operations.patch [bz#2163701]
+- kvm-s390x-pci-shrink-DMA-aperture-to-be-bound-by-vfio-DM.patch [bz#2163701]
+- kvm-s390x-pci-reset-ISM-passthrough-devices-on-shutdown-.patch [bz#2163701]
+- kvm-qga-linux-add-usb-support-to-guest-get-fsinfo.patch [bz#2149191]
+- Resolves: bz#2141088
+  (vDPA SVQ guest announce support)
+- Resolves: bz#2122523
+  (Secure guest can't boot with maximal number of vcpus (248))
+- Resolves: bz#2163701
+  ([s390x] VM fails to start with ISM passed through)
+- Resolves: bz#2149191
+  ([RFE][guest-agent] - USB bus type support)
+
 * Tue Jan 17 2023 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-5
 - kvm-virtio-introduce-macro-VIRTIO_CONFIG_IRQ_IDX.patch [bz#1905805]
 - kvm-virtio-pci-decouple-notifier-from-interrupt-process.patch [bz#1905805]
