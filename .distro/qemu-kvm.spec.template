@@ -541,6 +541,7 @@ ulimit -n 10240
   --disable-libssh                 \\\
   --disable-libudev                \\\
   --disable-libusb                 \\\
+  --disable-libvduse               \\\
   --disable-linux-aio              \\\
   --disable-linux-io-uring         \\\
   --disable-linux-user             \\\
@@ -596,6 +597,7 @@ ulimit -n 10240
   --disable-user                   \\\
   --disable-vde                    \\\
   --disable-vdi                    \\\
+  --disable-vduse-blk-export       \\\
   --disable-vhost-crypto           \\\
   --disable-vhost-kernel           \\\
   --disable-vhost-net              \\\
