@@ -1204,6 +1204,26 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Feb 06 2023 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-7
+- kvm-vdpa-use-v-shadow_vqs_enabled-in-vhost_vdpa_svqs_sta.patch [bz#2104412]
+- kvm-vhost-set-SVQ-device-call-handler-at-SVQ-start.patch [bz#2104412]
+- kvm-vhost-allocate-SVQ-device-file-descriptors-at-device.patch [bz#2104412]
+- kvm-vhost-move-iova_tree-set-to-vhost_svq_start.patch [bz#2104412]
+- kvm-vdpa-add-vhost_vdpa_net_valid_svq_features.patch [bz#2104412]
+- kvm-vdpa-request-iova_range-only-once.patch [bz#2104412]
+- kvm-vdpa-move-SVQ-vring-features-check-to-net.patch [bz#2104412]
+- kvm-vdpa-allocate-SVQ-array-unconditionally.patch [bz#2104412]
+- kvm-vdpa-add-asid-parameter-to-vhost_vdpa_dma_map-unmap.patch [bz#2104412]
+- kvm-vdpa-store-x-svq-parameter-in-VhostVDPAState.patch [bz#2104412]
+- kvm-vdpa-add-shadow_data-to-vhost_vdpa.patch [bz#2104412]
+- kvm-vdpa-always-start-CVQ-in-SVQ-mode-if-possible.patch [bz#2104412]
+- kvm-vdpa-fix-VHOST_BACKEND_F_IOTLB_ASID-flag-check.patch [bz#2104412]
+- kvm-spec-Disable-VDUSE.patch [bz#2128222]
+- Resolves: bz#2104412
+  (vDPA ASID support in Qemu)
+- Resolves: bz#2128222
+  (VDUSE block export should be disabled in builds for now)
+
 * Mon Jan 30 2023 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-6
 - kvm-virtio_net-Modify-virtio_net_get_config-to-early-ret.patch [bz#2141088]
 - kvm-virtio_net-copy-VIRTIO_NET_S_ANNOUNCE-if-device-mode.patch [bz#2141088]
