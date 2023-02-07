@@ -58,6 +58,9 @@ GlobalProperty hw_compat_rhel_9_1[] = {
   { "virtio-device", "queue_reset", "false" },
   /* hw_compat_rhel_9_1 bz 2155749 */
   { "virtio-rng-pci", "vectors", "0" },
+  /* hw_compat_rhel_9_1 bz 2162569 */
+  { "virtio-rng-pci-transitional", "vectors", "0" },
+  { "virtio-rng-pci-non-transitional", "vectors", "0" },
 };
 const size_t hw_compat_rhel_9_1_len = G_N_ELEMENTS(hw_compat_rhel_9_1);
 
