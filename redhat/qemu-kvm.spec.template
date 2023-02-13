@@ -1294,6 +1294,14 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Mon Feb 13 2023 Jon Maloy <jmaloy@redhat.com> - 6.2.0-30
+- kvm-qcow2-Fix-theoretical-corruption-in-store_bitmap-err.patch [bz#2147617]
+- kvm-qemu-img-commit-Report-errors-while-closing-the-imag.patch [bz#2147617]
+- kvm-qemu-img-bitmap-Report-errors-while-closing-the-imag.patch [bz#2147617]
+- kvm-qemu-iotests-Test-qemu-img-bitmap-commit-exit-code-o.patch [bz#2147617]
+- Resolves: bz#2147617
+  (qemu-img finishes successfully while having errors in commit or bitmaps operations)
+
 * Fri Jan 27 2023 Jon Maloy <jmaloy@redhat.com> - 6.2.0-29
 - kvm-block-mirror-Do-not-wait-for-active-writes.patch [bz#2125119]
 - kvm-block-mirror-Drop-mirror_wait_for_any_operation.patch [bz#2125119]
