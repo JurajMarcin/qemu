@@ -5275,6 +5275,8 @@ int bdrv_drop_filter(BlockDriverState *bs, Error **errp)
  * child.
  *
  * This function does not create any image files.
+ *
+ * The caller must hold the AioContext lock for @bs_top.
  */
 int bdrv_append(BlockDriverState *bs_new, BlockDriverState *bs_top,
                 Error **errp)
@@ -5282,10 +5284,13 @@ int bdrv_append(BlockDriverState *bs_new, BlockDriverState *bs_top,
     int ret;
     BdrvChild *child;
     Transaction *tran = tran_new();
+    AioContext *old_context, *new_context = NULL;
 
     GLOBAL_STATE_CODE();
 
     assert(!bs_new->backing);
+
+    old_context = bdrv_get_aio_context(bs_top);
 
     child = bdrv_attach_child_noperm(bs_new, bs_top, "backing",
                                      &child_of_bds, bdrv_backing_role(bs_new),
@@ -5293,6 +5298,19 @@ int bdrv_append(BlockDriverState *bs_new, BlockDriverState *bs_top,
     if (!child) {
         ret = -EINVAL;
         goto out;
+    }
+
+    /*
+     * bdrv_attach_child_noperm could change the AioContext of bs_top.
+     * bdrv_replace_node_noperm calls bdrv_drained_begin, so let's temporarily
+     * hold the new AioContext, since bdrv_drained_begin calls BDRV_POLL_WHILE
+     * that assumes the new lock is taken.
+     */
+    new_context = bdrv_get_aio_context(bs_top);
+
+    if (old_context != new_context) {
+        aio_context_release(old_context);
+        aio_context_acquire(new_context);
     }
 
     ret = bdrv_replace_node_noperm(bs_top, bs_new, true, tran, errp);
@@ -5305,6 +5323,11 @@ out:
     tran_finalize(tran, ret);
 
     bdrv_refresh_limits(bs_top, NULL, NULL);
+
+    if (new_context && old_context != new_context) {
+        aio_context_release(new_context);
+        aio_context_acquire(old_context);
+    }
 
     return ret;
 }
