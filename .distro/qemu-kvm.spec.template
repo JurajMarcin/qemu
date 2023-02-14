@@ -1229,6 +1229,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Tue Feb 14 2023 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-11.el9_0.7
+- kvm-migration-Read-state-once.patch [bz#2168222]
+- Resolves: bz#2168222
+  (while live-migrating many instances concurrently, libvirt sometimes return internal error: migration was active, but no RAM info was set [rhel-9.0.0.z])
+
 * Tue Dec 06 2022 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-11.el9_0.6
 - kvm-migration-Never-call-twice-qemu_target_page_size.patch [bz#2142706]
 - kvm-multifd-Rename-used-field-to-num.patch [bz#2142706]
