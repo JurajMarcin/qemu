@@ -1210,6 +1210,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Feb 13 2023 Miroslav Rezanina <mrezanin@redhat.com> - 7.0.0-13.el9_1.2
+- kvm-migration-Read-state-once.patch [bz#2168221]
+- Resolves: bz#2168221
+  (while live-migrating many instances concurrently, libvirt sometimes return internal error: migration was active, but no RAM info was set [rhel-9.1.0.z])
+
 * Thu Feb 02 2023 Miroslav Rezanina <mrezanin@redhat.com> - 7.0.0-13.el9_1.1
 - kvm-target-i386-kvm-fix-kvmclock_current_nsec-Assertion-.patch [bz#2134896]
 - Resolves: bz#2134896
