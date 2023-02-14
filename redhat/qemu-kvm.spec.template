@@ -1294,6 +1294,11 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Tue Feb 14 2023 Jon Maloy <jmaloy@redhat.com> - 6.2.0-22.el8_7.2
+- kvm-migration-Read-state-once.patch [bz#2168217]
+- Resolves: bz#2168217
+  (while live-migrating many instances concurrently, libvirt sometimes return internal error: migration was active, but no RAM info was set [rhel-8.7.0.z])
+
 * Thu Dec 15 2022 Jon Maloy <jmaloy@redhat.com> - 6.2.0-21.el8_7.2
 - kvm-ui-vnc.c-Fixed-a-deadlock-bug.patch [bz#2148504]
 - kvm-hw-display-qxl-Have-qxl_log_command-Return-early-if-.patch [bz#2152085]
