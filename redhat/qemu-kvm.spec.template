@@ -1294,6 +1294,15 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Wed Feb 15 2023 Jon Maloy <jmaloy@redhat.com> - 6.2.0-31
+- kvm-io-Add-support-for-MSG_PEEK-for-socket-channel.patch [bz#2137740]
+- kvm-migration-check-magic-value-for-deciding-the-mapping.patch [bz#2137740]
+- kvm-target-s390x-arch_dump-Fix-memory-corruption-in-s390.patch [bz#2168187]
+- Resolves: bz#2137740
+  (Multifd migration fails under a weak network/socket ordering race)
+- Resolves: bz#2168187
+  ([s390x] qemu-kvm coredumps when SE crashes)
+
 * Mon Feb 13 2023 Jon Maloy <jmaloy@redhat.com> - 6.2.0-30
 - kvm-qcow2-Fix-theoretical-corruption-in-store_bitmap-err.patch [bz#2147617]
 - kvm-qemu-img-commit-Report-errors-while-closing-the-imag.patch [bz#2147617]
