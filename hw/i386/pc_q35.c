@@ -701,6 +701,9 @@ static void pc_q35_machine_rhel920_options(MachineClass *m)
     m->desc = "RHEL-9.2.0 PC (Q35 + ICH9, 2009)";
     pcmc->smbios_stream_product = "RHEL";
     pcmc->smbios_stream_version = "9.2.0";
+
+    compat_props_add(m->compat_props, hw_compat_rhel_9_2,
+                     hw_compat_rhel_9_2_len);
 }
 
 DEFINE_PC_MACHINE(q35_rhel920, "pc-q35-rhel9.2.0", pc_q35_init_rhel920,

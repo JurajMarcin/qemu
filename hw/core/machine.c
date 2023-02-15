@@ -52,6 +52,16 @@ const size_t hw_compat_7_2_len = G_N_ELEMENTS(hw_compat_7_2);
 const char *rhel_old_machine_deprecation =
     "machine types for previous major releases are deprecated";
 
+GlobalProperty hw_compat_rhel_9_2[] = {
+  /* hw_compat_rhel_9_2 from hw_compat_7_2 */
+  { "e1000e", "migrate-timadj", "off" },
+  /* hw_compat_rhel_9_2 from hw_compat_7_2 */
+  { "virtio-mem", "x-early-migration", "false" },
+  /* hw_compat_rhel_9_2 from hw_compat_7_2 */
+  { "migration", "x-preempt-pre-7-2", "true" },
+};
+const size_t hw_compat_rhel_9_2_len = G_N_ELEMENTS(hw_compat_rhel_9_2);
+
 /*
  * Mostly the same as hw_compat_7_0
  */

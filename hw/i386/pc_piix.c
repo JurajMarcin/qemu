@@ -947,6 +947,8 @@ static void pc_machine_rhel760_options(MachineClass *m)
     /* From pc_i440fx_5_1_machine_options() */
     pcmc->pci_root_uid = 1;
     pcmc->enforce_amd_1tb_hole = false;
+    compat_props_add(m->compat_props, hw_compat_rhel_9_2,
+                     hw_compat_rhel_9_2_len);
     compat_props_add(m->compat_props, hw_compat_rhel_9_1,
                      hw_compat_rhel_9_1_len);
     compat_props_add(m->compat_props, hw_compat_rhel_9_0,
