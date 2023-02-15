@@ -1336,6 +1336,11 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Tue Feb 14 2023 Jon Maloy <jmaloy@redhat.com> - 5.2.0-16.el8_4.19
+- kvm-migration-Read-state-once.patch [bz#2168214]
+- Resolves: bz#2168214
+  (while live-migrating many instances concurrently, libvirt sometimes return internal error: migration was active, but no RAM info was set [rhel-av 8.4z])
+
 * Tue Sep 20 2022 Jon Maloy <jmaloy@redhat.com> - 5.2.0-16.el8_4.18
 - kvm-target-i386-properly-reset-TSC-on-reset.patch [bz#2074737]
 - Resolves: bz#2074737
