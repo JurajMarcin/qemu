@@ -77,12 +77,21 @@ struct VirtIOSCSICommon {
     VirtQueue **cmd_vqs;
 };
 
+struct VirtIOSCSIReq;
+
 struct VirtIOSCSI {
     VirtIOSCSICommon parent_obj;
 
     SCSIBus bus;
-    int resetting;
+    int resetting; /* written from main loop thread, read from any thread */
     bool events_dropped;
+
+    /*
+     * TMFs deferred to main loop BH. These fields are protected by
+     * virtio_scsi_acquire().
+     */
+    QEMUBH *tmf_bh;
+    QTAILQ_HEAD(, VirtIOSCSIReq) tmf_bh_list;
 
     /* Fields for dataplane below */
     AioContext *ctx; /* one iothread per virtio-scsi-pci for now */
@@ -106,13 +115,11 @@ typedef struct VirtIOSCSIReq {
     QEMUSGList qsgl;
     QEMUIOVector resp_iov;
 
-    union {
-        /* Used for two-stage request submission */
-        QTAILQ_ENTRY(VirtIOSCSIReq) next;
+    /* Used for two-stage request submission and TMFs deferred to BH */
+    QTAILQ_ENTRY(VirtIOSCSIReq) next;
 
-        /* Used for cancellation of request during TMFs */
-        int remaining;
-    };
+    /* Used for cancellation of request during TMFs */
+    int remaining;
 
     SCSIRequest *sreq;
     size_t resp_size;
