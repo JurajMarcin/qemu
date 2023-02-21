@@ -1204,6 +1204,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Tue Feb 21 2023 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-10
+- kvm-block-temporarily-hold-the-new-AioContext-of-bs_top-.patch [bz#2168209]
+- Resolves: bz#2168209
+  (Qemu coredump after do snapshot of mirrored top image and its converted base image(iothread enabled))
+
 * Fri Feb 17 2023 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-9
 - kvm-tests-qtest-netdev-test-stream-and-dgram-backends.patch [bz#2169232]
 - kvm-net-stream-add-a-new-option-to-automatically-reconne.patch [bz#2169232]
