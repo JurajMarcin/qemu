@@ -2411,7 +2411,7 @@ static bool migrate_prepare(MigrationState *s, bool blk, bool blk_inc,
     }
 
     if (blk || blk_inc) {
-        if (migrate_colo_enabled()) {
+        if (migrate_colo()) {
             error_setg(errp, "No disk migration is required in COLO mode");
             return false;
         }
@@ -3304,7 +3304,7 @@ static void migration_completion(MigrationState *s)
                  * have done so in order to remember to reactivate
                  * them if migration fails or is cancelled.
                  */
-                s->block_inactive = !migrate_colo_enabled();
+                s->block_inactive = !migrate_colo();
                 qemu_file_set_rate_limit(s->to_dst_file, INT64_MAX);
                 ret = qemu_savevm_state_complete_precopy(s->to_dst_file, false,
                                                          s->block_inactive);
@@ -3357,7 +3357,7 @@ static void migration_completion(MigrationState *s)
         goto fail;
     }
 
-    if (migrate_colo_enabled() && s->state == MIGRATION_STATUS_ACTIVE) {
+    if (migrate_colo() && s->state == MIGRATION_STATUS_ACTIVE) {
         /* COLO does not support postcopy */
         migrate_set_state(&s->state, MIGRATION_STATUS_ACTIVE,
                           MIGRATION_STATUS_COLO);
@@ -3433,12 +3433,6 @@ static void bg_migration_completion(MigrationState *s)
 fail:
     migrate_set_state(&s->state, current_active_state,
                       MIGRATION_STATUS_FAILED);
-}
-
-bool migrate_colo_enabled(void)
-{
-    MigrationState *s = migrate_get_current();
-    return s->capabilities[MIGRATION_CAPABILITY_X_COLO];
 }
 
 typedef enum MigThrError {
@@ -3771,7 +3765,7 @@ static void migration_iteration_finish(MigrationState *s)
         runstate_set(RUN_STATE_POSTMIGRATE);
         break;
     case MIGRATION_STATUS_COLO:
-        if (!migrate_colo_enabled()) {
+        if (!migrate_colo()) {
             error_report("%s: critical error: calling COLO code without "
                          "COLO enabled", __func__);
         }
@@ -3967,7 +3961,7 @@ static void *migration_thread(void *opaque)
         qemu_savevm_send_postcopy_advise(s->to_dst_file);
     }
 
-    if (migrate_colo_enabled()) {
+    if (migrate_colo()) {
         /* Notify migration destination that we enable COLO */
         qemu_savevm_send_colo_enable(s->to_dst_file);
     }
