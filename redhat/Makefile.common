@@ -7,7 +7,7 @@ RELEASE:=31
 ZRELEASE:=
 RELEASE_SEPARATOR:=-
 RC:=
-BUILD_TARGET=rhel-8.8.0-candidate
+BUILD_TARGET=rhel-8.9.0-candidate
 
 ifneq ($(RC),)
   TARFILE:=qemu-$(VERSION)-$(RC).tar.xz
