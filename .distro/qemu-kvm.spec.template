@@ -251,7 +251,7 @@ Requires: %{name}-core = %{epoch}:%{version}-%{release}
 Requires: %{name}-docs = %{epoch}:%{version}-%{release}
 Requires: %{name}-tools = %{epoch}:%{version}-%{release}
 Requires: qemu-pr-helper = %{epoch}:%{version}-%{release}
-Requires: virtiofsd = %{epoch}:%{version}-%{release}
+Requires: virtiofsd >= 1.5.0
 %{requires_all_modules}
 
 %description
@@ -1204,6 +1204,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Mar 06 2023 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-11
+- kvm-hw-smbios-fix-field-corruption-in-type-4-table.patch [bz#2169904]
+- Resolves: bz#2169904
+  ([SVVP] job 'Check SMBIOS Table Specific Requirements' failed on win2022)
+
 * Tue Feb 21 2023 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-10
 - kvm-block-temporarily-hold-the-new-AioContext-of-bs_top-.patch [bz#2168209]
 - Resolves: bz#2168209
