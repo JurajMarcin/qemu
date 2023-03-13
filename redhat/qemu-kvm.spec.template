@@ -1294,6 +1294,25 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Mon Mar 13 2023 Jon Maloy <jmaloy@redhat.com> - 6.2.0-32.el8_8
+- kvm-aio_wait_kick-add-missing-memory-barrier.patch [bz#2168472]
+- kvm-qatomic-add-smp_mb__before-after_rmw.patch [bz#2168472]
+- kvm-qemu-thread-posix-cleanup-fix-document-QemuEvent.patch [bz#2168472]
+- kvm-qemu-thread-win32-cleanup-fix-document-QemuEvent.patch [bz#2168472]
+- kvm-edu-add-smp_mb__after_rmw.patch [bz#2168472]
+- kvm-aio-wait-switch-to-smp_mb__after_rmw.patch [bz#2168472]
+- kvm-qemu-coroutine-lock-add-smp_mb__after_rmw.patch [bz#2168472]
+- kvm-physmem-add-missing-memory-barrier.patch [bz#2168472]
+- kvm-async-update-documentation-of-the-memory-barriers.patch [bz#2168472]
+- kvm-async-clarify-usage-of-barriers-in-the-polling-case.patch [bz#2168472]
+- kvm-scsi-protect-req-aiocb-with-AioContext-lock.patch [bz#2090990]
+- kvm-dma-helpers-prevent-dma_blk_cb-vs-dma_aio_cancel-rac.patch [bz#2090990]
+- kvm-virtio-scsi-reset-SCSI-devices-from-main-loop-thread.patch [bz#2090990]
+- Resolves: bz#2168472
+  (Guest hangs when starting or rebooting)
+- Resolves: bz#2090990
+  (qemu crash with error scsi_req_unref(SCSIRequest *): Assertion `req->refcount > 0' failed or scsi_dma_complete(void *, int): Assertion `r->req.aiocb != NULL' failed [8.7.0])
+
 * Wed Feb 15 2023 Jon Maloy <jmaloy@redhat.com> - 6.2.0-31
 - kvm-io-Add-support-for-MSG_PEEK-for-socket-channel.patch [bz#2137740]
 - kvm-migration-check-magic-value-for-deciding-the-mapping.patch [bz#2137740]
