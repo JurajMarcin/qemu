@@ -1204,6 +1204,20 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Mar 20 2023 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-13
+- kvm-target-i386-fix-operand-size-of-unary-SSE-operations.patch [bz#2173590]
+- kvm-tests-tcg-i386-Introduce-and-use-reg_t-consistently.patch [bz#2173590]
+- kvm-target-i386-Fix-BEXTR-instruction.patch [bz#2173590]
+- kvm-target-i386-Fix-C-flag-for-BLSI-BLSMSK-BLSR.patch [bz#2173590]
+- kvm-target-i386-fix-ADOX-followed-by-ADCX.patch [bz#2173590]
+- kvm-target-i386-Fix-32-bit-AD-CO-X-insns-in-64-bit-mode.patch [bz#2173590]
+- kvm-target-i386-Fix-BZHI-instruction.patch [bz#2173590]
+- kvm-intel-iommu-fail-DEVIOTLB_UNMAP-without-dt-mode.patch [bz#2156876]
+- Resolves: bz#2173590
+  (bugs in emulation of BMI instructions (for libguestfs without KVM))
+- Resolves: bz#2156876
+  ([virtual network][rhel7.9_guest] qemu-kvm: vhost vring error in virtqueue 1: Invalid argument (22))
+
 * Sun Mar 12 2023 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-12
 - kvm-scsi-protect-req-aiocb-with-AioContext-lock.patch [bz#2155748]
 - kvm-dma-helpers-prevent-dma_blk_cb-vs-dma_aio_cancel-rac.patch [bz#2155748]
