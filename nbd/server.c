@@ -2647,6 +2647,8 @@ static coroutine_fn void nbd_trip(void *opaque)
         goto disconnect;
     }
 
+    qio_channel_set_cork(client->ioc, true);
+
     if (ret < 0) {
         /* It wans't -EIO, so, according to nbd_co_receive_request()
          * semantics, we should return the error to the client. */
@@ -2672,6 +2674,7 @@ static coroutine_fn void nbd_trip(void *opaque)
         goto disconnect;
     }
 
+    qio_channel_set_cork(client->ioc, false);
 done:
     nbd_request_put(req);
     nbd_client_put(client);
