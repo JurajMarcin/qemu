@@ -704,6 +704,8 @@ static void pc_q35_machine_rhel920_options(MachineClass *m)
 
     compat_props_add(m->compat_props, hw_compat_rhel_9_2,
                      hw_compat_rhel_9_2_len);
+    compat_props_add(m->compat_props, pc_rhel_9_2_compat,
+                     pc_rhel_9_2_compat_len);
 }
 
 DEFINE_PC_MACHINE(q35_rhel920, "pc-q35-rhel9.2.0", pc_q35_init_rhel920,
