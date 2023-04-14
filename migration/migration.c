@@ -3256,12 +3256,10 @@ static void migration_completion(MigrationState *s)
                                             MIGRATION_STATUS_DEVICE);
             }
             if (ret >= 0) {
+                s->block_inactive = inactivate;
                 qemu_file_set_rate_limit(s->to_dst_file, INT64_MAX);
                 ret = qemu_savevm_state_complete_precopy(s->to_dst_file, false,
                                                          inactivate);
-            }
-            if (inactivate && ret >= 0) {
-                s->block_inactive = true;
             }
         }
         qemu_mutex_unlock_iothread();
@@ -3321,6 +3319,7 @@ fail_invalidate:
         bdrv_invalidate_cache_all(&local_err);
         if (local_err) {
             error_report_err(local_err);
+            s->block_inactive = true;
         } else {
             s->block_inactive = false;
         }
