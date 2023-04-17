@@ -283,10 +283,13 @@ static void ide_cd_realize(IDEDevice *dev, Error **errp)
     ide_dev_initfn(dev, IDE_CD, errp);
 }
 
+/* Disabled for Red Hat Enterprise Linux */
+#if 0
 static void ide_cf_realize(IDEDevice *dev, Error **errp)
 {
     ide_dev_initfn(dev, IDE_CFATA, errp);
 }
+#endif
 
 #define DEFINE_IDE_DEV_PROPERTIES()                     \
     DEFINE_BLOCK_PROPERTIES(IDEDrive, dev.conf),        \
@@ -346,6 +349,8 @@ static const TypeInfo ide_cd_info = {
     .class_init    = ide_cd_class_init,
 };
 
+/* Disabled for Red Hat Enterprise Linux */
+#if 0
 static Property ide_cf_properties[] = {
     DEFINE_IDE_DEV_PROPERTIES(),
     DEFINE_BLOCK_CHS_PROPERTIES(IDEDrive, dev.conf),
@@ -371,6 +376,7 @@ static const TypeInfo ide_cf_info = {
     .instance_size = sizeof(IDEDrive),
     .class_init    = ide_cf_class_init,
 };
+#endif
 
 static void ide_device_class_init(ObjectClass *klass, void *data)
 {
@@ -396,7 +402,10 @@ static void ide_register_types(void)
     type_register_static(&ide_bus_info);
     type_register_static(&ide_hd_info);
     type_register_static(&ide_cd_info);
+/* Disabled for Red Hat Enterprise Linux */
+#if 0
     type_register_static(&ide_cf_info);
+#endif
     type_register_static(&ide_device_type_info);
 }
 
