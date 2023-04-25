@@ -1294,6 +1294,11 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Tue Apr 25 2023 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-33
+- kvm-s390x-pv-Implement-a-CGS-check-helper.patch [bz#2187159]
+- Resolves: bz#2187159
+  (RHEL8.8 - KVM - Secure Guest crashed during booting with 248 vcpus)
+
 * Mon Mar 13 2023 Jon Maloy <jmaloy@redhat.com> - 6.2.0-32.el8_8
 - kvm-aio_wait_kick-add-missing-memory-barrier.patch [bz#2168472]
 - kvm-qatomic-add-smp_mb__before-after_rmw.patch [bz#2168472]
