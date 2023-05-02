@@ -914,6 +914,7 @@ static void pc_machine_rhel7_options(MachineClass *m)
     m->default_machine_opts = "firmware=bios-256k.bin,hpet=off";
     pcmc->default_nic_model = "e1000";
     pcmc->pci_root_uid = 0;
+    pcmc->resizable_acpi_blob = true;
     m->default_display = "std";
     m->no_parallel = 1;
     m->numa_mem_supported = true;
