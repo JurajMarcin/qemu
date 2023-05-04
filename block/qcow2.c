@@ -3711,7 +3711,7 @@ qcow2_co_create(BlockdevCreateOptions *create_options, Error **errp)
         goto out;
     }
 
-    blk_unref(blk);
+    blk_co_unref(blk);
     blk = NULL;
 
     /*
@@ -3791,7 +3791,7 @@ qcow2_co_create(BlockdevCreateOptions *create_options, Error **errp)
         }
     }
 
-    blk_unref(blk);
+    blk_co_unref(blk);
     blk = NULL;
 
     /* Reopen the image without BDRV_O_NO_FLUSH to flush it before returning.
@@ -3816,9 +3816,9 @@ qcow2_co_create(BlockdevCreateOptions *create_options, Error **errp)
 
     ret = 0;
 out:
-    blk_unref(blk);
-    bdrv_unref(bs);
-    bdrv_unref(data_bs);
+    blk_co_unref(blk);
+    bdrv_co_unref(bs);
+    bdrv_co_unref(data_bs);
     return ret;
 }
 
@@ -3949,8 +3949,8 @@ finish:
     }
 
     qobject_unref(qdict);
-    bdrv_unref(bs);
-    bdrv_unref(data_bs);
+    bdrv_co_unref(bs);
+    bdrv_co_unref(data_bs);
     qapi_free_BlockdevCreateOptions(create_options);
     return ret;
 }
