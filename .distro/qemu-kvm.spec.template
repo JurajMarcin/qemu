@@ -190,6 +190,7 @@ BuildRequires: glib2-devel
 BuildRequires: gnutls-devel
 BuildRequires: cyrus-sasl-devel
 BuildRequires: libaio-devel
+BuildRequires: liburing-devel
 BuildRequires: python3-devel
 BuildRequires: libattr-devel
 BuildRequires: libusbx-devel >= %{libusbx_version}
@@ -688,6 +689,7 @@ run_configure \
   --enable-libusb \
   --enable-libudev \
   --enable-linux-aio \
+  --enable-linux-io-uring \
   --enable-lzo \
   --enable-malloc-trim \
   --enable-modules \
