@@ -1196,6 +1196,15 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon May 08 2023 Miroslav Rezanina <mrezanin@redhat.com> - 8.0.0-2
+- kvm-acpi-pcihp-allow-repeating-hot-unplug-requests.patch [bz#2087047]
+- kvm-hw-acpi-limit-warning-on-acpi-table-size-to-pc-machi.patch [bz#1934134]
+- kvm-hw-acpi-Mark-acpi-blobs-as-resizable-on-RHEL-pc-mach.patch [bz#1934134]
+- Resolves: bz#2087047
+  (Disk detach is unsuccessful while the guest is still booting)
+- Resolves: bz#1934134
+  (ACPI table limits warning when booting guest with 512 VCPUs)
+
 * Thu Apr 20 2023 Miroslav Rezanina <mrezanin@redhat.com> - 8.0.0-1
 - Rebase to QEMU 8.0.0
 - Resolves: bz#2180898
