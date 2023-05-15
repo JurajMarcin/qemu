@@ -1196,6 +1196,12 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon May 15 2023 Miroslav Rezanina <mrezanin@redhat.com> - 8.0.0-3
+- kvm-migration-Handle-block-device-inactivation-failures-.patch [bz#2058982]
+- kvm-migration-Minor-control-flow-simplification.patch [bz#2058982]
+- Resolves: bz#2058982
+  (Qemu core dump if cut off nfs storage during migration)
+
 * Mon May 08 2023 Miroslav Rezanina <mrezanin@redhat.com> - 8.0.0-2
 - kvm-acpi-pcihp-allow-repeating-hot-unplug-requests.patch [bz#2087047]
 - kvm-hw-acpi-limit-warning-on-acpi-table-size-to-pc-machi.patch [bz#1934134]
