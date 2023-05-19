@@ -1294,6 +1294,17 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Fri May 19 2023 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-34
+- kvm-migration-Handle-block-device-inactivation-failures-.patch [bz#2177957]
+- kvm-migration-Minor-control-flow-simplification.patch [bz#2177957]
+- kvm-migration-Attempt-disk-reactivation-in-more-failure-.patch [bz#2177957]
+- kvm-nbd-server-push-pending-frames-after-sending-reply.patch [bz#2035712]
+- kvm-nbd-server-Request-TCP_NODELAY.patch [bz#2035712]
+- Resolves: bz#2177957
+  (Qemu core dump if cut off nfs storage during migration)
+- Resolves: bz#2035712
+  ([qemu] Booting from Guest Image over NBD with TLS Is Slow)
+
 * Tue Apr 25 2023 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-33
 - kvm-s390x-pv-Implement-a-CGS-check-helper.patch [bz#2187159]
 - Resolves: bz#2187159
