@@ -203,8 +203,8 @@ static void vhost_vdpa_cleanup(NetClientState *nc)
     if (nc->peer && nc->peer->info->type == NET_CLIENT_DRIVER_NIC) {
         return;
     }
-    qemu_vfree(s->cvq_cmd_out_buffer);
-    qemu_vfree(s->status);
+    munmap(s->cvq_cmd_out_buffer, vhost_vdpa_net_cvq_cmd_page_len());
+    munmap(s->status, vhost_vdpa_net_cvq_cmd_page_len());
     if (s->vhost_net) {
         vhost_net_cleanup(s->vhost_net);
         g_free(s->vhost_net);
@@ -761,12 +761,12 @@ static NetClientState *net_vhost_vdpa_init(NetClientState *peer,
     s->vhost_vdpa.iova_range = iova_range;
     s->vhost_vdpa.shadow_data = svq;
     if (!is_datapath) {
-        s->cvq_cmd_out_buffer = qemu_memalign(qemu_real_host_page_size(),
-                                            vhost_vdpa_net_cvq_cmd_page_len());
-        memset(s->cvq_cmd_out_buffer, 0, vhost_vdpa_net_cvq_cmd_page_len());
-        s->status = qemu_memalign(qemu_real_host_page_size(),
-                                  vhost_vdpa_net_cvq_cmd_page_len());
-        memset(s->status, 0, vhost_vdpa_net_cvq_cmd_page_len());
+        s->cvq_cmd_out_buffer = mmap(NULL, vhost_vdpa_net_cvq_cmd_page_len(),
+                                     PROT_READ | PROT_WRITE,
+                                     MAP_SHARED | MAP_ANONYMOUS, -1, 0);
+        s->status = mmap(NULL, vhost_vdpa_net_cvq_cmd_page_len(),
+                         PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS,
+                         -1, 0);
 
         s->vhost_vdpa.shadow_vq_ops = &vhost_vdpa_net_svq_ops;
         s->vhost_vdpa.shadow_vq_ops_opaque = s;
