@@ -1294,6 +1294,36 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Fri Jun 02 2023 Jon Maloy <jmaloy@redhat.com> - 6.2.0-35
+- kvm-virtiofsd-Add-basic-support-for-FUSE_SYNCFS-request.patch [bz#2196880]
+- kvm-s390-kvm-adjust-diag318-resets-to-retain-data.patch [bz#2169308 bz#2209605]
+- kvm-target-s390x-Fix-SLDA-sign-bit-index.patch [bz#2169308 bz#2209605]
+- kvm-target-s390x-Fix-SRDA-CC-calculation.patch [bz#2169308 bz#2209605]
+- kvm-target-s390x-Fix-cc_calc_sla_64-missing-overflows.patch [bz#2169308 bz#2209605]
+- kvm-target-s390x-Fix-shifting-32-bit-values-for-more-tha.patch [bz#2169308 bz#2209605]
+- kvm-s390x-sigp-Reorder-the-SIGP-STOP-code.patch [bz#2169308 bz#2209605]
+- kvm-s390x-tcg-Fix-BRASL-with-a-large-negative-offset.patch [bz#2169308 bz#2209605]
+- kvm-s390x-tcg-Fix-BRCL-with-a-large-negative-offset.patch [bz#2169308 bz#2209605]
+- kvm-target-s390x-Fix-determination-of-overflow-condition.patch [bz#2169308 bz#2209605]
+- kvm-target-s390x-Fix-determination-of-overflow-cond.patch [bz#2169308 bz#2209605]
+- kvm-s390x-follow-qdev-tree-to-detect-SCSI-device-on-a-CC.patch [bz#2169308 bz#2209605]
+- kvm-target-s390x-Fix-the-accumulation-of-ccm-in-op_icm.patch [bz#2169308 bz#2209605]
+- kvm-target-s390x-Fix-writeback-to-v1-in-helper_vstl.patch [bz#2169308 bz#2209605]
+- kvm-target-s390x-fix-handling-of-zeroes-in-vfmin-vfmax.patch [bz#2169308 bz#2209605]
+- kvm-target-s390x-Fix-CLFIT-and-CLGIT-immediate-size.patch [bz#2169308 bz#2209605]
+- kvm-s390x-tcg-Fix-opcode-for-lzrf.patch [bz#2169308 bz#2209605]
+- kvm-target-s390x-Fix-emulation-of-the-VISTR-instruction.patch [bz#2169308 bz#2209605]
+- kvm-s390x-css-revert-SCSW-ctrl-flag-bits-on-error.patch [bz#2169308 bz#2209605]
+- kvm-target-s390x-tcg-Fix-and-improve-the-SACF-instructio.patch [bz#2169308 bz#2209605]
+- kvm-target-s390x-tcg-mem_helper-Test-the-right-bits-in-p.patch [bz#2169308 bz#2209605]
+- kvm-pc-bios-Add-support-for-List-Directed-IPL-from-ECKD-.patch [bz#2169308 bz#2209605]
+- Resolves: bz#2196880
+  ([virtiofs] Backport FUSE_SYNCFS support)
+- Resolves: bz#2169308
+  (Backport latest s390x-related fixes from upstream QEMU for qemu-kvm in RHEL 8.9)
+- Resolves: bz#2209605
+  ([IBM 8.9 FEAT] KVM: ECKD List Directed IPL - virtio (qemu))
+
 * Fri May 19 2023 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-34
 - kvm-migration-Handle-block-device-inactivation-failures-.patch [bz#2177957]
 - kvm-migration-Minor-control-flow-simplification.patch [bz#2177957]
