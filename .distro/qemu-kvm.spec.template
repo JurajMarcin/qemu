@@ -486,6 +486,19 @@ Obsoletes: %{name}-hw-usbredir <= %{epoch}:%{version}
 This package provides usbredir support.
 %endif
 
+%package  ui-dbus
+Summary: QEMU D-Bus UI driver
+Requires: %{name}-common%{?_isa} = %{epoch}:%{version}-%{release}
+%description ui-dbus
+This package provides the additional D-Bus UI for QEMU.
+
+%package  audio-dbus
+Summary: QEMU D-Bus audio driver
+Requires: %{name}-common%{?_isa} = %{epoch}:%{version}-%{release}
+Requires: %{name}-ui-dbus = %{epoch}:%{version}-%{release}
+%description audio-dbus
+This package provides the additional D-Bus audio driver for QEMU.
+
 %prep
 %setup -q -n qemu-%{version}%{?rcstr}
 %autopatch -p1
@@ -688,11 +701,13 @@ run_configure \
   --enable-capstone \
   --enable-coroutine-pool \
   --enable-curl \
+  --enable-dbus-display \
   --enable-debug-info \
   --enable-docs \
 %if %{have_fdt}
   --enable-fdt=system \
 %endif
+  --enable-gio \
   --enable-gnutls \
   --enable-guest-agent \
   --enable-iconv \
@@ -1210,6 +1225,12 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %files device-usb-redirect
     %{_libdir}/%{name}/hw-usb-redirect.so
 %endif
+
+%files audio-dbus
+%{_libdir}/%{name}/audio-dbus.so
+
+%files ui-dbus
+%{_libdir}/%{name}/ui-dbus.so
 
 # endif !tools_only
 %endif
