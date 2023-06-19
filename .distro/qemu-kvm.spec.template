@@ -1204,6 +1204,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Jun 19 2023 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-14.el9_2.2
+- kvm-vdpa-stop-all-svq-on-device-deletion.patch [bz#2213864]
+- Resolves: bz#2213864
+  ([mlx vhost_vdpa][rhel 9.2]qemu core dump when hot unplug then hotplug a vdpa interface with multi-queue setting [rhel-9.2.0.z])
+
 * Thu May 25 2023 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-14.el9_2.1
 - kvm-acpi-pcihp-allow-repeating-hot-unplug-requests.patch [bz#2203745]
 - Resolves: bz#2203745

@@ -4,7 +4,7 @@ VERSION:=7.2.0
 DATE:=
 COMMIT:=
 RELEASE:=14
-ZRELEASE:=1
+ZRELEASE:=2
 RELEASE_SEPARATOR:=-
 WEEKLY_DATE:=
 RC:=
@@ -24,7 +24,7 @@ MARKER:=v7.2.0
 TARURL=https://download.qemu.org/$(TARFILE)
 
 SPECFILE:=$(NAME).spec
-DIST:=.el9
+DIST:=.el9_2
 SRPM_NAME=$(shell rpmspec --query --srpm --target="src" --define "dist $(DIST)" $(RPMBUILD)/SPECS/$(SPECFILE) | sed -e 's/\(.*\)\..*/\1/').src.rpm
 
 SOURCES_FILELIST:=                     \
