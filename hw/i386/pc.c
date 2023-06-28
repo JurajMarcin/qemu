@@ -432,6 +432,12 @@ GlobalProperty pc_rhel_compat[] = {
 };
 const size_t pc_rhel_compat_len = G_N_ELEMENTS(pc_rhel_compat);
 
+GlobalProperty pc_rhel_9_3_compat[] = {
+    /* pc_rhel_9_3_compat from pc_compat_8_0 */
+    { "virtio-mem", "unplugged-inaccessible", "auto" },
+};
+const size_t pc_rhel_9_3_compat_len = G_N_ELEMENTS(pc_rhel_9_3_compat);
+
 GlobalProperty pc_rhel_9_2_compat[] = {
     /* pc_rhel_9_2_compat from pc_compat_7_2 */
     { "ICH9-LPC", "noreboot", "true" },

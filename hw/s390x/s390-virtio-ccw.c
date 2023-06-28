@@ -1225,6 +1225,7 @@ static void ccw_machine_rhel920_instance_options(MachineState *machine)
 
 static void ccw_machine_rhel920_class_options(MachineClass *mc)
 {
+    compat_props_add(mc->compat_props, hw_compat_rhel_9_3, hw_compat_rhel_9_3_len);
     compat_props_add(mc->compat_props, hw_compat_rhel_9_2, hw_compat_rhel_9_2_len);
 }
 DEFINE_CCW_MACHINE(rhel920, "rhel9.2.0", true);

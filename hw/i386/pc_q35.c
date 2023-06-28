@@ -722,6 +722,10 @@ static void pc_q35_machine_rhel920_options(MachineClass *m)
     pcmc->smbios_stream_product = "RHEL";
     pcmc->smbios_stream_version = "9.2.0";
 
+    compat_props_add(m->compat_props, hw_compat_rhel_9_3,
+                     hw_compat_rhel_9_3_len);
+     compat_props_add(m->compat_props, pc_rhel_9_3_compat,
+                     pc_rhel_9_3_compat_len);
     compat_props_add(m->compat_props, hw_compat_rhel_9_2,
                      hw_compat_rhel_9_2_len);
     compat_props_add(m->compat_props, pc_rhel_9_2_compat,

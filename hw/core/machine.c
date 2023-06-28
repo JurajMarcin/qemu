@@ -59,6 +59,14 @@ const size_t hw_compat_7_2_len = G_N_ELEMENTS(hw_compat_7_2);
 const char *rhel_old_machine_deprecation =
     "machine types for previous major releases are deprecated";
 
+GlobalProperty hw_compat_rhel_9_3[] = {
+  /* hw_compat_rhel_9_3 from hw_compat_8_0 */
+  { "migration", "multifd-flush-after-each-section", "on"},
+  /* hw_compat_rhel_9_3 from hw_compat_8_0 */
+  { TYPE_PCI_DEVICE, "x-pcie-ari-nextfn-1", "on" },
+};
+const size_t hw_compat_rhel_9_3_len = G_N_ELEMENTS(hw_compat_rhel_9_3);
+
 GlobalProperty hw_compat_rhel_9_2[] = {
   /* hw_compat_rhel_9_2 from hw_compat_7_2 */
   { "e1000e", "migrate-timadj", "off" },

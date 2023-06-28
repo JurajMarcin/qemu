@@ -304,6 +304,9 @@ int pc_machine_kvm_type(MachineState *machine, const char *vm_type);
 extern GlobalProperty pc_rhel_compat[];
 extern const size_t pc_rhel_compat_len;
 
+extern GlobalProperty pc_rhel_9_3_compat[];
+extern const size_t pc_rhel_9_3_compat_len;
+
 extern GlobalProperty pc_rhel_9_2_compat[];
 extern const size_t pc_rhel_9_2_compat_len;
 
