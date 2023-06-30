@@ -1294,6 +1294,29 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Thu Jun 29 2023 Jon Maloy <jmaloy@redhat.com> - 6.2.0-36
+- kvm-memory-prevent-dma-reentracy-issues.patch [bz#1999236]
+- kvm-async-Add-an-optional-reentrancy-guard-to-the-BH-API.patch [bz#1999236]
+- kvm-checkpatch-add-qemu_bh_new-aio_bh_new-checks.patch [bz#1999236]
+- kvm-hw-replace-most-qemu_bh_new-calls-with-qemu_bh_new_g.patch [bz#1999236]
+- kvm-lsi53c895a-disable-reentrancy-detection-for-script-R.patch [bz#1999236]
+- kvm-bcm2835_property-disable-reentrancy-detection-for-io.patch [bz#1999236]
+- kvm-raven-disable-reentrancy-detection-for-iomem.patch [bz#1999236]
+- kvm-apic-disable-reentrancy-detection-for-apic-msi.patch [bz#1999236]
+- kvm-async-avoid-use-after-free-on-re-entrancy-guard.patch [bz#1999236]
+- kvm-memory-stricter-checks-prior-to-unsetting-engaged_in.patch [bz#1999236]
+- kvm-lsi53c895a-disable-reentrancy-detection-for-MMIO-reg.patch [bz#1999236]
+- kvm-hw-scsi-lsi53c895a-Fix-reentrancy-issues-in-the-LSI-.patch [bz#1999236]
+- kvm-target-i386-add-support-for-FLUSH_L1D-feature.patch [bz#2216203]
+- kvm-target-i386-add-support-for-FB_CLEAR-feature.patch [bz#2216203]
+- kvm-migration-Disable-postcopy-multifd-migration.patch [bz#2169733]
+- Resolves: bz#1999236
+  (CVE-2021-3750 virt:rhel/qemu-kvm: QEMU: hcd-ehci: DMA reentrancy issue leads to use-after-free [rhel-8])
+- Resolves: bz#2216203
+  ([qemu-kvm]VM reports vulnerabilty to mmio_stale_data on patched host with microcode)
+- Resolves: bz#2169733
+  (Qemu on destination host crashed if migrate with postcopy and multifd enabled)
+
 * Fri Jun 02 2023 Jon Maloy <jmaloy@redhat.com> - 6.2.0-35
 - kvm-virtiofsd-Add-basic-support-for-FUSE_SYNCFS-request.patch [bz#2196880]
 - kvm-s390-kvm-adjust-diag318-resets-to-retain-data.patch [bz#2169308 bz#2209605]
