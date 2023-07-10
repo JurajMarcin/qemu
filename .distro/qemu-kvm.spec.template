@@ -1215,6 +1215,22 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Jul 10 2023 Miroslav Rezanina <mrezanin@redhat.com> - 8.0.0-7
+- kvm-numa-Validate-cluster-and-NUMA-node-boundary-if-requ.patch [bz#2171363]
+- kvm-hw-arm-Validate-cluster-and-NUMA-node-boundary.patch [bz#2171363]
+- kvm-hw-arm-virt-Validate-cluster-and-NUMA-node-boundary-.patch [bz#2171363]
+- kvm-vhost-fix-vhost_dev_enable_notifiers-error-case.patch [RHEL-330]
+- kvm-kvm-reuse-per-vcpu-stats-fd-to-avoid-vcpu-interrupti.patch [bz#2218644]
+- kvm-vhost-vdpa-do-not-cleanup-the-vdpa-vhost-net-structu.patch [bz#2128929]
+- Resolves: bz#2171363
+  ([aarch64] Kernel hits Call trace with irregular CPU-to-NUMA association)
+- Resolves: RHEL-330
+  ([virtual network][qemu-kvm-8.0.0-rc1]qemu core dump: qemu-kvm: ../softmmu/memory.c:2592: void memory_region_del_eventfd(MemoryRegion *, hwaddr, unsigned int, _Bool, uint64_t, EventNotifier *): Assertion `i != mr->ioeventfd_nb' failed)
+- Resolves: bz#2218644
+  (query-stats QMP command interrupts vcpus, the Max Latencies could be more than 100us (rhel 9.3.0 clone))
+- Resolves: bz#2128929
+  ([rhel9.2] hotplug/hotunplug mlx vdpa device to the occupied addr port, then qemu core dump occurs after shutdown guest)
+
 * Mon Jun 26 2023 Miroslav Rezanina <mrezanin@redhat.com> - 8.0.0-6
 - kvm-target-i386-add-support-for-FLUSH_L1D-feature.patch [bz#2216201]
 - kvm-target-i386-add-support-for-FB_CLEAR-feature.patch [bz#2216201]
