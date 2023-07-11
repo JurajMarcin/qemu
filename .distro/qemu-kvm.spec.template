@@ -1204,6 +1204,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Tue Jul 11 2023 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-14.el9_2.3
+- kvm-kvm-reuse-per-vcpu-stats-fd-to-avoid-vcpu-interrupti.patch [bz#2221219]
+- Resolves: bz#2221219
+  (query-stats QMP command interrupts vcpus, the Max Latencies could be more than 100us (rhel 9.3.0 clone) [rhel-9.2.0.z])
+
 * Mon Jun 19 2023 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-14.el9_2.2
 - kvm-vdpa-stop-all-svq-on-device-deletion.patch [bz#2213864]
 - Resolves: bz#2213864
