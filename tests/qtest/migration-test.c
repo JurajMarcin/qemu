@@ -1657,9 +1657,7 @@ static void *test_migrate_fd_start_hook(QTestState *from,
     close(pair[0]);
 
     /* Start incoming migration from the 1st socket */
-    rsp = wait_command(to, "{ 'execute': 'migrate-incoming',"
-                           "  'arguments': { 'uri': 'fd:fd-mig' }}");
-    qobject_unref(rsp);
+    migrate_incoming_qmp(to, "fd:fd-mig", "{}");
 
     /* Send the 2nd socket to the target */
     rsp = wait_command_fd(from, pair[1],
@@ -1854,8 +1852,6 @@ test_migrate_precopy_tcp_multifd_start_common(QTestState *from,
                                               QTestState *to,
                                               const char *method)
 {
-    QDict *rsp;
-
     migrate_set_parameter_int(from, "multifd-channels", 16);
     migrate_set_parameter_int(to, "multifd-channels", 16);
 
@@ -1866,9 +1862,7 @@ test_migrate_precopy_tcp_multifd_start_common(QTestState *from,
     migrate_set_capability(to, "multifd", true);
 
     /* Start incoming migration from the 1st socket */
-    rsp = wait_command(to, "{ 'execute': 'migrate-incoming',"
-                           "  'arguments': { 'uri': 'tcp:127.0.0.1:0' }}");
-    qobject_unref(rsp);
+    migrate_incoming_qmp(to, "tcp:127.0.0.1:0", "{}");
 
     return NULL;
 }
@@ -2099,7 +2093,6 @@ static void test_multifd_tcp_cancel(void)
         .hide_stderr = true,
     };
     QTestState *from, *to, *to2;
-    QDict *rsp;
     g_autofree char *uri = NULL;
 
     if (test_migrate_start(&from, &to, "defer", &args)) {
@@ -2115,9 +2108,7 @@ static void test_multifd_tcp_cancel(void)
     migrate_set_capability(to, "multifd", true);
 
     /* Start incoming migration from the 1st socket */
-    rsp = wait_command(to, "{ 'execute': 'migrate-incoming',"
-                           "  'arguments': { 'uri': 'tcp:127.0.0.1:0' }}");
-    qobject_unref(rsp);
+    migrate_incoming_qmp(to, "tcp:127.0.0.1:0", "{}");
 
     /* Wait for the first serial output from the source */
     wait_for_serial("src_serial");
@@ -2157,9 +2148,7 @@ static void test_multifd_tcp_cancel(void)
     migrate_set_capability(to2, "multifd", true);
 
     /* Start incoming migration from the 1st socket */
-    rsp = wait_command(to2, "{ 'execute': 'migrate-incoming',"
-                            "  'arguments': { 'uri': 'tcp:127.0.0.1:0' }}");
-    qobject_unref(rsp);
+    migrate_incoming_qmp(to2, "tcp:127.0.0.1:0", "{}");
 
     g_free(uri);
     uri = migrate_get_socket_address(to2, "socket-address");
