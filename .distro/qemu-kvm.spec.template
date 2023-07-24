@@ -1236,6 +1236,32 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Jul 24 2023 Miroslav Rezanina <mrezanin@redhat.com> - 8.0.0-9
+- kvm-scsi-fetch-unit-attention-when-creating-the-request.patch [bz#2176702]
+- kvm-scsi-cleanup-scsi_clear_unit_attention.patch [bz#2176702]
+- kvm-scsi-clear-unit-attention-only-for-REPORT-LUNS-comma.patch [bz#2176702]
+- kvm-s390x-ap-Wire-up-the-device-request-notifier-interfa.patch [RHEL-794]
+- kvm-multifd-Create-property-multifd-flush-after-each-sec.patch [bz#2196295]
+- kvm-multifd-Protect-multifd_send_sync_main-calls.patch [bz#2196295]
+- kvm-multifd-Only-flush-once-each-full-round-of-memory.patch [bz#2196295]
+- kvm-net-socket-prepare-to-cleanup-net_init_socket.patch [RHEL-582]
+- kvm-net-socket-move-fd-type-checking-to-its-own-function.patch [RHEL-582]
+- kvm-net-socket-remove-net_init_socket.patch [RHEL-582]
+- kvm-pcie-Add-hotplug-detect-state-register-to-cmask.patch [bz#2215819]
+- kvm-spec-Build-DBUS-display.patch [bz#2207940]
+- Resolves: bz#2176702
+  ([RHEL9][virtio-scsi] scsi-hd cannot hot-plug successfully after hot-plug it repeatly)
+- Resolves: RHEL-794
+  (Backport s390x fixes from QEMU 8.1)
+- Resolves: bz#2196295
+  (Multifd flushes its channels 10 times per second)
+- Resolves: RHEL-582
+  ([passt][rhel 9.3] qemu core dump occurs when guest is shutdown after hotunplug/hotplug a passt interface)
+- Resolves: bz#2215819
+  (Migration test failed while guest with PCIe devices)
+- Resolves: bz#2207940
+  ([RFE] Enable qemu-ui-dbus subpackage)
+
 * Mon Jul 17 2023 Miroslav Rezanina <mrezanin@redhat.com> - 8.0.0-8
 - kvm-virtio-iommu-Fix-64kB-host-page-size-VFIO-device-ass.patch [bz#2211609 bz#2211634]
 - kvm-virtio-iommu-Rework-the-traces-in-virtio_iommu_set_p.patch [bz#2211609 bz#2211634]
