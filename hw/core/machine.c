@@ -62,6 +62,8 @@ GlobalProperty hw_compat_rhel_9_2[] = {
   { "virtio-mem", "x-early-migration", "false" },
   /* hw_compat_rhel_9_2 from hw_compat_7_2 */
   { "migration", "x-preempt-pre-7-2", "true" },
+  /* hw_compat_rhel_9_2 from hw_compat_7_2 */
+  { TYPE_PCI_DEVICE, "x-pcie-err-unc-mask", "off" },
 };
 const size_t hw_compat_rhel_9_2_len = G_N_ELEMENTS(hw_compat_rhel_9_2);
 
