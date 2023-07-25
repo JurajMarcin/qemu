@@ -1294,6 +1294,15 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Tue Jul 25 2023 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-37
+- kvm-util-iov-Make-qiov_slice-public.patch [bz#2141964]
+- kvm-block-Collapse-padded-I-O-vecs-exceeding-IOV_MAX.patch [bz#2141964]
+- kvm-util-iov-Remove-qemu_iovec_init_extended.patch [bz#2141964]
+- kvm-iotests-iov-padding-New-test.patch [bz#2141964]
+- kvm-block-Fix-pad_request-s-request-restriction.patch [bz#2141964]
+- Resolves: bz#2141964
+  (Guest hit EXT4-fs error on host 4K disk  when repeatedly hot-plug/unplug running IO disk)
+
 * Thu Jun 29 2023 Jon Maloy <jmaloy@redhat.com> - 6.2.0-36
 - kvm-memory-prevent-dma-reentracy-issues.patch [bz#1999236]
 - kvm-async-Add-an-optional-reentrancy-guard-to-the-BH-API.patch [bz#1999236]
