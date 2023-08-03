@@ -900,7 +900,6 @@ rm %{buildroot}%{_bindir}/qemu-system-%{kvm_target}
 rm %{buildroot}%{_datadir}/systemtap/tapset/qemu-system-%{kvm_target}.stp
 rm %{buildroot}%{_datadir}/systemtap/tapset/qemu-system-%{kvm_target}-simpletrace.stp
 rm %{buildroot}%{_datadir}/systemtap/tapset/qemu-system-%{kvm_target}-log.stp
-rm %{buildroot}%{_bindir}/elf2dmp
 
 # Install simpletrace
 install -m 0755 scripts/simpletrace.py %{buildroot}%{_datadir}/%{name}/simpletrace.py
@@ -1112,6 +1111,7 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %{_bindir}/qemu-keymap
 %{_bindir}/qemu-edid
 %{_bindir}/qemu-trace-stap
+%{_bindir}/elf2dmp
 %{_datadir}/%{name}/simpletrace.py*
 %{_datadir}/%{name}/tracetool/*.py*
 %{_datadir}/%{name}/tracetool/backend/*.py*
