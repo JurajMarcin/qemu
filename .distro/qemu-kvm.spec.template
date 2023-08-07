@@ -1236,6 +1236,32 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Aug 07 2023 Miroslav Rezanina <mrezanin@redhat.com> - 8.0.0-11
+- kvm-block-blkio-enable-the-completion-eventfd.patch [bz#2225354 bz#2225439]
+- kvm-block-blkio-do-not-use-open-flags-in-qemu_open.patch [bz#2225354 bz#2225439]
+- kvm-block-blkio-move-blkio_connect-in-the-drivers-functi.patch [bz#2225354 bz#2225439]
+- kvm-block-blkio-retry-blkio_connect-if-it-fails-using-fd.patch [bz#2225354 bz#2225439]
+- kvm-block-blkio-fall-back-on-using-path-when-fd-setting-.patch [bz#2225354 bz#2225439]
+- kvm-block-blkio-use-blkio_set_int-fd-to-check-fd-support.patch [bz#2225354 bz#2225439]
+- kvm-hw-virtio-iommu-Fix-potential-OOB-access-in-virtio_i.patch [bz#2229133]
+- kvm-virtio-iommu-Standardize-granule-extraction-and-form.patch [bz#2229133]
+- kvm-hw-arm-smmu-Handle-big-endian-hosts-correctly.patch [bz#2229133]
+- kvm-qapi-i386-sev-Change-the-reduced-phys-bits-value-fro.patch [bz#2214839]
+- kvm-qemu-options.hx-Update-the-reduced-phys-bits-documen.patch [bz#2214839]
+- kvm-i386-sev-Update-checks-and-information-related-to-re.patch [bz#2214839]
+- kvm-i386-cpu-Update-how-the-EBX-register-of-CPUID-0x8000.patch [bz#2214839]
+- kvm-Provide-elf2dmp-binary-in-qemu-tools.patch [bz#2165917]
+- Resolves: bz#2225354
+  ([vdpa-blk] The new driver virtio-blk-vhost-user not work in VM booting)
+- Resolves: bz#2225439
+  ([vdpa-blk] read-only=on option not work on driver virtio-blk-vhost-vdpa)
+- Resolves: bz#2229133
+  (Backport some virtio-iommu and smmu fixes)
+- Resolves: bz#2214839
+  ([AMDSERVER 9.3 Bug] Qemu SEV reduced-phys-bits fixes)
+- Resolves: bz#2165917
+  (qemu-kvm: contrib/elf2dmp: Windows Server 2022 support)
+
 * Mon Jul 31 2023 Miroslav Rezanina <mrezanin@redhat.com> - 8.0.0-10
 - kvm-util-iov-Make-qiov_slice-public.patch [bz#2174676]
 - kvm-block-Collapse-padded-I-O-vecs-exceeding-IOV_MAX.patch [bz#2174676]
