@@ -1204,6 +1204,14 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Aug 07 2023 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-14.el9_2.4
+- kvm-aio-posix-fix-race-between-epoll-upgrade-and-aio_set.patch [bz#2211923]
+- kvm-vhost-vdpa-do-not-cleanup-the-vdpa-vhost-net-structu.patch [bz#2227721]
+- Resolves: bz#2211923
+  ([qemu-kvm] rhel guest failed boot with multi disks on error Failed to start udev Wait for Complete Device Initialization [rhel-9.2.0.z])
+- Resolves: bz#2227721
+  ([rhel9.2] hotplug/hotunplug mlx vdpa device to the occupied addr port, then qemu core dump occurs after shutdown guest [rhel-9.2.0.z])
+
 * Tue Jul 11 2023 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-14.el9_2.3
 - kvm-kvm-reuse-per-vcpu-stats-fd-to-avoid-vcpu-interrupti.patch [bz#2221219]
 - Resolves: bz#2221219
