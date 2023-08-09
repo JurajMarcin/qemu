@@ -1294,6 +1294,17 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Wed Aug 09 2023 Jon Maloy <jmaloy@redhat.com> - 6.2.0-38
+- kvm-qapi-i386-sev-Change-the-reduced-phys-bits-value-fro.patch [bz#2214840]
+- kvm-qemu-options.hx-Update-the-reduced-phys-bits-documen.patch [bz#2214840]
+- kvm-i386-sev-Update-checks-and-information-related-to-re.patch [bz#2214840]
+- kvm-i386-cpu-Update-how-the-EBX-register-of-CPUID-0x8000.patch [bz#2214840]
+- kvm-target-i386-kvm-Fix-disabling-MPX-on-cpu-host-with-M.patch [bz#2223947]
+- Resolves: bz#2214840
+  ([AMDSERVER 8.9 Bug] Qemu SEV reduced-phys-bits fixes)
+- Resolves: bz#2223947
+  ([RHEL8.9] qemu core dump with '-cpu host,mpx=off' on Cascadelake host)
+
 * Tue Jul 25 2023 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-37
 - kvm-util-iov-Make-qiov_slice-public.patch [bz#2141964]
 - kvm-block-Collapse-padded-I-O-vecs-exceeding-IOV_MAX.patch [bz#2141964]
