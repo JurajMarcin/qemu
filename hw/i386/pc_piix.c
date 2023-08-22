@@ -1014,9 +1014,13 @@ static void pc_machine_rhel760_options(MachineClass *m)
     pcmc->kvmclock_create_always = false;
     /* From pc_i440fx_5_1_machine_options() */
     pcmc->pci_root_uid = 1;
+    /* From pc_i440fx_7_0_machine_options() */
     pcmc->enforce_amd_1tb_hole = false;
+    /* From pc_i440fx_8_0_machine_options() */
+    pcmc->default_smbios_ep_type = SMBIOS_ENTRY_POINT_TYPE_32;
+
     compat_props_add(m->compat_props, hw_compat_rhel_9_3,
-		     hw_compat_rhel_9_3_len);
+                     hw_compat_rhel_9_3_len);
     compat_props_add(m->compat_props, pc_rhel_9_3_compat,
                      pc_rhel_9_3_compat_len);
     compat_props_add(m->compat_props, hw_compat_rhel_9_2,
