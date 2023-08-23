@@ -575,6 +575,8 @@ static uint16_t full_GEN16_GA1[] = {
     S390_FEAT_BEAR_ENH,
     S390_FEAT_RDP,
     S390_FEAT_PAI,
+    S390_FEAT_UV_FEAT_AP,
+    S390_FEAT_UV_FEAT_AP_INTR,
 };
 
 
