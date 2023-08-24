@@ -1236,6 +1236,17 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Thu Aug 24 2023 Miroslav Rezanina <mrezanin@redhat.com> - 8.0.0-13
+- kvm-vdpa-return-errno-in-vhost_vdpa_get_vring_group-erro.patch [RHEL-923]
+- kvm-vdpa-move-CVQ-isolation-check-to-net_init_vhost_vdpa.patch [RHEL-923]
+- kvm-vdpa-use-first-queue-SVQ-state-for-CVQ-default.patch [RHEL-923]
+- kvm-vdpa-export-vhost_vdpa_set_vring_ready.patch [RHEL-923]
+- kvm-vdpa-rename-vhost_vdpa_net_load-to-vhost_vdpa_net_cv.patch [RHEL-923]
+- kvm-vdpa-move-vhost_vdpa_set_vring_ready-to-the-caller.patch [RHEL-923]
+- kvm-vdpa-remove-net-cvq-migration-blocker.patch [RHEL-923]
+- Resolves: RHEL-923
+  (vhost shadow virtqueue: state restore through CVQ)
+
 * Mon Aug 21 2023 Miroslav Rezanina <mrezanin@redhat.com> - 8.0.0-12
 - kvm-target-i386-allow-versioned-CPUs-to-specify-new-cach.patch [bz#2094913]
 - kvm-target-i386-Add-new-EPYC-CPU-versions-with-updated-c.patch [bz#2094913]
