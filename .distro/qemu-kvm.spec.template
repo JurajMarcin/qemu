@@ -1204,6 +1204,16 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Aug 21 2023 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-14.el9_2.5
+- kvm-vdpa-net-move-iova-tree-creation-from-init-to-start.patch [RHEL-1060]
+- kvm-vdpa-reorder-vhost_vdpa_net_cvq_cmd_page_len-functio.patch [RHEL-1060]
+- kvm-vdpa-map-shadow-vrings-with-MAP_SHARED.patch [RHEL-1060]
+- kvm-io-remove-io-watch-if-TLS-channel-is-closed-during-h.patch [bz#2216503]
+- Resolves: RHEL-1060
+  ([vhost-vdpa][rhel 9.2]Boot a guest with "x-svq=on", then hot unplug this nic, guest  trigger qemu core dump [rhel-9.2.0.z])
+- Resolves: bz#2216503
+  (CVE-2023-3354 qemu-kvm: QEMU: VNC: improper I/O watch removal in TLS handshake can lead to remote unauthenticated denial of service [rhel-9.2.0.z])
+
 * Mon Aug 07 2023 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-14.el9_2.4
 - kvm-aio-posix-fix-race-between-epoll-upgrade-and-aio_set.patch [bz#2211923]
 - kvm-vhost-vdpa-do-not-cleanup-the-vdpa-vhost-net-structu.patch [bz#2227721]
