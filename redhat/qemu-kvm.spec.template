@@ -1294,6 +1294,11 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Mon Aug 28 2023 Jon Maloy <jmaloy@redhat.com> - 6.2.0-11.el8_6.9
+- kvm-io-remove-io-watch-if-TLS-channel-is-closed-during-h.patch [bz#2216509]
+- Resolves: bz#2216509
+  (CVE-2023-3354 virt:rhel/qemu-kvm: QEMU: VNC: improper I/O watch removal in TLS handshake can lead to remote unauthenticated denial of service [rhel-8.6.0.z])
+
 * Mon Feb 13 2023 Jon Maloy <jmaloy@redhat.com> - 6.2.0-11.el8_6.8
 - kvm-migration-Read-state-once.patch [bz#2168218]
 - Resolves: bz#2168218
