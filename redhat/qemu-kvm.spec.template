@@ -1056,6 +1056,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Mon Aug 28 2023 Jon Maloy <jmaloy@redhat.com> - 4.2.0-49.el8_4.10
+- kvm-io-remove-io-watch-if-TLS-channel-is-closed-during-h.patch [bz#2216508]
+- Resolves: bz#2216508
+  (CVE-2023-3354 virt:rhel/qemu-kvm: QEMU: VNC: improper I/O watch removal in TLS handshake can lead to remote unauthenticated denial of service [rhel-8.4.0.z])
+
 * Thu Sep 01 2022 Jon Maloy <jmaloy@redhat.com> - 4.2.0-49.el8_4.9
 - kvm-scsi-generic-Fix-emulated-block-limits-VPD-page.patch [bz#2121784]
 - Resolves: bz#2121784
