@@ -758,6 +758,7 @@ static QIOChannel *nbd_negotiate_handle_starttls(NBDClient *client,
         return NULL;
     }
 
+    qio_channel_set_favor_qemu_aio_ctx(QIO_CHANNEL(tioc), true);
     qio_channel_set_name(QIO_CHANNEL(tioc), "nbd-server-tls");
     trace_nbd_negotiate_handle_starttls_handshake();
     data.loop = g_main_loop_new(g_main_context_default(), FALSE);
@@ -1333,6 +1334,7 @@ static coroutine_fn int nbd_negotiate(NBDClient *client, Error **errp)
      */
 
     qio_channel_set_blocking(client->ioc, false, NULL);
+    qio_channel_set_favor_qemu_aio_ctx(client->ioc, true);
 
     trace_nbd_negotiate_begin();
     memcpy(buf, "NBDMAGIC", 8);

@@ -364,6 +364,12 @@ int qio_channel_set_blocking(QIOChannel *ioc,
 }
 
 
+void qio_channel_set_favor_qemu_aio_ctx(QIOChannel *ioc, bool enabled)
+{
+    ioc->favor_qemu_aio_ctx = enabled;
+}
+
+
 int qio_channel_close(QIOChannel *ioc,
                       Error **errp)
 {
@@ -545,7 +551,13 @@ static void qio_channel_set_aio_fd_handlers(QIOChannel *ioc)
         wr_handler = qio_channel_restart_write;
     }
 
-    ctx = ioc->ctx ? ioc->ctx : iohandler_get_aio_context();
+    if (ioc->ctx) {
+        ctx = ioc->ctx;
+    } else if (ioc->favor_qemu_aio_ctx) {
+        ctx = qemu_get_aio_context();
+    } else {
+        ctx = iohandler_get_aio_context();
+    }
     qio_channel_set_aio_fd_handler(ioc, ctx, rd_handler, wr_handler, ioc);
 }
 

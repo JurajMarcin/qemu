@@ -84,6 +84,7 @@ struct QIOChannel {
     AioContext *ctx;
     Coroutine *read_coroutine;
     Coroutine *write_coroutine;
+    bool favor_qemu_aio_ctx;
 #ifdef _WIN32
     HANDLE event; /* For use with GSource on Win32 */
 #endif
@@ -497,6 +498,21 @@ int qio_channel_write_all(QIOChannel *ioc,
 int qio_channel_set_blocking(QIOChannel *ioc,
                              bool enabled,
                              Error **errp);
+
+/**
+ * qio_channel_set_favor_qemu_aio_ctx:
+ * @ioc: the channel object
+ * @enabled: whether to fall back to qemu_aio_context
+ *
+ * If @enabled is true, calls to qio_channel_yield() with no AioContext
+ * set use the qemu_aio_context instead of the global iohandler context.
+ *
+ * If @enabled is false, calls to qio_channel_yield() use the global iohandler
+ * AioContext. This is may be used by coroutines that run in the main loop and
+ * do not wish to respond to I/O during nested event loops. This is the
+ * default for compatibility with code that is not aware of AioContexts.
+ */
+void qio_channel_set_favor_qemu_aio_ctx(QIOChannel *ioc, bool enabled);
 
 /**
  * qio_channel_close:
