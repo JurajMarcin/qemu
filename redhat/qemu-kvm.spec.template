@@ -991,6 +991,12 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Wed Aug 30 2023 Jon Maloy <jmaloy@redhat.com> - 2.12.0-88.el8_1.6
+- kvm-io-return-0-for-EOF-in-TLS-session-read-after-shutdo.patch [bz#2216506]
+- kvm-io-remove-io-watch-if-TLS-channel-is-closed-during-h.patch [bz#2216506]
+- Resolves: bz#2216506
+  (CVE-2023-3354 virt:rhel/qemu-kvm: QEMU: VNC: improper I/O watch removal in TLS handshake can lead to remote unauthenticated denial of service [rhel-8.1.0.z])
+
 * Thu Sep 17 2020 Danilo Cesar Lemes de Paula <ddepaula@redhat.com> - 2.12.0-88.el8_1.5
 - kvm-usb-fix-setup_len-init-CVE-2020-14364.patch [bz#1878684]
 - Resolves: bz#1878684
