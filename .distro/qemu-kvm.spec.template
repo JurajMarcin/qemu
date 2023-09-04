@@ -1234,6 +1234,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Sep 04 2023 Miroslav Rezanina <mrezanin@redhat.com> - 8.1.0-1
+- Rebase to QEMU 8.1 [RHEL-870]
+- Resolves: RHEL-870
+  (Rebase qemu-kvm to QEMU 8.1.0)
+
 * Thu Aug 24 2023 Miroslav Rezanina <mrezanin@redhat.com> - 8.0.0-13
 - kvm-vdpa-return-errno-in-vhost_vdpa_get_vring_group-erro.patch [RHEL-923]
 - kvm-vdpa-move-CVQ-isolation-check-to-net_init_vhost_vdpa.patch [RHEL-923]

@@ -3,13 +3,13 @@ NAME:=qemu-kvm
 VERSION:=8.1.0
 DATE:=
 COMMIT:=
-RELEASE:=0
+RELEASE:=1
 ZRELEASE:=
 RELEASE_SEPARATOR:=-
 WEEKLY_DATE:=20230823
 RC:=
 CLANG:=1
-BUILD_TARGET=rhel-9.3.0-candidate
+BUILD_TARGET=rhel-9.4.0-candidate
 
 ifneq ($(RC),)
   TARFILE:=qemu-$(VERSION)-$(RC).tar.xz
