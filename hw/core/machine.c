@@ -44,6 +44,10 @@ GlobalProperty hw_compat_rhel_8_6[] = {
      * we need do disable it downstream on the latest hw_compat_rhel_8.
      */
     { "vhost-vsock-device", "seqpacket", "off" },
+    /*
+     * RHEL-2186: all rhel8 machines should not migrate acpi index.
+     */
+    { "PIIX4_PM", "x-not-migrate-acpi-index", "on"},
 };
 const size_t hw_compat_rhel_8_6_len = G_N_ELEMENTS(hw_compat_rhel_8_6);
 
