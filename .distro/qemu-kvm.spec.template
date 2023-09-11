@@ -1236,6 +1236,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Sep 11 2023 Miroslav Rezanina <mrezanin@redhat.com> - 8.0.0-14.el9_3
+- kvm-io-remove-io-watch-if-TLS-channel-is-closed-during-h.patch [bz#2216504]
+- Resolves: bz#2216504
+  (CVE-2023-3354 qemu-kvm: QEMU: VNC: improper I/O watch removal in TLS handshake can lead to remote unauthenticated denial of service [rhel-9.3.0])
+
 * Thu Aug 24 2023 Miroslav Rezanina <mrezanin@redhat.com> - 8.0.0-13
 - kvm-vdpa-return-errno-in-vhost_vdpa_get_vring_group-erro.patch [RHEL-923]
 - kvm-vdpa-move-CVQ-isolation-check-to-net_init_vhost_vdpa.patch [RHEL-923]
