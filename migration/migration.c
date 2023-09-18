@@ -181,6 +181,7 @@ static int migration_maybe_pause(MigrationState *s,
                                  int *current_active_state,
                                  int new_state);
 static void migrate_fd_cancel(MigrationState *s);
+static int await_return_path_close_on_source(MigrationState *s);
 
 static bool migrate_allow_multi_channels = true;
 
@@ -1966,6 +1967,12 @@ static void migrate_fd_cleanup(MigrationState *s)
         s->postcopy_qemufile_src = NULL;
     }
 
+    /*
+     * We already cleaned up to_dst_file, so errors from the return
+     * path might be due to that, ignore them.
+     */
+    await_return_path_close_on_source(s);
+
     assert(!migration_is_active(s));
 
     if (s->state == MIGRATION_STATUS_CANCELLING) {
@@ -3018,7 +3025,6 @@ out:
     }
 
     trace_source_return_path_thread_end();
-    migration_release_from_dst_file(ms);
     rcu_unregister_thread();
     return NULL;
 }
@@ -3072,6 +3078,9 @@ static int await_return_path_close_on_source(MigrationState *ms)
 
     ret = ms->rp_state.error;
     ms->rp_state.error = false;
+
+    migration_release_from_dst_file(ms);
+
     trace_migration_return_path_end_after(ret);
     return ret;
 }
