@@ -1236,6 +1236,14 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Sep 18 2023 Miroslav Rezanina <mrezanin@redhat.com> - 8.0.0-16.el9_3
+- kvm-migration-Add-migration-prefix-to-functions-in-targe.patch [bz#2229868]
+- kvm-migration-Move-more-initializations-to-migrate_init.patch [bz#2229868]
+- kvm-migration-Add-.save_prepare-handler-to-struct-SaveVM.patch [bz#2229868]
+- kvm-vfio-migration-Block-VFIO-migration-with-postcopy-mi.patch [bz#2229868]
+- Resolves: bz#2229868
+  ([vfio migration]Disable postcopy for VM with migratable vfio device)
+
 * Mon Sep 11 2023 Miroslav Rezanina <mrezanin@redhat.com> - 8.0.0-14.el9_3
 - kvm-io-remove-io-watch-if-TLS-channel-is-closed-during-h.patch [bz#2216504]
 - Resolves: bz#2216504
