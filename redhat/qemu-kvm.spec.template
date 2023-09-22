@@ -1294,6 +1294,12 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Thu Sep 21 2023 Jon Maloy <jmaloy@redhat.com> - 6.2.0-40.el8_9
+- kvm-acpi-fix-acpi_index-migration.patch [RHEL-2186]
+- kvm-RHEL-Enable-x-not-migrate-acpi-index-for-all-pre-RHE.patch [RHEL-2186]
+- Resolves: RHEL-2186
+  ([RHEL8][pc machine type] Migration failed with pc machine type between rhe8.8 and rhel 8.9)
+
 * Mon Aug 28 2023 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-39
 - kvm-vhost-vdpa-do-not-cleanup-the-vdpa-vhost-net-structu.patch [bz#2215786]
 - Resolves: bz#2215786
