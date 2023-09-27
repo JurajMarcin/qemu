@@ -1294,6 +1294,11 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Wed Sep 27 2023 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-40.el8_9.1
+- kvm-io-remove-io-watch-if-TLS-channel-is-closed-during-h.patch [RHEL-7339]
+- Resolves: RHEL-7339
+  (CVE-2023-3354 virt:rhel/qemu-kvm: QEMU: VNC: improper I/O watch removal in TLS handshake can lead to remote unauthenticated denial of service [rhel-8.9.0])
+
 * Thu Sep 21 2023 Jon Maloy <jmaloy@redhat.com> - 6.2.0-40.el8_9
 - kvm-acpi-fix-acpi_index-migration.patch [RHEL-2186]
 - kvm-RHEL-Enable-x-not-migrate-acpi-index-for-all-pre-RHE.patch [RHEL-2186]
