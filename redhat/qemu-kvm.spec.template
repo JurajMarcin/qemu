@@ -1294,6 +1294,15 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Fri Sep 29 2023 Jon Maloy <jmaloy@redhat.com> - 6.2.0-41
+- kvm-s390x-ap-fix-missing-subsystem-reset-registration.patch [bz#2111390]
+- kvm-s390x-do-a-subsystem-reset-before-the-unprotect-on-r.patch [bz#2111390]
+- kvm-redhat-Update-linux-headers-for-kvm_s390_vm_cpu_uv_f.patch [bz#2111390]
+- kvm-target-s390x-kvm-Refactor-AP-functionalities.patch [bz#2111390]
+- kvm-target-s390x-AP-passthrough-for-PV-guests.patch [bz#2111390]
+- Resolves: bz#2111390
+  ([IBM 8.10 FEAT] KVM: Enable Secure Execution Crypto Passthrough - qemu part)
+
 * Thu Sep 28 2023 Jon Maloy <jmaloy@redhat.com> - 6.2.0-40
 - kvm-ui-vnc-clipboard-fix-infinite-loop-in-inflate_buffer.patch [bz#2218488]
 - Resolves: bz#2218488
