@@ -1294,6 +1294,11 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Thu Sep 28 2023 Jon Maloy <jmaloy@redhat.com> - 6.2.0-40
+- kvm-ui-vnc-clipboard-fix-infinite-loop-in-inflate_buffer.patch [bz#2218488]
+- Resolves: bz#2218488
+  (CVE-2023-3255 virt:rhel/qemu-kvm: QEMU: VNC: infinite loop in inflate_buffer() leads to denial of service [rhel-8])
+
 * Mon Aug 28 2023 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-39
 - kvm-vhost-vdpa-do-not-cleanup-the-vdpa-vhost-net-structu.patch [bz#2215786]
 - Resolves: bz#2215786
