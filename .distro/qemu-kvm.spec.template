@@ -1234,6 +1234,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Oct 02 2023 Miroslav Rezanina <mrezanin@redhat.com> - 8.1.0-2
+- kvm-virtio-Drop-out-of-coroutine-context-in-virtio_load.patch [RHEL-832]
+- Resolves: RHEL-832
+  (qemu-kvm crashed when migrating guest with failover vf)
+
 * Mon Sep 04 2023 Miroslav Rezanina <mrezanin@redhat.com> - 8.1.0-1
 - Rebase to QEMU 8.1 [RHEL-870]
 - Resolves: RHEL-870
