@@ -274,6 +274,12 @@ struct MigrationState {
          * be cleared in the rp_thread!
          */
         bool          rp_thread_created;
+        /*
+         * Used to synchronize between migration main thread and return
+         * path thread.  The migration thread can wait() on this sem, while
+         * other threads (e.g., return path thread) can kick it using a
+         * post().
+         */
         QemuSemaphore rp_sem;
     } rp_state;
 
@@ -479,5 +485,14 @@ void postcopy_temp_page_reset(PostcopyTmpPage *tmp_page);
 
 bool migrate_multi_channels_is_allowed(void);
 void migrate_protocol_allow_multi_channels(bool allow);
+
+/* Migration thread waiting for return path thread. */
+void migration_rp_wait(MigrationState *s);
+/*
+ * Kick the migration thread waiting for return path messages.  NOTE: the
+ * name can be slightly confusing (when read as "kick the rp thread"), just
+ * to remember the target is always the migration thread.
+ */
+void migration_rp_kick(MigrationState *s);
 
 #endif
