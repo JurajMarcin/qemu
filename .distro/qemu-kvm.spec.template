@@ -1236,6 +1236,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Oct 09 2023 Miroslav Rezanina <mrezanin@redhat.com> - 8.0.0-16.el9_3.1
+- kvm-virtio-Drop-out-of-coroutine-context-in-virtio_load.patch [RHEL-4453]
+- Resolves: RHEL-4453
+  (qemu-kvm crashed when migrating guest with failover vf [rhel-9.3.0.z])
+
 * Mon Sep 18 2023 Miroslav Rezanina <mrezanin@redhat.com> - 8.0.0-16.el9_3
 - kvm-migration-Add-migration-prefix-to-functions-in-targe.patch [bz#2229868]
 - kvm-migration-Move-more-initializations-to-migrate_init.patch [bz#2229868]
