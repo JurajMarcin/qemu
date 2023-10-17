@@ -402,6 +402,7 @@ void migrate_init(MigrationState *s);
 bool migration_is_blocked(Error **errp);
 /* True if outgoing migration has entered postcopy phase */
 bool migration_in_postcopy(void);
+bool migration_postcopy_is_alive(int state);
 MigrationState *migrate_get_current(void);
 
 bool migrate_postcopy(void);
@@ -485,8 +486,11 @@ void postcopy_temp_page_reset(PostcopyTmpPage *tmp_page);
 bool migrate_multi_channels_is_allowed(void);
 void migrate_protocol_allow_multi_channels(bool allow);
 
-/* Migration thread waiting for return path thread. */
-void migration_rp_wait(MigrationState *s);
+/*
+ * Migration thread waiting for return path thread.  Return non-zero if an
+ * error is detected.
+ */
+int migration_rp_wait(MigrationState *s);
 /*
  * Kick the migration thread waiting for return path messages.  NOTE: the
  * name can be slightly confusing (when read as "kick the rp thread"), just
