@@ -58,7 +58,7 @@
     %global tools_only 1
 %endif
 
-%ifnarch %{ix86} x86_64
+%ifnarch %{ix86} x86_64 aarch64
     %global have_usbredir 0
 %endif
 
