@@ -1294,6 +1294,13 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Thu Nov 23 2023 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-42
+- kvm-target-s390x-dump-Remove-unneeded-dump-info-function.patch [RHEL-16696]
+- kvm-dump-Add-arch-cleanup-function.patch [RHEL-16696]
+- kvm-target-s390x-arch_dump-Add-arch-cleanup-function-for.patch [RHEL-16696]
+- Resolves: RHEL-16696
+  (RHEL8 - KVM : Secure execution guest remains in "paused" state, post "virsh dump" failure (qemu-kvm))
+
 * Fri Sep 29 2023 Jon Maloy <jmaloy@redhat.com> - 6.2.0-41
 - kvm-s390x-ap-fix-missing-subsystem-reset-registration.patch [bz#2111390]
 - kvm-s390x-do-a-subsystem-reset-before-the-unprotect-on-r.patch [bz#2111390]
