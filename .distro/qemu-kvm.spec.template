@@ -1236,6 +1236,13 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Fri Dec 01 2023 Miroslav Rezanina <mrezanin@redhat.com> - 8.0.0-16.el9_3.2
+- kvm-target-s390x-dump-Remove-unneeded-dump-info-function.patch [RHEL-16997]
+- kvm-dump-Add-arch-cleanup-function.patch [RHEL-16997]
+- kvm-target-s390x-arch_dump-Add-arch-cleanup-function-for.patch [RHEL-16997]
+- Resolves: RHEL-16997
+  (RHEL9.3 - KVM : Secure execution guest remains in "paused" state, post "virsh dump" failure (qemu-kvm) [rhel-9.3.0.z])
+
 * Mon Oct 09 2023 Miroslav Rezanina <mrezanin@redhat.com> - 8.0.0-16.el9_3.1
 - kvm-virtio-Drop-out-of-coroutine-context-in-virtio_load.patch [RHEL-4453]
 - Resolves: RHEL-4453
