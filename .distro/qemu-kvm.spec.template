@@ -1204,6 +1204,13 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Fri Dec 01 2023 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-14.el9_2.6
+- kvm-target-s390x-dump-Remove-unneeded-dump-info-function.patch [RHEL-16996]
+- kvm-dump-Add-arch-cleanup-function.patch [RHEL-16996]
+- kvm-target-s390x-arch_dump-Add-arch-cleanup-function-for.patch [RHEL-16996]
+- Resolves: RHEL-16996
+  (RHEL9.2 - KVM : Secure execution guest remains in "paused" state, post "virsh dump" failure (qemu-kvm) [rhel-9.2.0.z])
+
 * Mon Aug 21 2023 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-14.el9_2.5
 - kvm-vdpa-net-move-iova-tree-creation-from-init-to-start.patch [RHEL-1060]
 - kvm-vdpa-reorder-vhost_vdpa_net_cvq_cmd_page_len-functio.patch [RHEL-1060]
