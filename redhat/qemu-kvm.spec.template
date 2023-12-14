@@ -1294,6 +1294,13 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Wed Dec 13 2023 Jon Maloy <jmaloy@redhat.com> - 6.2.0-44
+
+- kvm-hw-ide-reset-cancel-async-DMA-operation-before-reset.patch [RHEL-15437]
+- kvm-tests-qtest-ahci-test-add-test-exposing-reset-issue-.patch [RHEL-15437]
+- Resolves: RHEL-15437
+  (CVE-2023-5088 virt:rhel/qemu-kvm: QEMU: improper IDE controller reset can lead to MBR overwrite [rhel-8])
+
 * Wed Dec 06 2023 Jon Maloy <jmaloy@redhat.com> - 6.2.0-43
 
 - kvm-net-Provide-MemReentrancyGuard-to-qemu_new_nic.patch [RHEL-7309]
