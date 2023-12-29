@@ -539,9 +539,14 @@ static void pc_i440fx_machine_options(MachineClass *m)
 
 static void pc_i440fx_8_2_machine_options(MachineClass *m)
 {
+    PCMachineClass *pcmc = PC_MACHINE_CLASS(m);
+
     pc_i440fx_machine_options(m);
     m->alias = "pc";
     m->is_default = true;
+
+    /* For pc-i44fx-8.2 and 8.1, use SMBIOS 3.X by default */
+    pcmc->default_smbios_ep_type = SMBIOS_ENTRY_POINT_TYPE_64;
 }
 
 DEFINE_I440FX_MACHINE(v8_2, "pc-i440fx-8.2", NULL,
@@ -982,6 +987,8 @@ static void pc_machine_rhel7_options(MachineClass *m)
     m->alias = "pc";
     m->is_default = 1;
     m->smp_props.prefer_sockets = true;
+    /* there aren't ne PC macine types in RHEL9, keep it at SMBIOS 2.X */
+    pcmc->default_smbios_ep_type = SMBIOS_ENTRY_POINT_TYPE_32;
 }
 
 static void pc_init_rhel760(MachineState *machine)

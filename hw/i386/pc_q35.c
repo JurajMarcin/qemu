@@ -377,8 +377,11 @@ static void pc_q35_machine_options(MachineClass *m)
 
 static void pc_q35_8_2_machine_options(MachineClass *m)
 {
+    PCMachineClass *pcmc = PC_MACHINE_CLASS(m);
     pc_q35_machine_options(m);
     m->alias = "q35";
+    /* For pc-q35-8.2 and 8.1, use SMBIOS 3.X by default */
+    pcmc->default_smbios_ep_type = SMBIOS_ENTRY_POINT_TYPE_64;
 }
 
 DEFINE_Q35_MACHINE(v8_2, "pc-q35-8.2", NULL,
@@ -712,6 +715,8 @@ static void pc_q35_machine_rhel_options(MachineClass *m)
     m->alias = "q35";
     m->max_cpus = 710;
     compat_props_add(m->compat_props, pc_rhel_compat, pc_rhel_compat_len);
+    /* use SMBIOS version autoselect by default for the latest RHEL machine */
+    pcmc->default_smbios_ep_type = SMBIOS_ENTRY_POINT_TYPE_AUTO;
 }
 
 static void pc_q35_init_rhel940(MachineState *machine)
