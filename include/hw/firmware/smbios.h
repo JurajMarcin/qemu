@@ -310,11 +310,11 @@ struct smbios_type_127 {
 void smbios_entry_add(QemuOpts *opts, Error **errp);
 void smbios_set_cpuid(uint32_t version, uint32_t features);
 void smbios_set_defaults(const char *manufacturer, const char *product,
-                         const char *version, bool legacy_mode,
+                         const char *version,
                          bool uuid_encoded,
+                         SmbiosEntryPointType ep_type,
                          const char *stream_product,
-                         const char *stream_version,
-                         SmbiosEntryPointType ep_type);
+                         const char *stream_version);
 uint8_t *smbios_get_table_legacy(uint32_t expected_t4_count, size_t *length);
 void smbios_get_tables(MachineState *ms,
                        const struct smbios_phys_mem_area *mem_array,
