@@ -315,7 +315,7 @@ void smbios_set_defaults(const char *manufacturer, const char *product,
                          const char *stream_product,
                          const char *stream_version,
                          SmbiosEntryPointType ep_type);
-uint8_t *smbios_get_table_legacy(MachineState *ms, size_t *length);
+uint8_t *smbios_get_table_legacy(uint32_t expected_t4_count, size_t *length);
 void smbios_get_tables(MachineState *ms,
                        const struct smbios_phys_mem_area *mem_array,
                        const unsigned int mem_array_size,
