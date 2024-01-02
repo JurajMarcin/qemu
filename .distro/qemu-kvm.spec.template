@@ -1234,6 +1234,23 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Tue Jan 02 2024 Miroslav Rezanina <mrezanin@redhat.com> - 8.2.0-1
+- Rebase to QEMU 8.2.0 [RHEL-14111]
+- Fix machine type compatibility [RHEL-17067 RHEL-17068]
+- Add 9.4.0 machine type [RHEL-17168 RHEL-19117 RHEL-19119]
+- Resolves: RHEL-14111
+  (Rebase qemu-kvm to QEMU 8.2.0)
+- Resolves: RHEL-17067
+  (Check/fix machine type compatibility for qemu-kvm 8.2.0 [s390x])
+- Resolves: RHEL-17068
+  (Check/fix machine type compatibility for qemu-kvm 8.2.0 [x86_64])
+- Resolves: RHEL-17168
+  (Introduce virt-rhel9.4.0 arm-virt machine type [aarch64])
+- Resolves: RHEL-19117
+  (Introduce virt-rhel9.4.0 arm-virt machine type [x86_64])
+- Resolves: RHEL-19119
+  (Introduce virt-rhel9.4.0 arm-virt machine type [s390x])
+
 * Thu Nov 30 2023 Miroslav Rezanina <mrezanin@redhat.com> - 8.1.0-5
 - kvm-Preparation-for-using-allow-rpcs-list-in-guest-agent.patch [RHEL-955]
 - kvm-Use-allow-rpcs-instead-of-block-rpcs-in-guest-agent..patch [RHEL-955]
