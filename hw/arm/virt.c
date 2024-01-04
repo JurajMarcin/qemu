@@ -108,11 +108,39 @@
     DEFINE_VIRT_MACHINE_LATEST(major, minor, false)
 #endif /* disabled for RHEL */
 
+/*
+ * This variable is for changes to properties that are RHEL specific,
+ * different to the current upstream and to be applied to the latest
+ * machine type. They may be overriden by older machine compats.
+ *
+ * virtio-net-pci variant romfiles are not needed because edk2 does
+ * fully support the pxe boot. Besides virtio romfiles are not shipped
+ * on rhel/aarch64.
+ */
+GlobalProperty arm_rhel_compat[] = {
+    {"virtio-net-pci", "romfile", "" },
+    {"virtio-net-pci-transitional", "romfile", "" },
+    {"virtio-net-pci-non-transitional", "romfile", "" },
+};
+const size_t arm_rhel_compat_len = G_N_ELEMENTS(arm_rhel_compat);
+
+/*
+ * This cannot be called from the rhel_virt_class_init() because
+ * TYPE_RHEL_MACHINE is abstract and mc->compat_props g_ptr_array_new()
+ * only is called on virt-rhelm.n.s non abstract class init.
+ */
+static void arm_rhel_compat_set(MachineClass *mc)
+{
+    compat_props_add(mc->compat_props, arm_rhel_compat,
+                     arm_rhel_compat_len);
+}
+
 #define DEFINE_RHEL_MACHINE_LATEST(m, n, s, latest)                     \
     static void rhel##m##n##s##_virt_class_init(ObjectClass *oc,        \
                                                 void *data)             \
     {                                                                   \
         MachineClass *mc = MACHINE_CLASS(oc);                           \
+        arm_rhel_compat_set(mc);                                        \
         rhel##m##n##s##_virt_options(mc);                               \
         mc->desc = "RHEL " # m "." # n "." # s " ARM Virtual Machine";  \
         if (latest) {                                                   \
@@ -135,19 +163,6 @@
     DEFINE_RHEL_MACHINE_LATEST(major, minor, subminor, true)
 #define DEFINE_RHEL_MACHINE(major, minor, subminor)             \
     DEFINE_RHEL_MACHINE_LATEST(major, minor, subminor, false)
-
-/* This variable is for changes to properties that are RHEL specific,
- * different to the current upstream and to be applied to the latest
- * machine type.
- */
-GlobalProperty arm_rhel_compat[] = {
-    {
-        .driver   = "virtio-net-pci",
-        .property = "romfile",
-        .value    = "",
-    },
-};
-const size_t arm_rhel_compat_len = G_N_ELEMENTS(arm_rhel_compat);
 
 /* Number of external interrupt lines to configure the GIC with */
 #define NUM_IRQS 256
@@ -3240,7 +3255,6 @@ type_init(rhel_machine_init);
 
 static void rhel860_virt_options(MachineClass *mc)
 {
-    compat_props_add(mc->compat_props, arm_rhel_compat, arm_rhel_compat_len);
 }
 DEFINE_RHEL_MACHINE_AS_LATEST(8, 6, 0)
 
