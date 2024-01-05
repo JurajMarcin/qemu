@@ -1294,6 +1294,15 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Thu Jan 04 2024 Jon Maloy <jmaloy@redhat.com> - 6.2.0-45
+- kvm-acpi-fix-acpi_index-migration.patch [RHEL-20189]
+- kvm-RHEL-Enable-x-not-migrate-acpi-index-for-all-pre-RHE.patch [RHEL-20189]
+- kvm-hw-arm-virt-Do-not-load-efi-virtio.rom-for-all-virti.patch [RHEL-14870]
+- Resolves: RHEL-20189
+  ([RHEL.8.10.0]Failed to migrate guest with pc (i440x)  between RHELAV 8.4.0 and RHEL 8.10.0)
+- Resolves: RHEL-14870
+  ([rhel8]ipxe-roms-qemu does not provide efi-virtio.rom)
+
 * Wed Dec 13 2023 Jon Maloy <jmaloy@redhat.com> - 6.2.0-44
 
 - kvm-hw-ide-reset-cancel-async-DMA-operation-before-reset.patch [RHEL-15437]
