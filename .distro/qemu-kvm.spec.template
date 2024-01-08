@@ -1234,6 +1234,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Jan 08 2024 Miroslav Rezanina <mrezanin@redhat.com> - 8.2.0-2
+- kvm-hw-arm-virt-Fix-compats.patch [RHEL-17168]
+- Resolves: RHEL-17168
+  (Introduce virt-rhel9.4.0 arm-virt machine type [aarch64])
+
 * Tue Jan 02 2024 Miroslav Rezanina <mrezanin@redhat.com> - 8.2.0-1
 - Rebase to QEMU 8.2.0 [RHEL-14111]
 - Fix machine type compatibility [RHEL-17067 RHEL-17068]
