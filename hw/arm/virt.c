@@ -2456,6 +2456,7 @@ static void virt_set_compact_highmem(Object *obj, bool value, Error **errp)
 
     vms->highmem_compact = value;
 }
+#endif /* disabled for RHEL */
 
 static bool virt_get_highmem_redists(Object *obj, Error **errp)
 {
@@ -2498,7 +2499,6 @@ static void virt_set_highmem_mmio(Object *obj, bool value, Error **errp)
 
     vms->highmem_mmio = value;
 }
-#endif /* disabled for RHEL */
 
 static bool virt_get_its(Object *obj, Error **errp)
 {
@@ -3520,6 +3520,28 @@ static void rhel_machine_class_init(ObjectClass *oc, void *data)
     object_class_property_set_description(oc, "highmem",
                                           "Set on/off to enable/disable using "
                                           "physical address space above 32 bits");
+
+    object_class_property_add_bool(oc, "highmem-redists",
+                                   virt_get_highmem_redists,
+                                   virt_set_highmem_redists);
+    object_class_property_set_description(oc, "highmem-redists",
+                                          "Set on/off to enable/disable high "
+                                          "memory region for GICv3 or GICv4 "
+                                          "redistributor");
+
+    object_class_property_add_bool(oc, "highmem-ecam",
+                                   virt_get_highmem_ecam,
+                                   virt_set_highmem_ecam);
+    object_class_property_set_description(oc, "highmem-ecam",
+                                          "Set on/off to enable/disable high "
+                                          "memory region for PCI ECAM");
+
+    object_class_property_add_bool(oc, "highmem-mmio",
+                                   virt_get_highmem_mmio,
+                                   virt_set_highmem_mmio);
+    object_class_property_set_description(oc, "highmem-mmio",
+                                          "Set on/off to enable/disable high "
+                                          "memory region for PCI MMIO");
 
     object_class_property_add_str(oc, "gic-version", virt_get_gic_version,
                                   virt_set_gic_version);
