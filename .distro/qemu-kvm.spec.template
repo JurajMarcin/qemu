@@ -187,6 +187,7 @@ BuildRequires: gcc
 BuildRequires: meson >= %{meson_version}
 BuildRequires: ninja-build
 BuildRequires: zlib-devel
+BuildRequires: libzstd-devel
 BuildRequires: glib2-devel
 BuildRequires: gnutls-devel
 BuildRequires: cyrus-sasl-devel
@@ -760,6 +761,7 @@ run_configure \
   --enable-werror \
 %endif
   --enable-xkbcommon \
+  --enable-zstd \
 %if %{have_safe_stack}
   --enable-safe-stack \
 %endif
