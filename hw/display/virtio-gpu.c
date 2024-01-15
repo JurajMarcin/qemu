@@ -598,6 +598,7 @@ static void virtio_unref_resource(pixman_image_t *image, void *data)
 static void virtio_gpu_update_scanout(VirtIOGPU *g,
                                       uint32_t scanout_id,
                                       struct virtio_gpu_simple_resource *res,
+                                      struct virtio_gpu_framebuffer *fb,
                                       struct virtio_gpu_rect *r)
 {
     struct virtio_gpu_simple_resource *ores;
@@ -615,9 +616,10 @@ static void virtio_gpu_update_scanout(VirtIOGPU *g,
     scanout->y = r->y;
     scanout->width = r->width;
     scanout->height = r->height;
+    scanout->fb = *fb;
 }
 
-static void virtio_gpu_do_set_scanout(VirtIOGPU *g,
+static bool virtio_gpu_do_set_scanout(VirtIOGPU *g,
                                       uint32_t scanout_id,
                                       struct virtio_gpu_framebuffer *fb,
                                       struct virtio_gpu_simple_resource *res,
@@ -643,7 +645,7 @@ static void virtio_gpu_do_set_scanout(VirtIOGPU *g,
                       r->x, r->y, r->width, r->height,
                       fb->width, fb->height);
         *error = VIRTIO_GPU_RESP_ERR_INVALID_PARAMETER;
-        return;
+        return false;
     }
 
     g->parent_obj.enable = 1;
@@ -651,11 +653,12 @@ static void virtio_gpu_do_set_scanout(VirtIOGPU *g,
     if (res->blob) {
         if (console_has_gl(scanout->con)) {
             if (!virtio_gpu_update_dmabuf(g, scanout_id, res, fb, r)) {
-                virtio_gpu_update_scanout(g, scanout_id, res, r);
+                virtio_gpu_update_scanout(g, scanout_id, res, fb, r);
             } else {
                 *error = VIRTIO_GPU_RESP_ERR_OUT_OF_MEMORY;
+                return false;
             }
-            return;
+            return true;
         }
 
         data = res->blob;
@@ -684,7 +687,7 @@ static void virtio_gpu_do_set_scanout(VirtIOGPU *g,
         scanout->ds = qemu_create_displaysurface_pixman(rect);
         if (!scanout->ds) {
             *error = VIRTIO_GPU_RESP_ERR_UNSPEC;
-            return;
+            return false;
         }
 #ifdef WIN32
         qemu_displaysurface_win32_set_handle(scanout->ds, res->handle, fb->offset);
@@ -695,7 +698,8 @@ static void virtio_gpu_do_set_scanout(VirtIOGPU *g,
                                 scanout->ds);
     }
 
-    virtio_gpu_update_scanout(g, scanout_id, res, r);
+    virtio_gpu_update_scanout(g, scanout_id, res, fb, r);
+    return true;
 }
 
 static void virtio_gpu_set_scanout(VirtIOGPU *g,
@@ -1166,8 +1170,9 @@ static void virtio_gpu_cursor_bh(void *opaque)
 
 static const VMStateDescription vmstate_virtio_gpu_scanout = {
     .name = "virtio-gpu-one-scanout",
-    .version_id = 1,
-    .fields = (VMStateField[]) {
+    .version_id = 2,
+    .minimum_version_id = 1,
+    .fields = (const VMStateField[]) {
         VMSTATE_UINT32(resource_id, struct virtio_gpu_scanout),
         VMSTATE_UINT32(width, struct virtio_gpu_scanout),
         VMSTATE_UINT32(height, struct virtio_gpu_scanout),
@@ -1178,6 +1183,12 @@ static const VMStateDescription vmstate_virtio_gpu_scanout = {
         VMSTATE_UINT32(cursor.hot_y, struct virtio_gpu_scanout),
         VMSTATE_UINT32(cursor.pos.x, struct virtio_gpu_scanout),
         VMSTATE_UINT32(cursor.pos.y, struct virtio_gpu_scanout),
+        VMSTATE_UINT32_V(fb.format, struct virtio_gpu_scanout, 2),
+        VMSTATE_UINT32_V(fb.bytes_pp, struct virtio_gpu_scanout, 2),
+        VMSTATE_UINT32_V(fb.width, struct virtio_gpu_scanout, 2),
+        VMSTATE_UINT32_V(fb.height, struct virtio_gpu_scanout, 2),
+        VMSTATE_UINT32_V(fb.stride, struct virtio_gpu_scanout, 2),
+        VMSTATE_UINT32_V(fb.offset, struct virtio_gpu_scanout, 2),
         VMSTATE_END_OF_LIST()
     },
 };
@@ -1349,6 +1360,7 @@ static int virtio_gpu_blob_save(QEMUFile *f, void *opaque, size_t size,
         if (!res->blob_size) {
             continue;
         }
+        assert(!res->image);
         qemu_put_be32(f, res->resource_id);
         qemu_put_be32(f, res->blob_size);
         qemu_put_be32(f, res->iov_cnt);
@@ -1411,11 +1423,11 @@ static int virtio_gpu_post_load(void *opaque, int version_id)
     int i;
 
     for (i = 0; i < g->parent_obj.conf.max_outputs; i++) {
-        /* FIXME: should take scanout.r.{x,y} into account */
         scanout = &g->parent_obj.scanout[i];
         if (!scanout->resource_id) {
             continue;
         }
+
         res = virtio_gpu_find_resource(g, scanout->resource_id);
         if (!res) {
             return -EINVAL;
@@ -1428,7 +1440,30 @@ static int virtio_gpu_post_load(void *opaque, int version_id)
         qemu_displaysurface_win32_set_handle(scanout->ds, res->handle, 0);
 #endif
 
-        dpy_gfx_replace_surface(scanout->con, scanout->ds);
+        if (scanout->fb.format != 0) {
+            uint32_t error = 0;
+            struct virtio_gpu_rect r = {
+                .x = scanout->x,
+                .y = scanout->y,
+                .width = scanout->width,
+                .height = scanout->height
+            };
+
+            if (!virtio_gpu_do_set_scanout(g, i, &scanout->fb, res, &r, &error)) {
+                return -EINVAL;
+            }
+        } else {
+            /* legacy v1 migration support */
+            if (!res->image) {
+                return -EINVAL;
+            }
+            scanout->ds = qemu_create_displaysurface_pixman(res->image);
+#ifdef WIN32
+            qemu_displaysurface_win32_set_handle(scanout->ds, res->handle, 0);
+#endif
+            dpy_gfx_replace_surface(scanout->con, scanout->ds);
+        }
+
         dpy_gfx_update_full(scanout->con);
         if (scanout->cursor.resource_id) {
             update_cursor(g, &scanout->cursor);
