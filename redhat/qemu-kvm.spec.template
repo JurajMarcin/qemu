@@ -1294,6 +1294,12 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Tue Jan 16 2024 Jon Maloy <jmaloy@redhat.com> - 6.2.0-33.el8_8.4
+- kvm-acpi-fix-acpi_index-migration.patch [RHEL-21378]
+- kvm-RHEL-Enable-x-not-migrate-acpi-index-for-all-pre-RHE.patch [RHEL-21378]
+- Resolves: RHEL-21378
+  ([RHEL.8.10.0]Failed to migrate guest with pc (i440x)  between RHELAV 8.4.0 and RHEL 8.10.0 [rhel-8.8.0.z])
+
 * Thu Nov 30 2023 Jon Maloy <jmaloy@redhat.com> - 6.2.0-33.el8_8.3
 - kvm-target-s390x-dump-Remove-unneeded-dump-info-function.patch [RHEL-17252]
 - kvm-dump-Add-arch-cleanup-function.patch [RHEL-17252]
