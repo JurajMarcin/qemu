@@ -1294,6 +1294,12 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Tue Jan 16 2024 Jon Maloy <jmaloy@redhat.com> - 6.2.0-11.el8_6.12
+- kvm-acpi-fix-acpi_index-migration.patch [RHEL-21377]
+- kvm-RHEL-Enable-x-not-migrate-acpi-index-for-all-pre-RHE.patch [RHEL-21377]
+- Resolves: RHEL-21377
+  ([RHEL.8.10.0]Failed to migrate guest with pc (i440x)  between RHELAV 8.4.0 and RHEL 8.10.0 [rhel-8.6.0.z])
+
 * Tue Nov 28 2023 Jon Maloy <jmaloy@redhat.com> - 6.2.0-11.el8_6.11
 - kvm-net-Provide-MemReentrancyGuard-to-qemu_new_nic.patch [RHEL-16093]
 - kvm-net-Update-MemReentrancyGuard-for-NIC.patch [RHEL-16093]
