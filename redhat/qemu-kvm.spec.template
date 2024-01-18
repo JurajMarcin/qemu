@@ -1294,6 +1294,15 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Wed Jan 17 2024 Jon Maloy <jmaloy@redhat.com> - 6.2.0-46
+- kvm-MAINTAINERS-split-out-s390x-sections.patch [RHEL-18214]
+- kvm-s390x-pv-remove-semicolon-from-macro-definition.patch [RHEL-18214]
+- kvm-hw-s390x-pv-Restrict-Protected-Virtualization-to-sys.patch [RHEL-18214]
+- kvm-hw-s390x-Move-KVM-specific-PV-from-hw-to-target-s390.patch [RHEL-18214]
+- kvm-target-s390x-kvm-pv-Provide-some-more-useful-informa.patch [RHEL-18214]
+- Resolves: RHEL-18214
+  ([RHEL8][Secure-execution][s390x]  The error message is not clear when boot up a SE guest with wrong encryption)
+
 * Thu Jan 04 2024 Jon Maloy <jmaloy@redhat.com> - 6.2.0-45
 - kvm-acpi-fix-acpi_index-migration.patch [RHEL-20189]
 - kvm-RHEL-Enable-x-not-migrate-acpi-index-for-all-pre-RHE.patch [RHEL-20189]
