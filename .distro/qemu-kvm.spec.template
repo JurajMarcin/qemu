@@ -1236,6 +1236,127 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Wed Jan 24 2024 Miroslav Rezanina <mrezanin@redhat.com> - 8.2.0-3
+- kvm-hw-arm-virt-Add-properties-to-disable-high-memory-re.patch [RHEL-19738]
+- kvm-vfio-Introduce-base-object-for-VFIOContainer-and-tar.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-container-Introduce-a-empty-VFIOIOMMUOps.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-container-Switch-to-dma_map-unmap-API.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-common-Introduce-vfio_container_init-destroy-he.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-common-Move-giommu_list-in-base-container.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-container-Move-space-field-to-base-container.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-container-Switch-to-IOMMU-BE-set_dirty_page_tra.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-container-Move-per-container-device-list-in-bas.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-container-Convert-functions-to-base-container.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-container-Move-pgsizes-and-dma_max_mappings-to-.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-container-Move-vrdl_list-to-base-container.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-container-Move-listener-to-base-container.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-container-Move-dirty_pgsizes-and-max_dirty_bitm.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-container-Move-iova_ranges-to-base-container.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-container-Implement-attach-detach_device.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-spapr-Introduce-spapr-backend-and-target-interf.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-spapr-switch-to-spapr-IOMMU-BE-add-del_section_.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-spapr-Move-prereg_listener-into-spapr-container.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-spapr-Move-hostwin_list-into-spapr-container.patch [RHEL-19302 RHEL-21057]
+- kvm-backends-iommufd-Introduce-the-iommufd-object.patch [RHEL-19302 RHEL-21057]
+- kvm-util-char_dev-Add-open_cdev.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-common-return-early-if-space-isn-t-empty.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-iommufd-Implement-the-iommufd-backend.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-iommufd-Relax-assert-check-for-iommufd-backend.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-iommufd-Add-support-for-iova_ranges-and-pgsizes.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-pci-Extract-out-a-helper-vfio_pci_get_pci_hot_r.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-pci-Introduce-a-vfio-pci-hot-reset-interface.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-iommufd-Enable-pci-hot-reset-through-iommufd-cd.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-pci-Allow-the-selection-of-a-given-iommu-backen.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-pci-Make-vfio-cdev-pre-openable-by-passing-a-fi.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-platform-Allow-the-selection-of-a-given-iommu-b.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-platform-Make-vfio-cdev-pre-openable-by-passing.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-ap-Allow-the-selection-of-a-given-iommu-backend.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-ap-Make-vfio-cdev-pre-openable-by-passing-a-fil.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-ccw-Allow-the-selection-of-a-given-iommu-backen.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-ccw-Make-vfio-cdev-pre-openable-by-passing-a-fi.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-Make-VFIOContainerBase-poiner-parameter-const-i.patch [RHEL-19302 RHEL-21057]
+- kvm-hw-arm-Activate-IOMMUFD-for-virt-machines.patch [RHEL-19302 RHEL-21057]
+- kvm-kconfig-Activate-IOMMUFD-for-s390x-machines.patch [RHEL-19302 RHEL-21057]
+- kvm-hw-i386-Activate-IOMMUFD-for-q35-machines.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-pci-Move-VFIODevice-initializations-in-vfio_ins.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-platform-Move-VFIODevice-initializations-in-vfi.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-ap-Move-VFIODevice-initializations-in-vfio_ap_i.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-ccw-Move-VFIODevice-initializations-in-vfio_ccw.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-Introduce-a-helper-function-to-initialize-VFIOD.patch [RHEL-19302 RHEL-21057]
+- kvm-docs-devel-Add-VFIO-iommufd-backend-documentation.patch [RHEL-19302 RHEL-21057]
+- kvm-hw-ppc-Kconfig-Imply-VFIO_PCI.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-spapr-Extend-VFIOIOMMUOps-with-a-release-handle.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-container-Introduce-vfio_legacy_setup-for-furth.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-container-Initialize-VFIOIOMMUOps-under-vfio_in.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-container-Introduce-a-VFIOIOMMU-QOM-interface.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-container-Introduce-a-VFIOIOMMU-legacy-QOM-inte.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-container-Intoduce-a-new-VFIOIOMMUClass-setup-h.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-spapr-Introduce-a-sPAPR-VFIOIOMMU-QOM-interface.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-iommufd-Introduce-a-VFIOIOMMU-iommufd-QOM-inter.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-spapr-Only-compile-sPAPR-IOMMU-support-when-nee.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-iommufd-Remove-CONFIG_IOMMUFD-usage.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-container-Replace-basename-with-g_path_get_base.patch [RHEL-19302 RHEL-21057]
+- kvm-hw-vfio-fix-iteration-over-global-VFIODevice-list.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-iommufd-Remove-the-use-of-stat-to-check-file-ex.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-container-Rename-vfio_init_container-to-vfio_se.patch [RHEL-19302 RHEL-21057]
+- kvm-vfio-migration-Add-helper-function-to-set-state-or-r.patch [RHEL-19302 RHEL-21057]
+- kvm-backends-iommufd-Remove-check-on-number-of-backend-u.patch [RHEL-19302 RHEL-21057]
+- kvm-backends-iommufd-Remove-mutex.patch [RHEL-19302 RHEL-21057]
+- kvm-Compile-IOMMUFD-object-on-aarch64.patch [RHEL-19302 RHEL-21057]
+- kvm-Compile-IOMMUFD-on-s390x.patch [RHEL-19302 RHEL-21057]
+- kvm-Compile-IOMMUFD-on-x86_64.patch [RHEL-19302 RHEL-21057]
+- kvm-target-s390x-kvm-pv-Provide-some-more-useful-informa.patch [RHEL-18212]
+- kvm-nbd-server-avoid-per-NBDRequest-nbd_client_get-put.patch [RHEL-15965]
+- kvm-nbd-server-only-traverse-NBDExport-clients-from-main.patch [RHEL-15965]
+- kvm-nbd-server-introduce-NBDClient-lock-to-protect-field.patch [RHEL-15965]
+- kvm-block-file-posix-set-up-Linux-AIO-and-io_uring-in-th.patch [RHEL-15965]
+- kvm-virtio-blk-add-lock-to-protect-s-rq.patch [RHEL-15965]
+- kvm-virtio-blk-don-t-lock-AioContext-in-the-completion-c.patch [RHEL-15965]
+- kvm-virtio-blk-don-t-lock-AioContext-in-the-submission-c.patch [RHEL-15965]
+- kvm-scsi-only-access-SCSIDevice-requests-from-one-thread.patch [RHEL-15965]
+- kvm-virtio-scsi-don-t-lock-AioContext-around-virtio_queu.patch [RHEL-15965]
+- kvm-scsi-don-t-lock-AioContext-in-I-O-code-path.patch [RHEL-15965]
+- kvm-dma-helpers-don-t-lock-AioContext-in-dma_blk_cb.patch [RHEL-15965]
+- kvm-virtio-scsi-replace-AioContext-lock-with-tmf_bh_lock.patch [RHEL-15965]
+- kvm-scsi-assert-that-callbacks-run-in-the-correct-AioCon.patch [RHEL-15965]
+- kvm-tests-remove-aio_context_acquire-tests.patch [RHEL-15965]
+- kvm-aio-make-aio_context_acquire-aio_context_release-a-n.patch [RHEL-15965]
+- kvm-graph-lock-remove-AioContext-locking.patch [RHEL-15965]
+- kvm-block-remove-AioContext-locking.patch [RHEL-15965]
+- kvm-block-remove-bdrv_co_lock.patch [RHEL-15965]
+- kvm-scsi-remove-AioContext-locking.patch [RHEL-15965]
+- kvm-aio-wait-draw-equivalence-between-AIO_WAIT_WHILE-and.patch [RHEL-15965]
+- kvm-aio-remove-aio_context_acquire-aio_context_release-A.patch [RHEL-15965]
+- kvm-docs-remove-AioContext-lock-from-IOThread-docs.patch [RHEL-15965]
+- kvm-scsi-remove-outdated-AioContext-lock-comment.patch [RHEL-15965]
+- kvm-job-remove-outdated-AioContext-locking-comments.patch [RHEL-15965]
+- kvm-block-remove-outdated-AioContext-locking-comments.patch [RHEL-15965]
+- kvm-block-coroutine-wrapper-use-qemu_get_current_aio_con.patch [RHEL-15965]
+- kvm-s390x-pci-avoid-double-enable-disable-of-aif.patch [RHEL-21169]
+- kvm-s390x-pci-refresh-fh-before-disabling-aif.patch [RHEL-21169]
+- kvm-s390x-pci-drive-ISM-reset-from-subsystem-reset.patch [RHEL-21169]
+- kvm-include-ui-rect.h-fix-qemu_rect_init-mis-assignment.patch [RHEL-21570]
+- kvm-virtio-gpu-block-migration-of-VMs-with-blob-true.patch [RHEL-7565]
+- kvm-spec-Enable-zstd.patch [RHEL-7361]
+- Resolves: RHEL-19738
+  (Enable properties allowing to disable high memory regions)
+- Resolves: RHEL-19302
+  (NVIDIA:Grace-Hopper Backport QEMU IOMMUFD Backend)
+- Resolves: RHEL-21057
+  (Request backport of 9353b6da430f90e47f352dbf6dc31120c8914da6)
+- Resolves: RHEL-18212
+  ([RHEL9][Secure-execution][s390x] The error message is not clear when boot up a SE guest with wrong encryption)
+- Resolves: RHEL-15965
+  ( [qemu-kvm] Remove AioContext lock (no response with QMP command block_resize))
+- Resolves: RHEL-21169
+  ([s390x] VM fails to start with ISM passed through QEMU 8.2)
+- Resolves: RHEL-21570
+  (Critical performance degradation for input devices in virtio vnc session)
+- Resolves: RHEL-7565
+  (qemu crashed when migrate guest with blob resources enabled)
+- Resolves: RHEL-7361
+  ([qemu-kvm] Enable zstd support for qcow2 files)
+
 * Mon Jan 08 2024 Miroslav Rezanina <mrezanin@redhat.com> - 8.2.0-2
 - kvm-hw-arm-virt-Fix-compats.patch [RHEL-17168]
 - Resolves: RHEL-17168
