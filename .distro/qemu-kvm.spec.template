@@ -1204,6 +1204,17 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Thu Jan 25 2024 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-14.el9_2.7
+- kvm-target-i386-allow-versioned-CPUs-to-specify-new-cach.patch [RHEL-15336]
+- kvm-target-i386-Add-new-EPYC-CPU-versions-with-updated-c.patch [RHEL-15336]
+- kvm-target-i386-Add-a-couple-of-feature-bits-in-8000_000.patch [RHEL-15336]
+- kvm-target-i386-Add-feature-bits-for-CPUID_Fn80000021_EA.patch [RHEL-15336]
+- kvm-target-i386-Add-missing-feature-bits-in-EPYC-Milan-m.patch [RHEL-15336]
+- kvm-target-i386-Add-VNMI-and-automatic-IBRS-feature-bits.patch [RHEL-15336]
+- kvm-target-i386-Add-EPYC-Genoa-model-to-support-Zen-4-pr.patch [RHEL-15336]
+- Resolves: RHEL-15336
+  (Add EPYC-Genoa CPU model in qemu [rhel-9.2.0.z])
+
 * Fri Dec 01 2023 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-14.el9_2.6
 - kvm-target-s390x-dump-Remove-unneeded-dump-info-function.patch [RHEL-16996]
 - kvm-dump-Add-arch-cleanup-function.patch [RHEL-16996]
