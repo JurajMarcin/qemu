@@ -1236,6 +1236,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Tue Jan 30 2024 Miroslav Rezanina <mrezanin@redhat.com> - 8.2.0-4
+- kvm-vfio-pci-Clear-MSI-X-IRQ-index-always.patch [RHEL-21293]
+- Resolves: RHEL-21293
+  ([emulated igb] Failed to set up TRIGGER eventfd signaling for interrupt INTX-0: VFIO_DEVICE_SET_IRQS failure: Invalid argument)
+
 * Wed Jan 24 2024 Miroslav Rezanina <mrezanin@redhat.com> - 8.2.0-3
 - kvm-hw-arm-virt-Add-properties-to-disable-high-memory-re.patch [RHEL-19738]
 - kvm-vfio-Introduce-base-object-for-VFIOContainer-and-tar.patch [RHEL-19302 RHEL-21057]
