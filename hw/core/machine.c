@@ -78,6 +78,8 @@ GlobalProperty hw_compat_rhel_9_4[] = {
      { "vfio-pci-nohotplug", "x-ramfb-migrate", "off" },
   /* hw_compat_rhel_9_4 from hw_compat_8_1 */
      { "igb", "x-pcie-flr-init", "off" },
+  /* hw_compat_rhel_9_4 jira RHEL-24045 */
+     { "virtio-mem", "dynamic-memslots", "off" },
 };
 const size_t hw_compat_rhel_9_4_len = G_N_ELEMENTS(hw_compat_rhel_9_4);
 
