@@ -1294,6 +1294,13 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Sat Feb 03 2024 Jon Maloy <jmaloy@redhat.com> - 6.2.0-47
+- kvm-s390x-pci-avoid-double-enable-disable-of-aif.patch [RHEL-22411]
+- kvm-s390x-pci-refresh-fh-before-disabling-aif.patch [RHEL-22411]
+- kvm-s390x-pci-drive-ISM-reset-from-subsystem-reset.patch [RHEL-22411]
+- Resolves: RHEL-22411
+  ([s390x] VM fails to start with ISM passed through)
+
 * Wed Jan 17 2024 Jon Maloy <jmaloy@redhat.com> - 6.2.0-46
 - kvm-MAINTAINERS-split-out-s390x-sections.patch [RHEL-18214]
 - kvm-s390x-pv-remove-semicolon-from-macro-definition.patch [RHEL-18214]
