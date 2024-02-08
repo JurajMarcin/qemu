@@ -36,7 +36,6 @@
 #include "hw/rtc/mc146818rtc.h"
 #include "hw/southbridge/piix.h"
 #include "hw/display/ramfb.h"
-#include "hw/firmware/smbios.h"
 #include "hw/pci/pci.h"
 #include "hw/pci/pci_ids.h"
 #include "hw/usb.h"
@@ -232,17 +231,6 @@ static void pc_init1(MachineState *machine,
     }
 
     pc_guest_info_init(pcms);
-
-    if (pcmc->smbios_defaults) {
-        MachineClass *mc = MACHINE_GET_CLASS(machine);
-        /* These values are guest ABI, do not change */
-        smbios_set_defaults("Red Hat", "KVM",
-                            mc->desc, pcmc->smbios_legacy_mode,
-                            pcmc->smbios_uuid_encoded,
-                            pcmc->smbios_stream_product,
-                            pcmc->smbios_stream_version,
-                            pcms->smbios_entry_point_type);
-    }
 
     /* allocate ram and load rom/bios */
     if (!xen_enabled()) {

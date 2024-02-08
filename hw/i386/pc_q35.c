@@ -45,7 +45,6 @@
 #include "hw/i386/amd_iommu.h"
 #include "hw/i386/intel_iommu.h"
 #include "hw/display/ramfb.h"
-#include "hw/firmware/smbios.h"
 #include "hw/ide/pci.h"
 #include "hw/ide/ahci.h"
 #include "hw/intc/ioapic.h"
@@ -200,16 +199,6 @@ static void pc_q35_init(MachineState *machine)
     }
 
     pc_guest_info_init(pcms);
-
-    if (pcmc->smbios_defaults) {
-        /* These values are guest ABI, do not change */
-        smbios_set_defaults("Red Hat", "KVM",
-                            mc->desc, pcmc->smbios_legacy_mode,
-                            pcmc->smbios_uuid_encoded,
-                            pcmc->smbios_stream_product,
-                            pcmc->smbios_stream_version,
-                            pcms->smbios_entry_point_type);
-    }
 
     /* create pci host bus */
     phb = OBJECT(qdev_new(TYPE_Q35_HOST_DEVICE));
