@@ -3679,6 +3679,10 @@ static void rhel920_virt_options(MachineClass *mc)
     compat_props_add(mc->compat_props, hw_compat_rhel_9_4, hw_compat_rhel_9_4_len);
     compat_props_add(mc->compat_props, hw_compat_rhel_9_3, hw_compat_rhel_9_3_len);
     compat_props_add(mc->compat_props, hw_compat_rhel_9_2, hw_compat_rhel_9_2_len);
+
+    /* RHEL 9.4 is the first supported release */
+    mc->deprecation_reason =
+        "machine types for versions prior to 9.4 are deprecated";
 }
 DEFINE_RHEL_MACHINE(9, 2, 0)
 
