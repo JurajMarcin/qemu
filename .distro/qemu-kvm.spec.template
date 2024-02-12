@@ -1204,6 +1204,13 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Feb 12 2024 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-14.el9_2.8
+- kvm-scsi-fetch-unit-attention-when-creating-the-request.patch [RHEL-24958]
+- kvm-scsi-cleanup-scsi_clear_unit_attention.patch [RHEL-24958]
+- kvm-scsi-clear-unit-attention-only-for-REPORT-LUNS-comma.patch [RHEL-24958]
+- Resolves: RHEL-24958
+  ([qemu-kvm] virtio-scsi stops working after series of hotplug and hotunplug. [rhel-9.2.0.z])
+
 * Thu Jan 25 2024 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-14.el9_2.7
 - kvm-target-i386-allow-versioned-CPUs-to-specify-new-cach.patch [RHEL-15336]
 - kvm-target-i386-Add-new-EPYC-CPU-versions-with-updated-c.patch [RHEL-15336]
