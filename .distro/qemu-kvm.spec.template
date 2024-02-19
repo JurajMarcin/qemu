@@ -1236,6 +1236,19 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Feb 19 2024 Miroslav Rezanina <mrezanin@redhat.com> - 8.2.0-6
+- kvm-virtio-scsi-Attach-event-vq-notifier-with-no_poll.patch [RHEL-3934]
+- kvm-virtio-Re-enable-notifications-after-drain.patch [RHEL-3934]
+- kvm-virtio-blk-Use-ioeventfd_attach-in-start_ioeventfd.patch [RHEL-3934]
+- kvm-virtio-blk-avoid-using-ioeventfd-state-in-irqfd-cond.patch [RHEL-15394]
+- kvm-hw-arm-virt-deprecate-virt-rhel9.-0-2-.0-machine-typ.patch [RHEL-24988]
+- Resolves: RHEL-3934
+  ([qemu-kvm] Failed on repeatedly hotplug/unplug  disk iothread enabled  )
+- Resolves: RHEL-15394
+  (virtio-blk: qemu hang on "no response on QMP query-status" when write data to disk without enough space)
+- Resolves: RHEL-24988
+  (Mark virt-rhel9.{0,2}.0 machine types as deprecated)
+
 * Mon Feb 12 2024 Miroslav Rezanina <mrezanin@redhat.com> - 8.2.0-5
 - kvm-hv-balloon-use-get_min_alignment-to-express-32-GiB-a.patch [RHEL-20341]
 - kvm-memory-device-reintroduce-memory-region-size-check.patch [RHEL-20341]
