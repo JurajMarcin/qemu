@@ -759,6 +759,8 @@ static void pc_q35_machine_rhel920_options(MachineClass *m)
 
     /* From pc_q35_8_0_machine_options() */
     pcmc->default_smbios_ep_type = SMBIOS_ENTRY_POINT_TYPE_32;
+    /* From pc_q35_8_1_machine_options() */
+    pcmc->broken_32bit_mem_addr_check = true;
 
     compat_props_add(m->compat_props, hw_compat_rhel_9_4,
                      hw_compat_rhel_9_4_len);

@@ -1023,6 +1023,8 @@ static void pc_machine_rhel760_options(MachineClass *m)
     pcmc->enforce_amd_1tb_hole = false;
     /* From pc_i440fx_8_0_machine_options() */
     pcmc->default_smbios_ep_type = SMBIOS_ENTRY_POINT_TYPE_32;
+    /* From pc_i440fx_8_1_machine_options() */
+    pcmc->broken_32bit_mem_addr_check = true;
     /* Introduced in QEMU 8.2 */
     pcmc->default_south_bridge = TYPE_PIIX3_DEVICE;
 
