@@ -1294,6 +1294,14 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Mon Feb 26 2024 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-48
+- kvm-iotests-add-filter_qmp_generated_node_ids.patch [RHEL-7353]
+- kvm-iotests-port-141-to-Python-for-reliable-QMP-testing.patch [RHEL-7353]
+- kvm-monitor-only-run-coroutine-commands-in-qemu_aio_cont.patch [RHEL-7353]
+- kvm-iotests-Make-144-deterministic-again.patch [RHEL-7353]
+- Resolves: RHEL-7353
+  ([qemu-kvm] no response with QMP command device_add when repeatedly hotplug/unplug virtio disks [RHEL-8])
+
 * Sat Feb 03 2024 Jon Maloy <jmaloy@redhat.com> - 6.2.0-47
 - kvm-s390x-pci-avoid-double-enable-disable-of-aif.patch [RHEL-22411]
 - kvm-s390x-pci-refresh-fh-before-disabling-aif.patch [RHEL-22411]
