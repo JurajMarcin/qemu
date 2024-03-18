@@ -1236,6 +1236,32 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Mar 18 2024 Miroslav Rezanina <mrezanin@redhat.com> - 8.2.0-8
+- kvm-ui-clipboard-mark-type-as-not-available-when-there-i.patch [RHEL-19629]
+- kvm-ui-clipboard-add-asserts-for-update-and-request.patch [RHEL-19629]
+- kvm-hw-i386-pc-Defer-smbios_set_defaults-to-machine_done.patch [RHEL-21705]
+- kvm-Implement-base-of-SMBIOS-type-9-descriptor.patch [RHEL-21705]
+- kvm-Implement-SMBIOS-type-9-v2.6.patch [RHEL-21705]
+- kvm-smbios-cleanup-smbios_get_tables-from-legacy-handlin.patch [RHEL-21705]
+- kvm-smbios-get-rid-of-smbios_smp_sockets-global.patch [RHEL-21705]
+- kvm-smbios-get-rid-of-smbios_legacy-global.patch [RHEL-21705]
+- kvm-smbios-avoid-mangling-user-provided-tables.patch [RHEL-21705]
+- kvm-smbios-don-t-check-type4-structures-in-legacy-mode.patch [RHEL-21705]
+- kvm-smbios-add-smbios_add_usr_blob_size-helper.patch [RHEL-21705]
+- kvm-smbios-rename-expose-structures-bitmaps-used-by-both.patch [RHEL-21705]
+- kvm-smbios-build-legacy-mode-code-only-for-pc-machine.patch [RHEL-21705]
+- kvm-smbios-handle-errors-consistently.patch [RHEL-21705]
+- kvm-smbios-get-rid-of-global-smbios_ep_type.patch [RHEL-21705]
+- kvm-smbios-clear-smbios_type4_count-before-building-tabl.patch [RHEL-21705]
+- kvm-smbios-extend-smbios-entry-point-type-with-auto-valu.patch [RHEL-21705]
+- kvm-smbios-in-case-of-entry-point-is-auto-try-to-build-v.patch [RHEL-21705]
+- kvm-smbios-error-out-when-building-type-4-table-is-not-p.patch [RHEL-21705]
+- kvm-pc-q35-set-SMBIOS-entry-point-type-to-auto-by-defaul.patch [RHEL-21705]
+- Resolves: RHEL-19629
+  (CVE-2023-6683 qemu-kvm: QEMU: VNC: NULL pointer dereference in qemu_clipboard_request() [rhel-9])
+- Resolves: RHEL-21705
+  (pc-q35-rhel9.4.0 does not provide proper computer information)
+
 * Fri Mar 08 2024 Miroslav Rezanina <mrezanin@redhat.com> - 8.2.0-7
 - kvm-qemu_init-increase-NOFILE-soft-limit-on-POSIX.patch [RHEL-26049]
 - kvm-chardev-char-socket-Fix-TLS-io-channels-sending-too-.patch [RHEL-24614]
