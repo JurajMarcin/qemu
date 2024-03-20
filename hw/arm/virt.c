@@ -144,6 +144,8 @@ GlobalProperty arm_rhel_compat[] = {
     {"virtio-net-pci", "romfile", "" },
     {"virtio-net-pci-transitional", "romfile", "" },
     {"virtio-net-pci-non-transitional", "romfile", "" },
+    /* arm_rhel_compat from arm_virt_compat, added for 9.0.0 rebase */
+    { TYPE_VIRTIO_IOMMU_PCI, "aw-bits", "48" },
 };
 const size_t arm_rhel_compat_len = G_N_ELEMENTS(arm_rhel_compat);
 
@@ -3728,6 +3730,7 @@ type_init(rhel_machine_init);
 
 static void rhel940_virt_options(MachineClass *mc)
 {
+    compat_props_add(mc->compat_props, hw_compat_rhel_9_5, hw_compat_rhel_9_5_len);
 }
 DEFINE_RHEL_MACHINE_AS_LATEST(9, 4, 0)
 
