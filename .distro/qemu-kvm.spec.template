@@ -1236,6 +1236,16 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Wed Mar 20 2024 Miroslav Rezanina <mrezanin@redhat.com> - 8.2.0-9
+- kvm-mirror-Don-t-call-job_pause_point-under-graph-lock.patch [RHEL-28125]
+- kvm-nbd-server-Fix-race-in-draining-the-export.patch [RHEL-28125]
+- kvm-iotests-Add-test-for-reset-AioContext-switches-with-.patch [RHEL-28125]
+- kvm-pc-smbios-fixup-manufacturer-product-version-to-matc.patch [RHEL-21705]
+- Resolves: RHEL-28125
+  (RHEL9.4 - KVM : Live migration of guest with multiple qcow devices remains incomplete.)
+- Resolves: RHEL-21705
+  (pc-q35-rhel9.4.0 does not provide proper computer information)
+
 * Mon Mar 18 2024 Miroslav Rezanina <mrezanin@redhat.com> - 8.2.0-8
 - kvm-ui-clipboard-mark-type-as-not-available-when-there-i.patch [RHEL-19629]
 - kvm-ui-clipboard-add-asserts-for-update-and-request.patch [RHEL-19629]
