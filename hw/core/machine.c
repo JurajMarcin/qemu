@@ -302,6 +302,16 @@ const size_t hw_compat_2_1_len = G_N_ELEMENTS(hw_compat_2_1);
 const char *rhel_old_machine_deprecation =
     "machine types for previous major releases are deprecated";
 
+GlobalProperty hw_compat_rhel_9_5[] = {
+  /* hw_compat_rhel_9_5 from hw_compat_8_2 */
+    { "migration", "zero-page-detection", "legacy"},
+  /* hw_compat_rhel_9_5 from hw_compat_8_2 */
+    { TYPE_VIRTIO_IOMMU_PCI, "granule", "4k" },
+  /* hw_compat_rhel_9_5 from hw_compat_8_2 */
+    { TYPE_VIRTIO_IOMMU_PCI, "aw-bits", "64" },
+};
+const size_t hw_compat_rhel_9_5_len = G_N_ELEMENTS(hw_compat_rhel_9_5);
+
 GlobalProperty hw_compat_rhel_9_4[] = {
   /* hw_compat_rhel_9_4 from hw_compat_8_0 */
     { TYPE_VIRTIO_NET, "host_uso", "off"},

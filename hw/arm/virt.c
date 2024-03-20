@@ -85,6 +85,7 @@
 #include "hw/char/pl011.h"
 #include "qemu/guest-random.h"
 
+#if 0 /* Disabled for Red Hat Enterprise Linux */
 static GlobalProperty arm_virt_compat[] = {
     { TYPE_VIRTIO_IOMMU_PCI, "aw-bits", "48" },
 };
@@ -101,7 +102,6 @@ static void arm_virt_compat_set(MachineClass *mc)
                      arm_virt_compat_len);
 }
 
-#if 0 /* Disabled for Red Hat Enterprise Linux */
 #define DEFINE_VIRT_MACHINE_LATEST(major, minor, latest) \
     static void virt_##major##_##minor##_class_init(ObjectClass *oc, \
                                                     void *data) \
@@ -144,6 +144,8 @@ GlobalProperty arm_rhel_compat[] = {
     {"virtio-net-pci", "romfile", "" },
     {"virtio-net-pci-transitional", "romfile", "" },
     {"virtio-net-pci-non-transitional", "romfile", "" },
+    /* arm_rhel_compat from arm_virt_compat, added for 9.0.0 rebase */
+    { TYPE_VIRTIO_IOMMU_PCI, "aw-bits", "48" },
 };
 const size_t arm_rhel_compat_len = G_N_ELEMENTS(arm_rhel_compat);
 
@@ -3534,7 +3536,6 @@ static void rhel_machine_class_init(ObjectClass *oc, void *data)
 {
     MachineClass *mc = MACHINE_CLASS(oc);
     HotplugHandlerClass *hc = HOTPLUG_HANDLER_CLASS(oc);
-    arm_virt_compat_set(mc);
 
     mc->family = "virt-rhel-Z";
     mc->init = machvirt_init;
@@ -3728,6 +3729,7 @@ type_init(rhel_machine_init);
 
 static void rhel940_virt_options(MachineClass *mc)
 {
+    compat_props_add(mc->compat_props, hw_compat_rhel_9_5, hw_compat_rhel_9_5_len);
 }
 DEFINE_RHEL_MACHINE_AS_LATEST(9, 4, 0)
 
