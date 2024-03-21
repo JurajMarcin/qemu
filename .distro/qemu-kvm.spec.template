@@ -1236,6 +1236,13 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Thu Mar 21 2024 Miroslav Rezanina <mrezanin@redhat.com> - 8.2.0-10
+- kvm-chardev-lower-priority-of-the-HUP-GSource-in-socket-.patch [RHEL-24614]
+- kvm-Revert-chardev-char-socket-Fix-TLS-io-channels-sendi.patch [RHEL-24614]
+- kvm-Revert-chardev-use-a-child-source-for-qio-input-sour.patch [RHEL-24614]
+- Resolves: RHEL-24614
+  ([RHEL9][chardev] qemu hit core dump while using TLS server from host to guest)
+
 * Wed Mar 20 2024 Miroslav Rezanina <mrezanin@redhat.com> - 8.2.0-9
 - kvm-mirror-Don-t-call-job_pause_point-under-graph-lock.patch [RHEL-28125]
 - kvm-nbd-server-Fix-race-in-draining-the-export.patch [RHEL-28125]
