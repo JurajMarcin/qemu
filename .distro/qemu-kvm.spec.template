@@ -1236,6 +1236,12 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Tue Mar 26 2024 Miroslav Rezanina <mrezanin@redhat.com> - 8.2.0-11
+- kvm-coroutine-cap-per-thread-local-pool-size.patch [RHEL-28947]
+- kvm-coroutine-reserve-5-000-mappings.patch [RHEL-28947]
+- Resolves: RHEL-28947
+  (Qemu crashing with "failed to set up stack guard page: Cannot allocate memory")
+
 * Thu Mar 21 2024 Miroslav Rezanina <mrezanin@redhat.com> - 8.2.0-10
 - kvm-chardev-lower-priority-of-the-HUP-GSource-in-socket-.patch [RHEL-24614]
 - kvm-Revert-chardev-char-socket-Fix-TLS-io-channels-sendi.patch [RHEL-24614]
