@@ -1204,6 +1204,14 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Tue Apr 02 2024 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-14.el9_2.9
+- kvm-iotests-add-filter_qmp_generated_node_ids.patch [RHEL-30092]
+- kvm-iotests-port-141-to-Python-for-reliable-QMP-testing.patch [RHEL-30092]
+- kvm-monitor-only-run-coroutine-commands-in-qemu_aio_cont.patch [RHEL-30092]
+- kvm-iotests-Make-144-deterministic-again.patch [RHEL-30092]
+- Resolves: RHEL-30092
+  ([qemu-kvm] no response with QMP command device_add when repeatedly hotplug/unplug virtio disks [RHEL-9][rhel-9.2.0.z])
+
 * Mon Feb 12 2024 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-14.el9_2.8
 - kvm-scsi-fetch-unit-attention-when-creating-the-request.patch [RHEL-24958]
 - kvm-scsi-cleanup-scsi_clear_unit_attention.patch [RHEL-24958]
