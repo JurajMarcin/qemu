@@ -734,6 +734,8 @@ static void pc_q35_machine_rhel940_options(MachineClass *m)
     pcmc->smbios_stream_product = "RHEL";
     pcmc->smbios_stream_version = "9.4.0";
 
+    compat_props_add(m->compat_props, pc_rhel_9_5_compat,
+		     pc_rhel_9_5_compat_len);
     compat_props_add(m->compat_props, hw_compat_rhel_9_5,
 		     hw_compat_rhel_9_5_len);
 }
