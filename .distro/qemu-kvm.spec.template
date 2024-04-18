@@ -1236,6 +1236,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Thu Apr 18 2024 Miroslav Rezanina <mrezanin@redhat.com> - 8.2.0-11.el9_4.1
+- kvm-virtio-pci-fix-use-of-a-released-vector.patch [RHEL-32837]
+- Resolves: RHEL-32837
+  (qemu-kvm running Vyatta hits assert when doing KVM_SET_GSI_ROUTING [rhel-9.4.z])
+
 * Tue Mar 26 2024 Miroslav Rezanina <mrezanin@redhat.com> - 8.2.0-11
 - kvm-coroutine-cap-per-thread-local-pool-size.patch [RHEL-28947]
 - kvm-coroutine-reserve-5-000-mappings.patch [RHEL-28947]
