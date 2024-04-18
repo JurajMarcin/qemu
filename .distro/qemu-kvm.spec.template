@@ -1204,6 +1204,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Thu Apr 18 2024 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-14.el9_2.10
+- kvm-virtio-pci-fix-use-of-a-released-vector.patch [RHEL-32835]
+- Resolves: RHEL-32835
+  (qemu-kvm running Vyatta hits assert when doing KVM_SET_GSI_ROUTING [rhel-9.2.0.z])
+
 * Tue Apr 02 2024 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-14.el9_2.9
 - kvm-iotests-add-filter_qmp_generated_node_ids.patch [RHEL-30092]
 - kvm-iotests-port-141-to-Python-for-reliable-QMP-testing.patch [RHEL-30092]
