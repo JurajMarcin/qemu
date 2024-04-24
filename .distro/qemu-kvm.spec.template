@@ -1241,6 +1241,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Wed Apr 24 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.0.0-1
+- Rebase to QEMU 9.0.0 [RHEL-28073]
+- Resolves: RHEL-28073
+  (Rebase qemu-kvm to QEMU 9.0.0 for RHEL 9.5)
+
 * Tue Mar 26 2024 Miroslav Rezanina <mrezanin@redhat.com> - 8.2.0-11
 - kvm-coroutine-cap-per-thread-local-pool-size.patch [RHEL-28947]
 - kvm-coroutine-reserve-5-000-mappings.patch [RHEL-28947]
