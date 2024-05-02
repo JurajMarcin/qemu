@@ -734,9 +734,6 @@ static void pc_q35_machine_rhel940_options(MachineClass *m)
     pcmc->smbios_stream_product = "RHEL";
     pcmc->smbios_stream_version = "9.4.0";
 
-    /* From pc_q35_8_2_machine_options() - use SMBIOS 3.X by default */
-    pcmc->default_smbios_ep_type = SMBIOS_ENTRY_POINT_TYPE_64;
-
     compat_props_add(m->compat_props, hw_compat_rhel_9_5,
 		     hw_compat_rhel_9_5_len);
 }
