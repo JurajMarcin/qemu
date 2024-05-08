@@ -735,6 +735,7 @@ static void pc_q35_machine_rhel940_options(MachineClass *m)
     m->desc = "RHEL-9.4.0 PC (Q35 + ICH9, 2009)";
     pcmc->smbios_stream_product = "RHEL";
     pcmc->smbios_stream_version = "9.4.0";
+    pcmc->isa_bios_alias = false;
 
     compat_props_add(m->compat_props, pc_rhel_9_5_compat,
 		     pc_rhel_9_5_compat_len);
