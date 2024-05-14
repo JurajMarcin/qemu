@@ -1234,6 +1234,19 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Tue May 14 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.0.0-1
+- Rebase to QEMU 9.0.0 [RHEL-28852]
+- Resolves: RHEL-28852
+  (Rebase qemu-kvm to QEMU 9.0.0 for RHEL 10.0 beta)
+- Resolves: RHEL-23771
+  ([qemu-kvm] Disable passthrough of pmem device)
+- Resolves: RHEL-34024
+  (Remove RDMA migration support
+- Resolves: RHEL-30366
+  (Check/fix machine type compatibility for QEMU 9.0.0 [x86_64][rhel-10.0 Beta])
+- Resolves: RHEL-30367
+  (Check/fix machine type compatibility for QEMU 9.0.0 [aarch64][rhel-10.0 Beta])
+
 * Tue Jan 02 2024 Miroslav Rezanina <mrezanin@redhat.com> - 8.2.0-1
 - Rebase to QEMU 8.2.0 [RHEL-14111]
 - Fix machine type compatibility [RHEL-17067 RHEL-17068]
