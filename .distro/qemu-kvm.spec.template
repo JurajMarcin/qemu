@@ -1236,6 +1236,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon May 20 2024 Miroslav Rezanina <mrezanin@redhat.com> - 8.2.0-11.el9_4.2
+- kvm-kvm-error-out-of-kvm_irqchip_add_msi_route-in-case-o.patch [RHEL-32990]
+- Resolves: RHEL-32990
+  (qemu crash with kvm_irqchip_commit_routes: Assertion `ret == 0' failed if booting with many virtio disks and vcpus [rhel-9.4.z])
+
 * Thu Apr 18 2024 Miroslav Rezanina <mrezanin@redhat.com> - 8.2.0-11.el9_4.1
 - kvm-virtio-pci-fix-use-of-a-released-vector.patch [RHEL-32837]
 - Resolves: RHEL-32837
