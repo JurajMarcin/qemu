@@ -310,6 +310,8 @@ GlobalProperty hw_compat_rhel_9_5[] = {
     { TYPE_VIRTIO_IOMMU_PCI, "granule", "4k" },
   /* hw_compat_rhel_9_5 from hw_compat_8_2 */
     { TYPE_VIRTIO_IOMMU_PCI, "aw-bits", "64" },
+  /* hw_compat_rhel_9_5 from hw_compat_8_2 */
+    { "virtio-gpu-device", "x-scanout-vmstate-version", "1" },
 };
 const size_t hw_compat_rhel_9_5_len = G_N_ELEMENTS(hw_compat_rhel_9_5);
 
