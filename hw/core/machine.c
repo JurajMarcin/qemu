@@ -81,6 +81,8 @@ GlobalProperty hw_compat_rhel_9_4[] = {
      { "igb", "x-pcie-flr-init", "off" },
   /* hw_compat_rhel_9_4 jira RHEL-24045 */
      { "virtio-mem", "dynamic-memslots", "off" },
+  /* hw_compat_rhel_9_4 from hw_compat_8_1 */
+    { "virtio-gpu-device", "x-scanout-vmstate-version", "1" },
 };
 const size_t hw_compat_rhel_9_4_len = G_N_ELEMENTS(hw_compat_rhel_9_4);
 
