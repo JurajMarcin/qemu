@@ -1236,6 +1236,14 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Fri Jun 07 2024 Miroslav Rezanina <mrezanin@redhat.com> - 8.2.0-11.el9_4.3
+- kvm-nbd-server-do-not-poll-within-a-coroutine-context.patch [RHEL-33754]
+- kvm-nbd-server-Mark-negotiation-functions-as-coroutine_f.patch [RHEL-33754]
+- kvm-qio-Inherit-follow_coroutine_ctx-across-TLS.patch [RHEL-33754]
+- kvm-iotests-test-NBD-TLS-iothread.patch [RHEL-33754]
+- Resolves: RHEL-33754
+  (Qemu hang when quit dst vm after storage migration(nbd+tls) [rhel-9.4.z])
+
 * Mon May 20 2024 Miroslav Rezanina <mrezanin@redhat.com> - 8.2.0-11.el9_4.2
 - kvm-kvm-error-out-of-kvm_irqchip_add_msi_route-in-case-o.patch [RHEL-32990]
 - Resolves: RHEL-32990
