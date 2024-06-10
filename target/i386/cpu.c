@@ -2597,6 +2597,7 @@ static const X86CPUDefinition builtin_x86_defs[] = {
 #endif // Removal of deprecated CPU models in RHEL-10
     {
         .name = "Nehalem",
+        .deprecation_note = RHEL_CPU_DEPRECATION,
         .level = 11,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
@@ -2674,6 +2675,7 @@ static const X86CPUDefinition builtin_x86_defs[] = {
     },
     {
         .name = "Westmere",
+        .deprecation_note = RHEL_CPU_DEPRECATION,
         .level = 11,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
@@ -2755,6 +2757,7 @@ static const X86CPUDefinition builtin_x86_defs[] = {
     },
     {
         .name = "SandyBridge",
+        .deprecation_note = RHEL_CPU_DEPRECATION,
         .level = 0xd,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
@@ -2841,6 +2844,7 @@ static const X86CPUDefinition builtin_x86_defs[] = {
     },
     {
         .name = "IvyBridge",
+        .deprecation_note = RHEL_CPU_DEPRECATION,
         .level = 0xd,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
@@ -4121,6 +4125,7 @@ static const X86CPUDefinition builtin_x86_defs[] = {
     },
     {
         .name = "Denverton",
+        .deprecation_note = RHEL_CPU_DEPRECATION,
         .level = 21,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
@@ -4231,6 +4236,7 @@ static const X86CPUDefinition builtin_x86_defs[] = {
     },
     {
         .name = "Snowridge",
+        .deprecation_note = RHEL_CPU_DEPRECATION,
         .level = 27,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
@@ -4486,6 +4492,7 @@ static const X86CPUDefinition builtin_x86_defs[] = {
 #endif
     {
         .name = "Opteron_G4",
+        .deprecation_note = RHEL_CPU_DEPRECATION,
         .level = 0xd,
         .vendor = CPUID_VENDOR_AMD,
         .family = 21,
@@ -4518,6 +4525,7 @@ static const X86CPUDefinition builtin_x86_defs[] = {
     },
     {
         .name = "Opteron_G5",
+        .deprecation_note = RHEL_CPU_DEPRECATION,
         .level = 0xd,
         .vendor = CPUID_VENDOR_AMD,
         .family = 21,
