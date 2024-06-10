@@ -1234,6 +1234,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Jun 10 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.0.0-2
+- kvm-Enable-vhost-user-snd-pci-device.patch [RHEL-37563]
+- Resolves: RHEL-37563
+  (Enable 'vhost-user-snd-pci' in qemu-kvm for RHIVOS)
+
 * Tue May 14 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.0.0-1
 - Rebase to QEMU 9.0.0 [RHEL-28852]
 - Resolves: RHEL-28852
