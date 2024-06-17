@@ -1241,6 +1241,16 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Jun 17 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.0.0-4
+- kvm-qio-Inherit-follow_coroutine_ctx-across-TLS.patch [RHEL-33440]
+- kvm-iotests-test-NBD-TLS-iothread.patch [RHEL-33440]
+- kvm-virtio-gpu-fix-v2-migration.patch [RHEL-34621]
+- kvm-rhel-9.4.0-machine-type-compat-for-virtio-gpu-migrat.patch [RHEL-34621]
+- Resolves: RHEL-33440
+  (Qemu hang when quit dst vm after storage migration(nbd+tls))
+- Resolves: RHEL-34621
+  ([RHEL9.5.0][stable_guest_abi]Failed to migrate VM with (qemu) qemu-kvm: Missing section footer for 0000:00:01.0/virtio-gpu qemu-kvm: load of migration failed: Invalid argument)
+
 * Tue May 21 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.0.0-3
 - kvm-nbd-server-do-not-poll-within-a-coroutine-context.patch [RHEL-33440]
 - kvm-nbd-server-Mark-negotiation-functions-as-coroutine_f.patch [RHEL-33440]
