@@ -938,7 +938,7 @@ int coroutine_fn colo_incoming_co(void)
         return -EINVAL;
     }
 
-    qemu_thread_create(&th, "COLO incoming", colo_process_incoming_thread,
+    qemu_thread_create(&th, "mig/dst/colo", colo_process_incoming_thread,
                        mis, QEMU_THREAD_JOINABLE);
 
     mis->colo_incoming_co = qemu_coroutine_self();
