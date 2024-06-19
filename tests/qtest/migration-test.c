@@ -1194,9 +1194,9 @@ static void wait_for_postcopy_status(QTestState *one, const char *status)
                                                   "completed", NULL });
 }
 
-#ifndef _WIN32
 static void postcopy_recover_fail(QTestState *from, QTestState *to)
 {
+#ifndef _WIN32
     int ret, pair1[2], pair2[2];
     char c;
 
@@ -1258,8 +1258,8 @@ static void postcopy_recover_fail(QTestState *from, QTestState *to)
     close(pair1[1]);
     close(pair2[0]);
     close(pair2[1]);
+#endif
 }
-#endif /* _WIN32 */
 
 static void test_postcopy_recovery_common(MigrateCommon *args)
 {
@@ -1299,7 +1299,6 @@ static void test_postcopy_recovery_common(MigrateCommon *args)
     wait_for_postcopy_status(to, "postcopy-paused");
     wait_for_postcopy_status(from, "postcopy-paused");
 
-#ifndef _WIN32
     if (args->postcopy_recovery_test_fail) {
         /*
          * Test when a wrong socket specified for recover, and then the
@@ -1308,7 +1307,6 @@ static void test_postcopy_recovery_common(MigrateCommon *args)
         postcopy_recover_fail(from, to);
         /* continue with a good recovery */
     }
-#endif /* _WIN32 */
 
     /*
      * Create a new socket to emulate a new channel that is different
@@ -1337,7 +1335,6 @@ static void test_postcopy_recovery(void)
     test_postcopy_recovery_common(&args);
 }
 
-#ifndef _WIN32
 static void test_postcopy_recovery_double_fail(void)
 {
     MigrateCommon args = {
@@ -1346,7 +1343,6 @@ static void test_postcopy_recovery_double_fail(void)
 
     test_postcopy_recovery_common(&args);
 }
-#endif /* _WIN32 */
 
 #ifdef CONFIG_GNUTLS
 static void test_postcopy_recovery_tls_psk(void)
@@ -2578,11 +2574,8 @@ int main(int argc, char **argv)
         qtest_add_func("/migration/postcopy/preempt/plain", test_postcopy_preempt);
         qtest_add_func("/migration/postcopy/preempt/recovery/plain",
                        test_postcopy_preempt_recovery);
-#ifndef _WIN32
         qtest_add_func("/migration/postcopy/recovery/double-failures",
                        test_postcopy_recovery_double_fail);
-#endif /* _WIN32 */
-
     }
 
     qtest_add_func("/migration/bad_dest", test_baddest);
