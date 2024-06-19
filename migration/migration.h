@@ -142,7 +142,7 @@ struct MigrationIncomingState {
 
     QEMUBH *bh;
 
-    int state;
+    MigrationStatus state;
 
     bool have_colo_incoming_thread;
     QemuThread colo_incoming_thread;
@@ -259,7 +259,7 @@ struct MigrationState {
     /* params from 'migrate-set-parameters' */
     MigrationParameters parameters;
 
-    int state;
+    MigrationStatus state;
 
     /* State related to return path */
     struct {
@@ -379,7 +379,8 @@ struct MigrationState {
     char *hostname;
 };
 
-void migrate_set_state(int *state, int old_state, int new_state);
+void migrate_set_state(MigrationStatus *state, MigrationStatus old_state,
+                       MigrationStatus new_state);
 
 void migration_fd_process_incoming(QEMUFile *f, Error **errp);
 void migration_ioc_process_incoming(QIOChannel *ioc, Error **errp);
@@ -402,7 +403,7 @@ void migrate_init(MigrationState *s);
 bool migration_is_blocked(Error **errp);
 /* True if outgoing migration has entered postcopy phase */
 bool migration_in_postcopy(void);
-bool migration_postcopy_is_alive(int state);
+bool migration_postcopy_is_alive(MigrationStatus state);
 MigrationState *migrate_get_current(void);
 
 bool migrate_postcopy(void);
