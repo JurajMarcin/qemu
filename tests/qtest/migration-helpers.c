@@ -98,7 +98,7 @@ void migrate_set_capability(QTestState *who, const char *capability,
 void migrate_incoming_qmp(QTestState *to, const char *uri, const char *fmt, ...)
 {
     va_list ap;
-    QDict *args, *rsp, *data;
+    QDict *args, *rsp;
 
     va_start(ap, fmt);
     args = qdict_from_vjsonf_nofail(fmt, ap);
@@ -121,14 +121,7 @@ void migrate_incoming_qmp(QTestState *to, const char *uri, const char *fmt, ...)
     g_assert(qdict_haskey(rsp, "return"));
     qobject_unref(rsp);
 
-    rsp = qtest_qmp_eventwait_ref(to, "MIGRATION");
-    g_assert(qdict_haskey(rsp, "data"));
-
-    data = qdict_get_qdict(rsp, "data");
-    g_assert(qdict_haskey(data, "status"));
-    g_assert_cmpstr(qdict_get_str(data, "status"), ==, "setup");
-
-    qobject_unref(rsp);
+    migration_event_wait(to, "setup");
 }
 
 /*
@@ -323,4 +316,24 @@ void migration_test_add(const char *path, void (*fn)(void))
 
     qtest_add_data_func_full(path, test, migration_test_wrapper,
                              migration_test_destroy);
+}
+
+/*
+ * Wait for a "MIGRATION" event.  This is what Libvirt uses to track
+ * migration status changes.
+ */
+void migration_event_wait(QTestState *s, const char *target)
+{
+    QDict *response, *data;
+    const char *status;
+    bool found;
+
+    do {
+        response = qtest_qmp_eventwait_ref(s, "MIGRATION");
+        data = qdict_get_qdict(response, "data");
+        g_assert(data);
+        status = qdict_get_str(data, "status");
+        found = (strcmp(status, target) == 0);
+        qobject_unref(response);
+    } while (!found);
 }
