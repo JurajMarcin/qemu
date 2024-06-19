@@ -47,4 +47,6 @@ void wait_for_migration_complete(QTestState *who);
 
 void wait_for_migration_fail(QTestState *from, bool allow_active);
 
+void migration_event_wait(QTestState *s, const char *target);
+
 #endif /* MIGRATION_HELPERS_H */
