@@ -1234,6 +1234,34 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Jul 01 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.0.0-3
+- kvm-qtest-x86-numa-test-do-not-use-the-obsolete-pentium-.patch [RHEL-28972]
+- kvm-tests-qtest-libqtest-add-qtest_has_cpu_model-api.patch [RHEL-28972]
+- kvm-tests-qtest-x86-check-for-availability-of-older-cpu-.patch [RHEL-28972]
+- kvm-target-cpu-models-x86-Remove-the-existing-deprecated.patch [RHEL-28972]
+- kvm-x86-cpu-deprecate-cpu-models-that-do-not-support-x86.patch [RHEL-28971]
+- kvm-virtio-gpu-fix-v2-migration.patch [RHEL-36329]
+- kvm-rhel-9.4.0-machine-type-compat-for-virtio-gpu-migrat.patch [RHEL-36329]
+- kvm-s390x-remove-deprecated-rhel-machine-types.patch [RHEL-39898]
+- kvm-s390x-select-correct-components-for-no-board-build.patch [RHEL-39898]
+- kvm-target-s390x-Add-a-CONFIG-switch-to-disable-legacy-C.patch [RHEL-39898]
+- kvm-target-s390x-cpu_models-Disable-everything-up-to-the.patch [RHEL-39898]
+- kvm-target-s390x-Revert-the-old-s390x-CPU-model-disablem.patch [RHEL-39898]
+- kvm-Revert-monitor-use-aio_co_reschedule_self.patch [RHEL-43409 RHEL-43410]
+- kvm-aio-warn-about-iohandler_ctx-special-casing.patch [RHEL-43409 RHEL-43410]
+- Resolves: RHEL-28972
+  (x86: Remove the existing deprecated CPU models on RHEL10)
+- Resolves: RHEL-28971
+  (Consider deprecating CPU models like "Nehalem" / "IvyBridge" on RHEL 10)
+- Resolves: RHEL-36329
+  ([RHEL10.0.beta][stable_guest_abi]Failed to migrate VM with (qemu) qemu-kvm: Missing section footer for 0000:00:01.0/virtio-gpu qemu-kvm: load of migration failed: Invalid argument)
+- Resolves: RHEL-39898
+  (s390: Remove the legacy CPU models on RHEL10)
+- Resolves: RHEL-43409
+  (aio=io_uring: Assertion failure `luringcb->co->ctx == s->aio_context' with block_resize)
+- Resolves: RHEL-43410
+  (aio=native: Assertion failure `laiocb->co->ctx == laiocb->ctx->aio_context' with block_resize)
+
 * Mon Jun 10 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.0.0-2
 - kvm-Enable-vhost-user-snd-pci-device.patch [RHEL-37563]
 - Resolves: RHEL-37563
