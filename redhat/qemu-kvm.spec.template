@@ -1294,6 +1294,10 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Wed Jul 03 2024 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-11.el8_6.14
+- Fixing CVE-2024-4467
+- Resolves: RHEL-35614
+
 * Thu Mar 14 2024 Jon Maloy <jmaloy@redhat.com> - 6.2.0-11.el8_6.13
 - kvm-i386-reset-KVM-nested-state-upon-CPU-reset.patch [RHEL-24615]
 - kvm-i386-do-kvm_put_msr_feature_control-first-thing-when.patch [RHEL-24615]
