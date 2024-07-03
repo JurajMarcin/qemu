@@ -1294,6 +1294,10 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Wed Jul 03 2024 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-33.el8_8.5
+- Fixing CVE-2024-4467
+- Resolves: RHEL-35615
+
 * Tue Jan 16 2024 Jon Maloy <jmaloy@redhat.com> - 6.2.0-33.el8_8.4
 - kvm-acpi-fix-acpi_index-migration.patch [RHEL-21378]
 - kvm-RHEL-Enable-x-not-migrate-acpi-index-for-all-pre-RHE.patch [RHEL-21378]
