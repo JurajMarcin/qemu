@@ -52,6 +52,7 @@
 #include "qapi/error.h"
 #include "qemu/error-report.h"
 #include "system/xen.h"
+#include "migration/migration.h"
 #ifdef CONFIG_XEN
 #include <xen/hvm/hvm_info_table.h>
 #include "hw/xen/xen_pt.h"
@@ -446,11 +447,11 @@ static void pc_i440fx_init(MachineState *machine)
     pc_init1(machine, TYPE_I440FX_PCI_DEVICE);
 }
 
-#define DEFINE_I440FX_MACHINE(major, minor) \
-    DEFINE_PC_VER_MACHINE(pc_i440fx, "pc-i440fx", pc_i440fx_init, false, NULL, major, minor);
+#define DEFINE_I440FX_MACHINE(major, minor, micro) \
+    DEFINE_PC_VER_MACHINE(pc_i440fx, "pc-i440fx", pc_i440fx_init, false, NULL, major, minor, micro);
 
-#define DEFINE_I440FX_MACHINE_AS_LATEST(major, minor) \
-    DEFINE_PC_VER_MACHINE(pc_i440fx, "pc-i440fx", pc_i440fx_init, true, "pc", major, minor);
+#define DEFINE_I440FX_MACHINE_AS_LATEST(major, minor, micro) \
+    DEFINE_PC_VER_MACHINE(pc_i440fx, "pc-i440fx", pc_i440fx_init, true, "pc", major, minor, micro);
 
 #if 0 /* Disabled for Red Hat Enterprise Linux */
 static void pc_i440fx_machine_options(MachineClass *m)
@@ -845,3 +846,43 @@ static void xenfv_machine_3_1_options(MachineClass *m)
 DEFINE_PC_MACHINE(xenfv, "xenfv-3.1", pc_xen_hvm_init,
                   xenfv_machine_3_1_options);
 #endif
+
+/* Red Hat Enterprise Linux machine types */
+
+static void pc_machine_rhel10_options(MachineClass *m)
+{
+    PCMachineClass *pcmc = PC_MACHINE_CLASS(m);
+    ObjectClass *oc = OBJECT_CLASS(m);
+    pcmc->default_south_bridge = TYPE_PIIX3_DEVICE;
+    pcmc->pci_root_uid = 0;
+    pcmc->default_cpu_version = 1;
+
+    m->family = "pc_piix_Y";
+    m->default_machine_opts = "firmware=bios-256k.bin";
+    m->default_display = "std";
+    m->default_nic = "e1000";
+    m->no_parallel = 1;
+    m->no_floppy = 1;
+    machine_class_allow_dynamic_sysbus_dev(m, TYPE_RAMFB_DEVICE);
+
+    object_class_property_add_enum(oc, "x-south-bridge", "PCSouthBridgeOption",
+                                   &PCSouthBridgeOption_lookup,
+                                   pc_get_south_bridge,
+                                   pc_set_south_bridge);
+    object_class_property_set_description(oc, "x-south-bridge",
+                                     "Use a different south bridge than PIIX3");
+}
+
+static void pc_i440fx_rhel_machine_10_0_0_options(MachineClass *m)
+{
+    pc_machine_rhel10_options(m);
+
+    m->desc = "RHEL 10.0.0 PC (i440FX + PIIX, 1996)";
+    m->deprecation_reason = rhel_old_machine_deprecation;
+
+    compat_props_add(m->compat_props, hw_compat_rhel_10_1,
+                     hw_compat_rhel_10_1_len);
+    compat_props_add(m->compat_props, pc_rhel_10_1_compat,
+                     pc_rhel_10_1_compat_len);
+}
+DEFINE_I440FX_MACHINE_AS_LATEST(10, 0, 0);
