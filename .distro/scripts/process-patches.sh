@@ -26,6 +26,8 @@ RCVERSION=$1
 shift
 CLANG=$1
 shift
+RHEL_VERSION=$1
+shift
 
 SOURCES=rpmbuild/SOURCES
 SRPMDIR=rpmbuild/SRPM
@@ -89,6 +91,7 @@ sed -i -e "/%%PATCHLIST%%/r psection
            s/%%RCVERSION%%/${RCVERSION}/
            s/%%DATE%%/${DATE}/
            s/%%COMMIT%%/${COMMIT}/
+           s/%%RHEL_VERSION%%/${RHEL_VERSION}/
            s/%%LOCALVERSION%%/${LOCALVERSION}/" ${SPEC}
 
 # Final cleaning

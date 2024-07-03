@@ -53,7 +53,7 @@ rh-prep: rh-clean-sources
 		echo "Copying Sources: $(SOURCES_FILELIST)"; \
 		cp $(SOURCES_FILELIST) $(RPMBUILD)/SOURCES; \
 	fi
-	$(DS)$(SCRIPTS)/process-patches.sh "$(SCRIPTS)" "$(NAME)" "$(VERSION)" "$(RELEASE)" "$(DATE)" "$(COMMIT)" "$(TARFILE)" "$(TARURL)" "$(SPECFILE)" "$(MARKER)" "$(LOCALVERSION)" "$(ZRELEASE)" "$(RC)" "$(CLANG)"
+	$(DS)$(SCRIPTS)/process-patches.sh "$(SCRIPTS)" "$(NAME)" "$(VERSION)" "$(RELEASE)" "$(DATE)" "$(COMMIT)" "$(TARFILE)" "$(TARURL)" "$(SPECFILE)" "$(MARKER)" "$(LOCALVERSION)" "$(ZRELEASE)" "$(RC)" "$(CLANG)" "$(RHEL_VERSION)"
 	$(DS)if [ -n "$(TARSHA512)" -a -e $(REDHAT)/$(TARFILE) -a "`$(SCRIPTS)/tarball_checksum.sh $(TARFILE)`" != "$(TARSHA512)" ]; then \
         echo "$(TARFILE) sha512sum does not match (expected: $(TARSHA512), got `$(SCRIPTS)/tarball_checksum.sh $(TARFILE)`"; \
 		exit 1; \

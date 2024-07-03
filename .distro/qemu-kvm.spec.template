@@ -667,6 +667,7 @@ run_configure() {
 %ifarch aarch64 s390x x86_64
         --with-devices-%{kvm_target}=%{kvm_target}-rh-devices \
 %endif
+	--rhel-version=%%RHEL_VERSION%% \
         "$@"
 
     echo "config-host.mak contents:"

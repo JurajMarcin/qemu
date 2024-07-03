@@ -10,6 +10,7 @@ WEEKLY_DATE:=
 RC:=
 CLANG:=1
 BUILD_TARGET=rhel-10.0-candidate
+RHEL_VERSION=10
 
 ifneq ($(RC),)
   TARFILE:=qemu-$(VERSION)-$(RC).tar.xz
