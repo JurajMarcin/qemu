@@ -1204,6 +1204,10 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Wed Jun 19 2024 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-14.el9_2.11
+- Fixing CVE-2024-4467
+- Resolves: RHEL-35609
+
 * Thu Apr 18 2024 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-14.el9_2.10
 - kvm-virtio-pci-fix-use-of-a-released-vector.patch [RHEL-32835]
 - Resolves: RHEL-32835
