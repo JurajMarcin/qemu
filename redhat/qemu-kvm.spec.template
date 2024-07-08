@@ -1038,6 +1038,14 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 
 
 %changelog
+* Mon Jul 08 2024 Miroslav Rezanina <mrezanin@redhat.com> - 4.2.0-29.el8_2.13
+- kvm-qcow2-Don-t-open-data_file-with-BDRV_O_NO_IO.patch [RHEL-45932]
+- kvm-iotests-270-Don-t-store-data-file-with-json-prefix-i.patch [RHEL-45932]
+- kvm-block-introduce-bdrv_open_file_child-helper.patch [RHEL-45932]
+- kvm-block-Parse-filenames-only-when-explicitly-requested.patch [RHEL-45932]
+- Resolves: RHEL-45932
+  (CVE-2024-4467 virt:av/qemu-kvm: QEMU: 'qemu-img info' leads to host file read/write [rhel-av-8.2.1.z])
+
 * Mon May 02 2022 Jon Maloy <jmaloy@redhat.com> - 4.2.0-30.el8_2.11
 - kvm-vhost-user-save-features-of-multiqueues-if-chardev-i.patch [bz#2077952]
 - Resolves: bz#2077952
