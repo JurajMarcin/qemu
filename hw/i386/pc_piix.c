@@ -452,6 +452,7 @@ static void pc_i440fx_init(MachineState *machine)
 #define DEFINE_I440FX_MACHINE_AS_LATEST(major, minor) \
     DEFINE_PC_VER_MACHINE(pc_i440fx, "pc-i440fx", pc_i440fx_init, true, "pc", major, minor);
 
+#if 0 /* Disabled for Red Hat Enterprise Linux */
 static void pc_i440fx_machine_options(MachineClass *m)
 {
     PCMachineClass *pcmc = PC_MACHINE_CLASS(m);
@@ -794,6 +795,7 @@ static void pc_i440fx_machine_2_4_options(MachineClass *m)
 }
 
 DEFINE_I440FX_MACHINE(2, 4);
+#endif /* Disabled for Red Hat Enterprise Linux */
 
 #ifdef CONFIG_ISAPC
 static void isapc_machine_options(MachineClass *m)
