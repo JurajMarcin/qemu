@@ -1236,6 +1236,16 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Jul 15 2024 Miroslav Rezanina <mrezanin@redhat.com> - 8.2.0-11.el9_4.5
+- kvm-virtio-gpu-fix-scanout-migration-post-load.patch [RHEL-36181]
+- kvm-virtio-gpu-fix-v2-migration.patch [RHEL-36181]
+- kvm-rhel-9.4.0-machine-type-compat-for-virtio-gpu-migrat.patch [RHEL-36181]
+- kvm-linux-aio-add-IO_CMD_FDSYNC-command-support.patch [RHEL-43261]
+- Resolves: RHEL-36181
+  ([RHEL9.5.0][stable_guest_abi]Failed to migrate VM with (qemu) qemu-kvm: Missing section footer for 0000:00:01.0/virtio-gpu qemu-kvm: load of migration failed: Invalid argument [rhel-9.4.0.z])
+- Resolves: RHEL-43261
+  (qemu-kvm: linux-aio: add support for IO_CMD_FDSYNC command [rhel-9.4.z])
+
 * Wed Jun 19 2024 Miroslav Rezanina <mrezanin@redhat.com> - 8.2.0-11.el9_4.4
 - Fixing CVE-2024-4467
 - Resolves: RHEL-35610
