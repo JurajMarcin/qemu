@@ -178,3 +178,9 @@ void qemu_devices_reset(ShutdownCause reason)
     /* Reset the simulation */
     resettable_reset(OBJECT(get_root_reset_container()), type);
 }
+
+void qemu_devices_reset_type(ResetType type)
+{
+    /* Reset the simulation */
+    resettable_reset(OBJECT(get_root_reset_container()), type);
+}

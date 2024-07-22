@@ -27,6 +27,7 @@
 #ifndef QEMU_SYSEMU_RESET_H
 #define QEMU_SYSEMU_RESET_H
 
+#include "hw/resettable.h"
 #include "qapi/qapi-events-run-state.h"
 
 typedef void QEMUResetHandler(void *opaque);
@@ -122,5 +123,20 @@ void qemu_unregister_reset(QEMUResetHandler *func, void *opaque);
  * model, don't use this function. Use qemu_system_reset_request().
  */
 void qemu_devices_reset(ShutdownCause reason);
+
+/**
+ * qemu_devices_reset_type: Perform a complete system reset with ResetType
+ * @type: type of the reset
+ *
+ * This function performs the low-level work needed to do a complete reset
+ * of the system (calling all the callbacks registered with
+ * qemu_register_reset() and resetting all the Resettable objects registered
+ * with qemu_register_resettable()). It should only be called by the code in a
+ * MachineClass reset method.
+ *
+ * If you want to trigger a system reset from, for instance, a device
+ * model, don't use this function. Use qemu_system_reset_request().
+ */
+void qemu_devices_reset_type(ResetType type);
 
 #endif
