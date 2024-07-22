@@ -44,6 +44,14 @@ The Resettable interface handles reset types with an enum ``ResetType``:
   value on each cold reset, such as RNG seed information, and which they
   must not reinitialize on a snapshot-load reset.
 
+``RESET_TYPE_WAKEUP``
+  This type is called for a reset when the system is being woken-up from a
+  suspended state using the ``qemu_system_wakeup()`` function. If the machine
+  needs to reset its devices in its ``MachineClass::wakeup()`` method, this
+  reset type should be used, so devices can differentiate system wake-up from
+  other reset types. For example, a virtio-mem device must not unplug its
+  memory during wake-up as that would clear the guest RAM.
+
 Devices which implement reset methods must treat any unknown ``ResetType``
 as equivalent to ``RESET_TYPE_COLD``; this will reduce the amount of
 existing code we need to change if we add more types in future.
