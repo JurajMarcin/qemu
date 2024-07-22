@@ -44,6 +44,13 @@ The Resettable interface handles reset types with an enum ``ResetType``:
   value on each cold reset, such as RNG seed information, and which they
   must not reinitialize on a snapshot-load reset.
 
+``RESET_TYPE_WAKEUP``
+  This type is used when the machine is woken up from a suspended state (deep
+  sleep, suspend-to-ram). Devices that must not be reset to their initial state
+  after wake-up (for example virtio-mem) can use this state to differentiate
+  cold start from wake-up can use this state to differentiate cold start from
+  wake-up.
+
 Devices which implement reset methods must treat any unknown ``ResetType``
 as equivalent to ``RESET_TYPE_COLD``; this will reduce the amount of
 existing code we need to change if we add more types in future.
