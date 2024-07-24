@@ -13,6 +13,7 @@
 #ifndef HW_VIRTIO_MEM_H
 #define HW_VIRTIO_MEM_H
 
+#include "hw/resettable.h"
 #include "standard-headers/linux/virtio_mem.h"
 #include "hw/virtio/virtio.h"
 #include "qapi/qapi-types-misc.h"
@@ -115,6 +116,9 @@ struct VirtIOMEM {
 
     /* listeners to notify on plug/unplug activity. */
     QLIST_HEAD(, RamDiscardListener) rdl_list;
+
+    /* State of the resettable container */
+    ResettableState reset_state;
 };
 
 struct VirtIOMEMClass {
