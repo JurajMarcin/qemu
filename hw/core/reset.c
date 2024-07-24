@@ -25,8 +25,8 @@
 
 #include "qemu/osdep.h"
 #include "sysemu/reset.h"
-#include "hw/resettable.h"
 #include "hw/core/resetcontainer.h"
+#include "hw/resettable.h"
 
 /*
  * Return a pointer to the singleton container that holds all the Resettable
@@ -170,11 +170,8 @@ void qemu_unregister_resettable(Object *obj)
     resettable_container_remove(get_root_reset_container(), obj);
 }
 
-void qemu_devices_reset(ShutdownCause reason)
+void qemu_devices_reset(ResetType type)
 {
-    ResetType type = (reason == SHUTDOWN_CAUSE_SNAPSHOT_LOAD) ?
-        RESET_TYPE_SNAPSHOT_LOAD : RESET_TYPE_COLD;
-
     /* Reset the simulation */
     resettable_reset(OBJECT(get_root_reset_container()), type);
 }
