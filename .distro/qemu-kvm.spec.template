@@ -1234,6 +1234,14 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Wed Jul 24 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.0.0-5
+- kvm-nbd-server-do-not-poll-within-a-coroutine-context.patch [RHEL-40959]
+- kvm-nbd-server-Mark-negotiation-functions-as-coroutine_f.patch [RHEL-40959]
+- kvm-qio-Inherit-follow_coroutine_ctx-across-TLS.patch [RHEL-40959]
+- kvm-iotests-test-NBD-TLS-iothread.patch [RHEL-40959]
+- Resolves: RHEL-40959
+  (Qemu hang when quit dst vm after storage migration(nbd+tls))
+
 * Thu Jul 04 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.0.0-4
 - kvm-qcow2-Don-t-open-data_file-with-BDRV_O_NO_IO.patch [RHEL-46239]
 - kvm-iotests-244-Don-t-store-data-file-with-protocol-in-i.patch [RHEL-46239]
