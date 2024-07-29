@@ -1294,6 +1294,16 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Mon Jul 29 2024 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-51
+- kvm-virtio-gpu-free-BHs-by-implementing-unrealize.patch [RHEL-32276]
+- kvm-virtio-gpu-reset-gfx-resources-in-main-thread.patch [RHEL-32276]
+- kvm-hw-virtio-Introduce-virtio_bh_new_guarded-helper.patch [RHEL-32276]
+- kvm-hw-display-virtio-gpu-Protect-from-DMA-re-entrancy-b.patch [RHEL-32276]
+- kvm-hw-char-virtio-serial-bus-Protect-from-DMA-re-entran.patch [RHEL-32276]
+- kvm-hw-virtio-virtio-crypto-Protect-from-DMA-re-entrancy.patch [RHEL-32276]
+- Resolves: RHEL-32276
+  (CVE-2024-3446 virt:rhel/qemu-kvm: QEMU: virtio: DMA reentrancy issue leads to double free vulnerability [rhel-8])
+
 * Thu Jul 04 2024 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-50
 - kvm-qcow2-Don-t-open-data_file-with-BDRV_O_NO_IO.patch [RHEL-35616]
 - kvm-iotests-244-Don-t-store-data-file-with-protocol-in-i.patch [RHEL-35616]
