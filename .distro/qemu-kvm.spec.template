@@ -1234,6 +1234,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Tue Jul 30 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.0.0-6
+- kvm-Enable-vhost-user-scmi-devices.patch [RHEL-50165]
+- Resolves: RHEL-50165
+  (Enable 'vhost-user-scmi-pci' and 'vhost-user-scmi' in qemu-kvm for RHIVOS)
+
 * Wed Jul 24 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.0.0-5
 - kvm-nbd-server-do-not-poll-within-a-coroutine-context.patch [RHEL-40959]
 - kvm-nbd-server-Mark-negotiation-functions-as-coroutine_f.patch [RHEL-40959]
