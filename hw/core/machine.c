@@ -64,6 +64,17 @@ const size_t hw_compat_7_2_len = G_N_ELEMENTS(hw_compat_7_2);
 const char *rhel_old_machine_deprecation =
     "machine types for previous major releases are deprecated";
 
+/*
+ * rhel_9_4_extra is used for <= 9.4 machines.
+ *
+ * (for compatibility and historical reasons, rhel_9_4 is used for <= 9.2 too)
+ */
+GlobalProperty hw_compat_rhel_9_4_extra[] = {
+    /* hw_compat_rhel_9_4_extra from hw_compat_8_2 */
+    { "virtio-gpu-device", "x-scanout-vmstate-version", "1" },
+};
+const size_t hw_compat_rhel_9_4_extra_len = G_N_ELEMENTS(hw_compat_rhel_9_4_extra);
+
 GlobalProperty hw_compat_rhel_9_4[] = {
   /* hw_compat_rhel_9_4 from hw_compat_8_0 */
     { TYPE_VIRTIO_NET, "host_uso", "off"},
@@ -81,8 +92,6 @@ GlobalProperty hw_compat_rhel_9_4[] = {
      { "igb", "x-pcie-flr-init", "off" },
   /* hw_compat_rhel_9_4 jira RHEL-24045 */
      { "virtio-mem", "dynamic-memslots", "off" },
-  /* hw_compat_rhel_9_4 from hw_compat_8_1 */
-    { "virtio-gpu-device", "x-scanout-vmstate-version", "1" },
 };
 const size_t hw_compat_rhel_9_4_len = G_N_ELEMENTS(hw_compat_rhel_9_4);
 

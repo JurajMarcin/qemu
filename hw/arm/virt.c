@@ -3670,6 +3670,7 @@ type_init(rhel_machine_init);
 
 static void rhel940_virt_options(MachineClass *mc)
 {
+    compat_props_add(mc->compat_props, hw_compat_rhel_9_4_extra, hw_compat_rhel_9_4_extra_len);
 }
 DEFINE_RHEL_MACHINE_AS_LATEST(9, 4, 0)
 
