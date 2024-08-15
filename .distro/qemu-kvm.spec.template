@@ -1234,6 +1234,17 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Thu Aug 15 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.0.0-7
+- kvm-linux-aio-add-IO_CMD_FDSYNC-command-support.patch [RHEL-51901]
+- kvm-nbd-server-Plumb-in-new-args-to-nbd_client_add.patch [RHEL-52599]
+- kvm-nbd-server-CVE-2024-7409-Cap-default-max-connections.patch [RHEL-52599]
+- kvm-nbd-server-CVE-2024-7409-Drop-non-negotiating-client.patch [RHEL-52599]
+- kvm-nbd-server-CVE-2024-7409-Close-stray-clients-at-serv.patch [RHEL-52599]
+- Resolves: RHEL-51901
+  (qemu-kvm: linux-aio: add support for IO_CMD_FDSYNC command[RHEL-10])
+- Resolves: RHEL-52599
+  (CVE-2024-7409 qemu-kvm: Denial of Service via Improper Synchronization in QEMU NBD Server During Socket Closure [rhel-10.0])
+
 * Tue Jul 30 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.0.0-6
 - kvm-Enable-vhost-user-scmi-devices.patch [RHEL-50165]
 - Resolves: RHEL-50165
