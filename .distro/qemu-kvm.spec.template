@@ -1236,6 +1236,17 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Thu Aug 15 2024 Miroslav Rezanina <mrezanin@redhat.com> - 8.2.0-11.el9_4.6
+- kvm-Fix-scanout-version-with-pc-q35-rhel9.4.0.patch [RHEL-53565]
+- kvm-nbd-server-Plumb-in-new-args-to-nbd_client_add.patch [RHEL-52616]
+- kvm-nbd-server-CVE-2024-7409-Cap-default-max-connections.patch [RHEL-52616]
+- kvm-nbd-server-CVE-2024-7409-Drop-non-negotiating-client.patch [RHEL-52616]
+- kvm-nbd-server-CVE-2024-7409-Close-stray-clients-at-serv.patch [RHEL-52616]
+- Resolves: RHEL-53565
+  ([RHEL9.4_to_RHEL9.5]When the VM is with only 9.4.0 (q35) machine type, still hit error of virtio-gpu issue [rhel-9.4.z])
+- Resolves: RHEL-52616
+  (CVE-2024-7409 qemu-kvm: Denial of Service via Improper Synchronization in QEMU NBD Server During Socket Closure [rhel-9.4.z])
+
 * Mon Jul 15 2024 Miroslav Rezanina <mrezanin@redhat.com> - 8.2.0-11.el9_4.5
 - kvm-virtio-gpu-fix-scanout-migration-post-load.patch [RHEL-36181]
 - kvm-virtio-gpu-fix-v2-migration.patch [RHEL-36181]
