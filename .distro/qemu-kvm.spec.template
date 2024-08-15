@@ -1204,6 +1204,14 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Thu Aug 15 2024 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-14.el9_2.12
+- kvm-nbd-server-Plumb-in-new-args-to-nbd_client_add.patch [RHEL-52619]
+- kvm-nbd-server-CVE-2024-7409-Cap-default-max-connections.patch [RHEL-52619]
+- kvm-nbd-server-CVE-2024-7409-Drop-non-negotiating-client.patch [RHEL-52619]
+- kvm-nbd-server-CVE-2024-7409-Close-stray-clients-at-serv.patch [RHEL-52619]
+- Resolves: RHEL-52619
+  (CVE-2024-7409 qemu-kvm: Denial of Service via Improper Synchronization in QEMU NBD Server During Socket Closure [rhel-9.2.0.z])
+
 * Wed Jun 19 2024 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-14.el9_2.11
 - Fixing CVE-2024-4467
 - Resolves: RHEL-35609
