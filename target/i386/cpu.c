@@ -2191,7 +2191,7 @@ static const CPUCaches epyc_genoa_cache_info = {
  */
 
 #define RHEL_CPU_DEPRECATION \
-    "use at least 'Nehalem' / 'Opteron_G4', or 'host' / 'max'"
+    "use at least 'Haswell' / 'EPYC', or 'host' / 'max'"
 
 static const X86CPUDefinition builtin_x86_defs[] = {
     {
