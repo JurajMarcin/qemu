@@ -3580,10 +3580,16 @@ static void virt_machine_2_6_options(MachineClass *mc)
 DEFINE_VIRT_MACHINE(2, 6)
 #endif /* disabled for RHEL */
 
-static void virt_rhel_machine_9_6_0_options(MachineClass *mc)
+static void virt_rhel_machine_10_0_0_options(MachineClass *mc)
 {
 }
-DEFINE_VIRT_MACHINE_AS_LATEST(9, 6, 0)
+DEFINE_VIRT_MACHINE_AS_LATEST(10, 0, 0)
+
+static void virt_rhel_machine_9_6_0_options(MachineClass *mc)
+{
+    virt_rhel_machine_10_0_0_options(mc);
+}
+DEFINE_VIRT_MACHINE(9, 6, 0)
 
 static void virt_rhel_machine_9_4_0_options(MachineClass *mc)
 {
