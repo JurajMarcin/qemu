@@ -1234,6 +1234,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Aug 26 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.0.0-8
+- kvm-x86-cpu-update-deprecation-string-to-match-lowest-un.patch [RHEL-54260]
+- Resolves: RHEL-54260
+  ([RHEL10] Need to update the deprecated CPU model warning message)
+
 * Thu Aug 15 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.0.0-7
 - kvm-linux-aio-add-IO_CMD_FDSYNC-command-support.patch [RHEL-51901]
 - kvm-nbd-server-Plumb-in-new-args-to-nbd_client_add.patch [RHEL-52599]
