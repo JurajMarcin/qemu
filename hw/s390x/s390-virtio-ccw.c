@@ -1310,8 +1310,29 @@ DEFINE_CCW_MACHINE(2, 4);
 #endif
 #endif /* disabled for RHEL */
 
+static void ccw_rhel_machine_10_0_0_instance_options(MachineState *machine)
+{
+}
+
+static void ccw_rhel_machine_10_0_0_class_options(MachineClass *mc)
+{
+}
+DEFINE_CCW_MACHINE_AS_LATEST(10, 0, 0);
+
+static void ccw_rhel_machine_9_6_0_instance_options(MachineState *machine)
+{
+    ccw_rhel_machine_10_0_0_instance_options(machine);
+}
+
+static void ccw_rhel_machine_9_6_0_class_options(MachineClass *mc)
+{
+    ccw_rhel_machine_10_0_0_class_options(mc);
+}
+DEFINE_CCW_MACHINE(9, 6, 0);
+
 static void ccw_rhel_machine_9_4_0_instance_options(MachineState *machine)
 {
+    ccw_rhel_machine_9_6_0_instance_options(machine);
 }
 
 static void ccw_rhel_machine_9_4_0_class_options(MachineClass *mc)
@@ -1320,11 +1341,13 @@ static void ccw_rhel_machine_9_4_0_class_options(MachineClass *mc)
         { TYPE_QEMU_S390_FLIC, "migrate-all-state", "off", },
     };
 
+    ccw_rhel_machine_9_6_0_class_options(mc);
+
     compat_props_add(mc->compat_props, hw_compat_rhel_10_0, hw_compat_rhel_10_0_len);
     compat_props_add(mc->compat_props, hw_compat_rhel_9_5, hw_compat_rhel_9_5_len);
     compat_props_add(mc->compat_props, compat, G_N_ELEMENTS(compat));
 }
-DEFINE_CCW_MACHINE_AS_LATEST(9, 4, 0);
+DEFINE_CCW_MACHINE(9, 4, 0);
 
 static void ccw_rhel_machine_9_2_0_instance_options(MachineState *machine)
 {
