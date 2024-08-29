@@ -1236,6 +1236,14 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Thu Aug 29 2024 Miroslav Rezanina <mrezanin@redhat.com> - 8.2.0-11.el9_4.7
+- kvm-nbd-server-CVE-2024-7409-Avoid-use-after-free-when-c.patch [RHEL-52616]
+- kvm-qemu-guest-agent-Update-the-logfile-path-of-qga-fsfr.patch [RHEL-56136]
+- Resolves: RHEL-52616
+  (CVE-2024-7409 qemu-kvm: Denial of Service via Improper Synchronization in QEMU NBD Server During Socket Closure [rhel-9.4.z])
+- Resolves: RHEL-56136
+  (fsfreeze hooks break on the systems first restorecon [rhel-9.4.z])
+
 * Thu Aug 15 2024 Miroslav Rezanina <mrezanin@redhat.com> - 8.2.0-11.el9_4.6
 - kvm-Fix-scanout-version-with-pc-q35-rhel9.4.0.patch [RHEL-53565]
 - kvm-nbd-server-Plumb-in-new-args-to-nbd_client_add.patch [RHEL-52616]
