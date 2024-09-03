@@ -1204,6 +1204,23 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Tue Sep 03 2024 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-14.el9_2.13
+- kvm-target-i386-add-FSRM-to-TCG.patch [RHEL-54641]
+- kvm-target-i386-add-FZRM-FSRS-FSRC.patch [RHEL-54641]
+- kvm-target-i386-KVM-allow-fast-string-operations-if-host.patch [RHEL-54641]
+- kvm-i386-Add-new-CPU-model-SapphireRapids.patch [RHEL-54641]
+- kvm-target-i386-add-support-for-FLUSH_L1D-feature.patch [RHEL-54641]
+- kvm-target-i386-add-support-for-FB_CLEAR-feature.patch [RHEL-54641]
+- kvm-target-i386-Export-MSR_ARCH_CAPABILITIES-bits-to-gue.patch [RHEL-54641]
+- kvm-target-i386-Add-few-security-fix-bits-in-ARCH_CAPABI.patch [RHEL-54641]
+- kvm-nbd-server-Favor-qemu_aio_context-over-iohandler-con.patch [RHEL-52619]
+- kvm-iotests-test-NBD-TLS-iothread.patch [RHEL-52619]
+- kvm-nbd-server-CVE-2024-7409-Avoid-use-after-free-when-c.patch [RHEL-52619]
+- Resolves: RHEL-54641
+  (Backport SapphireRapids to RHEL 9.2)
+- Resolves: RHEL-52619
+  (CVE-2024-7409 qemu-kvm: Denial of Service via Improper Synchronization in QEMU NBD Server During Socket Closure [rhel-9.2.0.z])
+
 * Thu Aug 15 2024 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-14.el9_2.12
 - kvm-nbd-server-Plumb-in-new-args-to-nbd_client_add.patch [RHEL-52619]
 - kvm-nbd-server-CVE-2024-7409-Cap-default-max-connections.patch [RHEL-52619]
