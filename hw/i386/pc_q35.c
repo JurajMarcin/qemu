@@ -680,6 +680,10 @@ static void pc_q35_rhel_machine_9_4_0_options(MachineClass *m)
     pcmc->smbios_stream_product = "RHEL";
     pcmc->smbios_stream_version = "9.4.0";
 
+    /* From pc_q35_machine_9_0_options() */
+    pcmc->isa_bios_alias = false;
+    m->smbios_memory_device_size = 16 * GiB;
+
     compat_props_add(m->compat_props, hw_compat_rhel_10_0,
                      hw_compat_rhel_10_0_len);
     compat_props_add(m->compat_props, hw_compat_rhel_9_5,
