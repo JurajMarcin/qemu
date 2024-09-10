@@ -1236,6 +1236,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Tue Sep 10 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-1
+- Rebase to QEMU 9.1.0 [RHEL-41246]
+- Resolves: RHEL-41246
+  (Rebase qemu-9.1 for RHEL 10.0)
+
 * Mon Aug 26 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.0.0-8
 - kvm-x86-cpu-update-deprecation-string-to-match-lowest-un.patch [RHEL-54260]
 - Resolves: RHEL-54260
