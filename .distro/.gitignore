@@ -1,3 +1,4 @@
 !*
 localversion
 rpmbuild
+qemu-*.tar.xz

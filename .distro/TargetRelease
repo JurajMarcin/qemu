@@ -1,0 +1,5 @@
+Accepted changes for:
+- RHEL 10.0
+
+Use RHEL src-git for changes targeting other RHEL 10 minor releases.
+
