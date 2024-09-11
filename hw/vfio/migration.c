@@ -774,6 +774,9 @@ static void vfio_migration_state_notifier(Notifier *notifier, void *data)
         if (ret) {
             error_report("%s: Failed to set state RUNNING", vbasedev->name);
         }
+    default:
+        /* NOP */
+        break;
     }
 }
 
