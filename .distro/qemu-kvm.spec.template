@@ -1204,6 +1204,14 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Fri Sep 13 2024 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-14.el9_2.14
+- kvm-scsi-disk-Use-positive-return-value-for-status-in-dm.patch [RHEL-53456]
+- kvm-scsi-block-Don-t-skip-callback-for-sgio-error-status.patch [RHEL-53456]
+- kvm-scsi-disk-Add-warning-comments-that-host_status-erro.patch [RHEL-53456]
+- kvm-scsi-disk-Always-report-RESERVATION_CONFLICT-to-gues.patch [RHEL-53456]
+- Resolves: RHEL-53456
+  (scsi-block: Cannot setup Windows Failover Cluster, qemu crashes on assert [rhel-9.2.0.z])
+
 * Tue Sep 03 2024 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-14.el9_2.13
 - kvm-target-i386-add-FSRM-to-TCG.patch [RHEL-54641]
 - kvm-target-i386-add-FZRM-FSRS-FSRC.patch [RHEL-54641]
