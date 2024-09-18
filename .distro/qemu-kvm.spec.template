@@ -1234,6 +1234,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Wed Sep 18 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.0.0-9
+- kvm-nbd-server-CVE-2024-7409-Avoid-use-after-free-when-c.patch [RHEL-52599]
+- Resolves: RHEL-52599
+  (CVE-2024-7409 qemu-kvm: Denial of Service via Improper Synchronization in QEMU NBD Server During Socket Closure [rhel-10.0])
+
 * Mon Aug 26 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.0.0-8
 - kvm-x86-cpu-update-deprecation-string-to-match-lowest-un.patch [RHEL-54260]
 - Resolves: RHEL-54260
