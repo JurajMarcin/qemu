@@ -1242,6 +1242,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Thu Sep 26 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-1
+- Rebase to QEMU 9.1 [RHEL-41247]
+- Resolves: RHEL-41247
+  (Rebase qemu-9.1 for RHEL 9.6)
+- 
 * Mon Sep 02 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.0.0-10
 - kvm-nbd-server-CVE-2024-7409-Avoid-use-after-free-when-c.patch [RHEL-52617]
 - Resolves: RHEL-52617
