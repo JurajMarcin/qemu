@@ -14,7 +14,7 @@ SOURCES_BASE_URL=https://sources.stream.centos.org/sources/rpms
 
 # Dist suffix (optional).
 # Example: .el9.
-DIST:=el10
+DIST:=.el10
 
 # Koji (RHEL Brew) build target.
 # Example: rhel-9.3.0-candidate.

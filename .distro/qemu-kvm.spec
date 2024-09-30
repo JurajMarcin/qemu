@@ -143,7 +143,7 @@ Obsoletes: %{name}-block-ssh <= %{epoch}:%{version}                    \
 Summary: QEMU is a machine emulator and virtualizer
 Name: qemu-kvm
 Version: 9.1.0
-Release: 1%{?rcrel}%{?dist}%{?cc_suffix}
+Release: 2%{?rcrel}%{?dist}%{?cc_suffix}
 # Epoch because we pushed a qemu-1.0 package. AIUI this can't ever be dropped
 # Epoch 15 used for RHEL 8
 # Epoch 17 used for RHEL 9 (due to release versioning offset in RHEL 8.5)
@@ -189,6 +189,52 @@ Patch0022: 0022-redhat-Add-QEMU-9.1-compat-handling-to-the-s390x-mac.patch
 Patch0023: 0023-redhat-Add-rhel9.6.0-and-rhel10.0.0-machine-types.patch
 Patch0024: 0024-x86-ensure-compatibility-of-pc-q35-rhel9.patch
 Patch0025: 0025-arm-ensure-compatibility-of-virt-rhel9.patch
+# For RHEL-29002 - Remove the existing deprecated machine types in RHEL-10
+# For RHEL-29003 - Deprecate RHEL-9 machine types in RHEL-10
+# For RHEL-35587 - Create a pc-i440fx-rhel10.0 machine type
+# For RHEL-38411 - [Fujitsu 10.0 FEAT]: qemu-kvm: Continue to support i440fx for RHEL10
+# For RHEL-45141 - Introduce virt-rhel10.0 arm-virt machine type [aarch64]
+Patch26: kvm-x86-create-new-pc-q35-machine-type-for-rhel-9.6.patch
+# For RHEL-29002 - Remove the existing deprecated machine types in RHEL-10
+# For RHEL-29003 - Deprecate RHEL-9 machine types in RHEL-10
+# For RHEL-35587 - Create a pc-i440fx-rhel10.0 machine type
+# For RHEL-38411 - [Fujitsu 10.0 FEAT]: qemu-kvm: Continue to support i440fx for RHEL10
+# For RHEL-45141 - Introduce virt-rhel10.0 arm-virt machine type [aarch64]
+Patch27: kvm-arm-create-new-virt-machine-type-for-rhel-9.6.patch
+# For RHEL-29002 - Remove the existing deprecated machine types in RHEL-10
+# For RHEL-29003 - Deprecate RHEL-9 machine types in RHEL-10
+# For RHEL-35587 - Create a pc-i440fx-rhel10.0 machine type
+# For RHEL-38411 - [Fujitsu 10.0 FEAT]: qemu-kvm: Continue to support i440fx for RHEL10
+# For RHEL-45141 - Introduce virt-rhel10.0 arm-virt machine type [aarch64]
+Patch28: kvm-x86-create-pc-i440fx-machine-type-for-rhel10.patch
+# For RHEL-29002 - Remove the existing deprecated machine types in RHEL-10
+# For RHEL-29003 - Deprecate RHEL-9 machine types in RHEL-10
+# For RHEL-35587 - Create a pc-i440fx-rhel10.0 machine type
+# For RHEL-38411 - [Fujitsu 10.0 FEAT]: qemu-kvm: Continue to support i440fx for RHEL10
+# For RHEL-45141 - Introduce virt-rhel10.0 arm-virt machine type [aarch64]
+Patch29: kvm-x86-create-pc-q35-machine-type-for-rhel10.patch
+# For RHEL-29002 - Remove the existing deprecated machine types in RHEL-10
+# For RHEL-29003 - Deprecate RHEL-9 machine types in RHEL-10
+# For RHEL-35587 - Create a pc-i440fx-rhel10.0 machine type
+# For RHEL-38411 - [Fujitsu 10.0 FEAT]: qemu-kvm: Continue to support i440fx for RHEL10
+# For RHEL-45141 - Introduce virt-rhel10.0 arm-virt machine type [aarch64]
+Patch30: kvm-arm-create-virt-machine-type-for-rhel10.patch
+# For RHEL-29002 - Remove the existing deprecated machine types in RHEL-10
+# For RHEL-29003 - Deprecate RHEL-9 machine types in RHEL-10
+# For RHEL-35587 - Create a pc-i440fx-rhel10.0 machine type
+# For RHEL-38411 - [Fujitsu 10.0 FEAT]: qemu-kvm: Continue to support i440fx for RHEL10
+# For RHEL-45141 - Introduce virt-rhel10.0 arm-virt machine type [aarch64]
+Patch31: kvm-x86-remove-deprecated-rhel-machine-types.patch
+# For RHEL-29002 - Remove the existing deprecated machine types in RHEL-10
+# For RHEL-29003 - Deprecate RHEL-9 machine types in RHEL-10
+# For RHEL-35587 - Create a pc-i440fx-rhel10.0 machine type
+# For RHEL-38411 - [Fujitsu 10.0 FEAT]: qemu-kvm: Continue to support i440fx for RHEL10
+# For RHEL-45141 - Introduce virt-rhel10.0 arm-virt machine type [aarch64]
+Patch32: kvm-remove-stale-compat-definitions.patch
+# For RHEL-38374 - aarch64 SMBIOS 'Manufacturer' and 'Product Name' differ from x86 ones [rhel-10]
+Patch33: kvm-RH-Author-Shaoqin-Huang-shahuang-redhat.com.patch
+# For RHEL-57028 - fsfreeze hooks break on the systems first restorecon [rhel-10]
+Patch34: kvm-qemu-guest-agent-Update-the-logfile-path-of-qga-fsfr.patch
 
 %if %{have_clang}
 BuildRequires: clang
@@ -1256,6 +1302,31 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Sep 30 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-2
+- kvm-x86-create-new-pc-q35-machine-type-for-rhel-9.6.patch [RHEL-29002 RHEL-29003 RHEL-35587 RHEL-38411 RHEL-45141]
+- kvm-arm-create-new-virt-machine-type-for-rhel-9.6.patch [RHEL-29002 RHEL-29003 RHEL-35587 RHEL-38411 RHEL-45141]
+- kvm-x86-create-pc-i440fx-machine-type-for-rhel10.patch [RHEL-29002 RHEL-29003 RHEL-35587 RHEL-38411 RHEL-45141]
+- kvm-x86-create-pc-q35-machine-type-for-rhel10.patch [RHEL-29002 RHEL-29003 RHEL-35587 RHEL-38411 RHEL-45141]
+- kvm-arm-create-virt-machine-type-for-rhel10.patch [RHEL-29002 RHEL-29003 RHEL-35587 RHEL-38411 RHEL-45141]
+- kvm-x86-remove-deprecated-rhel-machine-types.patch [RHEL-29002 RHEL-29003 RHEL-35587 RHEL-38411 RHEL-45141]
+- kvm-remove-stale-compat-definitions.patch [RHEL-29002 RHEL-29003 RHEL-35587 RHEL-38411 RHEL-45141]
+- kvm-RH-Author-Shaoqin-Huang-shahuang-redhat.com.patch [RHEL-38374]
+- kvm-qemu-guest-agent-Update-the-logfile-path-of-qga-fsfr.patch [RHEL-57028]
+- Resolves: RHEL-29002
+  (Remove the existing deprecated machine types in RHEL-10)
+- Resolves: RHEL-29003
+  (Deprecate RHEL-9 machine types in RHEL-10)
+- Resolves: RHEL-35587
+  (Create a pc-i440fx-rhel10.0 machine type)
+- Resolves: RHEL-38411
+  ([Fujitsu 10.0 FEAT]: qemu-kvm: Continue to support i440fx for RHEL10)
+- Resolves: RHEL-45141
+  (Introduce virt-rhel10.0 arm-virt machine type [aarch64])
+- Resolves: RHEL-38374
+  (aarch64 SMBIOS 'Manufacturer' and 'Product Name' differ from x86 ones [rhel-10])
+- Resolves: RHEL-57028
+  (fsfreeze hooks break on the systems first restorecon [rhel-10])
+
 * Tue Sep 10 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-1
 - Rebase to QEMU 9.1.0 [RHEL-41246]
 - Resolves: RHEL-41246
