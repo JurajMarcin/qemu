@@ -1236,6 +1236,22 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Tue Oct 01 2024 Miroslav Rezanina <mrezanin@redhat.com> - 8.2.0-11.el9_4.9
+- kvm-vfio-Add-default-case-in-vfio_migration_state_notifi.patch [RHEL-55457]
+- kvm-migration-multifd-Avoid-the-final-FLUSH-in-complete.patch [RHEL-55457]
+- kvm-migration-Rename-thread-debug-names.patch [RHEL-55457]
+- kvm-migration-Use-MigrationStatus-instead-of-int.patch [RHEL-55457]
+- kvm-migration-Cleanup-incoming-migration-setup-state-cha.patch [RHEL-55457]
+- kvm-migration-postcopy-Add-postcopy-recover-setup-phase.patch [RHEL-55457]
+- kvm-migration-docs-Update-postcopy-recover-session-for-S.patch [RHEL-55457]
+- kvm-tests-migration-tests-Drop-most-WIN32-ifdefs-for-pos.patch [RHEL-55457]
+- kvm-tests-migration-tests-Always-enable-migration-events.patch [RHEL-55457]
+- kvm-tests-migration-tests-migration_event_wait.patch [RHEL-55457]
+- kvm-tests-migration-tests-Verify-postcopy-recover-setup-.patch [RHEL-55457]
+- kvm-tests-migration-tests-Cover-postcopy-failure-on-reco.patch [RHEL-55457]
+- Resolves: RHEL-55457
+  (Failure to resume paused post-copy migration is undetectable [rhel-9.4.z])
+
 * Mon Sep 09 2024 Miroslav Rezanina <mrezanin@redhat.com> - 8.2.0-11.el9_4.8
 - kvm-scsi-disk-Use-positive-return-value-for-status-in-dm.patch [RHEL-53457]
 - kvm-scsi-block-Don-t-skip-callback-for-sgio-error-status.patch [RHEL-53457]
