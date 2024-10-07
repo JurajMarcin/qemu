@@ -143,7 +143,7 @@ Obsoletes: %{name}-block-ssh <= %{epoch}:%{version}                    \
 Summary: QEMU is a machine emulator and virtualizer
 Name: qemu-kvm
 Version: 9.1.0
-Release: 2%{?rcrel}%{?dist}%{?cc_suffix}
+Release: 3%{?rcrel}%{?dist}%{?cc_suffix}
 # Epoch because we pushed a qemu-1.0 package. AIUI this can't ever be dropped
 # Epoch 15 used for RHEL 8
 # Epoch 17 used for RHEL 9 (due to release versioning offset in RHEL 8.5)
@@ -235,6 +235,8 @@ Patch32: kvm-remove-stale-compat-definitions.patch
 Patch33: kvm-RH-Author-Shaoqin-Huang-shahuang-redhat.com.patch
 # For RHEL-57028 - fsfreeze hooks break on the systems first restorecon [rhel-10]
 Patch34: kvm-qemu-guest-agent-Update-the-logfile-path-of-qga-fsfr.patch
+# For RHEL-58936 - [RHEL-10.0] QEMU core dump on applying merge property to memory backend
+Patch35: kvm-hostmem-Apply-merge-property-after-the-memory-region.patch
 
 %if %{have_clang}
 BuildRequires: clang
@@ -1302,6 +1304,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Oct 07 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-3
+- kvm-hostmem-Apply-merge-property-after-the-memory-region.patch [RHEL-58936]
+- Resolves: RHEL-58936
+  ([RHEL-10.0] QEMU core dump on applying merge property to memory backend)
+
 * Mon Sep 30 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-2
 - kvm-x86-create-new-pc-q35-machine-type-for-rhel-9.6.patch [RHEL-29002 RHEL-29003 RHEL-35587 RHEL-38411 RHEL-45141]
 - kvm-arm-create-new-virt-machine-type-for-rhel-9.6.patch [RHEL-29002 RHEL-29003 RHEL-35587 RHEL-38411 RHEL-45141]
