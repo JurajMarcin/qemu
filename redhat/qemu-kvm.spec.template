@@ -1294,6 +1294,12 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Tue Oct 08 2024 Jon Maloy <jmaloy@redhat.com> - 6.2.0-53.el8.1
+- kvm-block-move-bdrv_qiov_is_aligned-to-file-posix.patch [RHEL-60553]
+- kvm-block-use-the-request-length-for-iov-alignment.patch [RHEL-60553]
+- Resolves: RHEL-60553
+  (Frequent VM pauses on OpenShift Virtualization with Portworx storage)
+
 * Thu Sep 05 2024 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-53.el8
 - kvm-nbd-server-Favor-qemu_aio_context-over-iohandler-con.patch [RHEL-52611]
 - kvm-iotests-test-NBD-TLS-iothread.patch [RHEL-52611]
