@@ -1204,6 +1204,15 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Fri Oct 11 2024 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-14.el9_2.15
+- kvm-util-iov-Make-qiov_slice-public.patch [RHEL-61169]
+- kvm-block-Collapse-padded-I-O-vecs-exceeding-IOV_MAX.patch [RHEL-61169]
+- kvm-util-iov-Remove-qemu_iovec_init_extended.patch [RHEL-61169]
+- kvm-iotests-iov-padding-New-test.patch [RHEL-61169]
+- kvm-block-Fix-pad_request-s-request-restriction.patch [RHEL-61169]
+- Resolves: RHEL-61169
+  (Frequent VM pauses on OpenShift Virtualization with Portworx storage [rhel-9.2.0.z])
+
 * Fri Sep 13 2024 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-14.el9_2.14
 - kvm-scsi-disk-Use-positive-return-value-for-status-in-dm.patch [RHEL-53456]
 - kvm-scsi-block-Don-t-skip-callback-for-sgio-error-status.patch [RHEL-53456]
