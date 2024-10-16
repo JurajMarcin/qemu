@@ -1294,6 +1294,17 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Wed Oct 16 2024 Jon Maloy <jmaloy@redhat.com> - 6.2.0-33.el8_8.6
+- kvm-block-move-bdrv_qiov_is_aligned-to-file-posix.patch [RHEL-61168]
+- kvm-block-use-the-request-length-for-iov-alignment.patch [RHEL-61168]
+- kvm-util-iov-Make-qiov_slice-public.patch [RHEL-61168]
+- kvm-block-Collapse-padded-I-O-vecs-exceeding-IOV_MAX.patch [RHEL-61168]
+- kvm-util-iov-Remove-qemu_iovec_init_extended.patch [RHEL-61168]
+- kvm-iotests-iov-padding-New-test.patch [RHEL-61168]
+- kvm-block-Fix-pad_request-s-request-restriction.patch [RHEL-61168]
+- Resolves: RHEL-61168
+  (Frequent VM pauses on OpenShift Virtualization with Portworx storage [rhel-8.8.0.z])
+
 * Wed Jul 03 2024 Miroslav Rezanina <mrezanin@redhat.com> - 6.2.0-33.el8_8.5
 - Fixing CVE-2024-4467
 - Resolves: RHEL-35615
