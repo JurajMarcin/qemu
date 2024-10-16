@@ -1294,6 +1294,11 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Tue Oct 15 2024 Jon Maloy <jmaloy@redhat.com> - 6.2.0-53.el8.2
+- kvm-Fix-thread-pool-size-default-value-in-the-man-page.patch [RHEL-26197]
+- Resolves: RHEL-26197
+  (virtiofsd --help and manpage does not agree on --thread-pool-size default value)
+
 * Tue Oct 08 2024 Jon Maloy <jmaloy@redhat.com> - 6.2.0-53.el8.1
 - kvm-block-move-bdrv_qiov_is_aligned-to-file-posix.patch [RHEL-60553]
 - kvm-block-use-the-request-length-for-iov-alignment.patch [RHEL-60553]
