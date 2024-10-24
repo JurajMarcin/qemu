@@ -865,7 +865,7 @@ cp -a qemu-system-%{kvm_target} qemu-kvm
 
 %ifarch s390x
     # Copy the built new images into place for "make check":
-    cp pc-bios/s390-ccw/s390-ccw.img pc-bios/s390-ccw/s390-netboot.img pc-bios/
+    cp pc-bios/s390-ccw/s390-ccw.img pc-bios/
 %endif
 
 popd
@@ -1004,7 +1004,6 @@ rm -rf %{buildroot}%{_datadir}/%{name}/skiboot.lid
 rm -rf %{buildroot}%{_datadir}/%{name}/qboot.rom
 
 rm -rf %{buildroot}%{_datadir}/%{name}/s390-ccw.img
-rm -rf %{buildroot}%{_datadir}/%{name}/s390-netboot.img
 rm -rf %{buildroot}%{_datadir}/%{name}/hppa-firmware.img
 rm -rf %{buildroot}%{_datadir}/%{name}/hppa-firmware64.img
 rm -rf %{buildroot}%{_datadir}/%{name}/canyonlands.dtb
@@ -1028,9 +1027,8 @@ rm -rf %{buildroot}%{_libexecdir}/virtfs-proxy-helper
 rm -rf %{buildroot}%{_mandir}/man1/virtfs-proxy-helper*
 
 %ifarch s390x
-    # Use the s390-*.img that we've just built, not the pre-built ones
+    # Use the s390-ccw.img that we've just built, not the pre-built one
     install -m 0644 %{qemu_kvm_build}/pc-bios/s390-ccw/s390-ccw.img %{buildroot}%{_datadir}/%{name}/
-    install -m 0644 %{qemu_kvm_build}/pc-bios/s390-ccw/s390-netboot.img %{buildroot}%{_datadir}/%{name}/
 %else
     rm -rf %{buildroot}%{_libdir}/%{name}/hw-s390x-virtio-gpu-ccw.so
 %endif
@@ -1220,7 +1218,6 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 %ifarch s390x
     %{_datadir}/%{name}/s390-ccw.img
-    %{_datadir}/%{name}/s390-netboot.img
 %endif
 %{_datadir}/icons/*
 %{_datadir}/%{name}/linuxboot_dma.bin
