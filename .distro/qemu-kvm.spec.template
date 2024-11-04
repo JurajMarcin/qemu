@@ -1204,6 +1204,40 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Nov 04 2024 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-14.el9_2.16
+- kvm-tests-migration-test-Wait-for-cancellation-sooner-in.patch [RHEL-55456]
+- kvm-tests-qtest-add-various-qtest_qmp_assert_success-var.patch [RHEL-55456]
+- kvm-migration-Fix-possible-race-when-setting-rp_state.er.patch [RHEL-55456]
+- kvm-migration-Fix-possible-races-when-shutting-down-the-.patch [RHEL-55456]
+- kvm-migration-Fix-possible-race-when-shutting-down-to_ds.patch [RHEL-55456]
+- kvm-migration-Consolidate-return-path-closing-code.patch [RHEL-55456]
+- kvm-migration-Replace-the-return-path-retry-logic.patch [RHEL-55456]
+- kvm-migration-Move-return-path-cleanup-to-main-migration.patch [RHEL-55456]
+- kvm-tests-qtest-migration-Expose-migrate_set_capability.patch [RHEL-55456]
+- kvm-tests-qtest-migration-Add-migrate_incoming_qmp-helpe.patch [RHEL-55456]
+- kvm-tests-qtest-migration-Use-migrate_incoming_qmp-where.patch [RHEL-55456]
+- kvm-migration-Set-migration-status-early-in-incoming-sid.patch [RHEL-55456]
+- kvm-migration-Introduce-migrate_has_error.patch [RHEL-55456]
+- kvm-qemufile-Always-return-a-verbose-error.patch [RHEL-55456]
+- kvm-migration-Remember-num-of-ramblocks-to-sync-during-r.patch [RHEL-55456]
+- kvm-migration-Add-migration_rp_wait-kick.patch [RHEL-55456]
+- kvm-migration-Allow-RECOVER-PAUSED-convertion-for-dest-q.patch [RHEL-55456]
+- kvm-migration-Refactor-error-handling-in-source-return-p.patch [RHEL-55456]
+- kvm-migration-Allow-network-to-fail-even-during-recovery.patch [RHEL-55456]
+- kvm-tests-migration-test-Add-a-test-for-postcopy-hangs-d.patch [RHEL-55456]
+- kvm-vfio-Add-default-case-in-vfio_migration_state_notifi.patch [RHEL-55456]
+- kvm-migration-Rename-thread-debug-names.patch [RHEL-55456]
+- kvm-migration-Use-MigrationStatus-instead-of-int.patch [RHEL-55456]
+- kvm-migration-Cleanup-incoming-migration-setup-state-cha.patch [RHEL-55456]
+- kvm-migration-postcopy-Add-postcopy-recover-setup-phase.patch [RHEL-55456]
+- kvm-tests-migration-tests-Drop-most-WIN32-ifdefs-for-pos.patch [RHEL-55456]
+- kvm-tests-migration-tests-Always-enable-migration-events.patch [RHEL-55456]
+- kvm-tests-migration-tests-migration_event_wait.patch [RHEL-55456]
+- kvm-tests-migration-tests-Verify-postcopy-recover-setup-.patch [RHEL-55456]
+- kvm-tests-migration-tests-Cover-postcopy-failure-on-reco.patch [RHEL-55456]
+- Resolves: RHEL-55456
+  (Failure to resume paused post-copy migration is undetectable [rhel-9.2.0.z])
+
 * Fri Oct 11 2024 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-14.el9_2.15
 - kvm-util-iov-Make-qiov_slice-public.patch [RHEL-61169]
 - kvm-block-Collapse-padded-I-O-vecs-exceeding-IOV_MAX.patch [RHEL-61169]
