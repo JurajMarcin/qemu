@@ -1241,6 +1241,21 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Nov 04 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.0.0-10.el9_5.1
+- kvm-migration-multifd-Avoid-the-final-FLUSH-in-complete.patch [RHEL-63874]
+- kvm-migration-Rename-thread-debug-names.patch [RHEL-63874]
+- kvm-migration-Use-MigrationStatus-instead-of-int.patch [RHEL-63874]
+- kvm-migration-Cleanup-incoming-migration-setup-state-cha.patch [RHEL-63874]
+- kvm-migration-postcopy-Add-postcopy-recover-setup-phase.patch [RHEL-63874]
+- kvm-migration-docs-Update-postcopy-recover-session-for-S.patch [RHEL-63874]
+- kvm-tests-migration-tests-Drop-most-WIN32-ifdefs-for-pos.patch [RHEL-63874]
+- kvm-tests-migration-tests-Always-enable-migration-events.patch [RHEL-63874]
+- kvm-tests-migration-tests-migration_event_wait.patch [RHEL-63874]
+- kvm-tests-migration-tests-Verify-postcopy-recover-setup-.patch [RHEL-63874]
+- kvm-tests-migration-tests-Cover-postcopy-failure-on-reco.patch [RHEL-63874]
+- Resolves: RHEL-63874
+  (Failure to resume paused post-copy migration is undetectable [rhel-9.5.z])
+
 * Mon Sep 02 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.0.0-10
 - kvm-nbd-server-CVE-2024-7409-Avoid-use-after-free-when-c.patch [RHEL-52617]
 - Resolves: RHEL-52617
