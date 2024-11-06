@@ -337,6 +337,11 @@ GlobalProperty hw_compat_rhel_9_5[] = {
     { TYPE_VIRTIO_IOMMU_PCI, "aw-bits", "64" },
   /* hw_compat_rhel_9_5 from hw_compat_8_2 */
     { "virtio-gpu-device", "x-scanout-vmstate-version", "1" },
+    /* supported by userspace, but RHEL 9 *kernels* do not support USO. */
+    /* TODO: if we ever add 9.6 compat, this has to be there, too */
+    { TYPE_VIRTIO_NET, "host_uso", "off"},
+    { TYPE_VIRTIO_NET, "guest_uso4", "off"},
+    { TYPE_VIRTIO_NET, "guest_uso6", "off"},
 };
 const size_t hw_compat_rhel_9_5_len = G_N_ELEMENTS(hw_compat_rhel_9_5);
 
