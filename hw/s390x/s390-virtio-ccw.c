@@ -1305,6 +1305,9 @@ static void ccw_rhel_machine_9_6_0_instance_options(MachineState *machine)
 static void ccw_rhel_machine_9_6_0_class_options(MachineClass *mc)
 {
     ccw_rhel_machine_10_0_0_class_options(mc);
+
+    /* NB: remember to move this line to the *latest* RHEL 9 machine */
+    compat_props_add(mc->compat_props, hw_compat_rhel_9, hw_compat_rhel_9_len);
 }
 DEFINE_CCW_MACHINE(9, 6, 0);
 
