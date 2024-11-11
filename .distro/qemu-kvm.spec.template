@@ -1239,6 +1239,41 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Nov 11 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-2
+- kvm-hw-s390x-ipl-Provide-more-memory-to-the-s390-ccw.img.patch [RHEL-11424]
+- kvm-pc-bios-s390-ccw-Use-the-libc-from-SLOF-and-remove-s.patch [RHEL-11424]
+- kvm-pc-bios-s390-ccw-Link-the-netboot-code-into-the-main.patch [RHEL-11424]
+- kvm-redhat-Remove-the-s390-netboot.img-from-the-spec-fil.patch [RHEL-11424]
+- kvm-hw-s390x-Remove-the-possibility-to-load-the-s390-net.patch [RHEL-11424]
+- kvm-pc-bios-s390-ccw-Merge-netboot.mak-into-the-main-Mak.patch [RHEL-11424]
+- kvm-docs-system-s390x-bootdevices-Update-the-documentati.patch [RHEL-11424]
+- kvm-pc-bios-s390-ccw-Remove-panics-from-ISO-IPL-path.patch [RHEL-11424]
+- kvm-pc-bios-s390-ccw-Remove-panics-from-ECKD-IPL-path.patch [RHEL-11424]
+- kvm-pc-bios-s390-ccw-Remove-panics-from-SCSI-IPL-path.patch [RHEL-11424]
+- kvm-pc-bios-s390-ccw-Remove-panics-from-DASD-IPL-path.patch [RHEL-11424]
+- kvm-pc-bios-s390-ccw-Remove-panics-from-Netboot-IPL-path.patch [RHEL-11424]
+- kvm-pc-bios-s390-ccw-Enable-failed-IPL-to-return-after-e.patch [RHEL-11424]
+- kvm-include-hw-s390x-Add-include-files-for-common-IPL-st.patch [RHEL-11424]
+- kvm-s390x-Add-individual-loadparm-assignment-to-CCW-devi.patch [RHEL-11424]
+- kvm-hw-s390x-Build-an-IPLB-for-each-boot-device.patch [RHEL-11424]
+- kvm-s390x-Rebuild-IPLB-for-SCSI-device-directly-from-DIA.patch [RHEL-11424]
+- kvm-pc-bios-s390x-Enable-multi-device-boot-loop.patch [RHEL-11424]
+- kvm-docs-system-Update-documentation-for-s390x-IPL.patch [RHEL-11424]
+- kvm-tests-qtest-Add-s390x-boot-order-tests-to-cdrom-test.patch [RHEL-11424]
+- kvm-pc-bios-s390-ccw-Clarify-alignment-is-in-bytes.patch [RHEL-11424]
+- kvm-pc-bios-s390-ccw-Don-t-generate-TEXTRELs.patch [RHEL-11424]
+- kvm-pc-bios-s390-ccw-Introduce-EXTRA_LDFLAGS.patch [RHEL-11424]
+- kvm-vfio-migration-Report-only-stop-copy-size-in-vfio_st.patch [RHEL-64307]
+- kvm-vfio-migration-Change-trace-formats-from-hex-to-deci.patch [RHEL-64307]
+- kvm-kvm-Allow-kvm_arch_get-put_registers-to-accept-Error.patch [RHEL-60914]
+- kvm-target-i386-kvm-Report-which-action-failed-in-kvm_ar.patch [RHEL-60914]
+- Resolves: RHEL-11424
+  ([IBM 9.6 FEAT] KVM: Full boot order support - qemu part)
+- Resolves: RHEL-64307
+  (High threshold value observed in vGPU live migration)
+- Resolves: RHEL-60914
+  (Fail migration properly when put cpu register fails)
+
 * Thu Sep 26 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-1
 - Rebase to QEMU 9.1 [RHEL-41247]
 - Resolves: RHEL-41247
