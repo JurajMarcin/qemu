@@ -1233,6 +1233,60 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Tue Nov 12 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-4.el10
+- kvm-accel-kvm-check-for-KVM_CAP_READONLY_MEM-on-VM.patch [RHEL-58928]
+- kvm-hw-s390x-ipl-Provide-more-memory-to-the-s390-ccw.img.patch [RHEL-58153]
+- kvm-pc-bios-s390-ccw-Use-the-libc-from-SLOF-and-remove-s.patch [RHEL-58153]
+- kvm-pc-bios-s390-ccw-Link-the-netboot-code-into-the-main.patch [RHEL-58153]
+- kvm-redhat-Remove-the-s390-netboot.img-from-the-spec-fil.patch [RHEL-58153]
+- kvm-hw-s390x-Remove-the-possibility-to-load-the-s390-net.patch [RHEL-58153]
+- kvm-pc-bios-s390-ccw-Merge-netboot.mak-into-the-main-Mak.patch [RHEL-58153]
+- kvm-docs-system-s390x-bootdevices-Update-the-documentati.patch [RHEL-58153]
+- kvm-pc-bios-s390-ccw-Remove-panics-from-ISO-IPL-path.patch [RHEL-58153]
+- kvm-pc-bios-s390-ccw-Remove-panics-from-ECKD-IPL-path.patch [RHEL-58153]
+- kvm-pc-bios-s390-ccw-Remove-panics-from-SCSI-IPL-path.patch [RHEL-58153]
+- kvm-pc-bios-s390-ccw-Remove-panics-from-DASD-IPL-path.patch [RHEL-58153]
+- kvm-pc-bios-s390-ccw-Remove-panics-from-Netboot-IPL-path.patch [RHEL-58153]
+- kvm-pc-bios-s390-ccw-Enable-failed-IPL-to-return-after-e.patch [RHEL-58153]
+- kvm-include-hw-s390x-Add-include-files-for-common-IPL-st.patch [RHEL-58153]
+- kvm-s390x-Add-individual-loadparm-assignment-to-CCW-devi.patch [RHEL-58153]
+- kvm-hw-s390x-Build-an-IPLB-for-each-boot-device.patch [RHEL-58153]
+- kvm-s390x-Rebuild-IPLB-for-SCSI-device-directly-from-DIA.patch [RHEL-58153]
+- kvm-pc-bios-s390x-Enable-multi-device-boot-loop.patch [RHEL-58153]
+- kvm-docs-system-Update-documentation-for-s390x-IPL.patch [RHEL-58153]
+- kvm-tests-qtest-Add-s390x-boot-order-tests-to-cdrom-test.patch [RHEL-58153]
+- kvm-pc-bios-s390-ccw-Clarify-alignment-is-in-bytes.patch [RHEL-58153]
+- kvm-pc-bios-s390-ccw-Don-t-generate-TEXTRELs.patch [RHEL-58153]
+- kvm-pc-bios-s390-ccw-Introduce-EXTRA_LDFLAGS.patch [RHEL-58153]
+- kvm-vnc-fix-crash-when-no-console-attached.patch [RHEL-50529]
+- kvm-vfio-migration-Report-only-stop-copy-size-in-vfio_st.patch [RHEL-64308]
+- kvm-vfio-migration-Change-trace-formats-from-hex-to-deci.patch [RHEL-64308]
+- kvm-kvm-Allow-kvm_arch_get-put_registers-to-accept-Error.patch [RHEL-20574]
+- kvm-target-i386-kvm-Report-which-action-failed-in-kvm_ar.patch [RHEL-20574]
+- kvm-target-i386-cpu-set-correct-supported-XCR0-features-.patch [RHEL-30315 RHEL-45110]
+- kvm-target-i386-do-not-rely-on-ExtSaveArea-for-accelerat.patch [RHEL-30315 RHEL-45110]
+- kvm-target-i386-return-bool-from-x86_cpu_filter_features.patch [RHEL-30315 RHEL-45110]
+- kvm-target-i386-add-AVX10-feature-and-AVX10-version-prop.patch [RHEL-30315 RHEL-45110]
+- kvm-target-i386-add-CPUID.24-features-for-AVX10.patch [RHEL-30315 RHEL-45110]
+- kvm-target-i386-Add-feature-dependencies-for-AVX10.patch [RHEL-30315 RHEL-45110]
+- kvm-target-i386-Add-AVX512-state-when-AVX10-is-supported.patch [RHEL-30315 RHEL-45110]
+- kvm-target-i386-Introduce-GraniteRapids-v2-model.patch [RHEL-30315 RHEL-45110]
+- kvm-target-i386-add-sha512-sm3-sm4-feature-bits.patch [RHEL-30315 RHEL-45110]
+- Resolves: RHEL-58928
+  (Boot SNP guests failed with qemu-kvm: kvm_set_user_memory_region)
+- Resolves: RHEL-58153
+  ([IBM 10.0 FEAT] KVM: Full boot order support - qemu part)
+- Resolves: RHEL-50529
+  (Qemu-kvm  crashed  if  no display device setting and switching display by remote-viewer)
+- Resolves: RHEL-64308
+  (High threshold value observed in vGPU live migration)
+- Resolves: RHEL-20574
+  (Fail migration properly when put cpu register fails)
+- Resolves: RHEL-30315
+  ([Intel 10.0 FEAT] [GNR] Virt-QEMU: Add AVX10.1 instruction support)
+- Resolves: RHEL-45110
+  ([Intel 10.0 FEAT] [CWF][DMR] Virt-QEMU: Advertise new instructions SHA2-512NI, SM3, and SM4)
+
 * Mon Oct 07 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-3
 - kvm-hostmem-Apply-merge-property-after-the-memory-region.patch [RHEL-58936]
 - Resolves: RHEL-58936
