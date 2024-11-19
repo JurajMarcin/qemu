@@ -1235,6 +1235,23 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Tue Nov 19 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-5
+- kvm-migration-Ensure-vmstate_save-sets-errp.patch [RHEL-63051]
+- kvm-kvm-replace-fprintf-with-error_report-printf-in-kvm_.patch [RHEL-57685]
+- kvm-kvm-refactor-core-virtual-machine-creation-into-its-.patch [RHEL-57685]
+- kvm-accel-kvm-refactor-dirty-ring-setup.patch [RHEL-57685]
+- kvm-KVM-Dynamic-sized-kvm-memslots-array.patch [RHEL-57685]
+- kvm-KVM-Define-KVM_MEMSLOTS_NUM_MAX_DEFAULT.patch [RHEL-57685]
+- kvm-KVM-Rename-KVMMemoryListener.nr_used_slots-to-nr_slo.patch [RHEL-57685]
+- kvm-KVM-Rename-KVMState-nr_slots-to-nr_slots_max.patch [RHEL-57685]
+- kvm-Require-new-dtrace-package.patch [RHEL-67899]
+- Resolves: RHEL-63051
+  (qemu crashed after killed virtiofsd during migration)
+- Resolves: RHEL-57685
+  (Bad migration performance when performing vGPU VM live migration )
+- Resolves: RHEL-67899
+  (Failed to build qemu-kvm due to missing dtrace [rhel-10.0])
+
 * Tue Nov 12 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-4.el10
 - kvm-accel-kvm-check-for-KVM_CAP_READONLY_MEM-on-VM.patch [RHEL-58928]
 - kvm-hw-s390x-ipl-Provide-more-memory-to-the-s390-ccw.img.patch [RHEL-58153]
