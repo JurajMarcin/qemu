@@ -1241,6 +1241,23 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Tue Nov 19 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-3
+- kvm-pc-q35-Bump-max_cpus-to-4096-vcpus.patch [RHEL-11043]
+- kvm-kvm-replace-fprintf-with-error_report-printf-in-kvm_.patch [RHEL-57682]
+- kvm-kvm-refactor-core-virtual-machine-creation-into-its-.patch [RHEL-57682]
+- kvm-accel-kvm-refactor-dirty-ring-setup.patch [RHEL-57682]
+- kvm-KVM-Dynamic-sized-kvm-memslots-array.patch [RHEL-57682]
+- kvm-KVM-Define-KVM_MEMSLOTS_NUM_MAX_DEFAULT.patch [RHEL-57682]
+- kvm-KVM-Rename-KVMMemoryListener.nr_used_slots-to-nr_slo.patch [RHEL-57682]
+- kvm-KVM-Rename-KVMState-nr_slots-to-nr_slots_max.patch [RHEL-57682]
+- kvm-Require-new-dtrace-package.patch [RHEL-67900]
+- Resolves: RHEL-11043
+  ([RFE] [HPEMC] [RHEL-9.6] qemu-kvm: support up to 4096 VCPUs)
+- Resolves: RHEL-57682
+  (Bad migration performance when performing vGPU VM live migration )
+- Resolves: RHEL-67900
+  (Failed to build qemu-kvm due to missing dtrace [rhel-9.6])
+
 * Mon Nov 11 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-2
 - kvm-hw-s390x-ipl-Provide-more-memory-to-the-s390-ccw.img.patch [RHEL-11424]
 - kvm-pc-bios-s390-ccw-Use-the-libc-from-SLOF-and-remove-s.patch [RHEL-11424]
