@@ -1241,6 +1241,14 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Nov 25 2024 Jon Maloy <jmaloy@redhat.com> - 9.1.0-5
+- kvm-vfio-container-Fix-container-object-destruction.patch [RHEL-67935]
+- kvm-hostmem-Apply-merge-property-after-the-memory-region.patch [RHEL-68289]
+- Resolves: RHEL-67935
+  (QEMU should fail gracefully with passthrough devices in SEV-SNP guests)
+- Resolves: RHEL-68289
+  ([RHEL-9.6] QEMU core dump on applying merge property to memory backend)
+
 * Sun Nov 24 2024 Jon Maloy <jmaloy@redhat.com> - 9.1.0-4
 - kvm-migration-Ensure-vmstate_save-sets-errp.patch [RHEL-67844]
 - Resolves: RHEL-67844
