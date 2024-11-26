@@ -143,7 +143,7 @@ Obsoletes: %{name}-block-ssh <= %{epoch}:%{version}                    \
 Summary: QEMU is a machine emulator and virtualizer
 Name: qemu-kvm
 Version: 9.1.0
-Release: 5%{?rcrel}%{?dist}%{?cc_suffix}
+Release: 6%{?rcrel}%{?dist}%{?cc_suffix}
 # Epoch because we pushed a qemu-1.0 package. AIUI this can't ever be dropped
 # Epoch 15 used for RHEL 8
 # Epoch 17 used for RHEL 9 (due to release versioning offset in RHEL 8.5)
@@ -336,6 +336,10 @@ Patch79: kvm-KVM-Define-KVM_MEMSLOTS_NUM_MAX_DEFAULT.patch
 Patch80: kvm-KVM-Rename-KVMMemoryListener.nr_used_slots-to-nr_slo.patch
 # For RHEL-57685 - Bad migration performance when performing vGPU VM live migration 
 Patch81: kvm-KVM-Rename-KVMState-nr_slots-to-nr_slots_max.patch
+# For RHEL-67936 - QEMU should fail gracefully with passthrough devices in SEV-SNP guests
+Patch82: kvm-vfio-container-Fix-container-object-destruction.patch
+# For RHEL-40950 - [Stable_Guest_ABI][USO]From 10-beta to RHEL.9.5.0  the guest with 9.4 machine type only, the guest crashed  with - qemu-kvm: Features 0x1c0010130afffa7 unsupported. Allowed features: 0x10179bfffe7 
+Patch83: kvm-virtio-net-disable-USO-for-RHEL9.patch
 
 %if %{have_clang}
 BuildRequires: clang
@@ -1402,6 +1406,17 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Nov 25 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-6
+- kvm-vfio-container-Fix-container-object-destruction.patch [RHEL-67936]
+- kvm-virtio-net-disable-USO-for-RHEL9.patch [RHEL-40950]
+- kvm-qemu-guest-agent-add-new-api-to-allow-rpc.patch [RHEL-60223]
+- Resolves: RHEL-67936
+  (QEMU should fail gracefully with passthrough devices in SEV-SNP guests)
+- Resolves: RHEL-40950
+  ([Stable_Guest_ABI][USO]From 10-beta to RHEL.9.5.0  the guest with 9.4 machine type only, the guest crashed  with - qemu-kvm: Features 0x1c0010130afffa7 unsupported. Allowed features: 0x10179bfffe7 )
+- Resolves: RHEL-60223
+  ([qemu-guest-agent] Add new api 'guest-network-get-route' to allow-rpc)
+
 * Tue Nov 19 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-5
 - kvm-migration-Ensure-vmstate_save-sets-errp.patch [RHEL-63051]
 - kvm-kvm-replace-fprintf-with-error_report-printf-in-kvm_.patch [RHEL-57685]
