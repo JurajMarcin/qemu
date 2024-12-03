@@ -143,7 +143,7 @@ Obsoletes: %{name}-block-ssh <= %{epoch}:%{version}                    \
 Summary: QEMU is a machine emulator and virtualizer
 Name: qemu-kvm
 Version: 9.1.0
-Release: 6%{?rcrel}%{?dist}%{?cc_suffix}
+Release: 7%{?rcrel}%{?dist}%{?cc_suffix}
 # Epoch because we pushed a qemu-1.0 package. AIUI this can't ever be dropped
 # Epoch 15 used for RHEL 8
 # Epoch 17 used for RHEL 9 (due to release versioning offset in RHEL 8.5)
@@ -340,6 +340,24 @@ Patch81: kvm-KVM-Rename-KVMState-nr_slots-to-nr_slots_max.patch
 Patch82: kvm-vfio-container-Fix-container-object-destruction.patch
 # For RHEL-40950 - [Stable_Guest_ABI][USO]From 10-beta to RHEL.9.5.0  the guest with 9.4 machine type only, the guest crashed  with - qemu-kvm: Features 0x1c0010130afffa7 unsupported. Allowed features: 0x10179bfffe7 
 Patch83: kvm-virtio-net-disable-USO-for-RHEL9.patch
+# For RHEL-58316 - qemu crashed when migrate vm with multiqueue from rhel9.4 to rhel10.0
+Patch84: kvm-virtio-net-Add-queues-before-loading-them.patch
+# For RHEL-68444 - The new "boot order" feature is sometimes not working as expected [RHEL 10]
+Patch85: kvm-docs-system-s390x-bootdevices-Update-loadparm-docume.patch
+# For RHEL-68444 - The new "boot order" feature is sometimes not working as expected [RHEL 10]
+Patch86: kvm-docs-system-bootindex-Make-it-clear-that-s390x-can-a.patch
+# For RHEL-68444 - The new "boot order" feature is sometimes not working as expected [RHEL 10]
+Patch87: kvm-hw-s390x-Restrict-loadparm-property-to-devices-that-.patch
+# For RHEL-68444 - The new "boot order" feature is sometimes not working as expected [RHEL 10]
+Patch88: kvm-hw-Add-loadparm-property-to-scsi-disk-devices-for-bo.patch
+# For RHEL-68444 - The new "boot order" feature is sometimes not working as expected [RHEL 10]
+Patch89: kvm-scsi-fix-allocation-for-s390x-loadparm.patch
+# For RHEL-68444 - The new "boot order" feature is sometimes not working as expected [RHEL 10]
+Patch90: kvm-pc-bios-s390x-Initialize-cdrom-type-to-false-for-eac.patch
+# For RHEL-68444 - The new "boot order" feature is sometimes not working as expected [RHEL 10]
+Patch91: kvm-pc-bios-s390x-Initialize-machine-loadparm-before-pro.patch
+# For RHEL-68444 - The new "boot order" feature is sometimes not working as expected [RHEL 10]
+Patch92: kvm-pc-bios-s390-ccw-Re-initialize-receive-queue-index-b.patch
 
 %if %{have_clang}
 BuildRequires: clang
@@ -1406,6 +1424,21 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Tue Dec 03 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-7
+- kvm-virtio-net-Add-queues-before-loading-them.patch [RHEL-58316]
+- kvm-docs-system-s390x-bootdevices-Update-loadparm-docume.patch [RHEL-68444]
+- kvm-docs-system-bootindex-Make-it-clear-that-s390x-can-a.patch [RHEL-68444]
+- kvm-hw-s390x-Restrict-loadparm-property-to-devices-that-.patch [RHEL-68444]
+- kvm-hw-Add-loadparm-property-to-scsi-disk-devices-for-bo.patch [RHEL-68444]
+- kvm-scsi-fix-allocation-for-s390x-loadparm.patch [RHEL-68444]
+- kvm-pc-bios-s390x-Initialize-cdrom-type-to-false-for-eac.patch [RHEL-68444]
+- kvm-pc-bios-s390x-Initialize-machine-loadparm-before-pro.patch [RHEL-68444]
+- kvm-pc-bios-s390-ccw-Re-initialize-receive-queue-index-b.patch [RHEL-68444]
+- Resolves: RHEL-58316
+  (qemu crashed when migrate vm with multiqueue from rhel9.4 to rhel10.0)
+- Resolves: RHEL-68444
+  (The new "boot order" feature is sometimes not working as expected [RHEL 10])
+
 * Mon Nov 25 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-6
 - kvm-vfio-container-Fix-container-object-destruction.patch [RHEL-67936]
 - kvm-virtio-net-disable-USO-for-RHEL9.patch [RHEL-40950]
