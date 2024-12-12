@@ -196,14 +196,14 @@ static void i6300esb_timer_expired(void *vp)
         i6300esb_restart_timer(d, 2);
     } else {
         /* Second stage expired, reboot for real. */
-        if (d->reboot_enabled) {
+        if (d->reboot_enabled && !watchdog_get_actions_paused()) {
             d->previous_reboot_flag = 1;
             watchdog_perform_action(); /* This reboots, exits, etc */
             i6300esb_reset(DEVICE(d));
         }
 
         /* In "free running mode" we start stage 1 again. */
-        if (d->free_run)
+        if (d->free_run || watchdog_get_actions_paused())
             i6300esb_restart_timer(d, 1);
     }
 }

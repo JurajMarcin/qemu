@@ -33,3 +33,4 @@ spapr_watchdog_expired(uint64_t num, unsigned action) "num=%" PRIu64 " action=%u
 # watchdog.c
 watchdog_perform_action(unsigned int action) "action=%u"
 watchdog_set_action(unsigned int action) "action=%u"
+watchdog_set_actions_paused(bool actions_paused) "actions_paused=%u"

@@ -45,6 +45,7 @@ struct IB700state {
     ISADevice parent_obj;
 
     QEMUTimer *timer;
+    int timeout_seconds;
 
     PortioList port_list;
 };
@@ -54,6 +55,14 @@ struct IB700state {
  * unchangeable IO port, so there could only ever be one anyway).
  */
 
+static void ib700_timer_reload(IB700State *s)
+{
+    int64_t timeout;
+
+    timeout = (int64_t) s->timeout_seconds * NANOSECONDS_PER_SECOND;
+    timer_mod(s->timer, qemu_clock_get_ns(QEMU_CLOCK_VIRTUAL) + timeout);
+}
+
 /* A write to this register enables the timer. */
 static void ib700_write_enable_reg(void *vp, uint32_t addr, uint32_t data)
 {
@@ -62,12 +71,11 @@ static void ib700_write_enable_reg(void *vp, uint32_t addr, uint32_t data)
         30, 28, 26, 24, 22, 20, 18, 16,
         14, 12, 10,  8,  6,  4,  2,  0
     };
-    int64_t timeout;
 
     ib700_debug("addr = %x, data = %x\n", addr, data);
 
-    timeout = (int64_t) time_map[data & 0xF] * NANOSECONDS_PER_SECOND;
-    timer_mod(s->timer, qemu_clock_get_ns(QEMU_CLOCK_VIRTUAL) + timeout);
+    s->timeout_seconds = time_map[data & 0xF];
+    ib700_timer_reload(s);
 }
 
 /* A write (of any value) to this register disables the timer. */
@@ -87,8 +95,11 @@ static void ib700_timer_expired(void *vp)
 
     ib700_debug("watchdog expired\n");
 
-    watchdog_perform_action();
-    timer_del(s->timer);
+    if (watchdog_perform_action()) {
+        timer_del(s->timer);
+    } else {
+        ib700_timer_reload(s);
+    }
 }
 
 static const VMStateDescription vmstate_ib700 = {

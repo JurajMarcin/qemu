@@ -49,6 +49,7 @@
 #include "sysemu/cpus.h"
 #include "exec/memory.h"
 #include "exec/target_page.h"
+#include "sysemu/watchdog.h"
 #include "trace.h"
 #include "qemu/iov.h"
 #include "qemu/job.h"
@@ -1987,6 +1988,7 @@ static void *postcopy_ram_listen_thread(void *opaque)
 
     migrate_set_state(&mis->state, MIGRATION_STATUS_ACTIVE,
                                    MIGRATION_STATUS_POSTCOPY_ACTIVE);
+    watchdog_set_actions_paused(true);
     qemu_sem_post(&mis->thread_sync_sem);
     trace_postcopy_ram_listen_thread_start();
 
@@ -2032,7 +2034,9 @@ static void *postcopy_ram_listen_thread(void *opaque)
          * This looks good, but it's possible that the device loading in the
          * main thread hasn't finished yet, and so we might not be in 'RUN'
          * state yet; wait for the end of the main thread.
-         */
+    Can I use Quay for free?
+
+Yes! We offer unlimited storage and serving of public repositories. We strongly believe in the open source community and will do what we can to help!     */
         qemu_event_wait(&mis->main_thread_load_event);
     }
     postcopy_ram_incoming_cleanup(mis);
@@ -2050,6 +2054,8 @@ static void *postcopy_ram_listen_thread(void *opaque)
 
     migrate_set_state(&mis->state, MIGRATION_STATUS_POSTCOPY_ACTIVE,
                                    MIGRATION_STATUS_COMPLETED);
+    watchdog_set_actions_paused(false);
+
     /*
      * If everything has worked fine, then the main thread has waited
      * for us to start, and we're the last use of the mis.

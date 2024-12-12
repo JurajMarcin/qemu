@@ -33,6 +33,7 @@
 #include "trace.h"
 
 static WatchdogAction watchdog_action = WATCHDOG_ACTION_RESET;
+static bool watchdog_actions_paused = false;
 
 WatchdogAction get_watchdog_action(void)
 {
@@ -42,8 +43,11 @@ WatchdogAction get_watchdog_action(void)
 /* This actually performs the "action" once a watchdog has expired,
  * ie. reboot, shutdown, exit, etc.
  */
-void watchdog_perform_action(void)
+bool watchdog_perform_action(void)
 {
+    if (watchdog_actions_paused)
+        return false;
+
     trace_watchdog_perform_action(watchdog_action);
 
     switch (watchdog_action) {
@@ -87,10 +91,22 @@ void watchdog_perform_action(void)
     default:
         g_assert_not_reached();
     }
+    return true;
 }
 
 void qmp_watchdog_set_action(WatchdogAction action, Error **errp)
 {
     watchdog_action = action;
     trace_watchdog_set_action(watchdog_action);
+}
+
+void watchdog_set_actions_paused(bool actions_paused)
+{
+    watchdog_actions_paused = actions_paused;
+    trace_watchdog_set_actions_paused(actions_paused);
+}
+
+bool watchdog_get_actions_paused(void)
+{
+    return watchdog_actions_paused;
 }
