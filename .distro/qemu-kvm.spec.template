@@ -1241,6 +1241,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Fri Dec 13 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-7
+- kvm-migration-Allow-pipes-to-keep-working-for-fd-migrati.patch [RHEL-66089]
+- Resolves: RHEL-66089
+  (warning: fd: migration to a file is deprecated when create or revert a snapshot)
+
 * Thu Dec 05 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-6
 - kvm-virtio-net-Add-queues-before-loading-them.patch [RHEL-69477]
 - kvm-docs-system-s390x-bootdevices-Update-loadparm-docume.patch [RHEL-68440]
