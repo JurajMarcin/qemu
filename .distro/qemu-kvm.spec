@@ -143,7 +143,7 @@ Obsoletes: %{name}-block-ssh <= %{epoch}:%{version}                    \
 Summary: QEMU is a machine emulator and virtualizer
 Name: qemu-kvm
 Version: 9.1.0
-Release: 7%{?rcrel}%{?dist}%{?cc_suffix}
+Release: 8%{?rcrel}%{?dist}%{?cc_suffix}
 # Epoch because we pushed a qemu-1.0 package. AIUI this can't ever be dropped
 # Epoch 15 used for RHEL 8
 # Epoch 17 used for RHEL 9 (due to release versioning offset in RHEL 8.5)
@@ -358,6 +358,8 @@ Patch90: kvm-pc-bios-s390x-Initialize-cdrom-type-to-false-for-eac.patch
 Patch91: kvm-pc-bios-s390x-Initialize-machine-loadparm-before-pro.patch
 # For RHEL-68444 - The new "boot order" feature is sometimes not working as expected [RHEL 10]
 Patch92: kvm-pc-bios-s390-ccw-Re-initialize-receive-queue-index-b.patch
+# For RHEL-69047 - warning: fd: migration to a file is deprecated when create or revert a snapshot
+Patch93: kvm-migration-Allow-pipes-to-keep-working-for-fd-migrati.patch
 
 %if %{have_clang}
 BuildRequires: clang
@@ -1424,6 +1426,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Fri Dec 13 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-8
+- kvm-migration-Allow-pipes-to-keep-working-for-fd-migrati.patch [RHEL-69047]
+- Resolves: RHEL-69047
+  (warning: fd: migration to a file is deprecated when create or revert a snapshot)
+
 * Tue Dec 03 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-7
 - kvm-virtio-net-Add-queues-before-loading-them.patch [RHEL-58316]
 - kvm-docs-system-s390x-bootdevices-Update-loadparm-docume.patch [RHEL-68444]
