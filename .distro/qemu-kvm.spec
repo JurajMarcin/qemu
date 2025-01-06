@@ -143,7 +143,7 @@ Obsoletes: %{name}-block-ssh <= %{epoch}:%{version}                    \
 Summary: QEMU is a machine emulator and virtualizer
 Name: qemu-kvm
 Version: 9.1.0
-Release: 8%{?rcrel}%{?dist}%{?cc_suffix}
+Release: 9%{?rcrel}%{?dist}%{?cc_suffix}
 # Epoch because we pushed a qemu-1.0 package. AIUI this can't ever be dropped
 # Epoch 15 used for RHEL 8
 # Epoch 17 used for RHEL 9 (due to release versioning offset in RHEL 8.5)
@@ -360,6 +360,42 @@ Patch91: kvm-pc-bios-s390x-Initialize-machine-loadparm-before-pro.patch
 Patch92: kvm-pc-bios-s390-ccw-Re-initialize-receive-queue-index-b.patch
 # For RHEL-69047 - warning: fd: migration to a file is deprecated when create or revert a snapshot
 Patch93: kvm-migration-Allow-pipes-to-keep-working-for-fd-migrati.patch
+# For RHEL-32665 - [IBM 10.0 FEAT] KVM: CPU model for new IBM Z HW - qemu-kvm part
+Patch94: kvm-linux-headers-Update-to-Linux-v6.12-rc5.patch
+# For RHEL-32665 - [IBM 10.0 FEAT] KVM: CPU model for new IBM Z HW - qemu-kvm part
+Patch95: kvm-s390x-cpumodel-add-msa10-subfunctions.patch
+# For RHEL-32665 - [IBM 10.0 FEAT] KVM: CPU model for new IBM Z HW - qemu-kvm part
+Patch96: kvm-s390x-cpumodel-add-msa11-subfunctions.patch
+# For RHEL-32665 - [IBM 10.0 FEAT] KVM: CPU model for new IBM Z HW - qemu-kvm part
+Patch97: kvm-s390x-cpumodel-add-msa12-changes.patch
+# For RHEL-32665 - [IBM 10.0 FEAT] KVM: CPU model for new IBM Z HW - qemu-kvm part
+Patch98: kvm-s390x-cpumodel-add-msa13-subfunctions.patch
+# For RHEL-32665 - [IBM 10.0 FEAT] KVM: CPU model for new IBM Z HW - qemu-kvm part
+Patch99: kvm-s390x-cpumodel-Add-ptff-Query-Time-Stamp-Event-QTSE-.patch
+# For RHEL-32665 - [IBM 10.0 FEAT] KVM: CPU model for new IBM Z HW - qemu-kvm part
+Patch100: kvm-linux-headers-Update-to-Linux-6.13-rc1.patch
+# For RHEL-32665 - [IBM 10.0 FEAT] KVM: CPU model for new IBM Z HW - qemu-kvm part
+Patch101: kvm-s390x-cpumodel-add-Concurrent-functions-facility-sup.patch
+# For RHEL-32665 - [IBM 10.0 FEAT] KVM: CPU model for new IBM Z HW - qemu-kvm part
+Patch102: kvm-s390x-cpumodel-add-Vector-Enhancements-facility-3.patch
+# For RHEL-32665 - [IBM 10.0 FEAT] KVM: CPU model for new IBM Z HW - qemu-kvm part
+Patch103: kvm-s390x-cpumodel-add-Miscellaneous-Instruction-Extensi.patch
+# For RHEL-32665 - [IBM 10.0 FEAT] KVM: CPU model for new IBM Z HW - qemu-kvm part
+Patch104: kvm-s390x-cpumodel-add-Vector-Packed-Decimal-Enhancement.patch
+# For RHEL-32665 - [IBM 10.0 FEAT] KVM: CPU model for new IBM Z HW - qemu-kvm part
+Patch105: kvm-s390x-cpumodel-add-Ineffective-nonconstrained-transa.patch
+# For RHEL-32665 - [IBM 10.0 FEAT] KVM: CPU model for new IBM Z HW - qemu-kvm part
+Patch106: kvm-s390x-cpumodel-Add-Sequential-Instruction-Fetching-f.patch
+# For RHEL-32665 - [IBM 10.0 FEAT] KVM: CPU model for new IBM Z HW - qemu-kvm part
+Patch107: kvm-s390x-cpumodel-correct-PLO-feature-wording.patch
+# For RHEL-32665 - [IBM 10.0 FEAT] KVM: CPU model for new IBM Z HW - qemu-kvm part
+Patch108: kvm-s390x-cpumodel-Add-PLO-extension-facility.patch
+# For RHEL-32665 - [IBM 10.0 FEAT] KVM: CPU model for new IBM Z HW - qemu-kvm part
+Patch109: kvm-s390x-cpumodel-gen17-model.patch
+# For RHEL-71939 - qemu-ga cannot freeze filesystems with sentinelone
+Patch110: kvm-qga-skip-bind-mounts-in-fs-list.patch
+# For RHEL-67108 - [aarch64] [rhel-10.0] Backport some important post 9.1 qemu fixes
+Patch111: kvm-hw-char-pl011-Use-correct-masks-for-IBRD-and-FBRD.patch
 
 %if %{have_clang}
 BuildRequires: clang
@@ -1426,6 +1462,32 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Jan 06 2025 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-9
+- kvm-linux-headers-Update-to-Linux-v6.12-rc5.patch [RHEL-32665]
+- kvm-s390x-cpumodel-add-msa10-subfunctions.patch [RHEL-32665]
+- kvm-s390x-cpumodel-add-msa11-subfunctions.patch [RHEL-32665]
+- kvm-s390x-cpumodel-add-msa12-changes.patch [RHEL-32665]
+- kvm-s390x-cpumodel-add-msa13-subfunctions.patch [RHEL-32665]
+- kvm-s390x-cpumodel-Add-ptff-Query-Time-Stamp-Event-QTSE-.patch [RHEL-32665]
+- kvm-linux-headers-Update-to-Linux-6.13-rc1.patch [RHEL-32665]
+- kvm-s390x-cpumodel-add-Concurrent-functions-facility-sup.patch [RHEL-32665]
+- kvm-s390x-cpumodel-add-Vector-Enhancements-facility-3.patch [RHEL-32665]
+- kvm-s390x-cpumodel-add-Miscellaneous-Instruction-Extensi.patch [RHEL-32665]
+- kvm-s390x-cpumodel-add-Vector-Packed-Decimal-Enhancement.patch [RHEL-32665]
+- kvm-s390x-cpumodel-add-Ineffective-nonconstrained-transa.patch [RHEL-32665]
+- kvm-s390x-cpumodel-Add-Sequential-Instruction-Fetching-f.patch [RHEL-32665]
+- kvm-s390x-cpumodel-correct-PLO-feature-wording.patch [RHEL-32665]
+- kvm-s390x-cpumodel-Add-PLO-extension-facility.patch [RHEL-32665]
+- kvm-s390x-cpumodel-gen17-model.patch [RHEL-32665]
+- kvm-qga-skip-bind-mounts-in-fs-list.patch [RHEL-71939]
+- kvm-hw-char-pl011-Use-correct-masks-for-IBRD-and-FBRD.patch [RHEL-67108]
+- Resolves: RHEL-32665
+  ([IBM 10.0 FEAT] KVM: CPU model for new IBM Z HW - qemu-kvm part)
+- Resolves: RHEL-71939
+  (qemu-ga cannot freeze filesystems with sentinelone)
+- Resolves: RHEL-67108
+  ([aarch64] [rhel-10.0] Backport some important post 9.1 qemu fixes)
+
 * Fri Dec 13 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-8
 - kvm-migration-Allow-pipes-to-keep-working-for-fd-migrati.patch [RHEL-69047]
 - Resolves: RHEL-69047
