@@ -1235,6 +1235,32 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Jan 06 2025 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-9
+- kvm-linux-headers-Update-to-Linux-v6.12-rc5.patch [RHEL-32665]
+- kvm-s390x-cpumodel-add-msa10-subfunctions.patch [RHEL-32665]
+- kvm-s390x-cpumodel-add-msa11-subfunctions.patch [RHEL-32665]
+- kvm-s390x-cpumodel-add-msa12-changes.patch [RHEL-32665]
+- kvm-s390x-cpumodel-add-msa13-subfunctions.patch [RHEL-32665]
+- kvm-s390x-cpumodel-Add-ptff-Query-Time-Stamp-Event-QTSE-.patch [RHEL-32665]
+- kvm-linux-headers-Update-to-Linux-6.13-rc1.patch [RHEL-32665]
+- kvm-s390x-cpumodel-add-Concurrent-functions-facility-sup.patch [RHEL-32665]
+- kvm-s390x-cpumodel-add-Vector-Enhancements-facility-3.patch [RHEL-32665]
+- kvm-s390x-cpumodel-add-Miscellaneous-Instruction-Extensi.patch [RHEL-32665]
+- kvm-s390x-cpumodel-add-Vector-Packed-Decimal-Enhancement.patch [RHEL-32665]
+- kvm-s390x-cpumodel-add-Ineffective-nonconstrained-transa.patch [RHEL-32665]
+- kvm-s390x-cpumodel-Add-Sequential-Instruction-Fetching-f.patch [RHEL-32665]
+- kvm-s390x-cpumodel-correct-PLO-feature-wording.patch [RHEL-32665]
+- kvm-s390x-cpumodel-Add-PLO-extension-facility.patch [RHEL-32665]
+- kvm-s390x-cpumodel-gen17-model.patch [RHEL-32665]
+- kvm-qga-skip-bind-mounts-in-fs-list.patch [RHEL-71939]
+- kvm-hw-char-pl011-Use-correct-masks-for-IBRD-and-FBRD.patch [RHEL-67108]
+- Resolves: RHEL-32665
+  ([IBM 10.0 FEAT] KVM: CPU model for new IBM Z HW - qemu-kvm part)
+- Resolves: RHEL-71939
+  (qemu-ga cannot freeze filesystems with sentinelone)
+- Resolves: RHEL-67108
+  ([aarch64] [rhel-10.0] Backport some important post 9.1 qemu fixes)
+
 * Fri Dec 13 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-8
 - kvm-migration-Allow-pipes-to-keep-working-for-fd-migrati.patch [RHEL-69047]
 - Resolves: RHEL-69047
