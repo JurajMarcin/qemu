@@ -1294,6 +1294,11 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Sun Jan 05 2025 Jon Maloy <jmaloy@redhat.com> - 6.2.0-53.el8.3
+- kvm-qga-skip-bind-mounts-in-fs-list.patch [RHEL-59214]
+- Resolves: RHEL-59214
+  (qemu-ga cannot freeze filesystems with sentinelone)
+
 * Tue Oct 15 2024 Jon Maloy <jmaloy@redhat.com> - 6.2.0-53.el8.2
 - kvm-Fix-thread-pool-size-default-value-in-the-man-page.patch [RHEL-26197]
 - Resolves: RHEL-26197
