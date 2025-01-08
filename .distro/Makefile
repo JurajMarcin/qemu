@@ -97,6 +97,20 @@ rh-srpm: rh-prep
 	$(DIST_DEF) \
 	--nodeps -bs $(RPMBUILD)/SPECS/$(SPECFILE)
 
+rh-env-prep: rh-prep
+	$(DS)sudo dnf builddep $(RPMBUILD)/SPECS/$(SPECFILE) || echo "Build dependency installation FAILED."
+
+rh-build-local: rh-env-prep
+	@echo Building locally using rpmbuild...
+	$(DS)rpmbuild \
+	--define "_sourcedir $(RPMBUILD)/SOURCES" \
+	--define "_builddir $(RPMBUILD)/BUILD" \
+	--define "_srcrpmdir $(RPMBUILD)/SRPMS" \
+	--define "_rpmdir $(RPMBUILD)/RPMS" \
+	--define "_specdir $(RPMBUILD)/SPECS" \
+	$(DIST_DEF) \
+	--nodeps -bc $(RPMBUILD)/SPECS/$(SPECFILE)
+
 rh-rhel-koji: rh-srpm
 	@echo "Build $(SRPM_NAME) as $(BUILD_TARGET_RHEL)"
 	$(DS)brew build $(KOJI_OPTIONS) $(BUILD_TARGET_RHEL) $(RPMBUILD)/SRPMS/$(SRPM_NAME)
@@ -108,6 +122,7 @@ rh-centos-koji: rh-srpm
 rh-help:
 	@echo "Supported make targets:"
 	@echo "  rh-srpm:        Create srpm"
+	@echo "  rh-build-local: Build package locally using rpmbuild"
 	@echo "  rh-rhel-koji:   Build package using RHEL 9 koji"
 	@echo "  rh-centos-koji: Build package using CentOS 9 Streams koji"
 	@echo "  rh-help:        Print out help"
@@ -122,3 +137,5 @@ rh-help:
 	@echo "LOCALVERSION can be stored in .distro/localversion file."
 	@echo "If LOCALVERSION is not set and there's no (or empty) .distro/localversion file,"
 	@echo "date +"%Y%m%d%H%M" is used instead."
+	@echo ""
+	@echo "Running builds require wget and rpm-build packages to be installed otherwise fails."
