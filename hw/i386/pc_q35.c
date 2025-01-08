@@ -344,7 +344,7 @@ static void pc_q35_machine_options(MachineClass *m)
     m->default_display = "std";
     m->default_nic = "e1000e";
     m->no_floppy = 1;
-    m->max_cpus = 710;
+    m->max_cpus = 4096;
     m->no_parallel = 1;
     machine_class_allow_dynamic_sysbus_dev(m, TYPE_AMD_IOMMU_DEVICE);
     machine_class_allow_dynamic_sysbus_dev(m, TYPE_INTEL_IOMMU_DEVICE);
@@ -698,6 +698,9 @@ static void pc_q35_rhel_machine_9_4_0_options(MachineClass *m)
 {
     PCMachineClass *pcmc = PC_MACHINE_CLASS(m);
     pc_q35_rhel_machine_9_6_0_options(m);
+
+    /* older RHEL machines continue to support 710 vcpus */
+    m->max_cpus = 710;
     m->desc = "RHEL-9.4.0 PC (Q35 + ICH9, 2009)";
     pcmc->smbios_stream_product = "RHEL";
     pcmc->smbios_stream_version = "9.4.0";
