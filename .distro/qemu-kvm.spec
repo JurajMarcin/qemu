@@ -143,7 +143,7 @@ Obsoletes: %{name}-block-ssh <= %{epoch}:%{version}                    \
 Summary: QEMU is a machine emulator and virtualizer
 Name: qemu-kvm
 Version: 9.1.0
-Release: 9%{?rcrel}%{?dist}%{?cc_suffix}
+Release: 10%{?rcrel}%{?dist}%{?cc_suffix}
 # Epoch because we pushed a qemu-1.0 package. AIUI this can't ever be dropped
 # Epoch 15 used for RHEL 8
 # Epoch 17 used for RHEL 9 (due to release versioning offset in RHEL 8.5)
@@ -396,6 +396,20 @@ Patch109: kvm-s390x-cpumodel-gen17-model.patch
 Patch110: kvm-qga-skip-bind-mounts-in-fs-list.patch
 # For RHEL-67108 - [aarch64] [rhel-10.0] Backport some important post 9.1 qemu fixes
 Patch111: kvm-hw-char-pl011-Use-correct-masks-for-IBRD-and-FBRD.patch
+# For RHEL-43412 - qom-get iothread-vq-mapping is empty on new hotplug disk [rhel-10.0-beta]
+Patch112: kvm-qdev-Fix-set_pci_devfn-to-visit-option-only-once.patch
+# For RHEL-43412 - qom-get iothread-vq-mapping is empty on new hotplug disk [rhel-10.0-beta]
+Patch113: kvm-tests-avocado-hotplug_blk-Fix-addr-in-device_add-com.patch
+# For RHEL-43412 - qom-get iothread-vq-mapping is empty on new hotplug disk [rhel-10.0-beta]
+Patch114: kvm-qdev-monitor-avoid-QemuOpts-in-QMP-device_add.patch
+# For RHEL-43412 - qom-get iothread-vq-mapping is empty on new hotplug disk [rhel-10.0-beta]
+Patch115: kvm-vl-use-qmp_device_add-in-qemu_create_cli_devices.patch
+# For RHEL-57668 - [RFE] [HPEMC] [RHEL-10.0] qemu-kvm: support up to 4096 VCPUs
+Patch116: kvm-pc-q35-Bump-max_cpus-to-4096-vcpus.patch
+# For RHEL-73005 - qemu-kvm: vhost: reports error while updating IOTLB entries
+Patch117: kvm-vhost-fail-device-start-if-iotlb-update-fails.patch
+# For RHEL-69500 - [Stable_Guest_ABI][USO][9.6.0-machine-type]From 10.0 to RHEL.9.6.0 the guest with 9.6 machine type only, the guest crashed with - qemu-kvm: Features 0x1c0010130afffa7 unsupported. Allowed features: 0x10179bfffe7
+Patch118: kvm-virtio-net-disable-USO-for-all-RHEL9.patch
 
 %if %{have_clang}
 BuildRequires: clang
@@ -1462,6 +1476,23 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Jan 13 2025 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-10
+- kvm-qdev-Fix-set_pci_devfn-to-visit-option-only-once.patch [RHEL-43412]
+- kvm-tests-avocado-hotplug_blk-Fix-addr-in-device_add-com.patch [RHEL-43412]
+- kvm-qdev-monitor-avoid-QemuOpts-in-QMP-device_add.patch [RHEL-43412]
+- kvm-vl-use-qmp_device_add-in-qemu_create_cli_devices.patch [RHEL-43412]
+- kvm-pc-q35-Bump-max_cpus-to-4096-vcpus.patch [RHEL-57668]
+- kvm-vhost-fail-device-start-if-iotlb-update-fails.patch [RHEL-73005]
+- kvm-virtio-net-disable-USO-for-all-RHEL9.patch [RHEL-69500]
+- Resolves: RHEL-43412
+  (qom-get iothread-vq-mapping is empty on new hotplug disk [rhel-10.0-beta])
+- Resolves: RHEL-57668
+  ([RFE] [HPEMC] [RHEL-10.0] qemu-kvm: support up to 4096 VCPUs)
+- Resolves: RHEL-73005
+  (qemu-kvm: vhost: reports error while updating IOTLB entries)
+- Resolves: RHEL-69500
+  ([Stable_Guest_ABI][USO][9.6.0-machine-type]From 10.0 to RHEL.9.6.0 the guest with 9.6 machine type only, the guest crashed with - qemu-kvm: Features 0x1c0010130afffa7 unsupported. Allowed features: 0x10179bfffe7)
+
 * Mon Jan 06 2025 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-9
 - kvm-linux-headers-Update-to-Linux-v6.12-rc5.patch [RHEL-32665]
 - kvm-s390x-cpumodel-add-msa10-subfunctions.patch [RHEL-32665]
