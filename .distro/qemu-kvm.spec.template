@@ -1241,6 +1241,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Wed Jan 15 2025 Miroslav Rezanina <mrezanin@redhat.com> - 9.0.0-10.el9_5.2
+- kvm-vhost-fail-device-start-if-iotlb-update-fails.patch [RHEL-73006]
+- Resolves: RHEL-73006
+  (qemu-kvm: vhost: reports error while updating IOTLB entries [rhel-9.5.z])
+
 * Mon Nov 04 2024 Miroslav Rezanina <mrezanin@redhat.com> - 9.0.0-10.el9_5.1
 - kvm-migration-multifd-Avoid-the-final-FLUSH-in-complete.patch [RHEL-63874]
 - kvm-migration-Rename-thread-debug-names.patch [RHEL-63874]
