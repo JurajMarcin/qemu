@@ -143,7 +143,7 @@ Obsoletes: %{name}-block-ssh <= %{epoch}:%{version}                    \
 Summary: QEMU is a machine emulator and virtualizer
 Name: qemu-kvm
 Version: 9.1.0
-Release: 10%{?rcrel}%{?dist}%{?cc_suffix}
+Release: 11%{?rcrel}%{?dist}%{?cc_suffix}
 # Epoch because we pushed a qemu-1.0 package. AIUI this can't ever be dropped
 # Epoch 15 used for RHEL 8
 # Epoch 17 used for RHEL 9 (due to release versioning offset in RHEL 8.5)
@@ -410,6 +410,14 @@ Patch116: kvm-pc-q35-Bump-max_cpus-to-4096-vcpus.patch
 Patch117: kvm-vhost-fail-device-start-if-iotlb-update-fails.patch
 # For RHEL-69500 - [Stable_Guest_ABI][USO][9.6.0-machine-type]From 10.0 to RHEL.9.6.0 the guest with 9.6 machine type only, the guest crashed with - qemu-kvm: Features 0x1c0010130afffa7 unsupported. Allowed features: 0x10179bfffe7
 Patch118: kvm-virtio-net-disable-USO-for-all-RHEL9.patch
+# For RHEL-73002 - kvm-unti kvm-hyperv_synic test is stuck on AMD with COS9 [rhel-10]
+Patch119: kvm-target-i386-Make-sure-SynIC-state-is-really-updated-.patch
+# For RHEL-73835 - VM crashes when requesting domstats [rhel-10]
+Patch120: kvm-hw-virtio-fix-crash-in-processing-balloon-stats.patch
+# For RHEL-74361 - qemu-ga logs only "guest-fsfreeze called" (but not "guest-fsthaw called")
+Patch121: kvm-qga-Add-log-to-guest-fsfreeze-thaw-command.patch
+# For RHEL-74461 - fsfreeze hooks doesn't log error on system logs when running hook fails [rhel-10]
+Patch122: kvm-qemu-ga-Optimize-freeze-hook-script-logic-of-logging.patch
 
 %if %{have_clang}
 BuildRequires: clang
@@ -1476,6 +1484,20 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Jan 20 2025 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-11
+- kvm-target-i386-Make-sure-SynIC-state-is-really-updated-.patch [RHEL-73002]
+- kvm-hw-virtio-fix-crash-in-processing-balloon-stats.patch [RHEL-73835]
+- kvm-qga-Add-log-to-guest-fsfreeze-thaw-command.patch [RHEL-74361]
+- kvm-qemu-ga-Optimize-freeze-hook-script-logic-of-logging.patch [RHEL-74461]
+- Resolves: RHEL-73002
+  (kvm-unti kvm-hyperv_synic test is stuck on AMD with COS9 [rhel-10])
+- Resolves: RHEL-73835
+  (VM crashes when requesting domstats [rhel-10])
+- Resolves: RHEL-74361
+  (qemu-ga logs only "guest-fsfreeze called" (but not "guest-fsthaw called"))
+- Resolves: RHEL-74461
+  (fsfreeze hooks doesn't log error on system logs when running hook fails [rhel-10])
+
 * Mon Jan 13 2025 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-10
 - kvm-qdev-Fix-set_pci_devfn-to-visit-option-only-once.patch [RHEL-43412]
 - kvm-tests-avocado-hotplug_blk-Fix-addr-in-device_add-com.patch [RHEL-43412]
