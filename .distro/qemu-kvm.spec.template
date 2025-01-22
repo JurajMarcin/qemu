@@ -1241,6 +1241,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Tue Jan 21 2025 Jon Maloy <jmaloy@redhat.com> - 9.1.0-11
+- kvm-pci-ensure-valid-link-status-bits-for-downstream-por.patch [RHEL-65616]
+- Resolves: RHEL-65616
+  (Failed to hot add PCIe device behind xio3130 downstream port)
+
 * Mon Jan 20 2025 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-10
 - kvm-target-i386-Make-sure-SynIC-state-is-really-updated-.patch [RHEL-53073]
 - kvm-hw-virtio-fix-crash-in-processing-balloon-stats.patch [RHEL-73688]
