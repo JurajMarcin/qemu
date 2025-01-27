@@ -143,7 +143,7 @@ Obsoletes: %{name}-block-ssh <= %{epoch}:%{version}                    \
 Summary: QEMU is a machine emulator and virtualizer
 Name: qemu-kvm
 Version: 9.1.0
-Release: 11%{?rcrel}%{?dist}%{?cc_suffix}
+Release: 12%{?rcrel}%{?dist}%{?cc_suffix}
 # Epoch because we pushed a qemu-1.0 package. AIUI this can't ever be dropped
 # Epoch 15 used for RHEL 8
 # Epoch 17 used for RHEL 9 (due to release versioning offset in RHEL 8.5)
@@ -418,6 +418,18 @@ Patch120: kvm-hw-virtio-fix-crash-in-processing-balloon-stats.patch
 Patch121: kvm-qga-Add-log-to-guest-fsfreeze-thaw-command.patch
 # For RHEL-74461 - fsfreeze hooks doesn't log error on system logs when running hook fails [rhel-10]
 Patch122: kvm-qemu-ga-Optimize-freeze-hook-script-logic-of-logging.patch
+# For RHEL-65618 - [RHEL10] Failed to hot add PCIe device behind xio3130 downstream
+Patch123: kvm-pci-ensure-valid-link-status-bits-for-downstream-por.patch
+# For RHEL-72717 - Boot fall back to cdrom from network not always working
+Patch124: kvm-pc-bios-s390-ccw-Abort-IPL-on-invalid-loadparm.patch
+# For RHEL-72717 - Boot fall back to cdrom from network not always working
+Patch125: kvm-pc-bios-s390-ccw-virtio-Add-a-function-to-reset-a-vi.patch
+# For RHEL-72717 - Boot fall back to cdrom from network not always working
+Patch126: kvm-pc-bios-s390-ccw-Fix-boot-problem-with-virtio-net-de.patch
+# For RHEL-72717 - Boot fall back to cdrom from network not always working
+Patch127: kvm-pc-bios-s390-ccw-netmain-Fix-error-messages-with-reg.patch
+# For RHEL-71761 - [Nvidia "Grace"] Lack of "PAuth" CPU feature results in live migration failure from RHEL 9.6 to 10
+Patch128: kvm-arm-disable-pauth-for-virt-rhel9-in-RHEL10.patch
 
 %if %{have_clang}
 BuildRequires: clang
@@ -1484,6 +1496,20 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Jan 27 2025 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-12
+- kvm-pci-ensure-valid-link-status-bits-for-downstream-por.patch [RHEL-65618]
+- kvm-pc-bios-s390-ccw-Abort-IPL-on-invalid-loadparm.patch [RHEL-72717]
+- kvm-pc-bios-s390-ccw-virtio-Add-a-function-to-reset-a-vi.patch [RHEL-72717]
+- kvm-pc-bios-s390-ccw-Fix-boot-problem-with-virtio-net-de.patch [RHEL-72717]
+- kvm-pc-bios-s390-ccw-netmain-Fix-error-messages-with-reg.patch [RHEL-72717]
+- kvm-arm-disable-pauth-for-virt-rhel9-in-RHEL10.patch [RHEL-71761]
+- Resolves: RHEL-65618
+  ([RHEL10] Failed to hot add PCIe device behind xio3130 downstream)
+- Resolves: RHEL-72717
+  (Boot fall back to cdrom from network not always working)
+- Resolves: RHEL-71761
+  ([Nvidia "Grace"] Lack of "PAuth" CPU feature results in live migration failure from RHEL 9.6 to 10)
+
 * Mon Jan 20 2025 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-11
 - kvm-target-i386-Make-sure-SynIC-state-is-really-updated-.patch [RHEL-73002]
 - kvm-hw-virtio-fix-crash-in-processing-balloon-stats.patch [RHEL-73835]
