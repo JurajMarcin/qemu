@@ -1235,6 +1235,20 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Jan 27 2025 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-12
+- kvm-pci-ensure-valid-link-status-bits-for-downstream-por.patch [RHEL-65618]
+- kvm-pc-bios-s390-ccw-Abort-IPL-on-invalid-loadparm.patch [RHEL-72717]
+- kvm-pc-bios-s390-ccw-virtio-Add-a-function-to-reset-a-vi.patch [RHEL-72717]
+- kvm-pc-bios-s390-ccw-Fix-boot-problem-with-virtio-net-de.patch [RHEL-72717]
+- kvm-pc-bios-s390-ccw-netmain-Fix-error-messages-with-reg.patch [RHEL-72717]
+- kvm-arm-disable-pauth-for-virt-rhel9-in-RHEL10.patch [RHEL-71761]
+- Resolves: RHEL-65618
+  ([RHEL10] Failed to hot add PCIe device behind xio3130 downstream)
+- Resolves: RHEL-72717
+  (Boot fall back to cdrom from network not always working)
+- Resolves: RHEL-71761
+  ([Nvidia "Grace"] Lack of "PAuth" CPU feature results in live migration failure from RHEL 9.6 to 10)
+
 * Mon Jan 20 2025 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-11
 - kvm-target-i386-Make-sure-SynIC-state-is-really-updated-.patch [RHEL-73002]
 - kvm-hw-virtio-fix-crash-in-processing-balloon-stats.patch [RHEL-73835]
