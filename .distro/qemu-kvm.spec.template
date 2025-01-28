@@ -1241,6 +1241,25 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Jan 27 2025 Jon Maloy <jmaloy@redhat.com> - 9.1.0-12
+- kvm-target-i386-cpu-set-correct-supported-XCR0-features-.patch [RHEL-30316 RHEL-45111]
+- kvm-target-i386-do-not-rely-on-ExtSaveArea-for-accelerat.patch [RHEL-30316 RHEL-45111]
+- kvm-target-i386-return-bool-from-x86_cpu_filter_features.patch [RHEL-30316 RHEL-45111]
+- kvm-target-i386-add-AVX10-feature-and-AVX10-version-prop.patch [RHEL-30316 RHEL-45111]
+- kvm-target-i386-add-CPUID.24-features-for-AVX10.patch [RHEL-30316 RHEL-45111]
+- kvm-target-i386-Add-feature-dependencies-for-AVX10.patch [RHEL-30316 RHEL-45111]
+- kvm-target-i386-Add-AVX512-state-when-AVX10-is-supported.patch [RHEL-30316 RHEL-45111]
+- kvm-target-i386-Introduce-GraniteRapids-v2-model.patch [RHEL-30316 RHEL-45111]
+- kvm-target-i386-add-sha512-sm3-sm4-feature-bits.patch [RHEL-30316 RHEL-45111]
+- kvm-arm-disable-pauth-for-virt-rhel9.patch [RHEL-75782]
+- kvm-tests-qtest-disable-most-pauth-tests.patch [RHEL-75782]
+- Resolves: RHEL-30316
+  ([Intel 9.6 FEAT] [GNR] Virt-QEMU: Add AVX10.1 instruction support)
+- Resolves: RHEL-45111
+  ([Intel 9.6 FEAT] [CWF][DMR] Virt-QEMU: Advertise new instructions SHA2-512NI, SM3, and SM4)
+- Resolves: RHEL-75782
+  ([Nvidia "Grace"] Lack of "PAuth" CPU feature results in live migration failure from RHEL 9.6 to 10)
+
 * Tue Jan 21 2025 Jon Maloy <jmaloy@redhat.com> - 9.1.0-11
 - kvm-pci-ensure-valid-link-status-bits-for-downstream-por.patch [RHEL-65616]
 - Resolves: RHEL-65616
