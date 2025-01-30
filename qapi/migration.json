@@ -844,6 +844,16 @@
 #     only has effect if the @mapped-ram capability is enabled.
 #     (Since 9.1)
 #
+# @postcopy-rp-keepalive-period: Time (in milliseconds) in which if no page
+#     request message is sent from the destination side to the source side, a
+#     keepalive message is sent instead.  Allows the destination to detect
+#     network failure that would not be detected otherwise in case there is no
+#     other communication to the source side (no page requests).  Should be less
+#     than platform INT_MAX, 0 means no keepalive will be sent.
+#     Default is 0 ms (disabled).  Older versions do not support keepalive
+#     messages and receiving one will break them.
+#     (Since 10.0)
+#
 # Features:
 #
 # @unstable: Members @x-checkpoint-delay and
@@ -870,7 +880,7 @@
            'vcpu-dirty-limit',
            'mode',
            'zero-page-detection',
-           'direct-io'] }
+           'direct-io', 'postcopy-rp-keepalive-period'] }
 
 ##
 # @MigrateSetParameters:
@@ -1025,6 +1035,16 @@
 #     only has effect if the @mapped-ram capability is enabled.
 #     (Since 9.1)
 #
+# @postcopy-rp-keepalive-period: Time (in milliseconds) in which if no page
+#     request message is sent from the destination side to the source side, a
+#     keepalive message is sent instead.  Allows the destination to detect
+#     network failure that would not be detected otherwise in case there is no
+#     other communication to the source side (no page requests).  Should be less
+#     than platform INT_MAX, 0 means no keepalive will be sent.
+#     Default is 0 ms (disabled).  Older versions do not support keepalive
+#     messages and receiving one will break them.
+#     (Since 10.0)
+#
 # Features:
 #
 # @unstable: Members @x-checkpoint-delay and
@@ -1066,7 +1086,8 @@
             '*vcpu-dirty-limit': 'uint64',
             '*mode': 'MigMode',
             '*zero-page-detection': 'ZeroPageDetection',
-            '*direct-io': 'bool' } }
+            '*direct-io': 'bool',
+            '*postcopy-rp-keepalive-period': 'uint32' } }
 
 ##
 # @migrate-set-parameters:
@@ -1235,6 +1256,16 @@
 #     only has effect if the @mapped-ram capability is enabled.
 #     (Since 9.1)
 #
+# @postcopy-rp-keepalive-period: Time (in milliseconds) in which if no page
+#     request message is sent from the destination side to the source side, a
+#     keepalive message is sent instead.  Allows the destination to detect
+#     network failure that would not be detected otherwise in case there is no
+#     other communication to the source side (no page requests).  Should be less
+#     than platform INT_MAX, 0 means no keepalive will be sent.
+#     Default is 0 ms (disabled).  Older versions do not support keepalive
+#     messages and receiving one will break them.
+#     (Since 10.0)
+#
 # Features:
 #
 # @unstable: Members @x-checkpoint-delay and
@@ -1273,7 +1304,8 @@
             '*vcpu-dirty-limit': 'uint64',
             '*mode': 'MigMode',
             '*zero-page-detection': 'ZeroPageDetection',
-            '*direct-io': 'bool' } }
+            '*direct-io': 'bool',
+            '*postcopy-rp-keepalive-period': 'uint32' } }
 
 ##
 # @query-migrate-parameters:
