@@ -1235,6 +1235,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Feb 03 2025 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-13
+- kvm-nbd-server-Silence-server-warnings-on-port-probes.patch [RHEL-76908]
+- Resolves: RHEL-76908
+  (Ensure qemu as NBD server does not flood logs [rhel-10])
+
 * Mon Jan 27 2025 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-12
 - kvm-pci-ensure-valid-link-status-bits-for-downstream-por.patch [RHEL-65618]
 - kvm-pc-bios-s390-ccw-Abort-IPL-on-invalid-loadparm.patch [RHEL-72717]
