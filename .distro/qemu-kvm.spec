@@ -143,7 +143,7 @@ Obsoletes: %{name}-block-ssh <= %{epoch}:%{version}                    \
 Summary: QEMU is a machine emulator and virtualizer
 Name: qemu-kvm
 Version: 9.1.0
-Release: 12%{?rcrel}%{?dist}%{?cc_suffix}
+Release: 13%{?rcrel}%{?dist}%{?cc_suffix}
 # Epoch because we pushed a qemu-1.0 package. AIUI this can't ever be dropped
 # Epoch 15 used for RHEL 8
 # Epoch 17 used for RHEL 9 (due to release versioning offset in RHEL 8.5)
@@ -430,6 +430,8 @@ Patch126: kvm-pc-bios-s390-ccw-Fix-boot-problem-with-virtio-net-de.patch
 Patch127: kvm-pc-bios-s390-ccw-netmain-Fix-error-messages-with-reg.patch
 # For RHEL-71761 - [Nvidia "Grace"] Lack of "PAuth" CPU feature results in live migration failure from RHEL 9.6 to 10
 Patch128: kvm-arm-disable-pauth-for-virt-rhel9-in-RHEL10.patch
+# For RHEL-76908 - Ensure qemu as NBD server does not flood logs [rhel-10]
+Patch129: kvm-nbd-server-Silence-server-warnings-on-port-probes.patch
 
 %if %{have_clang}
 BuildRequires: clang
@@ -1496,6 +1498,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Feb 03 2025 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-13
+- kvm-nbd-server-Silence-server-warnings-on-port-probes.patch [RHEL-76908]
+- Resolves: RHEL-76908
+  (Ensure qemu as NBD server does not flood logs [rhel-10])
+
 * Mon Jan 27 2025 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-12
 - kvm-pci-ensure-valid-link-status-bits-for-downstream-por.patch [RHEL-65618]
 - kvm-pc-bios-s390-ccw-Abort-IPL-on-invalid-loadparm.patch [RHEL-72717]
