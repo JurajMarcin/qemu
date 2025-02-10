@@ -1235,6 +1235,15 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Feb 10 2025 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-14
+- kvm-net-Fix-announce_self.patch [RHEL-73894]
+- kvm-vhost-Add-stubs-for-the-migration-state-transfer-int.patch [RHEL-78370]
+- kvm-virtio-net-vhost-user-Implement-internal-migration.patch [RHEL-78370]
+- Resolves: RHEL-73894
+  (No RARP packets on the destination after migration [rhel-10])
+- Resolves: RHEL-78370
+  (Add vhost-user internal migration for passt)
+
 * Mon Feb 03 2025 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-13
 - kvm-nbd-server-Silence-server-warnings-on-port-probes.patch [RHEL-76908]
 - Resolves: RHEL-76908
