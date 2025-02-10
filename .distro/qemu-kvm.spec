@@ -143,7 +143,7 @@ Obsoletes: %{name}-block-ssh <= %{epoch}:%{version}                    \
 Summary: QEMU is a machine emulator and virtualizer
 Name: qemu-kvm
 Version: 9.1.0
-Release: 13%{?rcrel}%{?dist}%{?cc_suffix}
+Release: 14%{?rcrel}%{?dist}%{?cc_suffix}
 # Epoch because we pushed a qemu-1.0 package. AIUI this can't ever be dropped
 # Epoch 15 used for RHEL 8
 # Epoch 17 used for RHEL 9 (due to release versioning offset in RHEL 8.5)
@@ -432,6 +432,12 @@ Patch127: kvm-pc-bios-s390-ccw-netmain-Fix-error-messages-with-reg.patch
 Patch128: kvm-arm-disable-pauth-for-virt-rhel9-in-RHEL10.patch
 # For RHEL-76908 - Ensure qemu as NBD server does not flood logs [rhel-10]
 Patch129: kvm-nbd-server-Silence-server-warnings-on-port-probes.patch
+# For RHEL-73894 - No RARP packets on the destination after migration [rhel-10]
+Patch130: kvm-net-Fix-announce_self.patch
+# For RHEL-78370 - Add vhost-user internal migration for passt
+Patch131: kvm-vhost-Add-stubs-for-the-migration-state-transfer-int.patch
+# For RHEL-78370 - Add vhost-user internal migration for passt
+Patch132: kvm-virtio-net-vhost-user-Implement-internal-migration.patch
 
 %if %{have_clang}
 BuildRequires: clang
@@ -1498,6 +1504,15 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Feb 10 2025 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-14
+- kvm-net-Fix-announce_self.patch [RHEL-73894]
+- kvm-vhost-Add-stubs-for-the-migration-state-transfer-int.patch [RHEL-78370]
+- kvm-virtio-net-vhost-user-Implement-internal-migration.patch [RHEL-78370]
+- Resolves: RHEL-73894
+  (No RARP packets on the destination after migration [rhel-10])
+- Resolves: RHEL-78370
+  (Add vhost-user internal migration for passt)
+
 * Mon Feb 03 2025 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-13
 - kvm-nbd-server-Silence-server-warnings-on-port-probes.patch [RHEL-76908]
 - Resolves: RHEL-76908
