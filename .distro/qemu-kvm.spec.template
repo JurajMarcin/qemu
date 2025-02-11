@@ -1241,6 +1241,15 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Feb 10 2025 Jon Maloy <jmaloy@redhat.com> - 9.1.0-14
+- kvm-nbd-server-Silence-server-warnings-on-port-probes.patch [RHEL-67863]
+- kvm-vhost-Add-stubs-for-the-migration-state-transfer-int.patch [RHEL-78372]
+- kvm-virtio-net-vhost-user-Implement-internal-migration.patch [RHEL-78372]
+- Resolves: RHEL-67863
+  (Ensure qemu as NBD server does not flood logs [rhel 9.6])
+- Resolves: RHEL-78372
+  (Add vhost-user internal migration for passt [rhel-9])
+
 * Thu Jan 30 2025 Jon Maloy <jmaloy@redhat.com> - 9.1.0-13
 - kvm-pc-bios-s390-ccw-Abort-IPL-on-invalid-loadparm.patch [RHEL-72716]
 - kvm-pc-bios-s390-ccw-virtio-Add-a-function-to-reset-a-vi.patch [RHEL-72716]
