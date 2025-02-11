@@ -1204,6 +1204,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Tue Feb 11 2025 Jon Maloy <jmaloy@redhat.com> - 7.2.0-14.el9_2.17
+- kvm-scsi-generic-fix-buffer-overflow-on-block-limits-inq.patch [RHEL-78402]
+- Resolves: RHEL-78402
+  (scsi-generic buffer overflow in scsi_handle_inquiry_reply() [rhel-9.2.0.z])
+
 * Mon Nov 04 2024 Miroslav Rezanina <mrezanin@redhat.com> - 7.2.0-14.el9_2.16
 - kvm-tests-migration-test-Wait-for-cancellation-sooner-in.patch [RHEL-55456]
 - kvm-tests-qtest-add-various-qtest_qmp_assert_success-var.patch [RHEL-55456]
