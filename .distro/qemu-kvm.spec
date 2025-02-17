@@ -143,7 +143,7 @@ Obsoletes: %{name}-block-ssh <= %{epoch}:%{version}                    \
 Summary: QEMU is a machine emulator and virtualizer
 Name: qemu-kvm
 Version: 9.1.0
-Release: 14%{?rcrel}%{?dist}%{?cc_suffix}
+Release: 15%{?rcrel}%{?dist}%{?cc_suffix}
 # Epoch because we pushed a qemu-1.0 package. AIUI this can't ever be dropped
 # Epoch 15 used for RHEL 8
 # Epoch 17 used for RHEL 9 (due to release versioning offset in RHEL 8.5)
@@ -438,6 +438,50 @@ Patch130: kvm-net-Fix-announce_self.patch
 Patch131: kvm-vhost-Add-stubs-for-the-migration-state-transfer-int.patch
 # For RHEL-78370 - Add vhost-user internal migration for passt
 Patch132: kvm-virtio-net-vhost-user-Implement-internal-migration.patch
+# For RHEL-54670 - Provide QMP command for block device reactivation after migration [rhel-10.0]
+Patch133: kvm-migration-Add-helper-to-get-target-runstate.patch
+# For RHEL-54670 - Provide QMP command for block device reactivation after migration [rhel-10.0]
+Patch134: kvm-qmp-cont-Only-activate-disks-if-migration-completed.patch
+# For RHEL-54670 - Provide QMP command for block device reactivation after migration [rhel-10.0]
+Patch135: kvm-migration-block-Make-late-block-active-the-default.patch
+# For RHEL-54670 - Provide QMP command for block device reactivation after migration [rhel-10.0]
+Patch136: kvm-migration-block-Apply-late-block-active-behavior-to-.patch
+# For RHEL-54670 - Provide QMP command for block device reactivation after migration [rhel-10.0]
+Patch137: kvm-migration-block-Fix-possible-race-with-block_inactiv.patch
+# For RHEL-54670 - Provide QMP command for block device reactivation after migration [rhel-10.0]
+Patch138: kvm-migration-block-Rewrite-disk-activation.patch
+# For RHEL-54670 - Provide QMP command for block device reactivation after migration [rhel-10.0]
+Patch139: kvm-block-Add-active-field-to-BlockDeviceInfo.patch
+# For RHEL-54670 - Provide QMP command for block device reactivation after migration [rhel-10.0]
+Patch140: kvm-block-Allow-inactivating-already-inactive-nodes.patch
+# For RHEL-54670 - Provide QMP command for block device reactivation after migration [rhel-10.0]
+Patch141: kvm-block-Inactivate-external-snapshot-overlays-when-nec.patch
+# For RHEL-54670 - Provide QMP command for block device reactivation after migration [rhel-10.0]
+Patch142: kvm-migration-block-active-Remove-global-active-flag.patch
+# For RHEL-54670 - Provide QMP command for block device reactivation after migration [rhel-10.0]
+Patch143: kvm-block-Don-t-attach-inactive-child-to-active-node.patch
+# For RHEL-54670 - Provide QMP command for block device reactivation after migration [rhel-10.0]
+Patch144: kvm-block-Fix-crash-on-block_resize-on-inactive-node.patch
+# For RHEL-54670 - Provide QMP command for block device reactivation after migration [rhel-10.0]
+Patch145: kvm-block-Add-option-to-create-inactive-nodes.patch
+# For RHEL-54670 - Provide QMP command for block device reactivation after migration [rhel-10.0]
+Patch146: kvm-block-Add-blockdev-set-active-QMP-command.patch
+# For RHEL-54670 - Provide QMP command for block device reactivation after migration [rhel-10.0]
+Patch147: kvm-block-Support-inactive-nodes-in-blk_insert_bs.patch
+# For RHEL-54670 - Provide QMP command for block device reactivation after migration [rhel-10.0]
+Patch148: kvm-block-export-Don-t-ignore-image-activation-error-in-.patch
+# For RHEL-54670 - Provide QMP command for block device reactivation after migration [rhel-10.0]
+Patch149: kvm-block-Drain-nodes-before-inactivating-them.patch
+# For RHEL-54670 - Provide QMP command for block device reactivation after migration [rhel-10.0]
+Patch150: kvm-block-export-Add-option-to-allow-export-of-inactive-.patch
+# For RHEL-54670 - Provide QMP command for block device reactivation after migration [rhel-10.0]
+Patch151: kvm-nbd-server-Support-inactive-nodes.patch
+# For RHEL-54670 - Provide QMP command for block device reactivation after migration [rhel-10.0]
+Patch152: kvm-iotests-Add-filter_qtest.patch
+# For RHEL-54670 - Provide QMP command for block device reactivation after migration [rhel-10.0]
+Patch153: kvm-iotests-Add-qsd-migrate-case.patch
+# For RHEL-54670 - Provide QMP command for block device reactivation after migration [rhel-10.0]
+Patch154: kvm-iotests-Add-NBD-based-tests-for-inactive-nodes.patch
 
 %if %{have_clang}
 BuildRequires: clang
@@ -1504,6 +1548,32 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Feb 17 2025 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-15
+- kvm-migration-Add-helper-to-get-target-runstate.patch [RHEL-54670]
+- kvm-qmp-cont-Only-activate-disks-if-migration-completed.patch [RHEL-54670]
+- kvm-migration-block-Make-late-block-active-the-default.patch [RHEL-54670]
+- kvm-migration-block-Apply-late-block-active-behavior-to-.patch [RHEL-54670]
+- kvm-migration-block-Fix-possible-race-with-block_inactiv.patch [RHEL-54670]
+- kvm-migration-block-Rewrite-disk-activation.patch [RHEL-54670]
+- kvm-block-Add-active-field-to-BlockDeviceInfo.patch [RHEL-54670]
+- kvm-block-Allow-inactivating-already-inactive-nodes.patch [RHEL-54670]
+- kvm-block-Inactivate-external-snapshot-overlays-when-nec.patch [RHEL-54670]
+- kvm-migration-block-active-Remove-global-active-flag.patch [RHEL-54670]
+- kvm-block-Don-t-attach-inactive-child-to-active-node.patch [RHEL-54670]
+- kvm-block-Fix-crash-on-block_resize-on-inactive-node.patch [RHEL-54670]
+- kvm-block-Add-option-to-create-inactive-nodes.patch [RHEL-54670]
+- kvm-block-Add-blockdev-set-active-QMP-command.patch [RHEL-54670]
+- kvm-block-Support-inactive-nodes-in-blk_insert_bs.patch [RHEL-54670]
+- kvm-block-export-Don-t-ignore-image-activation-error-in-.patch [RHEL-54670]
+- kvm-block-Drain-nodes-before-inactivating-them.patch [RHEL-54670]
+- kvm-block-export-Add-option-to-allow-export-of-inactive-.patch [RHEL-54670]
+- kvm-nbd-server-Support-inactive-nodes.patch [RHEL-54670]
+- kvm-iotests-Add-filter_qtest.patch [RHEL-54670]
+- kvm-iotests-Add-qsd-migrate-case.patch [RHEL-54670]
+- kvm-iotests-Add-NBD-based-tests-for-inactive-nodes.patch [RHEL-54670]
+- Resolves: RHEL-54670
+  (Provide QMP command for block device reactivation after migration [rhel-10.0])
+
 * Mon Feb 10 2025 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-14
 - kvm-net-Fix-announce_self.patch [RHEL-73894]
 - kvm-vhost-Add-stubs-for-the-migration-state-transfer-int.patch [RHEL-78370]
