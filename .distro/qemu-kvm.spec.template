@@ -1241,6 +1241,37 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Feb 17 2025 Jon Maloy <jmaloy@redhat.com> - 9.1.0-15
+- kvm-net-Fix-announce_self.patch [RHEL-73891]
+- kvm-migration-Add-helper-to-get-target-runstate.patch [RHEL-54296 RHEL-78397]
+- kvm-qmp-cont-Only-activate-disks-if-migration-completed.patch [RHEL-54296 RHEL-78397]
+- kvm-migration-block-Make-late-block-active-the-default.patch [RHEL-54296 RHEL-78397]
+- kvm-migration-block-Apply-late-block-active-behavior-to-.patch [RHEL-54296 RHEL-78397]
+- kvm-migration-block-Fix-possible-race-with-block_inactiv.patch [RHEL-54296 RHEL-78397]
+- kvm-migration-block-Rewrite-disk-activation.patch [RHEL-54296 RHEL-78397]
+- kvm-block-Add-active-field-to-BlockDeviceInfo.patch [RHEL-54296 RHEL-78397]
+- kvm-block-Allow-inactivating-already-inactive-nodes.patch [RHEL-54296 RHEL-78397]
+- kvm-block-Inactivate-external-snapshot-overlays-when-nec.patch [RHEL-54296 RHEL-78397]
+- kvm-migration-block-active-Remove-global-active-flag.patch [RHEL-54296 RHEL-78397]
+- kvm-block-Don-t-attach-inactive-child-to-active-node.patch [RHEL-54296 RHEL-78397]
+- kvm-block-Fix-crash-on-block_resize-on-inactive-node.patch [RHEL-54296 RHEL-78397]
+- kvm-block-Add-option-to-create-inactive-nodes.patch [RHEL-54296 RHEL-78397]
+- kvm-block-Add-blockdev-set-active-QMP-command.patch [RHEL-54296 RHEL-78397]
+- kvm-block-Support-inactive-nodes-in-blk_insert_bs.patch [RHEL-54296 RHEL-78397]
+- kvm-block-export-Don-t-ignore-image-activation-error-in-.patch [RHEL-54296 RHEL-78397]
+- kvm-block-Drain-nodes-before-inactivating-them.patch [RHEL-54296 RHEL-78397]
+- kvm-block-export-Add-option-to-allow-export-of-inactive-.patch [RHEL-54296 RHEL-78397]
+- kvm-nbd-server-Support-inactive-nodes.patch [RHEL-54296 RHEL-78397]
+- kvm-iotests-Add-filter_qtest.patch [RHEL-54296 RHEL-78397]
+- kvm-iotests-Add-qsd-migrate-case.patch [RHEL-54296 RHEL-78397]
+- kvm-iotests-Add-NBD-based-tests-for-inactive-nodes.patch [RHEL-54296 RHEL-78397]
+- Resolves: RHEL-73891
+  (No RARP packets on the destination after migration [rhel-9.6])
+- Resolves: RHEL-54296
+  (Provide QMP command for block device reactivation after migration [rhel-9.5])
+- Resolves: RHEL-78397
+  (backport fix for double migration of a paused VM (disk activation rewrite))
+
 * Mon Feb 10 2025 Jon Maloy <jmaloy@redhat.com> - 9.1.0-14
 - kvm-nbd-server-Silence-server-warnings-on-port-probes.patch [RHEL-67863]
 - kvm-vhost-Add-stubs-for-the-migration-state-transfer-int.patch [RHEL-78372]
