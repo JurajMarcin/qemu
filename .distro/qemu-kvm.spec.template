@@ -1235,6 +1235,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Tue Mar 18 2025 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-15.el10_0.1
+- kvm-net-vhost-user-add-QAPI-events-to-report-connection-.patch [RHEL-80522]
+- Resolves: RHEL-80522
+  (Allow libvirt to restart passt/vhost-user when the process is killed)
+
 * Mon Feb 17 2025 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-15
 - kvm-migration-Add-helper-to-get-target-runstate.patch [RHEL-54670]
 - kvm-qmp-cont-Only-activate-disks-if-migration-completed.patch [RHEL-54670]
