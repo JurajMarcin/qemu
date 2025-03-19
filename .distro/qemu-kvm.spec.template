@@ -1241,6 +1241,14 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Wed Mar 19 2025 Jon Maloy <jmaloy@redhat.com> - 9.1.0-15.el9_6.1
+- kvm-net-vhost-user-add-QAPI-events-to-report-connection-.patch [RHEL-80622]
+- kvm-qga-implement-a-guest-get-load-command.patch [RHEL-83000]
+- Resolves: RHEL-80622
+  (Allow libvirt to restart passt/vhost-user when the process is killed [rhel-9])
+- Resolves: RHEL-83000
+  ([qemu-guest-agent][RFE] Report CPU load average [rhel-9.6.z])
+
 * Mon Feb 17 2025 Jon Maloy <jmaloy@redhat.com> - 9.1.0-15
 - kvm-net-Fix-announce_self.patch [RHEL-73891]
 - kvm-migration-Add-helper-to-get-target-runstate.patch [RHEL-54296 RHEL-78397]
