@@ -4,12 +4,12 @@ VERSION:=9.1.0
 DATE:=
 COMMIT:=
 RELEASE:=15
-ZRELEASE:=
+ZRELEASE:=0
 RELEASE_SEPARATOR:=-
 WEEKLY_DATE:=
 RC:=
 CLANG:=1
-BUILD_TARGET=rhel-9.6.0-candidate
+BUILD_TARGET=rhel-9.6.0-z-candidate
 RHEL_VERSION=9
 
 ifneq ($(RC),)
@@ -26,7 +26,7 @@ MARKER:=v9.1.0
 TARURL=https://sources.stream.centos.org/sources/rpms/qemu-kvm/$(TARFILE)/sha512/$(TARSHA512)/$(TARFILE)
 
 SPECFILE:=$(NAME).spec
-DIST:=.el9
+DIST:=.el9_6
 SRPM_NAME=$(shell rpmspec --query --srpm --target="src" --define "dist $(DIST)" $(RPMBUILD)/SPECS/$(SPECFILE) | sed -e 's/\(.*\)\..*/\1/').src.rpm
 
 SOURCES_FILELIST:=                     \
