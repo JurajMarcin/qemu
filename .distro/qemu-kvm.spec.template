@@ -1236,6 +1236,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Fri Mar 21 2025 Jon Maloy <jmaloy@redhat.com> - 8.2.0-11.el9_4.10
+- kvm-qga-implement-a-guest-get-load-command.patch [RHEL-82998]
+- Resolves: RHEL-82998
+  ([qemu-guest-agent][RFE] Report CPU load average [rhel-9.4.z])
+
 * Tue Oct 01 2024 Miroslav Rezanina <mrezanin@redhat.com> - 8.2.0-11.el9_4.9
 - kvm-vfio-Add-default-case-in-vfio_migration_state_notifi.patch [RHEL-55457]
 - kvm-migration-multifd-Avoid-the-final-FLUSH-in-complete.patch [RHEL-55457]
