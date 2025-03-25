@@ -143,7 +143,7 @@ Obsoletes: %{name}-block-ssh <= %{epoch}:%{version}                    \
 Summary: QEMU is a machine emulator and virtualizer
 Name: qemu-kvm
 Version: 9.1.0
-Release: 15%{?rcrel}%{?dist}%{?cc_suffix}
+Release: 16%{?rcrel}%{?dist}%{?cc_suffix}
 # Epoch because we pushed a qemu-1.0 package. AIUI this can't ever be dropped
 # Epoch 15 used for RHEL 8
 # Epoch 17 used for RHEL 9 (due to release versioning offset in RHEL 8.5)
@@ -482,6 +482,10 @@ Patch152: kvm-iotests-Add-filter_qtest.patch
 Patch153: kvm-iotests-Add-qsd-migrate-case.patch
 # For RHEL-54670 - Provide QMP command for block device reactivation after migration [rhel-10.0]
 Patch154: kvm-iotests-Add-NBD-based-tests-for-inactive-nodes.patch
+# For RHEL-69776 - [rhel10]Guest crashed on the target host when the migration was canceled
+Patch155: kvm-migration-Fix-UAF-for-incoming-migration-on-Migratio.patch
+# For RHEL-83535 - [Qemu RHEL-10] qemu-trace-stap should handle lack of stap more gracefully
+Patch156: kvm-scripts-improve-error-from-qemu-trace-stap-on-missin.patch
 
 %if %{have_clang}
 BuildRequires: clang
@@ -1549,6 +1553,15 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Tue Mar 25 2025 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-16
+- kvm-migration-Fix-UAF-for-incoming-migration-on-Migratio.patch [RHEL-69776]
+- kvm-scripts-improve-error-from-qemu-trace-stap-on-missin.patch [RHEL-83535]
+- kvm-Recommend-systemtap-client-from-qemu-tools.patch [RHEL-83535]
+- Resolves: RHEL-69776
+  ([rhel10]Guest crashed on the target host when the migration was canceled)
+- Resolves: RHEL-83535
+  ([Qemu RHEL-10] qemu-trace-stap should handle lack of stap more gracefully)
+
 * Mon Feb 17 2025 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-15
 - kvm-migration-Add-helper-to-get-target-runstate.patch [RHEL-54670]
 - kvm-qmp-cont-Only-activate-disks-if-migration-completed.patch [RHEL-54670]
