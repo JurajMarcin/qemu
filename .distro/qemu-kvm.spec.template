@@ -1236,6 +1236,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Mar 31 2025 Jon Maloy <jmaloy@redhat.com> - 8.2.0-11.el9_4.11
+- kvm-target-i386-fix-feature-dependency-for-WAITPKG.patch [RHEL-83143]
+- Resolves: RHEL-83143
+  (Live migration after workload update fails with operation failed: guest CPU doesn't match specification: missing features: waitpkg)
+
 * Fri Mar 21 2025 Jon Maloy <jmaloy@redhat.com> - 8.2.0-11.el9_4.10
 - kvm-qga-implement-a-guest-get-load-command.patch [RHEL-82998]
 - Resolves: RHEL-82998
