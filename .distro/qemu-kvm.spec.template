@@ -1241,6 +1241,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Mar 31 2025 Jon Maloy <jmaloy@redhat.com> - 9.0.0-10.el9_5.3
+- kvm-target-i386-fix-feature-dependency-for-WAITPKG.patch [RHEL-84866]
+- Resolves: RHEL-84866
+  (Live migration after workload update fails with operation failed: guest CPU doesn't match specification: missing features: waitpkg [rhel-9.5.z])
+
 * Wed Jan 15 2025 Miroslav Rezanina <mrezanin@redhat.com> - 9.0.0-10.el9_5.2
 - kvm-vhost-fail-device-start-if-iotlb-update-fails.patch [RHEL-73006]
 - Resolves: RHEL-73006
