@@ -1241,7 +1241,7 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
-* Wed Mar 19 2025 Jon Maloy <jmaloy@redhat.com> - 9.1.0-15.el9_6.1
+* Thu Apr 3 2025 Jon Maloy <jmaloy@redhat.com> - 9.1.0-15.el9_6.2
 - kvm-net-vhost-user-add-QAPI-events-to-report-connection-.patch [RHEL-80622]
 - Resolves: RHEL-80622
   (Allow libvirt to restart passt/vhost-user when the process is killed [rhel-9])
