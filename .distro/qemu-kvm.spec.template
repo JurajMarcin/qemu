@@ -1241,6 +1241,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Thu Apr 3 2025 Jon Maloy <jmaloy@redhat.com> - 9.1.0-15.el9_6.3
+- kvm-qga-implement-a-guest-get-load-command.patch [RHEL-83000]
+- Resolves: RHEL-83000
+  ([qemu-guest-agent][RFE] Report CPU load average [rhel-9.6.z])
+
 * Thu Apr 3 2025 Jon Maloy <jmaloy@redhat.com> - 9.1.0-15.el9_6.2
 - kvm-net-vhost-user-add-QAPI-events-to-report-connection-.patch [RHEL-80622]
 - Resolves: RHEL-80622
