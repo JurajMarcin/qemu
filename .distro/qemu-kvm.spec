@@ -143,7 +143,7 @@ Obsoletes: %{name}-block-ssh <= %{epoch}:%{version}                    \
 Summary: QEMU is a machine emulator and virtualizer
 Name: qemu-kvm
 Version: 9.1.0
-Release: 16%{?rcrel}%{?dist}%{?cc_suffix}
+Release: 17%{?rcrel}%{?dist}%{?cc_suffix}
 # Epoch because we pushed a qemu-1.0 package. AIUI this can't ever be dropped
 # Epoch 15 used for RHEL 8
 # Epoch 17 used for RHEL 9 (due to release versioning offset in RHEL 8.5)
@@ -1554,6 +1554,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Apr 07 2025 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-17
+- kvm-Also-recommend-systemtap-devel-from-qemu-tools.patch [RHEL-83535]
+- Resolves: RHEL-83535
+  ([Qemu RHEL-10] qemu-trace-stap should handle lack of stap more gracefully)
+
 * Tue Mar 25 2025 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-16
 - kvm-migration-Fix-UAF-for-incoming-migration-on-Migratio.patch [RHEL-69776]
 - kvm-scripts-improve-error-from-qemu-trace-stap-on-missin.patch [RHEL-83535]
