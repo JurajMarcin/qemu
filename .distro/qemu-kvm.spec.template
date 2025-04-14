@@ -1204,6 +1204,12 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Apr 14 2025 Jon Maloy <jmaloy@redhat.com> - 7.2.0-14.el9_2.18
+- kvm-coroutine-cap-per-thread-local-pool-size.patch [RHEL-86794]
+- kvm-coroutine-reserve-5-000-mappings.patch [RHEL-86794]
+- Resolves: RHEL-86794
+  (Qemu crashing with "failed to set up stack guard page: Cannot allocate memory" [rhel-9.2.0.z])
+
 * Tue Feb 11 2025 Jon Maloy <jmaloy@redhat.com> - 7.2.0-14.el9_2.17
 - kvm-scsi-generic-fix-buffer-overflow-on-block-limits-inq.patch [RHEL-78402]
 - Resolves: RHEL-78402
