@@ -210,11 +210,11 @@
 # @model: the expanded CpuModelInfo.
 #
 # @deprecated-props: a list of properties that are flagged as deprecated
-#     by the CPU vendor.  The list depends on the CpuModelExpansionType:
-#     "static" properties are a subset of the enabled-properties for
-#     the expanded model; "full" properties are a set of properties
-#     that are deprecated across all models for the architecture.
-#     (since: 9.1).
+#                    by the CPU vendor.  The list depends on the CpuModelExpansionType:
+#                    "static" properties are a subset of the enabled-properties for
+#                    the expanded model; "full" properties are a set of properties
+#                    that are deprecated across all models for the architecture.
+#                    (since: 9.1).
 #
 # Since: 2.8
 ##
