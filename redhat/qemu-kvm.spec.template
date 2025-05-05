@@ -1294,6 +1294,15 @@ sh %{_sysconfdir}/sysconfig/modules/kvm.modules &> /dev/null || :
 
 
 %changelog
+* Mon May 05 2025 Jon Maloy <jmaloy@redhat.com> - 6.2.0-53.el8.4
+- kvm-target-s390x-report-deprecated-props-in-cpu-model-ex.patch [RHEL-88701]
+- kvm-target-s390x-flag-te-and-cte-as-deprecated.patch [RHEL-88701]
+- kvm-target-s390x-filter-deprecated-properties-based-on-m.patch [RHEL-88701]
+- kvm-target-s390x-move-deprecated-props-to-CpuModelExpans.patch [RHEL-88701]
+- kvm-redhat-Adjust-indentation-in-qapi-machine-target.jso.patch [RHEL-88701]
+- Resolves: RHEL-88701
+  ([RHEL 8.10 qemu] KVM - Live migration of guest fails from z16-z17 [rhel-8.10.z])
+
 * Sun Jan 05 2025 Jon Maloy <jmaloy@redhat.com> - 6.2.0-53.el8.3
 - kvm-qga-skip-bind-mounts-in-fs-list.patch [RHEL-59214]
 - Resolves: RHEL-59214
