@@ -1241,6 +1241,13 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon May 05 2025 Jon Maloy <jmaloy@redhat.com> - 9.1.0-15.el9_6.4
+- kvm-file-posix-probe-discard-alignment-on-Linux-block-de.patch [RHEL-87734]
+- kvm-block-io-skip-head-tail-requests-on-EINVAL.patch [RHEL-87734]
+- kvm-file-posix-Fix-crash-on-discard_granularity-0.patch [RHEL-87734]
+- Resolves: RHEL-87734
+  (QEMU sends unaligned discards on 4K devices [rhel-9.6.z])
+
 * Thu Apr 3 2025 Jon Maloy <jmaloy@redhat.com> - 9.1.0-15.el9_6.3
 - kvm-qga-implement-a-guest-get-load-command.patch [RHEL-83000]
 - Resolves: RHEL-83000
