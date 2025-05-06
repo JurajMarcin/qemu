@@ -628,12 +628,33 @@ static int inet_parse_flag(const char *flagname, const char *optstr, bool *val,
     return 0;
 }
 
+static int inet_parse_ull(const char *optname, const char *optstr,
+                          unsigned long long min, unsigned long long max,
+                          unsigned long long *val, Error **errp)
+{
+    int pos;
+    if (sscanf(optstr, "%llu%n", val, &pos) != 1 ||
+        (optstr[pos] != '\0' && optstr[pos] != ',')) {
+        error_setg(errp, "error parsing %s argument", optname);
+        return -1;
+    }
+    if (*val < min) {
+        error_setg(errp, "%s argument is too small (%llu < %llu)", optname,
+                   *val, min);
+    }
+    if (*val > max) {
+        error_setg(errp, "%s argument is too large (%llu > %llu)", optname,
+                   *val, max);
+        return -1;
+    }
+    return 0;
+}
+
 int inet_parse(InetSocketAddress *addr, const char *str, Error **errp)
 {
-    const char *optstr, *h;
+    const char *optstr;
     char host[65];
     char port[33];
-    int to;
     int pos;
     char *begin;
 
@@ -666,12 +687,11 @@ int inet_parse(InetSocketAddress *addr, const char *str, Error **errp)
 
     /* parse options */
     optstr = str + pos;
-    h = strstr(optstr, ",to=");
-    if (h) {
-        h += 4;
-        if (sscanf(h, "%d%n", &to, &pos) != 1 ||
-            (h[pos] != '\0' && h[pos] != ',')) {
-            error_setg(errp, "error parsing to= argument");
+    begin = strstr(optstr, ",to=");
+    if (begin) {
+        unsigned long long to;
+        if (inet_parse_ull("to", begin + strlen(",to="), 0, UINT16_MAX, &to,
+                           errp) < 0) {
             return -1;
         }
         addr->has_to = true;
