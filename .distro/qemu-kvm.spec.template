@@ -1236,6 +1236,13 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon May 05 2025 Jon Maloy <jmaloy@redhat.com> - 8.2.0-11.el9_4.12
+- kvm-file-posix-probe-discard-alignment-on-Linux-block-de.patch [RHEL-87732]
+- kvm-block-io-skip-head-tail-requests-on-EINVAL.patch [RHEL-87732]
+- kvm-file-posix-Fix-crash-on-discard_granularity-0.patch [RHEL-87732]
+- Resolves: RHEL-87732
+  (QEMU sends unaligned discards on 4K devices [rhel-9.4.z])
+
 * Mon Mar 31 2025 Jon Maloy <jmaloy@redhat.com> - 8.2.0-11.el9_4.11
 - kvm-target-i386-fix-feature-dependency-for-WAITPKG.patch [RHEL-83143]
 - Resolves: RHEL-83143
