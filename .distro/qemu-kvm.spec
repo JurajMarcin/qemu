@@ -272,6 +272,9 @@ BuildRequires: libslirp-devel
 BuildRequires: pulseaudio-libs-devel
 BuildRequires: spice-protocol
 BuildRequires: capstone-devel
+%ifarch %{valgrind_arches}
+BuildRequires: valgrind-devel
+%endif
 
 # Requires for qemu-kvm package
 Requires: %{name}-core = %{epoch}:%{version}-%{release}
@@ -653,6 +656,7 @@ ulimit -n 10240
   --disable-ubsan                  \\\
   --disable-usb-redir              \\\
   --disable-user                   \\\
+  --disable-valgrind               \\\
   --disable-vde                    \\\
   --disable-vdi                    \\\
   --disable-vduse-blk-export       \\\
@@ -777,6 +781,9 @@ run_configure \
   --enable-tpm \
 %if %{have_usbredir}
   --enable-usb-redir \
+%endif
+%ifarch %{valgrind_arches}
+  --enable-valgrind \
 %endif
   --enable-vdi \
   --enable-vhost-kernel \
