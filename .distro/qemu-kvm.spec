@@ -147,7 +147,7 @@ Obsoletes: %{name}-block-ssh <= %{epoch}:%{version}                    \
 Summary: QEMU is a machine emulator and virtualizer
 Name: qemu-kvm
 Version: 10.0.0
-Release: 1%{?rcrel}%{?dist}%{?cc_suffix}
+Release: 2%{?rcrel}%{?dist}%{?cc_suffix}
 # Epoch because we pushed a qemu-1.0 package. AIUI this can't ever be dropped
 # Epoch 15 used for RHEL 8
 # Epoch 17 used for RHEL 9 (due to release versioning offset in RHEL 8.5)
@@ -188,6 +188,14 @@ Patch0016: 0016-vfio-cap-number-of-devices-that-can-be-assigned.patch
 Patch0017: 0017-Add-support-statement-to-help-output.patch
 Patch0018: 0018-Use-qemu-kvm-in-documentation-instead-of-qemu-system.patch
 Patch0019: 0019-qcow2-Deprecation-warning-when-opening-v2-images-rw.patch
+# For RHEL-87642 - QEMU sends unaligned discards on 4K devices[RHEL-10]
+Patch20: kvm-file-posix-probe-discard-alignment-on-Linux-block-de.patch
+# For RHEL-87642 - QEMU sends unaligned discards on 4K devices[RHEL-10]
+Patch21: kvm-block-io-skip-head-tail-requests-on-EINVAL.patch
+# For RHEL-87642 - QEMU sends unaligned discards on 4K devices[RHEL-10]
+Patch22: kvm-file-posix-Fix-crash-on-discard_granularity-0.patch
+# For RHEL-86056 - Enable 'vhost-user-gpu-pci' in qemu-kvm for RHIVOS
+Patch23: kvm-Enable-vhost-user-gpu-pci-for-RHIVOS.patch
 
 %if %{have_clang}
 BuildRequires: clang
@@ -1263,6 +1271,16 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon May 12 2025 Miroslav Rezanina <mrezanin@redhat.com> - 10.0.0-2
+- kvm-file-posix-probe-discard-alignment-on-Linux-block-de.patch [RHEL-87642]
+- kvm-block-io-skip-head-tail-requests-on-EINVAL.patch [RHEL-87642]
+- kvm-file-posix-Fix-crash-on-discard_granularity-0.patch [RHEL-87642]
+- kvm-Enable-vhost-user-gpu-pci-for-RHIVOS.patch [RHEL-86056]
+- Resolves: RHEL-87642
+  (QEMU sends unaligned discards on 4K devices[RHEL-10])
+- Resolves: RHEL-86056
+  (Enable 'vhost-user-gpu-pci' in qemu-kvm for RHIVOS)
+
 * Wed Apr 23 2025 Miroslav Rezanina <mrezanin@redhat.com> - 10.0.0-1
 - Rebase to QEMU 10.0.0 [RHEL-74473]
 - Resolves: RHEL-74473
