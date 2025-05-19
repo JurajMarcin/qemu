@@ -147,7 +147,7 @@ Obsoletes: %{name}-block-ssh <= %{epoch}:%{version}                    \
 Summary: QEMU is a machine emulator and virtualizer
 Name: qemu-kvm
 Version: 10.0.0
-Release: 2%{?rcrel}%{?dist}%{?cc_suffix}
+Release: 3%{?rcrel}%{?dist}%{?cc_suffix}
 # Epoch because we pushed a qemu-1.0 package. AIUI this can't ever be dropped
 # Epoch 15 used for RHEL 8
 # Epoch 17 used for RHEL 9 (due to release versioning offset in RHEL 8.5)
@@ -196,6 +196,12 @@ Patch21: kvm-block-io-skip-head-tail-requests-on-EINVAL.patch
 Patch22: kvm-file-posix-Fix-crash-on-discard_granularity-0.patch
 # For RHEL-86056 - Enable 'vhost-user-gpu-pci' in qemu-kvm for RHIVOS
 Patch23: kvm-Enable-vhost-user-gpu-pci-for-RHIVOS.patch
+# For RHEL-85635 - Video stuck about 1 min after switchover phase when play one video during postcopy-preempt migration
+Patch24: kvm-migration-postcopy-Spatial-locality-page-hint-for-pr.patch
+# For RHEL-88457 - qemu inadvertantly built with valgrind coroutine stack debugging on x86_64
+Patch25: kvm-meson-configure-add-valgrind-option-en-dis-able-valg.patch
+# Fixing s390x build issues
+Patch26: kvm-docs-Don-t-define-duplicate-label-in-qemu-block-driv.patch
 
 %if %{have_clang}
 BuildRequires: clang
@@ -1278,6 +1284,18 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon May 19 2025 Miroslav Rezanina <mrezanin@redhat.com> - 10.0.0-3
+- kvm-migration-postcopy-Spatial-locality-page-hint-for-pr.patch [RHEL-85635]
+- kvm-meson-configure-add-valgrind-option-en-dis-able-valg.patch [RHEL-88457]
+- kvm-distro-add-an-explicit-valgrind-devel-build-dep.patch [RHEL-88457]
+- kvm-Allow-guest-get-load-QGA-command.patch [RHEL-91219]
+- Resolves: RHEL-85635
+  (Video stuck about 1 min after switchover phase when play one video during postcopy-preempt migration)
+- Resolves: RHEL-88457
+  (qemu inadvertantly built with valgrind coroutine stack debugging on x86_64)
+- Resolves: RHEL-91219
+  ([qemu-guest-agent] Enable 'guest-get-load' by default [RHEL-10])
+
 * Mon May 12 2025 Miroslav Rezanina <mrezanin@redhat.com> - 10.0.0-2
 - kvm-file-posix-probe-discard-alignment-on-Linux-block-de.patch [RHEL-87642]
 - kvm-block-io-skip-head-tail-requests-on-EINVAL.patch [RHEL-87642]
