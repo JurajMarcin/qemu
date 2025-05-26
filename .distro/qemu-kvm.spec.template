@@ -1235,6 +1235,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon May 26 2025 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-15.el10_0.2
+- kvm-hw-i386-Fix-machine-type-compatibility.patch [RHEL-92430]
+- Resolves: RHEL-92430
+  (Fix x86 M-type compats [rhel-10.0.z])
+
 * Tue Mar 18 2025 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-15.el10_0.1
 - kvm-net-vhost-user-add-QAPI-events-to-report-connection-.patch [RHEL-80522]
 - Resolves: RHEL-80522
