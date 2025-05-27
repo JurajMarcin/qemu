@@ -1241,6 +1241,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon May 26 2025 Jon Maloy <jmaloy@redhat.com> - 9.1.0-15.el9_6.5
+- kvm-hw-i386-Fix-machine-type-compatibility.patch [RHEL-92077]
+- Resolves: RHEL-92077
+  (Fix x86 M-type compats [rhel-9.6.z])
+
 * Mon May 05 2025 Jon Maloy <jmaloy@redhat.com> - 9.1.0-15.el9_6.4
 - kvm-file-posix-probe-discard-alignment-on-Linux-block-de.patch [RHEL-87734]
 - kvm-block-io-skip-head-tail-requests-on-EINVAL.patch [RHEL-87734]
