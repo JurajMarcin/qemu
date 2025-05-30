@@ -3595,12 +3595,13 @@ void qmp_x_blockdev_set_iothread(const char *node_name, StrOrNull *iothread,
     AioContext *new_context;
     BlockDriverState *bs;
 
-    GRAPH_RDLOCK_GUARD_MAINLOOP();
+    bdrv_drain_all_begin();
+    bdrv_graph_rdlock_main_loop();
 
     bs = bdrv_find_node(node_name);
     if (!bs) {
         error_setg(errp, "Failed to find node with node-name='%s'", node_name);
-        return;
+        goto out;
     }
 
     /* Protects against accidents. */
@@ -3608,14 +3609,14 @@ void qmp_x_blockdev_set_iothread(const char *node_name, StrOrNull *iothread,
         error_setg(errp, "Node %s is associated with a BlockBackend and could "
                          "be in use (use force=true to override this check)",
                          node_name);
-        return;
+        goto out;
     }
 
     if (iothread->type == QTYPE_QSTRING) {
         IOThread *obj = iothread_by_id(iothread->u.s);
         if (!obj) {
             error_setg(errp, "Cannot find iothread %s", iothread->u.s);
-            return;
+            goto out;
         }
 
         new_context = iothread_get_aio_context(obj);
@@ -3623,7 +3624,11 @@ void qmp_x_blockdev_set_iothread(const char *node_name, StrOrNull *iothread,
         new_context = qemu_get_aio_context();
     }
 
-    bdrv_try_change_aio_context(bs, new_context, NULL, errp);
+    bdrv_try_change_aio_context_locked(bs, new_context, NULL, errp);
+
+out:
+    bdrv_graph_rdunlock_main_loop();
+    bdrv_drain_all_end();
 }
 
 QemuOptsList qemu_common_drive_opts = {
