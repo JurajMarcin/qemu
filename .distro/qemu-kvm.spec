@@ -147,7 +147,7 @@ Obsoletes: %{name}-block-ssh <= %{epoch}:%{version}                    \
 Summary: QEMU is a machine emulator and virtualizer
 Name: qemu-kvm
 Version: 10.0.0
-Release: 4%{?rcrel}%{?dist}%{?cc_suffix}
+Release: 5%{?rcrel}%{?dist}%{?cc_suffix}
 # Epoch because we pushed a qemu-1.0 package. AIUI this can't ever be dropped
 # Epoch 15 used for RHEL 8
 # Epoch 17 used for RHEL 9 (due to release versioning offset in RHEL 8.5)
@@ -244,6 +244,24 @@ Patch39: kvm-tests-Add-iotest-mirror-sparse-for-recent-patches.patch
 # For RHEL-88435 - --migrate-disks-detect-zeroes doesn't take effect for disk migration [rhel-10.1]
 # For RHEL-88437 - Disk size of target raw image is full allocated when doing mirror with default discard value [rhel-10.1]
 Patch40: kvm-mirror-Reduce-I-O-when-destination-is-detect-zeroes-.patch
+# For RHEL-65852 - Support multipath failover with scsi-block
+Patch41: kvm-file-posix-Define-DM_MPATH_PROBE_PATHS.patch
+# For RHEL-65852 - Support multipath failover with scsi-block
+Patch42: kvm-file-posix-Probe-paths-and-retry-SG_IO-on-potential-.patch
+# For RHEL-67706 - postcopy on the destination host can't switch into pause status under the network issue if boot VM with '-S'
+Patch43: kvm-io-Fix-partial-struct-copy-in-qio_dns_resolver_looku.patch
+# For RHEL-67706 - postcopy on the destination host can't switch into pause status under the network issue if boot VM with '-S'
+Patch44: kvm-util-qemu-sockets-Refactor-setting-client-sockopts-i.patch
+# For RHEL-67706 - postcopy on the destination host can't switch into pause status under the network issue if boot VM with '-S'
+Patch45: kvm-util-qemu-sockets-Refactor-success-and-failure-paths.patch
+# For RHEL-67706 - postcopy on the destination host can't switch into pause status under the network issue if boot VM with '-S'
+Patch46: kvm-util-qemu-sockets-Add-support-for-keep-alive-flag-to.patch
+# For RHEL-67706 - postcopy on the destination host can't switch into pause status under the network issue if boot VM with '-S'
+Patch47: kvm-util-qemu-sockets-Refactor-inet_parse-to-use-QemuOpt.patch
+# For RHEL-67706 - postcopy on the destination host can't switch into pause status under the network issue if boot VM with '-S'
+Patch48: kvm-util-qemu-sockets-Introduce-inet-socket-options-cont.patch
+# For RHEL-67706 - postcopy on the destination host can't switch into pause status under the network issue if boot VM with '-S'
+Patch49: kvm-tests-unit-test-util-sockets-fix-mem-leak-on-error-o.patch
 
 %if %{have_clang}
 BuildRequires: clang
@@ -1326,6 +1344,21 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Jun 09 2025 Miroslav Rezanina <mrezanin@redhat.com> - 10.0.0-5
+- kvm-file-posix-Define-DM_MPATH_PROBE_PATHS.patch [RHEL-65852]
+- kvm-file-posix-Probe-paths-and-retry-SG_IO-on-potential-.patch [RHEL-65852]
+- kvm-io-Fix-partial-struct-copy-in-qio_dns_resolver_looku.patch [RHEL-67706]
+- kvm-util-qemu-sockets-Refactor-setting-client-sockopts-i.patch [RHEL-67706]
+- kvm-util-qemu-sockets-Refactor-success-and-failure-paths.patch [RHEL-67706]
+- kvm-util-qemu-sockets-Add-support-for-keep-alive-flag-to.patch [RHEL-67706]
+- kvm-util-qemu-sockets-Refactor-inet_parse-to-use-QemuOpt.patch [RHEL-67706]
+- kvm-util-qemu-sockets-Introduce-inet-socket-options-cont.patch [RHEL-67706]
+- kvm-tests-unit-test-util-sockets-fix-mem-leak-on-error-o.patch [RHEL-67706]
+- Resolves: RHEL-65852
+  (Support multipath failover with scsi-block)
+- Resolves: RHEL-67706
+  (postcopy on the destination host can't switch into pause status under the network issue if boot VM with '-S')
+
 * Mon May 26 2025 Miroslav Rezanina <mrezanin@redhat.com> - 10.0.0-4
 - kvm-block-Expand-block-status-mode-from-bool-to-flags.patch [RHEL-88435 RHEL-88437]
 - kvm-file-posix-gluster-Handle-zero-block-status-hint-bet.patch [RHEL-88435 RHEL-88437]
