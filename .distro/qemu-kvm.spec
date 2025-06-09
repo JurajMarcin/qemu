@@ -124,7 +124,9 @@ Requires: %{name}-device-usb-host = %{epoch}:%{version}-%{release}   \
 Requires: %{name}-device-usb-redirect = %{epoch}:%{version}-%{release}   \
 %endif                                                           \
 Requires: %{name}-block-blkio = %{epoch}:%{version}-%{release}   \
+%if %{have_block_rbd} \
 Requires: %{name}-block-rbd = %{epoch}:%{version}-%{release}     \
+%endif \
 Requires: %{name}-audio-pa = %{epoch}:%{version}-%{release}
 
 # Since SPICE is removed from RHEL-9, the following Obsoletes:
