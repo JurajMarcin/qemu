@@ -57,7 +57,7 @@
     %global tools_only 1
 %endif
 
-%ifnarch %{ix86} x86_64 aarch64
+%ifnarch x86_64 aarch64
     %global have_usbredir 0
 %endif
 
@@ -66,13 +66,10 @@
 %ifarch s390x
     %global modprobe_kvm_conf %{_sourcedir}/kvm-s390x.conf
 %endif
-%ifarch %{ix86} x86_64
+%ifarch x86_64
     %global modprobe_kvm_conf %{_sourcedir}/kvm-x86.conf
 %endif
 
-%ifarch %{ix86}
-    %global kvm_target    i386
-%endif
 %ifarch x86_64
     %global kvm_target    x86_64
 %else
@@ -85,9 +82,6 @@
 %ifarch s390x
     %global kvm_target    s390x
     %global have_modules_load 1
-%endif
-%ifarch ppc
-    %global kvm_target    ppc
 %endif
 %ifarch aarch64
     %global kvm_target    aarch64
@@ -364,7 +358,7 @@ Summary: %{name} core components
 %{obsoletes_some_modules}
 Requires: %{name}-common = %{epoch}:%{version}-%{release}
 Requires: qemu-img = %{epoch}:%{version}-%{release}
-%ifarch %{ix86} x86_64
+%ifarch x86_64
 Requires: edk2-ovmf
 %endif
 %ifarch aarch64
@@ -404,7 +398,7 @@ Requires(post): /usr/sbin/useradd
 Requires(post): systemd-units
 Requires(preun): systemd-units
 Requires(postun): systemd-units
-%ifarch %{ix86} x86_64
+%ifarch x86_64
 Requires: seabios-bin >= 1.10.2-1
 %endif
 %ifnarch aarch64 s390x
