@@ -401,7 +401,7 @@ Requires(postun): systemd-units
 %ifarch x86_64
 Requires: seabios-bin >= 1.10.2-1
 %endif
-%ifnarch aarch64 s390x
+%ifarch x86_64 %{power64}
 Requires: seavgabios-bin >= 1.12.0-3
 Requires: ipxe-roms-qemu >= %{ipxe_version}
 %endif
