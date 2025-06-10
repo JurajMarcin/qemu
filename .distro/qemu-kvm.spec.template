@@ -1241,6 +1241,12 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Jun 09 2025 Jon Maloy <jmaloy@redhat.com> - 9.1.0-15.el9_6.6
+- kvm-file-posix-Define-DM_MPATH_PROBE_PATHS.patch [RHEL-95407]
+- kvm-file-posix-Probe-paths-and-retry-SG_IO-on-potential-.patch [RHEL-95407]
+- Resolves: RHEL-95407
+  (Support multipath failover with scsi-block [rhel-9.6.z])
+
 * Mon May 26 2025 Jon Maloy <jmaloy@redhat.com> - 9.1.0-15.el9_6.5
 - kvm-hw-i386-Fix-machine-type-compatibility.patch [RHEL-92077]
 - Resolves: RHEL-92077
