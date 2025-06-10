@@ -59,6 +59,18 @@
 #include "hw/virtio/virtio-iommu.h"
 #include "hw/uefi/var-service-api.h"
 
+/*
+ * virtio-net-pci variant romfiles are not needed because edk2 does
+ * fully support the pxe boot. Besides virtio romfiles are not shipped
+ * on rhel/riscv64.
+ */
+static GlobalProperty riscv_virt_compat[] = {
+    {"virtio-net-pci", "romfile", "" },
+    {"virtio-net-pci-transitional", "romfile", "" },
+    {"virtio-net-pci-non-transitional", "romfile", "" },
+};
+const size_t riscv_virt_compat_len = G_N_ELEMENTS(riscv_virt_compat);
+
 /* KVM AIA only supports APLIC MSI. APLIC Wired is always emulated by QEMU. */
 static bool virt_use_kvm_aia_aplic_imsic(RISCVVirtAIAType aia_type)
 {
@@ -1977,6 +1989,9 @@ static void virt_machine_class_init(ObjectClass *oc, void *data)
                               NULL, NULL);
     object_class_property_set_description(oc, "iommu-sys",
                                           "Enable IOMMU platform device");
+
+    compat_props_add(mc->compat_props, riscv_virt_compat,
+                     riscv_virt_compat_len);
 }
 
 static const TypeInfo virt_machine_typeinfo = {
