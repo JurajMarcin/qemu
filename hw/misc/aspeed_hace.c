@@ -164,7 +164,7 @@ static int reconstruct_iov(AspeedHACEState *s, struct iovec *iov, int id,
 static void do_hash_operation(AspeedHACEState *s, int algo, bool sg_mode,
                               bool acc_mode)
 {
-    struct iovec iov[ASPEED_HACE_MAX_SG];
+    QEMU_UNINITIALIZED struct iovec iov[ASPEED_HACE_MAX_SG];
     uint32_t total_msg_len;
     uint32_t pad_offset;
     g_autofree uint8_t *digest_buf = NULL;
