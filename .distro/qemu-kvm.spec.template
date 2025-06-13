@@ -1236,6 +1236,21 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Thu Jun 12 2025 Krish Sadhukhan <ksadhukh@redhat.com> - 8.2.0-11.el9_4.13
+- kvm-target-i386-Add-new-CPU-model-SierraForest.patch [RHEL-83010]
+- Resolves: RHEL-83010
+  ([rhel-9.4.z] [SRF] backport Sierra Forest CPU model for KVM guests to 9.4.z)
+- kvm-target-s390x-report-deprecated-props-in-cpu-model-ex.patch [RHEL-89984]
+- kvm-target-s390x-flag-te-and-cte-as-deprecated.patch [RHEL-89984]
+- kvm-target-s390x-filter-deprecated-properties-based-on-m.patch [RHEL-89984]
+- kvm-target-s390x-move-deprecated-props-to-CpuModelExpans.patch [RHEL-89984]
+- Resolves: RHEL-89984
+  ([IBM 9.4 FEAT] KVM: Suppress deprecated z16 facilities - qemu part [rhel-9.4.z])
+- kvm-file-posix-Define-DM_MPATH_PROBE_PATHS.patch [RHEL-95406]
+- kvm-file-posix-Probe-paths-and-retry-SG_IO-on-potential-.patch [RHEL-95406]
+- Resolves: RHEL-95406
+  (Support multipath failover with scsi-block [rhel-9.4.z])
+
 * Mon May 05 2025 Jon Maloy <jmaloy@redhat.com> - 8.2.0-11.el9_4.12
 - kvm-file-posix-probe-discard-alignment-on-Linux-block-de.patch [RHEL-87732]
 - kvm-block-io-skip-head-tail-requests-on-EINVAL.patch [RHEL-87732]
