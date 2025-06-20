@@ -143,7 +143,7 @@ Obsoletes: %{name}-block-ssh <= %{epoch}:%{version}                    \
 Summary: QEMU is a machine emulator and virtualizer
 Name: qemu-kvm
 Version: 10.0.0
-Release: 5%{?rcrel}%{?dist}%{?cc_suffix}
+Release: 6%{?rcrel}%{?dist}%{?cc_suffix}
 # Epoch because we pushed a qemu-1.0 package. AIUI this can't ever be dropped
 # Epoch 15 used for RHEL 8
 # Epoch 17 used for RHEL 9 (due to release versioning offset in RHEL 8.5)
@@ -258,6 +258,10 @@ Patch47: kvm-util-qemu-sockets-Refactor-inet_parse-to-use-QemuOpt.patch
 Patch48: kvm-util-qemu-sockets-Introduce-inet-socket-options-cont.patch
 # For RHEL-67706 - postcopy on the destination host can't switch into pause status under the network issue if boot VM with '-S'
 Patch49: kvm-tests-unit-test-util-sockets-fix-mem-leak-on-error-o.patch
+# For RHEL-71962 - [RFE] Implement FUA support in scsi-disk
+Patch50: kvm-scsi-disk-Add-native-FUA-write-support.patch
+# For RHEL-96057 - qemu-kvm: Various small issues in the spec file
+Patch51: kvm-Disable-virtio-net-pci-romfile-loading-on-riscv64.patch
 
 %if %{have_clang}
 BuildRequires: clang
@@ -1340,6 +1344,17 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Fri Jun 20 2025 Miroslav Rezanina <mrezanin@redhat.com> - 10.0.0-6
+- kvm-scsi-disk-Add-native-FUA-write-support.patch [RHEL-71962]
+- kvm-Fix-handling-of-have_block_rbd.patch [RHEL-96057]
+- kvm-Delete-obsolete-references-to-architectures.patch [RHEL-96057]
+- kvm-Fix-arch-list-for-vgabios-and-ipxe-roms.patch [RHEL-96057]
+- kvm-Disable-virtio-net-pci-romfile-loading-on-riscv64.patch [RHEL-96057]
+- Resolves: RHEL-71962
+  ([RFE] Implement FUA support in scsi-disk)
+- Resolves: RHEL-96057
+  (qemu-kvm: Various small issues in the spec file)
+
 * Mon Jun 09 2025 Miroslav Rezanina <mrezanin@redhat.com> - 10.0.0-5
 - kvm-file-posix-Define-DM_MPATH_PROBE_PATHS.patch [RHEL-65852]
 - kvm-file-posix-Probe-paths-and-retry-SG_IO-on-potential-.patch [RHEL-65852]
