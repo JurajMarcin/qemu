@@ -143,7 +143,7 @@ Obsoletes: %{name}-block-ssh <= %{epoch}:%{version}                    \
 Summary: QEMU is a machine emulator and virtualizer
 Name: qemu-kvm
 Version: 10.0.0
-Release: 6%{?rcrel}%{?dist}%{?cc_suffix}
+Release: 7%{?rcrel}%{?dist}%{?cc_suffix}
 # Epoch because we pushed a qemu-1.0 package. AIUI this can't ever be dropped
 # Epoch 15 used for RHEL 8
 # Epoch 17 used for RHEL 9 (due to release versioning offset in RHEL 8.5)
@@ -262,6 +262,92 @@ Patch49: kvm-tests-unit-test-util-sockets-fix-mem-leak-on-error-o.patch
 Patch50: kvm-scsi-disk-Add-native-FUA-write-support.patch
 # For RHEL-96057 - qemu-kvm: Various small issues in the spec file
 Patch51: kvm-Disable-virtio-net-pci-romfile-loading-on-riscv64.patch
+# For RHEL-98555 - [s390x][RHEL10.1][ccw-device] there would be memory leak with virtio_blk disks
+Patch52: kvm-s390x-Fix-leak-in-machine_set_loadparm.patch
+# For RHEL-98555 - [s390x][RHEL10.1][ccw-device] there would be memory leak with virtio_blk disks
+Patch53: kvm-hw-s390x-ccw-device-Fix-memory-leak-in-loadparm-sett.patch
+# For RHEL-52650 - [AMDSERVER 10.1 Feature] Turin: Qemu EPYC-Turin Model
+Patch54: kvm-target-i386-Update-EPYC-CPU-model-for-Cache-property.patch
+# For RHEL-52650 - [AMDSERVER 10.1 Feature] Turin: Qemu EPYC-Turin Model
+Patch55: kvm-target-i386-Update-EPYC-Rome-CPU-model-for-Cache-pro.patch
+# For RHEL-52650 - [AMDSERVER 10.1 Feature] Turin: Qemu EPYC-Turin Model
+Patch56: kvm-target-i386-Update-EPYC-Milan-CPU-model-for-Cache-pr.patch
+# For RHEL-52650 - [AMDSERVER 10.1 Feature] Turin: Qemu EPYC-Turin Model
+Patch57: kvm-target-i386-Add-couple-of-feature-bits-in-CPUID_Fn80.patch
+# For RHEL-52650 - [AMDSERVER 10.1 Feature] Turin: Qemu EPYC-Turin Model
+Patch58: kvm-target-i386-Update-EPYC-Genoa-for-Cache-property-per.patch
+# For RHEL-52650 - [AMDSERVER 10.1 Feature] Turin: Qemu EPYC-Turin Model
+Patch59: kvm-target-i386-Add-support-for-EPYC-Turin-model.patch
+# For RHEL-95479 - -ftrivial-auto-var-init=zero reduced performance
+Patch60: kvm-include-qemu-compiler-add-QEMU_UNINITIALIZED-attribu.patch
+# For RHEL-95479 - -ftrivial-auto-var-init=zero reduced performance
+Patch61: kvm-hw-virtio-virtio-avoid-cost-of-ftrivial-auto-var-ini.patch
+# For RHEL-95479 - -ftrivial-auto-var-init=zero reduced performance
+Patch62: kvm-block-skip-automatic-zero-init-of-large-array-in-ioq.patch
+# For RHEL-95479 - -ftrivial-auto-var-init=zero reduced performance
+Patch63: kvm-chardev-char-fd-skip-automatic-zero-init-of-large-ar.patch
+# For RHEL-95479 - -ftrivial-auto-var-init=zero reduced performance
+Patch64: kvm-chardev-char-pty-skip-automatic-zero-init-of-large-a.patch
+# For RHEL-95479 - -ftrivial-auto-var-init=zero reduced performance
+Patch65: kvm-chardev-char-socket-skip-automatic-zero-init-of-larg.patch
+# For RHEL-95479 - -ftrivial-auto-var-init=zero reduced performance
+Patch66: kvm-hw-audio-ac97-skip-automatic-zero-init-of-large-arra.patch
+# For RHEL-95479 - -ftrivial-auto-var-init=zero reduced performance
+Patch67: kvm-hw-audio-cs4231a-skip-automatic-zero-init-of-large-a.patch
+# For RHEL-95479 - -ftrivial-auto-var-init=zero reduced performance
+Patch68: kvm-hw-audio-es1370-skip-automatic-zero-init-of-large-ar.patch
+# For RHEL-95479 - -ftrivial-auto-var-init=zero reduced performance
+Patch69: kvm-hw-audio-gus-skip-automatic-zero-init-of-large-array.patch
+# For RHEL-95479 - -ftrivial-auto-var-init=zero reduced performance
+Patch70: kvm-hw-audio-marvell_88w8618-skip-automatic-zero-init-of.patch
+# For RHEL-95479 - -ftrivial-auto-var-init=zero reduced performance
+Patch71: kvm-hw-audio-sb16-skip-automatic-zero-init-of-large-arra.patch
+# For RHEL-95479 - -ftrivial-auto-var-init=zero reduced performance
+Patch72: kvm-hw-audio-via-ac97-skip-automatic-zero-init-of-large-.patch
+# For RHEL-95479 - -ftrivial-auto-var-init=zero reduced performance
+Patch73: kvm-hw-char-sclpconsole-lm-skip-automatic-zero-init-of-l.patch
+# For RHEL-95479 - -ftrivial-auto-var-init=zero reduced performance
+Patch74: kvm-hw-dma-xlnx_csu_dma-skip-automatic-zero-init-of-larg.patch
+# For RHEL-95479 - -ftrivial-auto-var-init=zero reduced performance
+Patch75: kvm-hw-display-vmware_vga-skip-automatic-zero-init-of-la.patch
+# For RHEL-95479 - -ftrivial-auto-var-init=zero reduced performance
+Patch76: kvm-hw-hyperv-syndbg-skip-automatic-zero-init-of-large-a.patch
+# For RHEL-95479 - -ftrivial-auto-var-init=zero reduced performance
+Patch77: kvm-hw-misc-aspeed_hace-skip-automatic-zero-init-of-larg.patch
+# For RHEL-95479 - -ftrivial-auto-var-init=zero reduced performance
+Patch78: kvm-hw-net-rtl8139-skip-automatic-zero-init-of-large-arr.patch
+# For RHEL-95479 - -ftrivial-auto-var-init=zero reduced performance
+Patch79: kvm-hw-net-tulip-skip-automatic-zero-init-of-large-array.patch
+# For RHEL-95479 - -ftrivial-auto-var-init=zero reduced performance
+Patch80: kvm-hw-net-virtio-net-skip-automatic-zero-init-of-large-.patch
+# For RHEL-95479 - -ftrivial-auto-var-init=zero reduced performance
+Patch81: kvm-hw-net-xgamc-skip-automatic-zero-init-of-large-array.patch
+# For RHEL-95479 - -ftrivial-auto-var-init=zero reduced performance
+Patch82: kvm-hw-nvme-ctrl-skip-automatic-zero-init-of-large-array.patch
+# For RHEL-95479 - -ftrivial-auto-var-init=zero reduced performance
+Patch83: kvm-hw-ppc-pnv_occ-skip-automatic-zero-init-of-large-str.patch
+# For RHEL-95479 - -ftrivial-auto-var-init=zero reduced performance
+Patch84: kvm-hw-ppc-spapr_tpm_proxy-skip-automatic-zero-init-of-l.patch
+# For RHEL-95479 - -ftrivial-auto-var-init=zero reduced performance
+Patch85: kvm-hw-usb-hcd-ohci-skip-automatic-zero-init-of-large-ar.patch
+# For RHEL-95479 - -ftrivial-auto-var-init=zero reduced performance
+Patch86: kvm-hw-scsi-lsi53c895a-skip-automatic-zero-init-of-large.patch
+# For RHEL-95479 - -ftrivial-auto-var-init=zero reduced performance
+Patch87: kvm-hw-scsi-megasas-skip-automatic-zero-init-of-large-ar.patch
+# For RHEL-95479 - -ftrivial-auto-var-init=zero reduced performance
+Patch88: kvm-hw-ufs-lu-skip-automatic-zero-init-of-large-array.patch
+# For RHEL-95479 - -ftrivial-auto-var-init=zero reduced performance
+Patch89: kvm-net-socket-skip-automatic-zero-init-of-large-array.patch
+# For RHEL-95479 - -ftrivial-auto-var-init=zero reduced performance
+Patch90: kvm-net-stream-skip-automatic-zero-init-of-large-array.patch
+# For RHEL-85649 - [RHEL 10]Qemu/amd-iommu: Add ability to manually specify the AMDVI-PCI device
+Patch91: kvm-hw-i386-amd_iommu-Isolate-AMDVI-PCI-from-amd-iommu-d.patch
+# For RHEL-85649 - [RHEL 10]Qemu/amd-iommu: Add ability to manually specify the AMDVI-PCI device
+Patch92: kvm-hw-i386-amd_iommu-Allow-migration-when-explicitly-cr.patch
+# For RHEL-85649 - [RHEL 10]Qemu/amd-iommu: Add ability to manually specify the AMDVI-PCI device
+Patch93: kvm-Enable-amd-iommu-device.patch
+# For RHEL-83883 - Video stuck after switchover phase when play one video during migration
+Patch94: kvm-ui-vnc-Update-display-update-interval-when-VM-state-.patch
 
 %if %{have_clang}
 BuildRequires: clang
@@ -1344,6 +1430,61 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Jul 07 2025 Miroslav Rezanina <mrezanin@redhat.com> - 10.0.0-7
+- kvm-s390x-Fix-leak-in-machine_set_loadparm.patch [RHEL-98555]
+- kvm-hw-s390x-ccw-device-Fix-memory-leak-in-loadparm-sett.patch [RHEL-98555]
+- kvm-target-i386-Update-EPYC-CPU-model-for-Cache-property.patch [RHEL-52650]
+- kvm-target-i386-Update-EPYC-Rome-CPU-model-for-Cache-pro.patch [RHEL-52650]
+- kvm-target-i386-Update-EPYC-Milan-CPU-model-for-Cache-pr.patch [RHEL-52650]
+- kvm-target-i386-Add-couple-of-feature-bits-in-CPUID_Fn80.patch [RHEL-52650]
+- kvm-target-i386-Update-EPYC-Genoa-for-Cache-property-per.patch [RHEL-52650]
+- kvm-target-i386-Add-support-for-EPYC-Turin-model.patch [RHEL-52650]
+- kvm-include-qemu-compiler-add-QEMU_UNINITIALIZED-attribu.patch [RHEL-95479]
+- kvm-hw-virtio-virtio-avoid-cost-of-ftrivial-auto-var-ini.patch [RHEL-95479]
+- kvm-block-skip-automatic-zero-init-of-large-array-in-ioq.patch [RHEL-95479]
+- kvm-chardev-char-fd-skip-automatic-zero-init-of-large-ar.patch [RHEL-95479]
+- kvm-chardev-char-pty-skip-automatic-zero-init-of-large-a.patch [RHEL-95479]
+- kvm-chardev-char-socket-skip-automatic-zero-init-of-larg.patch [RHEL-95479]
+- kvm-hw-audio-ac97-skip-automatic-zero-init-of-large-arra.patch [RHEL-95479]
+- kvm-hw-audio-cs4231a-skip-automatic-zero-init-of-large-a.patch [RHEL-95479]
+- kvm-hw-audio-es1370-skip-automatic-zero-init-of-large-ar.patch [RHEL-95479]
+- kvm-hw-audio-gus-skip-automatic-zero-init-of-large-array.patch [RHEL-95479]
+- kvm-hw-audio-marvell_88w8618-skip-automatic-zero-init-of.patch [RHEL-95479]
+- kvm-hw-audio-sb16-skip-automatic-zero-init-of-large-arra.patch [RHEL-95479]
+- kvm-hw-audio-via-ac97-skip-automatic-zero-init-of-large-.patch [RHEL-95479]
+- kvm-hw-char-sclpconsole-lm-skip-automatic-zero-init-of-l.patch [RHEL-95479]
+- kvm-hw-dma-xlnx_csu_dma-skip-automatic-zero-init-of-larg.patch [RHEL-95479]
+- kvm-hw-display-vmware_vga-skip-automatic-zero-init-of-la.patch [RHEL-95479]
+- kvm-hw-hyperv-syndbg-skip-automatic-zero-init-of-large-a.patch [RHEL-95479]
+- kvm-hw-misc-aspeed_hace-skip-automatic-zero-init-of-larg.patch [RHEL-95479]
+- kvm-hw-net-rtl8139-skip-automatic-zero-init-of-large-arr.patch [RHEL-95479]
+- kvm-hw-net-tulip-skip-automatic-zero-init-of-large-array.patch [RHEL-95479]
+- kvm-hw-net-virtio-net-skip-automatic-zero-init-of-large-.patch [RHEL-95479]
+- kvm-hw-net-xgamc-skip-automatic-zero-init-of-large-array.patch [RHEL-95479]
+- kvm-hw-nvme-ctrl-skip-automatic-zero-init-of-large-array.patch [RHEL-95479]
+- kvm-hw-ppc-pnv_occ-skip-automatic-zero-init-of-large-str.patch [RHEL-95479]
+- kvm-hw-ppc-spapr_tpm_proxy-skip-automatic-zero-init-of-l.patch [RHEL-95479]
+- kvm-hw-usb-hcd-ohci-skip-automatic-zero-init-of-large-ar.patch [RHEL-95479]
+- kvm-hw-scsi-lsi53c895a-skip-automatic-zero-init-of-large.patch [RHEL-95479]
+- kvm-hw-scsi-megasas-skip-automatic-zero-init-of-large-ar.patch [RHEL-95479]
+- kvm-hw-ufs-lu-skip-automatic-zero-init-of-large-array.patch [RHEL-95479]
+- kvm-net-socket-skip-automatic-zero-init-of-large-array.patch [RHEL-95479]
+- kvm-net-stream-skip-automatic-zero-init-of-large-array.patch [RHEL-95479]
+- kvm-hw-i386-amd_iommu-Isolate-AMDVI-PCI-from-amd-iommu-d.patch [RHEL-85649]
+- kvm-hw-i386-amd_iommu-Allow-migration-when-explicitly-cr.patch [RHEL-85649]
+- kvm-Enable-amd-iommu-device.patch [RHEL-85649]
+- kvm-ui-vnc-Update-display-update-interval-when-VM-state-.patch [RHEL-83883]
+- Resolves: RHEL-98555
+  ([s390x][RHEL10.1][ccw-device] there would be memory leak with virtio_blk disks)
+- Resolves: RHEL-52650
+  ([AMDSERVER 10.1 Feature] Turin: Qemu EPYC-Turin Model)
+- Resolves: RHEL-95479
+  (-ftrivial-auto-var-init=zero reduced performance)
+- Resolves: RHEL-85649
+  ([RHEL 10]Qemu/amd-iommu: Add ability to manually specify the AMDVI-PCI device)
+- Resolves: RHEL-83883
+  (Video stuck after switchover phase when play one video during migration)
+
 * Fri Jun 20 2025 Miroslav Rezanina <mrezanin@redhat.com> - 10.0.0-6
 - kvm-scsi-disk-Add-native-FUA-write-support.patch [RHEL-71962]
 - kvm-Fix-handling-of-have_block_rbd.patch [RHEL-96057]
