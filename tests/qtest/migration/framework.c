@@ -473,6 +473,7 @@ static int migrate_postcopy_prepare(QTestState **from_ptr,
     /* set postcopy capabilities */
     args->start.caps[MIGRATION_CAPABILITY_POSTCOPY_BLOCKTIME] = true;
     args->start.caps[MIGRATION_CAPABILITY_POSTCOPY_RAM] = true;
+    args->start.caps[MIGRATION_CAPABILITY_POSTCOPY_SETUP] = true;
 
     if (migrate_start(&from, &to, "defer", &args->start)) {
         return -1;
