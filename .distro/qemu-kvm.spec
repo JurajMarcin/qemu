@@ -143,7 +143,7 @@ Obsoletes: %{name}-block-ssh <= %{epoch}:%{version}                    \
 Summary: QEMU is a machine emulator and virtualizer
 Name: qemu-kvm
 Version: 10.0.0
-Release: 7%{?rcrel}%{?dist}%{?cc_suffix}
+Release: 8%{?rcrel}%{?dist}%{?cc_suffix}
 # Epoch because we pushed a qemu-1.0 package. AIUI this can't ever be dropped
 # Epoch 15 used for RHEL 8
 # Epoch 17 used for RHEL 9 (due to release versioning offset in RHEL 8.5)
@@ -348,6 +348,72 @@ Patch92: kvm-hw-i386-amd_iommu-Allow-migration-when-explicitly-cr.patch
 Patch93: kvm-Enable-amd-iommu-device.patch
 # For RHEL-83883 - Video stuck after switchover phase when play one video during migration
 Patch94: kvm-ui-vnc-Update-display-update-interval-when-VM-state-.patch
+# For RHEL-59697 - Allow multifd+postcopy features being enabled together, but only use multifd during precopy 
+Patch95: kvm-migration-multifd-move-macros-to-multifd-header.patch
+# For RHEL-59697 - Allow multifd+postcopy features being enabled together, but only use multifd during precopy 
+Patch96: kvm-migration-refactor-channel-discovery-mechanism.patch
+# For RHEL-59697 - Allow multifd+postcopy features being enabled together, but only use multifd during precopy 
+Patch97: kvm-migration-Add-save_postcopy_prepare-savevm-handler.patch
+# For RHEL-59697 - Allow multifd+postcopy features being enabled together, but only use multifd during precopy 
+Patch98: kvm-migration-ram-Implement-save_postcopy_prepare.patch
+# For RHEL-59697 - Allow multifd+postcopy features being enabled together, but only use multifd during precopy 
+Patch99: kvm-tests-qtest-migration-consolidate-set-capabilities.patch
+# For RHEL-59697 - Allow multifd+postcopy features being enabled together, but only use multifd during precopy 
+Patch100: kvm-migration-write-zero-pages-when-postcopy-enabled.patch
+# For RHEL-59697 - Allow multifd+postcopy features being enabled together, but only use multifd during precopy 
+Patch101: kvm-migration-enable-multifd-and-postcopy-together.patch
+# For RHEL-59697 - Allow multifd+postcopy features being enabled together, but only use multifd during precopy 
+Patch102: kvm-migration-Add-qtest-for-migration-over-RDMA.patch
+# For RHEL-59697 - Allow multifd+postcopy features being enabled together, but only use multifd during precopy 
+Patch103: kvm-qtest-migration-rdma-Enforce-RLIMIT_MEMLOCK-128MB-re.patch
+# For RHEL-59697 - Allow multifd+postcopy features being enabled together, but only use multifd during precopy 
+Patch104: kvm-qtest-migration-rdma-Add-test-for-rdma-migration-wit.patch
+# For RHEL-59697 - Allow multifd+postcopy features being enabled together, but only use multifd during precopy 
+Patch105: kvm-tests-qtest-migration-add-postcopy-tests-with-multif.patch
+# For RHEL-96854 - Performance Degradation(aio=threads) between Upstream Commit b75c5f9 and 984a32f
+Patch106: kvm-file-posix-Fix-aio-threads-performance-regression-af.patch
+# For RHEL-88561 - qemu graph deadlock during job-dismiss
+Patch107: kvm-block-remove-outdated-comments-about-AioContext-lock.patch
+# For RHEL-88561 - qemu graph deadlock during job-dismiss
+Patch108: kvm-block-move-drain-outside-of-read-locked-bdrv_reopen_.patch
+# For RHEL-88561 - qemu graph deadlock during job-dismiss
+Patch109: kvm-block-snapshot-move-drain-outside-of-read-locked-bdr.patch
+# For RHEL-88561 - qemu graph deadlock during job-dismiss
+Patch110: kvm-block-move-drain-outside-of-read-locked-bdrv_inactiv.patch
+# For RHEL-88561 - qemu graph deadlock during job-dismiss
+Patch111: kvm-block-mark-bdrv_parent_change_aio_context-GRAPH_RDLO.patch
+# For RHEL-88561 - qemu graph deadlock during job-dismiss
+Patch112: kvm-block-mark-change_aio_ctx-callback-and-instances-as-.patch
+# For RHEL-88561 - qemu graph deadlock during job-dismiss
+Patch113: kvm-block-mark-bdrv_child_change_aio_context-GRAPH_RDLOC.patch
+# For RHEL-88561 - qemu graph deadlock during job-dismiss
+Patch114: kvm-block-move-drain-outside-of-bdrv_change_aio_context-.patch
+# For RHEL-88561 - qemu graph deadlock during job-dismiss
+Patch115: kvm-block-move-drain-outside-of-bdrv_try_change_aio_cont.patch
+# For RHEL-88561 - qemu graph deadlock during job-dismiss
+Patch116: kvm-block-move-drain-outside-of-bdrv_attach_child_common.patch
+# For RHEL-88561 - qemu graph deadlock during job-dismiss
+Patch117: kvm-block-move-drain-outside-of-bdrv_set_backing_hd_drai.patch
+# For RHEL-88561 - qemu graph deadlock during job-dismiss
+Patch118: kvm-block-move-drain-outside-of-bdrv_root_attach_child.patch
+# For RHEL-88561 - qemu graph deadlock during job-dismiss
+Patch119: kvm-block-move-drain-outside-of-bdrv_attach_child.patch
+# For RHEL-88561 - qemu graph deadlock during job-dismiss
+Patch120: kvm-block-move-drain-outside-of-quorum_add_child.patch
+# For RHEL-88561 - qemu graph deadlock during job-dismiss
+Patch121: kvm-block-move-drain-outside-of-bdrv_root_unref_child.patch
+# For RHEL-88561 - qemu graph deadlock during job-dismiss
+Patch122: kvm-block-move-drain-outside-of-quorum_del_child.patch
+# For RHEL-88561 - qemu graph deadlock during job-dismiss
+Patch123: kvm-blockdev-drain-while-unlocked-in-internal_snapshot_a.patch
+# For RHEL-88561 - qemu graph deadlock during job-dismiss
+Patch124: kvm-blockdev-drain-while-unlocked-in-external_snapshot_a.patch
+# For RHEL-88561 - qemu graph deadlock during job-dismiss
+Patch125: kvm-block-mark-bdrv_drained_begin-and-friends-as-GRAPH_U.patch
+# For RHEL-88561 - qemu graph deadlock during job-dismiss
+Patch126: kvm-iotests-graph-changes-while-io-remove-image-file-aft.patch
+# For RHEL-88561 - qemu graph deadlock during job-dismiss
+Patch127: kvm-iotests-graph-changes-while-io-add-test-case-with-re.patch
 
 %if %{have_clang}
 BuildRequires: clang
@@ -1430,6 +1496,47 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Jul 28 2025 Miroslav Rezanina <mrezanin@redhat.com> - 10.0.0-8
+- kvm-migration-multifd-move-macros-to-multifd-header.patch [RHEL-59697]
+- kvm-migration-refactor-channel-discovery-mechanism.patch [RHEL-59697]
+- kvm-migration-Add-save_postcopy_prepare-savevm-handler.patch [RHEL-59697]
+- kvm-migration-ram-Implement-save_postcopy_prepare.patch [RHEL-59697]
+- kvm-tests-qtest-migration-consolidate-set-capabilities.patch [RHEL-59697]
+- kvm-migration-write-zero-pages-when-postcopy-enabled.patch [RHEL-59697]
+- kvm-migration-enable-multifd-and-postcopy-together.patch [RHEL-59697]
+- kvm-migration-Add-qtest-for-migration-over-RDMA.patch [RHEL-59697]
+- kvm-qtest-migration-rdma-Enforce-RLIMIT_MEMLOCK-128MB-re.patch [RHEL-59697]
+- kvm-qtest-migration-rdma-Add-test-for-rdma-migration-wit.patch [RHEL-59697]
+- kvm-tests-qtest-migration-add-postcopy-tests-with-multif.patch [RHEL-59697]
+- kvm-file-posix-Fix-aio-threads-performance-regression-af.patch [RHEL-96854]
+- kvm-block-remove-outdated-comments-about-AioContext-lock.patch [RHEL-88561]
+- kvm-block-move-drain-outside-of-read-locked-bdrv_reopen_.patch [RHEL-88561]
+- kvm-block-snapshot-move-drain-outside-of-read-locked-bdr.patch [RHEL-88561]
+- kvm-block-move-drain-outside-of-read-locked-bdrv_inactiv.patch [RHEL-88561]
+- kvm-block-mark-bdrv_parent_change_aio_context-GRAPH_RDLO.patch [RHEL-88561]
+- kvm-block-mark-change_aio_ctx-callback-and-instances-as-.patch [RHEL-88561]
+- kvm-block-mark-bdrv_child_change_aio_context-GRAPH_RDLOC.patch [RHEL-88561]
+- kvm-block-move-drain-outside-of-bdrv_change_aio_context-.patch [RHEL-88561]
+- kvm-block-move-drain-outside-of-bdrv_try_change_aio_cont.patch [RHEL-88561]
+- kvm-block-move-drain-outside-of-bdrv_attach_child_common.patch [RHEL-88561]
+- kvm-block-move-drain-outside-of-bdrv_set_backing_hd_drai.patch [RHEL-88561]
+- kvm-block-move-drain-outside-of-bdrv_root_attach_child.patch [RHEL-88561]
+- kvm-block-move-drain-outside-of-bdrv_attach_child.patch [RHEL-88561]
+- kvm-block-move-drain-outside-of-quorum_add_child.patch [RHEL-88561]
+- kvm-block-move-drain-outside-of-bdrv_root_unref_child.patch [RHEL-88561]
+- kvm-block-move-drain-outside-of-quorum_del_child.patch [RHEL-88561]
+- kvm-blockdev-drain-while-unlocked-in-internal_snapshot_a.patch [RHEL-88561]
+- kvm-blockdev-drain-while-unlocked-in-external_snapshot_a.patch [RHEL-88561]
+- kvm-block-mark-bdrv_drained_begin-and-friends-as-GRAPH_U.patch [RHEL-88561]
+- kvm-iotests-graph-changes-while-io-remove-image-file-aft.patch [RHEL-88561]
+- kvm-iotests-graph-changes-while-io-add-test-case-with-re.patch [RHEL-88561]
+- Resolves: RHEL-59697
+  (Allow multifd+postcopy features being enabled together, but only use multifd during precopy )
+- Resolves: RHEL-96854
+  (Performance Degradation(aio=threads) between Upstream Commit b75c5f9 and 984a32f)
+- Resolves: RHEL-88561
+  (qemu graph deadlock during job-dismiss)
+
 * Mon Jul 07 2025 Miroslav Rezanina <mrezanin@redhat.com> - 10.0.0-7
 - kvm-s390x-Fix-leak-in-machine_set_loadparm.patch [RHEL-98555]
 - kvm-hw-s390x-ccw-device-Fix-memory-leak-in-loadparm-sett.patch [RHEL-98555]
