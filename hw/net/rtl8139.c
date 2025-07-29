@@ -57,6 +57,7 @@
 #include "system/dma.h"
 #include "qemu/module.h"
 #include "qemu/timer.h"
+#include "qemu/error-report.h"
 #include "net/net.h"
 #include "net/eth.h"
 #include "system/system.h"
@@ -3363,6 +3364,9 @@ static void pci_rtl8139_realize(PCIDevice *dev, Error **errp)
     RTL8139State *s = RTL8139(dev);
     DeviceState *d = DEVICE(dev);
     uint8_t *pci_conf;
+
+    warn_report("'rtl8139' is deprecated, "
+                "please use a different Network Interface Card");
 
     pci_conf = dev->config;
     pci_conf[PCI_INTERRUPT_PIN] = 1;    /* interrupt pin A */
