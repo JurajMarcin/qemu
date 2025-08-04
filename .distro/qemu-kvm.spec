@@ -143,7 +143,7 @@ Obsoletes: %{name}-block-ssh <= %{epoch}:%{version}                    \
 Summary: QEMU is a machine emulator and virtualizer
 Name: qemu-kvm
 Version: 10.0.0
-Release: 8%{?rcrel}%{?dist}%{?cc_suffix}
+Release: 9%{?rcrel}%{?dist}%{?cc_suffix}
 # Epoch because we pushed a qemu-1.0 package. AIUI this can't ever be dropped
 # Epoch 15 used for RHEL 8
 # Epoch 17 used for RHEL 9 (due to release versioning offset in RHEL 8.5)
@@ -414,6 +414,8 @@ Patch125: kvm-block-mark-bdrv_drained_begin-and-friends-as-GRAPH_U.patch
 Patch126: kvm-iotests-graph-changes-while-io-remove-image-file-aft.patch
 # For RHEL-88561 - qemu graph deadlock during job-dismiss
 Patch127: kvm-iotests-graph-changes-while-io-add-test-case-with-re.patch
+# For RHEL-45624 - Deprecate rtl8139 NIC in QEMU
+Patch128: kvm-Declare-rtl8139-as-deprecated.patch
 
 %if %{have_clang}
 BuildRequires: clang
@@ -1496,6 +1498,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Aug 04 2025 Miroslav Rezanina <mrezanin@redhat.com> - 10.0.0-9
+- kvm-Declare-rtl8139-as-deprecated.patch [RHEL-45624]
+- Resolves: RHEL-45624
+  (Deprecate rtl8139 NIC in QEMU)
+
 * Mon Jul 28 2025 Miroslav Rezanina <mrezanin@redhat.com> - 10.0.0-8
 - kvm-migration-multifd-move-macros-to-multifd-header.patch [RHEL-59697]
 - kvm-migration-refactor-channel-discovery-mechanism.patch [RHEL-59697]
