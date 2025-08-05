@@ -4002,7 +4002,7 @@ void migration_connect(MigrationState *s, Error *error_in)
     }
 
     migration_rate_set(rate_limit);
-    qemu_file_set_blocking(s->to_dst_file, true);
+    qemu_file_set_blocking(s->to_dst_file, false);
 
     /*
      * Open the return path. For postcopy, it is used exclusively. For
