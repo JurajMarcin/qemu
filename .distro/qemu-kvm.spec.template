@@ -1241,6 +1241,12 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Tue Aug 05 2025 Jon Maloy <jmaloy@redhat.com> - 9.1.0-15.el9_6.8
+- kvm-vfio-helpers-Refactor-vfio_region_mmap-error-handlin.patch [RHEL-107314]
+- kvm-vfio-helpers-Align-mmaps.patch [RHEL-107314]
+- Resolves: RHEL-107314
+  (Improve VFIO mmapping performance with  huge  pfnmaps [rhel-9.6.z])
+
 * Fri Jul 04 2025 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-15.el9_6.7
 - kvm-ui-vnc-Update-display-update-interval-when-VM-state-.patch [RHEL-100767]
 - kvm-include-qemu-compiler-add-QEMU_UNINITIALIZED-attribu.patch [RHEL-99887]
