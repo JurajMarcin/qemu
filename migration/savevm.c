@@ -2069,6 +2069,25 @@ static int loadvm_postcopy_ram_handle_discard(MigrationIncomingState *mis,
     return 0;
 }
 
+static void postcopy_ram_listen_thread_bh(void *opaque)
+{
+    MigrationIncomingState *mis = opaque;
+
+    qemu_thread_join(&mis->listen_thread);
+
+    migrate_set_state(&mis->state, MIGRATION_STATUS_POSTCOPY_ACTIVE,
+                                   MIGRATION_STATUS_COMPLETED);
+    /*
+     * If everything has worked fine, then the main thread has waited
+     * for us to start, and we're the last use of the mis.
+     * (If something broke then qemu will have to exit anyway since it's
+     * got a bad migration state).
+     */
+    postcopy_ram_incoming_cleanup(mis);
+    migration_incoming_state_destroy();
+    postcopy_state_set(POSTCOPY_INCOMING_END);
+}
+
 /*
  * Triggered by a postcopy_listen command; this thread takes over reading
  * the input stream, leaving the main thread free to carry on loading the rest
@@ -2136,10 +2155,7 @@ static void *postcopy_ram_listen_thread(void *opaque)
          * state yet; wait for the end of the main thread.
          */
         qemu_event_wait(&mis->main_thread_load_event);
-    }
-    postcopy_ram_incoming_cleanup(mis);
-
-    if (load_res < 0) {
+    } else {
         /*
          * If something went wrong then we have a bad state so exit;
          * depending how far we got it might be possible at this point
@@ -2150,22 +2166,10 @@ static void *postcopy_ram_listen_thread(void *opaque)
         exit(EXIT_FAILURE);
     }
 
-    migrate_set_state(&mis->state, MIGRATION_STATUS_POSTCOPY_ACTIVE,
-                                   MIGRATION_STATUS_COMPLETED);
-    /*
-     * If everything has worked fine, then the main thread has waited
-     * for us to start, and we're the last use of the mis.
-     * (If something broke then qemu will have to exit anyway since it's
-     * got a bad migration state).
-     */
-    bql_lock();
-    migration_incoming_state_destroy();
-    bql_unlock();
+    migration_bh_schedule(postcopy_ram_listen_thread_bh, mis);
 
     rcu_unregister_thread();
     mis->have_listen_thread = false;
-    postcopy_state_set(POSTCOPY_INCOMING_END);
-
     object_unref(OBJECT(migr));
 
     return NULL;
@@ -2217,7 +2221,7 @@ static int loadvm_postcopy_handle_listen(MigrationIncomingState *mis)
     mis->have_listen_thread = true;
     postcopy_thread_create(mis, &mis->listen_thread,
                            MIGRATION_THREAD_DST_LISTEN,
-                           postcopy_ram_listen_thread, QEMU_THREAD_DETACHED);
+                           postcopy_ram_listen_thread, QEMU_THREAD_JOINABLE);
     trace_loadvm_postcopy_handle_listen("return");
 
     return 0;
