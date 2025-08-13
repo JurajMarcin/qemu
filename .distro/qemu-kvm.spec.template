@@ -1236,6 +1236,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Aug 11 2025 Krish Sadhukhan <ksadhukh@redhat.com> - 8.2.0-11.el9_4.15
+- kvm-virtio-pci-Fix-the-use-of-an-uninitialized-irqfd.patch [RHEL-102212]
+- Resolves: RHEL-102212
+  (virtio-pci: Fix the use of an uninitialized irqfd)
+
 * Thu Jun 12 2025 Krish Sadhukhan <ksadhukh@redhat.com> - 8.2.0-11.el9_4.13
 - kvm-target-i386-Add-new-CPU-model-SierraForest.patch [RHEL-83010]
 - Resolves: RHEL-83010
