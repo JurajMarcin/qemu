@@ -1204,6 +1204,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Thu Aug 14 2025 Xiubo Li <xiubli@redhat.com> - 7.2.0-14.el9_2.19
+- kvm-rbd-Fix-.bdrv_get_specific_info-implementation.patch [RHEL-108723]
+- Resolves: RHEL-108723
+  (Openstack guest becomes inaccessible via network when storage network on the hypervisor is disabled/lost [rhel-9.2.0.z])
+
 * Mon Apr 14 2025 Jon Maloy <jmaloy@redhat.com> - 7.2.0-14.el9_2.18
 - kvm-coroutine-cap-per-thread-local-pool-size.patch [RHEL-86794]
 - kvm-coroutine-reserve-5-000-mappings.patch [RHEL-86794]
