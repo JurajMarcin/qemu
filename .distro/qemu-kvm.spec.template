@@ -1236,6 +1236,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Fri Aug 15 2025 Xiubo Li <xiubli@redhat.com> - 8.2.0-11.el9_4.16
+- kvm-rbd-Fix-.bdrv_get_specific_info-implementation.patch [RHEL-108724]
+- Resolves: RHEL-108724
+  (Openstack guest becomes inaccessible via network when storage network on the hypervisor is disabled/lost [rhel-9.4.z])
+
 * Mon Aug 11 2025 Krish Sadhukhan <ksadhukh@redhat.com> - 8.2.0-11.el9_4.15
 - kvm-virtio-pci-Fix-the-use-of-an-uninitialized-irqfd.patch [RHEL-102212]
 - Resolves: RHEL-102212
