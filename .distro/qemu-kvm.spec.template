@@ -1235,6 +1235,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Aug 18 2025 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-15.el10_0.4
+- kvm-rbd-Fix-.bdrv_get_specific_info-implementation.patch [RHEL-108727]
+- Resolves: RHEL-108727
+  (Openstack guest becomes inaccessible via network when storage network on the hypervisor is disabled/lost [rhel-10.0.z])
+
 * Tue Jul 01 2025 Miroslav Rezanina <mrezanin@redhat.com> - 9.1.0-15.el10_0.3
 - kvm-ui-vnc-Update-display-update-interval-when-VM-state-.patch [RHEL-100765]
 - kvm-include-qemu-compiler-add-QEMU_UNINITIALIZED-attribu.patch [RHEL-99889]
