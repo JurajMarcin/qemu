@@ -143,7 +143,7 @@ Obsoletes: %{name}-block-ssh <= %{epoch}:%{version}                    \
 Summary: QEMU is a machine emulator and virtualizer
 Name: qemu-kvm
 Version: 10.0.0
-Release: 10%{?rcrel}%{?dist}%{?cc_suffix}
+Release: 11%{?rcrel}%{?dist}%{?cc_suffix}
 # Epoch because we pushed a qemu-1.0 package. AIUI this can't ever be dropped
 # Epoch 15 used for RHEL 8
 # Epoch 17 used for RHEL 9 (due to release versioning offset in RHEL 8.5)
@@ -418,6 +418,8 @@ Patch127: kvm-iotests-graph-changes-while-io-add-test-case-with-re.patch
 Patch128: kvm-Declare-rtl8139-as-deprecated.patch
 # For RHEL-102325 - [qemu] enable variable service for edk2
 Patch129: kvm-Enable-uefi-variable-service-for-edk2.patch
+# For RHEL-105440 - Openstack guest becomes inaccessible via network when storage network on the hypervisor is disabled/lost [rhel-10.1]
+Patch130: kvm-rbd-Fix-.bdrv_get_specific_info-implementation.patch
 
 %if %{have_clang}
 BuildRequires: clang
@@ -1500,6 +1502,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Aug 18 2025 Miroslav Rezanina <mrezanin@redhat.com> - 10.0.0-11
+- kvm-rbd-Fix-.bdrv_get_specific_info-implementation.patch [RHEL-105440]
+- Resolves: RHEL-105440
+  (Openstack guest becomes inaccessible via network when storage network on the hypervisor is disabled/lost [rhel-10.1])
+
 * Tue Aug 12 2025 Miroslav Rezanina <mrezanin@redhat.com> - 10.0.0-10
 - kvm-Enable-uefi-variable-service-for-edk2.patch [RHEL-102325]
 - Resolves: RHEL-102325
