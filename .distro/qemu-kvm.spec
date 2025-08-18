@@ -1231,6 +1231,8 @@ rm -rf %{buildroot}%{_mandir}/man1/virtfs-proxy-helper*
 %ifarch s390x
     # Use the s390-ccw.img that we've just built, not the pre-built one
     install -m 0644 %{qemu_kvm_build}/pc-bios/s390-ccw/s390-ccw.img %{buildroot}%{_datadir}/%{name}/
+    # Remove uefi vars
+    rm -rf %{buildroot}%{_libdir}/%{name}/hw-uefi-vars.so
 %else
     rm -rf %{buildroot}%{_libdir}/%{name}/hw-s390x-virtio-gpu-ccw.so
 %endif
@@ -1266,9 +1268,6 @@ rm -rf %{buildroot}%{_datadir}/%{name}/bios*.bin
 # Remove vof roms
 rm -rf %{buildroot}%{_datadir}/%{name}/vof-nvram.bin
 rm -rf %{buildroot}%{_datadir}/%{name}/vof.bin
-
-# Remove uefi vars
-rm -rf %{buildroot}%{_libdir}/%{name}/hw-uefi-vars.so
 
 %if %{have_modules_load}
     install -D -p -m 644 %{_sourcedir}/modules-load.conf %{buildroot}%{_sysconfdir}/modules-load.d/kvm.conf
@@ -1423,6 +1422,8 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 %ifarch s390x
     %{_datadir}/%{name}/s390-ccw.img
+%else
+    %{_libdir}/%{name}/hw-uefi-vars.so
 %endif
 %{_datadir}/icons/*
 %{_datadir}/%{name}/linuxboot_dma.bin
