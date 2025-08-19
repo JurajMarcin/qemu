@@ -514,6 +514,8 @@ struct MigrationState {
 
 void migrate_set_state(MigrationStatus *state, MigrationStatus old_state,
                        MigrationStatus new_state);
+void migrate_set_failure(MigrationState *ms, MigrationStatus *state,
+                         Error **err);
 
 void migration_fd_process_incoming(QEMUFile *f);
 void migration_ioc_process_incoming(QIOChannel *ioc, Error **errp);

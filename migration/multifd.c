@@ -995,8 +995,7 @@ bool multifd_send_setup(void)
     return true;
 
 err:
-    migrate_set_state(&s->state, MIGRATION_STATUS_SETUP,
-                      MIGRATION_STATUS_FAILED);
+    migrate_set_failure(s, NULL, NULL);
     return false;
 }
 

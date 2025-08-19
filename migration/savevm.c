@@ -2125,8 +2125,7 @@ static void *postcopy_ram_listen_thread(void *opaque)
             load_res = 0; /* prevent further exit() */
         } else {
             error_report("%s: loadvm failed: %d", __func__, load_res);
-            migrate_set_state(&mis->state, MIGRATION_STATUS_POSTCOPY_ACTIVE,
-                                           MIGRATION_STATUS_FAILED);
+            migrate_set_failure(migr, &mis->state, NULL);
         }
     }
     if (load_res >= 0) {
