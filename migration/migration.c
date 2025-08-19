@@ -921,10 +921,7 @@ process_incoming_migration_co(void *opaque)
     goto out;
 
 fail:
-    migrate_set_state(&mis->state, MIGRATION_STATUS_ACTIVE,
-                      MIGRATION_STATUS_FAILED);
-    migrate_set_error(s, local_err);
-    error_free(local_err);
+    migrate_set_failure(s, &mis->state, &local_err);
 
     migration_incoming_state_destroy();
 
@@ -1478,6 +1475,21 @@ void migrate_set_state(MigrationStatus *state, MigrationStatus old_state,
     if (qatomic_cmpxchg(state, old_state, new_state) == old_state) {
         trace_migrate_set_state(MigrationStatus_str(new_state));
         migrate_generate_event(new_state);
+    }
+}
+
+void migrate_set_failure(MigrationState *ms, MigrationStatus *state,
+                         Error **err)
+{
+    MigrationStatus current = state ? *state : ms->state;
+    if (current != MIGRATION_STATUS_CANCELLING) {
+        migrate_set_state(state ? state : &ms->state, current,
+                          MIGRATION_STATUS_FAILED);
+    }
+    if (err && *err) {
+        migrate_set_error(ms, *err);
+        error_report_err(*err);
+        err = NULL;
     }
 }
 
@@ -2309,14 +2321,14 @@ static void qmp_migrate_finish(MigrationAddress *addr, bool resume_requested,
     } else {
         error_setg(&local_err, QERR_INVALID_PARAMETER_VALUE, "uri",
                    "a valid migration protocol");
-        migrate_set_state(&s->state, MIGRATION_STATUS_SETUP,
-                          MIGRATION_STATUS_FAILED);
+        migrate_set_failure(s, NULL, NULL);
     }
 
     if (local_err) {
         if (!resume_requested) {
             yank_unregister_instance(MIGRATION_YANK_INSTANCE);
         }
+        // TODO:<jmarcin> investigate if valid transition is there???
         migration_connect_set_error(s, local_err);
         error_propagate(errp, local_err);
         return;
@@ -2705,8 +2717,9 @@ migration_wait_main_channel(MigrationState *ms)
  * Switch from normal iteration to postcopy
  * Returns non-0 on error
  */
-static int postcopy_start(MigrationState *ms, Error **errp)
+static int postcopy_start(MigrationState *ms)
 {
+    Error *local_err = NULL;
     int ret;
     QIOChannelBuffer *bioc;
     QEMUFile *fb;
@@ -2722,17 +2735,14 @@ static int postcopy_start(MigrationState *ms, Error **errp)
     if (migrate_postcopy_preempt()) {
         migration_wait_main_channel(ms);
         if (postcopy_preempt_establish_channel(ms)) {
-            if (ms->state != MIGRATION_STATUS_CANCELLING) {
-                migrate_set_state(&ms->state, ms->state,
-                                  MIGRATION_STATUS_FAILED);
-            }
-            error_setg(errp, "%s: Failed to establish preempt channel",
+            migrate_set_failure(ms, NULL, NULL);
+            error_setg(&local_err, "%s: Failed to establish preempt channel",
                        __func__);
             return -1;
         }
     }
 
-    if (!qemu_savevm_state_postcopy_prepare(ms->to_dst_file, errp)) {
+    if (!qemu_savevm_state_postcopy_prepare(ms->to_dst_file, &local_err)) {
         return -1;
     }
 
@@ -2742,11 +2752,11 @@ static int postcopy_start(MigrationState *ms, Error **errp)
 
     ret = migration_stop_vm(ms, RUN_STATE_FINISH_MIGRATE);
     if (ret < 0) {
-        error_setg_errno(errp, -ret, "%s: Failed to stop the VM", __func__);
+        error_setg_errno(&local_err, -ret, "%s: Failed to stop the VM", __func__);
         goto fail;
     }
 
-    if (!migration_switchover_start(ms, errp)) {
+    if (!migration_switchover_start(ms, &local_err)) {
         goto fail;
     }
 
@@ -2756,7 +2766,7 @@ static int postcopy_start(MigrationState *ms, Error **errp)
      */
     ret = qemu_savevm_state_complete_precopy_iterable(ms->to_dst_file, true);
     if (ret) {
-        error_setg(errp, "Postcopy save non-postcopiable iterables failed");
+        error_setg(&local_err, "Postcopy save non-postcopiable iterables failed");
         goto fail;
     }
 
@@ -2799,7 +2809,7 @@ static int postcopy_start(MigrationState *ms, Error **errp)
 
     ret = qemu_savevm_state_complete_precopy_non_iterable(fb, true);
     if (ret) {
-        error_setg(errp, "Postcopy save non-iterable device states failed");
+        error_setg(&local_err, "Postcopy save non-iterable device states failed");
         goto fail_closefb;
     }
 
@@ -2817,13 +2827,13 @@ static int postcopy_start(MigrationState *ms, Error **errp)
      */
     ret = qemu_file_get_error(ms->to_dst_file);
     if (ret) {
-        error_setg(errp, "postcopy_start: Migration stream errored (pre package)");
+        error_setg(&local_err, "postcopy_start: Migration stream errored (pre package)");
         goto fail_closefb;
     }
 
     /* Now send that blob */
     if (qemu_savevm_send_packaged(ms->to_dst_file, bioc->data, bioc->usage)) {
-        error_setg(errp, "%s: Failed to send packaged data", __func__);
+        error_setg(&local_err, "%s: Failed to send packaged data", __func__);
         goto fail_closefb;
     }
     qemu_fclose(fb);
@@ -2850,7 +2860,7 @@ static int postcopy_start(MigrationState *ms, Error **errp)
 
     ret = qemu_file_get_error(ms->to_dst_file);
     if (ret) {
-        error_setg_errno(errp, -ret, "postcopy_start: Migration stream error");
+        error_setg_errno(&local_err, -ret, "postcopy_start: Migration stream error");
         goto fail;
     }
     trace_postcopy_preempt_enabled(migrate_postcopy_preempt());
@@ -2872,9 +2882,7 @@ static int postcopy_start(MigrationState *ms, Error **errp)
 fail_closefb:
     qemu_fclose(fb);
 fail:
-    if (ms->state != MIGRATION_STATUS_CANCELLING) {
-        migrate_set_state(&ms->state, ms->state, MIGRATION_STATUS_FAILED);
-    }
+    migrate_set_failure(ms, NULL, &local_err);
     migration_block_activate(NULL);
     migration_call_notifiers(ms, MIG_EVENT_PRECOPY_FAILED, NULL);
     bql_unlock();
@@ -3058,18 +3066,11 @@ static void migration_completion(MigrationState *s)
     return;
 
 fail:
-    if (qemu_file_get_error_obj(s->to_dst_file, &local_err)) {
-        migrate_set_error(s, local_err);
-        error_free(local_err);
-    } else if (ret) {
+    if (!qemu_file_get_error_obj(s->to_dst_file, &local_err) && ret) {
         error_setg_errno(&local_err, -ret, "Error in migration completion");
-        migrate_set_error(s, local_err);
-        error_free(local_err);
     }
 
-    if (s->state != MIGRATION_STATUS_CANCELLING) {
-        migrate_set_state(&s->state, s->state, MIGRATION_STATUS_FAILED);
-    }
+    migrate_set_failure(s, NULL, &local_err);
 }
 
 /**
@@ -3080,8 +3081,6 @@ fail:
  */
 static void bg_migration_completion(MigrationState *s)
 {
-    int current_active_state = s->state;
-
     if (s->state == MIGRATION_STATUS_ACTIVE) {
         /*
          * By this moment we have RAM content saved into the migration stream.
@@ -3104,8 +3103,7 @@ static void bg_migration_completion(MigrationState *s)
     return;
 
 fail:
-    migrate_set_state(&s->state, current_active_state,
-                      MIGRATION_STATUS_FAILED);
+    migrate_set_failure(s, NULL, NULL);
 }
 
 typedef enum MigThrError {
@@ -3290,24 +3288,23 @@ static MigThrError migration_detect_error(MigrationState *s)
         return MIG_THR_ERR_NONE;
     }
 
-    if (local_error) {
-        migrate_set_error(s, local_error);
-        error_free(local_error);
-    }
-
     if (state == MIGRATION_STATUS_POSTCOPY_ACTIVE && ret) {
         /*
          * For postcopy, we allow the network to be down for a
          * while. After that, it can be continued by a
          * recovery phase.
          */
+        if (local_error) {
+            migrate_set_error(s, local_error);
+            error_free(local_error);
+        }
         return postcopy_pause(s);
     } else {
         /*
          * For precopy (or postcopy with error outside IO), we fail
          * with no time.
          */
-        migrate_set_state(&s->state, state, MIGRATION_STATUS_FAILED);
+        migrate_set_failure(s, NULL, &local_error);
         trace_migration_thread_file_err();
 
         /* Time to stop the migration, now. */
@@ -3439,7 +3436,6 @@ typedef enum {
 static MigIterateState migration_iteration_run(MigrationState *s)
 {
     uint64_t must_precopy, can_postcopy, pending_size;
-    Error *local_err = NULL;
     bool in_postcopy = s->state == MIGRATION_STATUS_POSTCOPY_ACTIVE;
     bool can_switchover = migration_can_switchover(s);
     bool complete_ready;
@@ -3473,10 +3469,7 @@ static MigIterateState migration_iteration_run(MigrationState *s)
         /* Should we switch to postcopy now? */
         if (must_precopy <= s->threshold_size &&
             can_switchover && qatomic_read(&s->start_postcopy)) {
-            if (postcopy_start(s, &local_err)) {
-                migrate_set_error(s, local_err);
-                error_report_err(local_err);
-            }
+            postcopy_start(s);
             return MIG_ITERATE_SKIP;
         }
 
@@ -3752,10 +3745,7 @@ static void *migration_thread(void *opaque)
      * devices to unplug. This to preserve migration state transitions.
      */
     if (ret) {
-        migrate_set_error(s, local_err);
-        error_free(local_err);
-        migrate_set_state(&s->state, MIGRATION_STATUS_ACTIVE,
-                          MIGRATION_STATUS_FAILED);
+        migrate_set_failure(s, NULL, &local_err);
         goto out;
     }
 
@@ -3877,10 +3867,7 @@ static void *bg_migration_thread(void *opaque)
      * devices to unplug. This to preserve migration state transitions.
      */
     if (ret) {
-        migrate_set_error(s, local_err);
-        error_free(local_err);
-        migrate_set_state(&s->state, MIGRATION_STATUS_ACTIVE,
-                          MIGRATION_STATUS_FAILED);
+        migrate_set_failure(s, NULL, &local_err);
         goto fail_setup;
     }
 
@@ -3942,8 +3929,7 @@ static void *bg_migration_thread(void *opaque)
 
 fail:
     if (early_fail) {
-        migrate_set_state(&s->state, MIGRATION_STATUS_ACTIVE,
-                MIGRATION_STATUS_FAILED);
+        migrate_set_failure(s, NULL, NULL);
         bql_unlock();
     }
 
@@ -4061,11 +4047,7 @@ void migration_connect(MigrationState *s, Error *error_in)
     return;
 
 fail:
-    migrate_set_error(s, local_err);
-    if (s->state != MIGRATION_STATUS_CANCELLING) {
-        migrate_set_state(&s->state, s->state, MIGRATION_STATUS_FAILED);
-    }
-    error_report_err(local_err);
+    migrate_set_failure(s, NULL, &local_err);
     migration_cleanup(s);
 }
 
