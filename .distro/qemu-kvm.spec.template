@@ -1241,6 +1241,11 @@ useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
 %endif
 
 %changelog
+* Mon Aug 18 2025 Jon Maloy <jmaloy@redhat.com> - 9.1.0-15.el9_6.9
+- kvm-rbd-Fix-.bdrv_get_specific_info-implementation.patch [RHEL-108725]
+- Resolves: RHEL-108725
+  (Openstack guest becomes inaccessible via network when storage network on the hypervisor is disabled/lost [rhel-9.6.z])
+
 * Tue Aug 05 2025 Jon Maloy <jmaloy@redhat.com> - 9.1.0-15.el9_6.8
 - kvm-vfio-helpers-Refactor-vfio_region_mmap-error-handlin.patch [RHEL-107314]
 - kvm-vfio-helpers-Align-mmaps.patch [RHEL-107314]
