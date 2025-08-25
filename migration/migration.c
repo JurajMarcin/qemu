@@ -926,6 +926,14 @@ fail:
     migrate_set_error(s, local_err);
     error_free(local_err);
 
+    if (ps == POSTCOPY_INCOMING_LISTENING) {
+        /*
+         * An error happened before the VM was started, probably during device
+         * state load. Wait for postcopy thread to exit and then do the rest of
+         * the cleanup.
+         */
+        qemu_thread_join(&mis->listen_thread);
+    }
     migration_incoming_state_destroy();
 
     if (mis->exit_on_error) {

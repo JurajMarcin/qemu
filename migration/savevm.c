@@ -2069,6 +2069,12 @@ static int loadvm_postcopy_ram_handle_discard(MigrationIncomingState *mis,
     return 0;
 }
 
+static void postcopy_ram_listen_thread_bh(void *opaque)
+{
+    MigrationIncomingState *mis = opaque;
+    qemu_thread_join(&mis->listen_thread);
+}
+
 /*
  * Triggered by a postcopy_listen command; this thread takes over reading
  * the input stream, leaving the main thread free to carry on loading the rest
@@ -2140,6 +2146,14 @@ static void *postcopy_ram_listen_thread(void *opaque)
     postcopy_ram_incoming_cleanup(mis);
 
     if (load_res < 0) {
+        if (postcopy_state_get() == POSTCOPY_INCOMING_LISTENING) {
+            /*
+             * If something went wrong before VM was started, there was probably
+             * an error during device state load. Let the main thread handle
+             * incoming state cleanup and exit gracefully.
+             */
+            goto out;
+        }
         /*
          * If something went wrong then we have a bad state so exit;
          * depending how far we got it might be possible at this point
@@ -2162,10 +2176,12 @@ static void *postcopy_ram_listen_thread(void *opaque)
     migration_incoming_state_destroy();
     bql_unlock();
 
+    postcopy_state_set(POSTCOPY_INCOMING_END);
+    migration_bh_schedule(postcopy_ram_listen_thread_bh, mis);
+
+out:
     rcu_unregister_thread();
     mis->have_listen_thread = false;
-    postcopy_state_set(POSTCOPY_INCOMING_END);
-
     object_unref(OBJECT(migr));
 
     return NULL;
@@ -2217,7 +2233,7 @@ static int loadvm_postcopy_handle_listen(MigrationIncomingState *mis)
     mis->have_listen_thread = true;
     postcopy_thread_create(mis, &mis->listen_thread,
                            MIGRATION_THREAD_DST_LISTEN,
-                           postcopy_ram_listen_thread, QEMU_THREAD_DETACHED);
+                           postcopy_ram_listen_thread, QEMU_THREAD_JOINABLE);
     trace_loadvm_postcopy_handle_listen("return");
 
     return 0;
