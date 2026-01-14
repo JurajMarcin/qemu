@@ -1409,7 +1409,7 @@ int qemu_savevm_state_non_iterable_early(QEMUFile *f,
     int ret;
 
     QTAILQ_FOREACH(se, &savevm_state.handlers, entry) {
-        if (se->vmsd && se->vmsd->early_setup) {
+        if (se->vmsd && se->vmsd->phase == VMS_PHASE_EARLY_SETUP) {
             ret = vmstate_save(f, se, vmdesc, errp);
             if (ret) {
                 return ret;
@@ -1748,7 +1748,7 @@ bool qemu_savevm_state_non_iterable(QEMUFile *f, Error **errp)
     cpu_synchronize_all_states();
 
     QTAILQ_FOREACH(se, &savevm_state.handlers, entry) {
-        if (se->vmsd && se->vmsd->early_setup) {
+        if (se->vmsd && se->vmsd->phase != VMS_PHASE_COMPLETE) {
             /* Already saved during qemu_savevm_state_setup(). */
             continue;
         }
