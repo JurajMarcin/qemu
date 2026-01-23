@@ -279,6 +279,7 @@ static bool should_validate_capability(int capability)
     switch (capability) {
     case MIGRATION_CAPABILITY_X_IGNORE_SHARED:
     case MIGRATION_CAPABILITY_MAPPED_RAM:
+    case MIGRATION_CAPABILITY_NETPASS:
         return true;
     default:
         return false;
@@ -1798,6 +1799,29 @@ bool qemu_savevm_state_complete_precopy(MigrationState *s, Error **errp)
     return true;
 }
 
+void qemu_savevm_state_netpass(QEMUFile *f)
+{
+    MigrationState *ms = migrate_get_current();
+    JSONWriter *vmdesc = ms->vmdesc;
+    SaveStateEntry *se;
+    Error *local_err = NULL;
+    int ret;
+
+    trace_savevm_state_netpass_begin();
+    QTAILQ_FOREACH(se, &savevm_state.handlers, entry) {
+        if (!se->vmsd || se->vmsd->phase != VMS_PHASE_NETPASS) {
+            continue;
+        }
+        ret = vmstate_save(f, se, vmdesc, &local_err);
+        if (ret) {
+            warn_report_err(local_err);
+            qemu_file_clear_error(f);
+            break;
+        }
+    }
+    trace_savevm_state_netpass_end(ret);
+}
+
 static void qemu_savevm_query_pending(MigrationState *s,
                                       MigPendingData *pending, bool exact,
                                       bool final)
@@ -3199,6 +3223,19 @@ int qemu_load_device_state(QEMUFile *f, Error **errp)
 
     cpu_synchronize_all_post_init();
     return 0;
+}
+
+void qemu_loadvm_state_netpass(QEMUFile *f, MigrationIncomingState *mis)
+{
+    Error *local_errp;
+    trace_loadvm_state_netpass_begin();
+    int ret = qemu_loadvm_state_main(mis->from_src_file, mis, &local_errp);
+    trace_loadvm_state_netpass_end(ret);
+    if (ret < 0) {
+        warn_reportf_err(local_errp,
+                         "Error while loading netpass data, this error will be ignored");
+        qemu_file_clear_error(f);
+    }
 }
 
 static int qemu_loadvm_approve_switchover_legacy(const char *approver)
