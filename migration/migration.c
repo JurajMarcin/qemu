@@ -83,6 +83,7 @@ enum mig_rp_message_type {
     MIG_RP_MSG_RECV_BITMAP,  /* send recved_bitmap back to source */
     MIG_RP_MSG_RESUME_ACK,   /* tell source that we are ready to resume */
     MIG_RP_MSG_SWITCHOVER_ACK, /* Tell source it's OK to do switchover */
+    MIG_RP_MSG_VM_STARTED,   /* tell source destination has started */
 
     MIG_RP_MSG_MAX
 };
@@ -720,6 +721,10 @@ static void process_incoming_migration_bh(void *opaque)
         runstate_set(global_state_get_runstate());
     }
     trace_vmstate_downtime_checkpoint("dst-precopy-bh-vm-started");
+    if (mis->to_src_file && migrate_send_vm_started()) {
+        migrate_send_rp_vm_started(mis);
+    }
+
     /*
      * This must happen after any state changes since as soon as an external
      * observer sees this event they might start to prod at the VM assuming
@@ -983,6 +988,11 @@ void migrate_send_rp_resume_ack(MigrationIncomingState *mis, uint32_t value)
 
     buf = cpu_to_be32(value);
     migrate_send_rp_message(mis, MIG_RP_MSG_RESUME_ACK, sizeof(buf), &buf);
+}
+
+void migrate_send_rp_vm_started(MigrationIncomingState *mis)
+{
+    migrate_send_rp_message(mis, MIG_RP_MSG_VM_STARTED, 0, NULL);
 }
 
 /*
@@ -1729,6 +1739,9 @@ int migrate_init(MigrationState *s, Error **errp)
     migration_reset_vfio_bytes_transferred();
 
     s->postcopy_package_loaded = false;
+
+    s->dest_vm_started = false;
+    qemu_event_reset(&s->dest_vm_started_event);
 
     return 0;
 }
@@ -2478,6 +2491,12 @@ static void *source_return_path_thread(void *opaque)
             break;
         }
 
+        case MIG_RP_MSG_VM_STARTED:
+            migration_downtime_end(ms);
+            ms->dest_vm_started = true;
+            qemu_event_set(&ms->dest_vm_started_event);
+            break;
+
         default:
             break;
         }
@@ -2704,7 +2723,9 @@ static int postcopy_start(MigrationState *ms, Error **errp)
      */
     migration_call_notifiers(MIG_EVENT_POSTCOPY_START, NULL);
 
-    migration_downtime_end(ms);
+    if (!ms->rp_state.rp_thread_created || !migrate_send_vm_started()) {
+        migration_downtime_end(ms);
+    }
 
     if (migrate_postcopy_ram()) {
         /*
@@ -3207,7 +3228,9 @@ static void migration_completion_end(MigrationState *s)
      * - correct ordering of s->mbps update vs. s->state;
      */
     bql_lock();
-    migration_downtime_end(s);
+    if (!s->rp_state.rp_thread_created || !migrate_send_vm_started()) {
+        migration_downtime_end(s);
+    }
     s->total_time = end_time - s->start_time;
     transfer_time = s->total_time - s->setup_time;
     if (transfer_time) {
@@ -3479,9 +3502,10 @@ static void migration_iteration_finish(MigrationState *s)
     case MIGRATION_STATUS_FAILING:
     case MIGRATION_STATUS_CANCELLED:
     case MIGRATION_STATUS_CANCELLING:
-        if (!migration_block_activate(&local_err)) {
+        if (s->dest_vm_started || !migration_block_activate(&local_err)) {
             /*
-            * Re-activate the block drives if they're inactivated.
+            * Re-activate the block drives if they're inactivated and the dest
+            * vm has not reported that it has started.
             *
             * If it fails (e.g. in case of a split brain, where dest QEMU
             * might have taken some of the drive locks and running!), do
@@ -4033,6 +4057,7 @@ static void migration_instance_finalize(Object *obj)
     qemu_sem_destroy(&ms->rp_state.rp_pong_acks);
     qemu_sem_destroy(&ms->postcopy_qemufile_src_sem);
     error_free(ms->error);
+    qemu_event_destroy(&ms->dest_vm_started_event);
 }
 
 static void migration_instance_init(Object *obj)
@@ -4054,6 +4079,7 @@ static void migration_instance_init(Object *obj)
     qemu_sem_init(&ms->wait_unplug_sem, 0);
     qemu_sem_init(&ms->postcopy_qemufile_src_sem, 0);
     qemu_mutex_init(&ms->qemu_file_lock);
+    qemu_event_init(&ms->dest_vm_started_event, false);
 }
 
 /*

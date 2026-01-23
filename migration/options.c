@@ -112,6 +112,7 @@ const Property migration_properties[] = {
                      multifd_clean_tls_termination, true),
     DEFINE_PROP_BOOL("switchover-ack-legacy", MigrationState,
                      switchover_ack_legacy, false),
+    DEFINE_PROP_BOOL("send-vm-started", MigrationState, send_vm_started, true),
 
     /* Migration parameters */
     DEFINE_PROP_UINT8("x-throttle-trigger-threshold", MigrationState,
@@ -446,6 +447,13 @@ bool migrate_zero_copy_send(void)
     MigrationState *s = migrate_get_current();
 
     return s->capabilities[MIGRATION_CAPABILITY_ZERO_COPY_SEND];
+}
+
+bool migrate_send_vm_started(void)
+{
+    MigrationState *s = migrate_get_current();
+
+    return s->send_vm_started;
 }
 
 /* pseudo capabilities */
