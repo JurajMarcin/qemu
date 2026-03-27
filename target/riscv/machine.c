@@ -19,6 +19,7 @@
 #include "qemu/osdep.h"
 #include "cpu.h"
 #include "qemu/error-report.h"
+#include "system/hw_accel.h"
 #include "system/kvm.h"
 #include "migration/cpu.h"
 #include "exec/icount.h"
@@ -255,9 +256,13 @@ static const VMStateDescription vmstate_debug = {
 static int riscv_cpu_post_load(void *opaque, int version_id)
 {
     RISCVCPU *cpu = opaque;
+    CPUState *cs = CPU(cpu);
     CPURISCVState *env = &cpu->env;
 
     env->xl = cpu_recompute_xl(env);
+
+    cpu_synchronize_post_init(cs);
+
     return 0;
 }
 

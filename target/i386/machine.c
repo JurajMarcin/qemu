@@ -8,6 +8,7 @@
 #include "kvm/kvm_i386.h"
 #include "hw/xen/xen.h"
 #include "exec/watchpoint.h"
+#include "system/hw_accel.h"
 #include "system/kvm.h"
 #include "system/kvm_xen.h"
 #include "system/tcg.h"
@@ -402,6 +403,9 @@ static int cpu_post_load(void *opaque, int version_id)
         cpu_x86_update_dr7(env, dr7);
     }
     tlb_flush(cs);
+
+    cpu_synchronize_post_init(cs);
+
     return 0;
 }
 

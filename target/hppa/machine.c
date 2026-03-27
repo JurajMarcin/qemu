@@ -21,6 +21,7 @@
 #include "cpu.h"
 #include "migration/qemu-file-types.h"
 #include "migration/vmstate.h"
+#include "system/hw_accel.h"
 
 
 static int get_psw(QEMUFile *f, void *opaque, size_t size,
@@ -153,6 +154,16 @@ static int tlb_post_load(void *opaque, int version_id)
     return 0;
 }
 
+static bool cpu_post_load(void *opaque, int version_id, Error **errp)
+{
+    HPPACPU *cpu = opaque;
+    CPUState *cs = CPU(cpu);
+
+    cpu_synchronize_post_init(cs);
+
+    return true;
+}
+
 static const VMStateField vmstate_tlb_fields[] = {
     VMSTATE_ARRAY(tlb, CPUHPPAState,
                   ARRAY_SIZE(((CPUHPPAState *)0)->tlb),
@@ -226,5 +237,6 @@ const VMStateDescription vmstate_hppa_cpu = {
     .name = "cpu",
     .version_id = 1,
     .minimum_version_id = 1,
+    .post_load_errp = cpu_post_load,
     .fields = vmstate_cpu_fields,
 };

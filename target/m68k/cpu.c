@@ -25,6 +25,7 @@
 
 #ifndef CONFIG_USER_ONLY
 #include "migration/vmstate.h"
+#include "system/hw_accel.h"
 #endif
 
 #include "cpu.h"
@@ -572,10 +573,21 @@ const VMStateDescription vmstate_68040_spregs = {
     }
 };
 
+static bool cpu_post_load(void *opaque, int version_id, Error **errp)
+{
+    M68kCPU *cpu = opaque;
+    CPUState *cs = CPU(cpu);
+
+    cpu_synchronize_post_init(cs);
+
+    return true;
+}
+
 static const VMStateDescription vmstate_m68k_cpu = {
     .name = "cpu",
     .version_id = 1,
     .minimum_version_id = 1,
+    .post_load_errp = cpu_post_load,
     .fields = (const VMStateField[]) {
         VMSTATE_UINT32_ARRAY(env.dregs, M68kCPU, 8),
         VMSTATE_UINT32_ARRAY(env.aregs, M68kCPU, 8),

@@ -8,6 +8,7 @@
 #include "qemu/osdep.h"
 #include "cpu.h"
 #include "migration/cpu.h"
+#include "system/hw_accel.h"
 #include "system/tcg.h"
 #include "vec.h"
 
@@ -205,11 +206,22 @@ static const VMStateDescription vmstate_tlb = {
 };
 #endif
 
+static bool cpu_post_load(void *opaque, int version_id, Error **errp)
+{
+    LoongArchCPU *cpu = opaque;
+    CPUState *cs = CPU(cpu);
+
+    cpu_synchronize_post_init(cs);
+
+    return true;
+}
+
 /* LoongArch CPU state */
 const VMStateDescription vmstate_loongarch_cpu = {
     .name = "cpu",
     .version_id = 4,
     .minimum_version_id = 4,
+    .post_load_errp = cpu_post_load,
     .fields = (const VMStateField[]) {
         VMSTATE_UINT64_ARRAY(env.gpr, LoongArchCPU, 32),
         VMSTATE_UINT64(env.pc, LoongArchCPU),

@@ -21,6 +21,7 @@
 #include "cpu.h"
 #include "migration/qemu-file-types.h"
 #include "migration/vmstate.h"
+#include "system/hw_accel.h"
 
 static const VMStateDescription vmstate_tlb_entry = {
     .name = "tlb_entry",
@@ -124,10 +125,14 @@ static const VMStateDescription vmstate_env = {
 static int cpu_post_load(void *opaque, int version_id)
 {
     OpenRISCCPU *cpu = opaque;
+    CPUState *cs = CPU(cpu);
     CPUOpenRISCState *env = &cpu->env;
 
     /* Update env->fp_status to match env->fpcsr.  */
     cpu_set_fpcsr(env, env->fpcsr);
+
+    cpu_synchronize_post_init(cs);
+
     return 0;
 }
 

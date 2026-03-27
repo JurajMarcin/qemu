@@ -19,6 +19,7 @@
 #include "s390x-internal.h"
 #include "kvm/kvm_s390x.h"
 #include "migration/vmstate.h"
+#include "system/hw_accel.h"
 #include "tcg/tcg_s390x.h"
 #include "system/kvm.h"
 #include "system/tcg.h"
@@ -26,6 +27,7 @@
 static int cpu_post_load(void *opaque, int version_id)
 {
     S390CPU *cpu = opaque;
+    CPUState *cs = CPU(cpu);
 
     /*
      * As the cpu state is pushed to kvm via kvm_set_mp_state rather
@@ -40,6 +42,8 @@ static int cpu_post_load(void *opaque, int version_id)
         /* Rearm the CKC timer if necessary */
         tcg_s390_tod_updated(CPU(cpu), RUN_ON_CPU_NULL);
     }
+
+    cpu_synchronize_post_init(cs);
 
     return 0;
 }

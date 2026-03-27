@@ -1,5 +1,6 @@
 #include "qemu/osdep.h"
 #include "cpu.h"
+#include "system/hw_accel.h"
 #include "system/kvm.h"
 #include "system/tcg.h"
 #include "helper_regs.h"
@@ -182,6 +183,7 @@ static bool pvr_match(PowerPCCPU *cpu, uint32_t pvr)
 static int cpu_post_load(void *opaque, int version_id)
 {
     PowerPCCPU *cpu = opaque;
+    CPUState *cs = CPU(cpu);
     CPUPPCState *env = &cpu->env;
     int i;
 
@@ -313,6 +315,8 @@ static int cpu_post_load(void *opaque, int version_id)
         cpu_ppc_store_decr(env, env->spr[SPR_DECR]);
         pmu_mmcr01a_updated(env);
     }
+
+    cpu_synchronize_post_init(cs);
 
     return 0;
 }

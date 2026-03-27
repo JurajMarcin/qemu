@@ -1,6 +1,7 @@
 #include "qemu/osdep.h"
 #include "cpu.h"
 #include "cpregs.h"
+#include "system/hw_accel.h"
 #include "trace.h"
 #include "qemu/error-report.h"
 #include "system/kvm.h"
@@ -1089,6 +1090,7 @@ static bool handle_cpreg_only_in_incoming_stream(ARMCPU *cpu, uint64_t kvmidx)
 static int cpu_post_load(void *opaque, int version_id)
 {
     ARMCPU *cpu = opaque;
+    CPUState *cs = CPU(cpu);
     CPUARMState *env = &cpu->env;
     bool fail = false;
     int i, v;
@@ -1106,7 +1108,6 @@ static int cpu_post_load(void *opaque, int version_id)
      * we only need to care about it for TCG.
      */
     if (env->irq_line_state == UINT32_MAX) {
-        CPUState *cs = CPU(cpu);
 
         env->irq_line_state = cs->interrupt_request &
             (CPU_INTERRUPT_HARD | CPU_INTERRUPT_FIQ |
@@ -1209,6 +1210,8 @@ static int cpu_post_load(void *opaque, int version_id)
     if (tcg_enabled()) {
         arm_rebuild_hflags(env);
     }
+
+    cpu_synchronize_post_init(cs);
 
     return 0;
 }

@@ -21,6 +21,7 @@
 #include "cpu.h"
 #include "migration/qemu-file-types.h"
 #include "migration/vmstate.h"
+#include "system/hw_accel.h"
 
 
 static const VMStateField vmstate_mmu_fields[] = {
@@ -53,6 +54,16 @@ static int put_msr(QEMUFile *f, void *opaque, size_t size,
 
     qemu_put_be32(f, mb_cpu_read_msr(env));
     return 0;
+}
+
+static bool cpu_post_load(void *opaque, int version_id, Error **errp)
+{
+    MicroBlazeCPU *cpu = opaque;
+    CPUState *cs = CPU(cpu);
+
+    cpu_synchronize_post_init(cs);
+
+    return true;
 }
 
 static const VMStateInfo vmstate_msr = {
@@ -103,5 +114,6 @@ const VMStateDescription vmstate_mb_cpu = {
     .name = "cpu",
     .version_id = 0,
     .minimum_version_id = 0,
+    .post_load_errp = cpu_post_load,
     .fields = vmstate_cpu_fields,
 };

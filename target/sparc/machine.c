@@ -3,6 +3,7 @@
 #include "qemu/timer.h"
 
 #include "migration/cpu.h"
+#include "system/hw_accel.h"
 
 #ifdef TARGET_SPARC64
 static const VMStateDescription vmstate_cpu_timer = {
@@ -175,6 +176,16 @@ static int cpu_pre_save(void *opaque)
     return 0;
 }
 
+static bool cpu_post_load(void *opaque, int version_id, Error **errp)
+{
+    SPARCCPU *cpu = opaque;
+    CPUState *cs = CPU(cpu);
+
+    cpu_synchronize_post_init(cs);
+
+    return true;
+}
+
 /* 32-bit SPARC retains migration compatibility with older versions
  * of QEMU; 64-bit SPARC has had a migration break since then, so the
  * versions are different.
@@ -190,6 +201,7 @@ const VMStateDescription vmstate_sparc_cpu = {
     .version_id = SPARC_VMSTATE_VER,
     .minimum_version_id = SPARC_VMSTATE_VER,
     .pre_save = cpu_pre_save,
+    .post_load_errp = cpu_post_load,
     .fields = (const VMStateField[]) {
         VMSTATE_UINTTL_ARRAY(env.gregs, SPARCCPU, 8),
         VMSTATE_UINT32(env.nwindows, SPARCCPU),

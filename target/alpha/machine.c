@@ -2,6 +2,7 @@
 #include "cpu.h"
 #include "migration/qemu-file-types.h"
 #include "migration/vmstate.h"
+#include "system/hw_accel.h"
 
 static int get_fpcr(QEMUFile *f, void *opaque, size_t size,
                     const VMStateField *field)
@@ -17,6 +18,16 @@ static int put_fpcr(QEMUFile *f, void *opaque, size_t size,
     CPUAlphaState *env = opaque;
     qemu_put_be64(f, cpu_alpha_load_fpcr(env));
     return 0;
+}
+
+static bool cpu_post_load(void *opaque, int version_id, Error **errp)
+{
+    AlphaCPU *cpu = opaque;
+    CPUState *cs = CPU(cpu);
+
+    cpu_synchronize_post_init(cs);
+
+    return true;
 }
 
 static const VMStateInfo vmstate_fpcr = {
@@ -84,5 +95,6 @@ const VMStateDescription vmstate_alpha_cpu = {
     .name = "cpu",
     .version_id = 1,
     .minimum_version_id = 1,
+    .post_load_errp = cpu_post_load,
     .fields = vmstate_cpu_fields,
 };

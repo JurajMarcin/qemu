@@ -21,6 +21,7 @@
 #include "qemu/osdep.h"
 #include "cpu.h"
 #include "migration/cpu.h"
+#include "system/hw_accel.h"
 
 static int get_sreg(QEMUFile *f, void *opaque, size_t size,
                     const VMStateField *field)
@@ -70,6 +71,16 @@ static int put_segment(QEMUFile *f, void *opaque, size_t size,
     return 0;
 }
 
+static bool cpu_post_load(void *opaque, int version_id, Error **errp)
+{
+    AVRCPU *cpu = opaque;
+    CPUState *cs = CPU(cpu);
+
+    cpu_synchronize_post_init(cs);
+
+    return true;
+}
+
 static const VMStateInfo vms_rampD = {
     .name = "rampD",
     .get = get_segment,
@@ -100,6 +111,7 @@ const VMStateDescription vms_avr_cpu = {
     .name = "cpu",
     .version_id = 1,
     .minimum_version_id = 1,
+    .post_load_errp = cpu_post_load,
     .fields = (const VMStateField[]) {
         VMSTATE_UINT32(env.pc_w, AVRCPU),
         VMSTATE_UINT32(env.sp, AVRCPU),

@@ -4,16 +4,20 @@
 #include "migration/cpu.h"
 #include "fpu_helper.h"
 #include "qemu/timer.h"
+#include "system/hw_accel.h"
 
 static int cpu_post_load(void *opaque, int version_id)
 {
     MIPSCPU *cpu = opaque;
+    CPUState *cs = CPU(cpu);
     CPUMIPSState *env = &cpu->env;
 
     restore_fp_status(env);
     restore_msa_fp_status(env);
     compute_hflags(env);
     restore_pamask(env);
+
+    cpu_synchronize_post_init(cs);
 
     return 0;
 }
